@@ -1,0 +1,102 @@
+name: Release to GitHub
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.tag.outputs.release }}
+      version: ${{ steps.tag.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Generate changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        id: changelog
+        with:
+          git-push: false
+          output-file: false
+          skip-git-pull: true
+          skip-version-file: true
+          skip-commit: true
+          skip-tag: true
+      - name: Create release
+        id: tag
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: |
+            const skipped = '${{ steps.changelog.outputs.skipped }}';
+            const tag = '${{ steps.changelog.outputs.tag }}';
+            const version = '${{ steps.changelog.outputs.version }}';
+            const body = `${{ steps.changelog.outputs.clean_changelog }}`;
+            
+            if (skipped !== 'false') {
+              core.setFailed('No changes to publish.');
+              return;
+            }
+            
+            const release = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: tag,
+              body,
+            });
+            
+            core.setOutput('version', version);
+            core.setOutput('release', release.data.id);
+  build:
+    name: Build for ${{ matrix.targetPlatform }}
+    needs: release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64
+          - StandaloneLinux64
+          - StandaloneOSX
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          gitPrivateToken: ${{ secrets.PACKAGES_TOKEN }}
+          unityVersion: 2021.3.25f1
+          targetPlatform: ${{ matrix.targetPlatform }}
+          versioning: Custom
+          version: ${{ needs.release.outputs.version }}
+      - name: Create zip archive
+        run: |
+          cd build/${{ matrix.targetPlatform }}
+          zip -r ../../artifact.zip .
+      - name: Upload asset
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const release_id = `${{ needs.release.outputs.release }}`;
+            const name = `Build-${{ matrix.targetPlatform }}.zip`;
+            
+            await github.rest.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id,
+              name,
+              data: require("fs").readFileSync("artifact.zip"),
+            });
