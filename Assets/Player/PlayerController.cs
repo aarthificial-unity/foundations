@@ -206,6 +206,14 @@ namespace Player {
       if (Raycast(out var hit)) {
         if (hit.transform.gameObject.layer == _config.GroundLayer) {
           Navigate();
+          if (NavMesh.SamplePosition(
+              hit.point,
+              out var point,
+              100,
+              NavMesh.AllAreas
+            )) {
+            _target.transform.position = point.position;
+          }
         } else if (hit.transform.TryGetComponent<Interactable>(
             out var interactable
           )) {
