@@ -2075,7 +2075,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2036584219}
   - component: {fileID: 2036584220}
-  - component: {fileID: 2036584221}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -2197,39 +2196,6 @@ MonoBehaviour:
   - {x: 0.5479273, y: -0.21722417, z: 0.44842613, w: -0.67193997}
   - {x: -0.25768444, y: 0.074306846, z: 0.14028686, w: 0.95309854}
   - {x: -0.07415266, y: -0.0071227537, z: -0.121223785, w: 0.98982596}
---- !u!114 &2036584221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036584217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1147629186
-      Data2: 1106302555
-      Data3: 130402976
-      Data4: 239065686
-    Path: event:/Ambience/City
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params:
-  - Name: Traffic
-    Value: 0.297
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &2043227359
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,9 +52,21 @@ jobs:
             
             core.setOutput('version', version);
             core.setOutput('release', release.data.id);
+  fmod:
+    name: Build FMOD
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+      - uses: ./.github/actions/fmod
+      - uses: actions/upload-artifact@v3
+        with:
+          name: FMOD Build
+          path: .fmod/Build
   build:
     name: Build for ${{ matrix.targetPlatform }}
-    needs: release
+    needs: [release, fmod]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -71,6 +83,10 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
+      - uses: actions/download-artifact@v3
+        with:
+          name: FMOD Build
+          path: .fmod/Build
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}

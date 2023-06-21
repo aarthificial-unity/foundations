@@ -1,7 +1,7 @@
+using FMODUnity;
 using Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Utils;
 
 namespace View {
@@ -9,21 +9,22 @@ namespace View {
     [SerializeField] [Inject] private StoryMode _storyMode;
     [SerializeField] [Inject] private MenuMode _menuMode;
     [SerializeField] private GameObject _canvas;
-    [SerializeField] private Button _resumeButton;
-    [SerializeField] private Button _menuButton;
-    [SerializeField] private Button _exitButton;
+    [SerializeField] private ButtonNavigation _resumeButton;
+    [SerializeField] private ButtonNavigation _menuButton;
+    [SerializeField] private ButtonNavigation _exitButton;
     [SerializeField] private InputActionReference _pauseAction;
     [SerializeField] private InputActionReference _resumeAction;
+    [SerializeField] private StudioEventEmitter _pauseSound;
 
     private void OnEnable() {
-      _resumeButton.onClick.AddListener(_storyMode.Resume);
-      _menuButton.onClick.AddListener(_menuMode.RequestStart);
-      _exitButton.onClick.AddListener(_menuMode.Quit);
+      _resumeButton.Button.onClick.AddListener(_storyMode.Resume);
+      _menuButton.Button.onClick.AddListener(_menuMode.RequestStart);
+      _exitButton.Button.onClick.AddListener(_menuMode.Quit);
       _pauseAction.action.performed += HandlePauseAction;
       _resumeAction.action.performed += HandleResumeAction;
       _storyMode.Paused += HandlePaused;
       _storyMode.Resumed += HandleResumed;
-      _resumeButton.Select();
+      _resumeButton.QuickSelect();
       if (_storyMode.IsPaused) {
         HandlePaused();
       } else {
@@ -40,7 +41,8 @@ namespace View {
 
     private void HandlePaused() {
       _canvas.SetActive(true);
-      _resumeButton.Select();
+      _resumeButton.QuickSelect();
+      _pauseSound.Play();
     }
 
     private void HandleResumed() {
@@ -52,7 +54,7 @@ namespace View {
     }
 
     private void HandleResumeAction(InputAction.CallbackContext _) {
-      Debug.Log("Resume");
+      _pauseSound.Play();
       _storyMode.Resume();
     }
   }
