@@ -1,19 +1,19 @@
+using FMODUnity;
 using Framework;
 using UnityEngine;
-using UnityEngine.UI;
 using Utils;
 
 namespace View {
   public class MenuView : MonoBehaviour {
     [SerializeField] [Inject] private StoryMode _storyMode;
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _exitButton;
-    [SerializeField] private Button _settingsButton;
+    [SerializeField] private ButtonNavigation _startButton;
+    [SerializeField] private ButtonNavigation _exitButton;
+    [SerializeField] private ButtonNavigation _settingsButton;
 
     private void OnEnable() {
-      _startButton.onClick.AddListener(_storyMode.RequestStart);
-      _exitButton.onClick.AddListener(_storyMode.Quit);
-      _startButton.Select();
+      _startButton.Button.onClick.AddListener(_storyMode.RequestStart);
+      _exitButton.Button.onClick.AddListener(_storyMode.Quit);
+      _startButton.QuickSelect();
     }
   }
 }

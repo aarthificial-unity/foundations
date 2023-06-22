@@ -5,15 +5,28 @@ on:
   workflow_dispatch: { }
 
 jobs:
+  fmod:
+    name: Build FMOD
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+      - uses: ./.github/actions/fmod
+      - uses: actions/upload-artifact@v3
+        with:
+          name: FMOD Build
+          path: .fmod/Build
   build:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    needs: fmod
+    timeout-minutes: 15
     strategy:
       matrix:
         targetPlatform:
           - StandaloneWindows64
-          - StandaloneLinux64
-          - StandaloneOSX
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,6 +36,10 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
+      - uses: actions/download-artifact@v3
+        with:
+          name: FMOD Build
+          path: .fmod/Build
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}

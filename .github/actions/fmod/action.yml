@@ -1,0 +1,8 @@
+﻿name: FMOD
+description: Builds FMOD for Unity
+runs:
+  using: docker
+  image: aarthificial/fmod:2.02.15
+  args:
+    - -build
+    - /github/workspace/.fmod/Foundations.fspro
