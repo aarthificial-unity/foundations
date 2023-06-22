@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3128496683125231564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3307801604843387854, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerLT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222242322181321436, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9fa4d90422263c47b779a389d268f72, type: 2}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: Material
+      value: 
+      objectReference: {fileID: 2100000, guid: f9fa4d90422263c47b779a389d268f72, type: 2}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _commandAction
+      value: 
+      objectReference: {fileID: -3045247272773088673, guid: 314bc7151929a6a439a2af7e101ce57a,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 723be1f20975bbb4e80d78073f628de9, type: 3}

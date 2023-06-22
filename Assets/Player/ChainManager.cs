@@ -3,13 +3,12 @@ using System.Collections;
 using UnityEngine;
 
 namespace Player {
+  [DefaultExecutionOrder(2)]
   public class ChainManager : MonoBehaviour {
     [SerializeField] private GameObject _link;
     [SerializeField] private int _length;
     [SerializeField] private float _linkLength = 1;
 
-    [SerializeField] private Rigidbody _from;
-    [SerializeField] private Rigidbody _to;
     [SerializeField] private Vector3[] _positions;
     [SerializeField] private Quaternion[] _rotations;
 
@@ -26,13 +25,15 @@ namespace Player {
       }
 #endif
 
+      var manager = GetComponent<PlayerManager>();
+      var from = manager.LT.ChainTarget;
+      var to = manager.RT.ChainTarget;
+
       _links = new Rigidbody[_length];
       var prev = Instantiate(_link);
-      prev.transform.position = _positions[0];
-      prev.transform.rotation = _rotations[0];
       _links[0] = prev.GetComponent<Rigidbody>();
 
-      var joint = _to.GetComponent<Joint>();
+      var joint = to.GetComponent<Joint>();
       joint.connectedBody = _links[0];
       var anchor = joint.connectedAnchor;
       anchor.y = -_linkLength;
@@ -43,8 +44,6 @@ namespace Player {
 
       for (var i = 1; i < _length; i++) {
         var link = Instantiate(_link);
-        link.transform.position = _positions[i];
-        link.transform.rotation = _rotations[i];
         joint = prev.GetComponent<Joint>();
         _links[i] = link.GetComponent<Rigidbody>();
         joint.connectedBody = _links[i];
@@ -63,11 +62,19 @@ namespace Player {
       }
 
       Destroy(prev.GetComponent<Joint>());
-      joint = _from.GetComponent<Joint>();
+      joint = from.GetComponent<Joint>();
       joint.connectedBody = prev.GetComponent<Rigidbody>();
       anchor = joint.connectedAnchor;
       anchor.y = _linkLength;
       joint.connectedAnchor = anchor;
+    }
+
+    private void Start() {
+      for (var i = 0; i < _length; i++) {
+        _links[i].position = _positions[i];
+        _links[i].rotation = _rotations[i];
+        _links[i].velocity = Vector3.zero;
+      }
     }
 
 #if UNITY_EDITOR

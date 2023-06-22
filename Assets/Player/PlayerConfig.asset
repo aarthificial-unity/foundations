@@ -17,8 +17,7 @@ MonoBehaviour:
     m_Bits: 264
   Acceleration: 30
   WalkSpeed: 5
-  SprintSpeed: 10
+  CloseDistance: 2
   MinDistance: 3
   MaxDistance: 5
   LimitDistance: 8
-  DoubleTapTime: 0.75

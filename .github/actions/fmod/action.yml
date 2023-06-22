@@ -1,5 +1,5 @@
 ﻿name: FMOD
-description: Builds FMOD for Unity
+description: Builds an FMOD Studio project.
 runs:
   using: docker
   image: aarthificial/fmod:2.02.15
