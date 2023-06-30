@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0878fa1be1f546a2a65661326a877, type: 3}
+  m_Name: Scopes
+  m_EditorClassIdentifier: 
+  tableName: Scopes
+  rules: []
+  facts:
+  - rid: 5862281751644864524
+  - rid: 5862281751644864523
+  - rid: 5862281760995803138
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5862281751644864523
+      type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -1936302086
+        key: interaction
+        scope:
+          id: 0
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864524
+      type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: 475414559
+        key: global
+        scope:
+          id: 0
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281760995803138
+      type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -1768494618
+        key: context
+        scope:
+          id: 0
+        once: 0
+        criteria: []
+        modifications: []

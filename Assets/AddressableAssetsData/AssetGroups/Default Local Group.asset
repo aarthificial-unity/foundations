@@ -16,7 +16,15 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: f9f278033c26f164eaab49781a4c15fa
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: ec2819aabd84b1640b7c37d59fe3e52c
+    m_Address: Assets/Items/PickaxeItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f94c2c4dbbb435a4480cf403004fb166
+    m_Address: Assets/Items/SawItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1a5a7b11fbc1c5748b23c306b82ab566, type: 2}
   m_SchemaSet:

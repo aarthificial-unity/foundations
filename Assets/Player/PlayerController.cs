@@ -1,44 +1,58 @@
 using System;
+using Aarthificial.Typewriter.Attributes;
+using Aarthificial.Typewriter.Entries;
+using Aarthificial.Typewriter.References;
+using Items;
 using Player.States;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Utils;
 
 namespace Player {
+  [RequireComponent(typeof(FollowState))]
+  [RequireComponent(typeof(IdleState))]
+  [RequireComponent(typeof(InteractState))]
+  [RequireComponent(typeof(NavigateState))]
   public class PlayerController : MonoBehaviour {
     public Material Material;
     [NonSerialized] public PlayerController Other;
-    [NonSerialized] public PlayerManager Manager;
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
-    public NavMeshAgent Agent;
-    public PlayerConfig Config;
+    [Inject] public NavMeshAgent Agent;
+    [Inject] public PlayerConfig Config;
     public PlayerType Type;
     public Rigidbody ChainTarget;
-    [SerializeField] private InputActionReference _commandAction;
+    public InputActionReference CommandAction;
+    [EntryFilter(Type = EntryType.Fact)] public EntryReference Fact;
 
     [NonSerialized] public FollowState FollowState;
     [NonSerialized] public IdleState IdleState;
     [NonSerialized] public InteractState InteractState;
     [NonSerialized] public NavigateState NavigateState;
 
+    [NonSerialized] public ItemSlot Slot;
+    [NonSerialized] public Item CurrentItem;
+
     private BaseState _currentState;
 
     private void Awake() {
-      FollowState = new FollowState(this);
-      NavigateState = new NavigateState(this);
-      InteractState = new InteractState(this);
-      IdleState = new IdleState(this);
+      FollowState = GetComponent<FollowState>();
+      IdleState = GetComponent<IdleState>();
+      InteractState = GetComponent<InteractState>();
+      NavigateState = GetComponent<NavigateState>();
+    }
+
+    private void Start() {
+      Slot.Dropped += HandleDropped;
       SwitchState(IdleState);
     }
 
-    private void OnEnable() {
-      Agent.acceleration = Config.Acceleration;
-      _commandAction.action.performed += HandleCommand;
-    }
-
-    private void OnDisable() {
-      _commandAction.action.performed -= HandleCommand;
+    private void HandleDropped() {
+      DropItem();
     }
 
     public void DrivenUpdate() {
@@ -52,16 +66,6 @@ namespace Player {
       Agent.autoBraking = true;
     }
 
-    public bool IsCurrent() {
-      return Manager.CurrentPlayer == Type;
-    }
-
-    public bool IsActivelyNavigating() {
-      return NavigateState.IsActive
-        && IsCurrent()
-        && _commandAction.action.ReadValue<float>() > 0.5f;
-    }
-
     public void SwitchState(BaseState state) {
       if (_currentState == state) {
         return;
@@ -72,14 +76,48 @@ namespace Player {
       _currentState?.OnEnter();
     }
 
-    private void HandleCommand(InputAction.CallbackContext context) {
-      Manager.CurrentPlayer = Type;
+    public bool CanPickUpItem() {
+      return CurrentItem == null || CurrentItem.CanDrop();
+    }
 
-      if (Manager.CurrentCommand == PlayerManager.Command.Interact) {
-        InteractState.Enter(Manager.Interactable);
-      } else if (Manager.CurrentCommand == PlayerManager.Command.Move) {
-        NavigateState.Enter();
+    public void DropItem() {
+      Debug.Log("Drop");
+      if (CurrentItem == null) {
+        return;
       }
+
+      Assert.IsTrue(CurrentItem.CanDrop());
+
+      CurrentItem.transform.parent = null;
+      SceneManager.MoveGameObjectToScene(
+        CurrentItem.gameObject,
+        SceneManager.GetActiveScene()
+      );
+      CurrentItem.transform.position = transform.position.ToNavMesh();
+      CurrentItem.gameObject.SetActive(true);
+      CurrentItem = null;
+      Slot.SetItem(CurrentItem);
+    }
+
+    public void PickUp(Item item) {
+      DropItem();
+      CurrentItem = item;
+      item.gameObject.SetActive(false);
+      item.transform.parent = transform;
+      Slot.SetItem(CurrentItem);
+    }
+
+    public bool HasItem(Item item) {
+      if (item == null) {
+        return true;
+      }
+
+      if (CurrentItem == null) {
+        return false;
+      }
+
+      return CurrentItem.PrefabReference.AssetGUID
+        == item.PrefabReference.AssetGUID;
     }
   }
 }

@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0878fa1be1f546a2a65661326a877, type: 3}
+  m_Name: ConversationContext
+  m_EditorClassIdentifier: 
+  tableName: ConversationContext
+  rules: []
+  facts:
+  - rid: 5862281751644864518
+  - rid: 5862281751644864526
+  - rid: 5862281751644864527
+  - rid: 5862281751644864519
+  - rid: 5862281751644864520
+  - rid: 5862281751644864521
+  - rid: 5862281751644864522
+  events:
+  - rid: 5862281776637673480
+  - rid: 5862281776637673489
+  references:
+    version: 2
+    RefIds:
+    - rid: 5862281751644864518
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -1596563589
+        key: currentSpeaker
+        scope:
+          id: -1768494618
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864519
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -963223665
+        key: initiator
+        scope:
+          id: -1936302086
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864520
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: 1809211332
+        key: listener
+        scope:
+          id: -1936302086
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864521
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -514433065
+        key: isRTPresent
+        scope:
+          id: -1936302086
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864522
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -95002655
+        key: isLTPresent
+        scope:
+          id: -1936302086
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864526
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -2078916288
+        key: RT
+        scope:
+          id: -1768494618
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281751644864527
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -417971899
+        key: LT
+        scope:
+          id: -1768494618
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281776637673480
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: 2014434846
+        key: callOther
+        scope:
+          id: 0
+        once: 0
+        criteria: []
+        modifications: []
+    - rid: 5862281776637673489
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        id: -2028872245
+        key: pickUp
+        scope:
+          id: -1936302086
+        once: 0
+        criteria: []
+        modifications: []

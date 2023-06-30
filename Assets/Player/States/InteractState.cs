@@ -1,84 +1,59 @@
-﻿using Interactions;
+﻿using System;
+using Interactions;
 using UnityEngine.Assertions;
 
 namespace Player.States {
-  public class InteractState : BaseState {
-    private Interactable _interactable;
-    private bool _reachedInteractable;
-
-    public InteractState(PlayerController playerController) : base(
-      playerController
-    ) { }
+  public class InteractState : PlayerState {
+    [NonSerialized] public Interactable Interactable;
 
     public override void OnEnter() {
       base.OnEnter();
       Assert.IsNotNull(
-        _interactable,
+        Interactable,
         "Interact state was entered without an interactable"
       );
 
-      if (Other.NavigateState.IsActive
-        || Other.InteractState.IsInteractingWith(_interactable)) {
+      if (Other.NavigateState.IsActive) {
         Other.FollowState.Enter();
       }
 
       Player.ResetAgent();
-      _reachedInteractable = false;
-      _interactable.OnFocusEnter(Player);
-      Player.Agent.destination = _interactable.GetPosition();
+      Interactable.OnFocusEnter(Player);
+      Player.Agent.stoppingDistance = 0;
+      Player.Agent.destination = Interactable.GetPosition(Player);
     }
 
     public override void OnExit() {
       base.OnExit();
-      if (_reachedInteractable) {
-        _interactable.OnInteractExit();
-      }
-
-      _interactable.OnFocusExit(Player);
-      _interactable = null;
+      Interactable.OnFocusExit(Player);
+      Interactable = null;
     }
 
     public override void OnUpdate() {
-      if (!_interactable.CanInteract()
-        || !_interactable.IsCompatibleWith(Player)) {
-        if (Other.FollowState.IsActive) {
-          Player.SwitchState(Player.IdleState);
-        } else {
-          Player.SwitchState(Player.FollowState);
-        }
-
-        return;
-      }
-
-      Player.Agent.destination = _interactable.GetPosition();
-      var reachedInteractable =
-        Player.Agent.remainingDistance < _interactable.GetRadius();
-
-      if (reachedInteractable != _reachedInteractable) {
-        _reachedInteractable = reachedInteractable;
-        if (_reachedInteractable) {
-          _interactable.OnInteractEnter();
-        } else {
-          _interactable.OnInteractExit();
-        }
-      }
+      var scale = Interactable.IsReady(Player) ? 0.5f : 1f;
+      Player.Agent.speed = Player.Config.WalkSpeed * scale;
+      Player.Agent.acceleration = Player.Config.Acceleration * scale;
+      Player.Agent.destination = Interactable.GetPosition(Player);
     }
 
     public void Enter(Interactable interactable) {
-      Assert.AreEqual(IsActive, _interactable != null);
+      Assert.AreEqual(IsActive, Interactable != null);
 
-      if (_interactable == interactable
-        || !interactable.IsCompatibleWith(Player)) {
+      if (Interactable == interactable) {
         return;
       }
 
       Player.SwitchState(null);
-      _interactable = interactable;
+      Interactable = interactable;
       Player.SwitchState(this);
     }
 
     public bool IsInteractingWith(Interactable interactable) {
-      return IsActive && _interactable == interactable;
+      return IsActive && Interactable == interactable;
+    }
+
+    public bool IsActivelyInteracting() {
+      return IsActive && Interactable.IsInteracting;
     }
   }
 }

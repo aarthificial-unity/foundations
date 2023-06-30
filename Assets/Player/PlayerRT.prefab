@@ -59,9 +59,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
+      propertyPath: Fact.id
+      value: -2078916288
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
       propertyPath: Material
       value: 
       objectReference: {fileID: 2100000, guid: 97feec29ad3503446a7bb364aa957572, type: 2}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: CommandAction
+      value: 
+      objectReference: {fileID: 7420566343372142163, guid: 314bc7151929a6a439a2af7e101ce57a,
+        type: 3}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _commandAction

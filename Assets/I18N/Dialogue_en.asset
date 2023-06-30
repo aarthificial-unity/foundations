@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Dialogue_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 820a382dab1e26d47a58e3a7ea111607, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 491980664832
+    m_Localized: Inspect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138807870828544
+    m_Localized: Oh well...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 165992958603264
+    m_Localized: Looks like a saw.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 388788032712704
+    m_Localized: Pick up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415635466432512
+    m_Localized: It won't budge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416087243304960
+    m_Localized: There's a pickaxe stuck in this rock.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 418684419256320
+    m_Localized: Call other convict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 427415672532992
+    m_Localized: Can you give it a try?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430204251353088
+    m_Localized: Sure.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 431252449865728
+    m_Localized: Take a look at this.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 431673151139840
+    m_Localized: There's a pickaxe stuck in this rock but it won't budge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433628611162112
+    m_Localized: What is it?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434029993472000
+    m_Localized: Inspect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436439512068096
+    m_Localized: Pick up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436465617416192
+    m_Localized: There we go.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

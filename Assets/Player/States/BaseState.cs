@@ -1,12 +1,9 @@
-﻿namespace Player.States {
-  public abstract class BaseState {
-    public bool IsActive;
-    protected readonly PlayerController Player;
-    protected PlayerController Other => Player.Other;
+﻿using System;
+using UnityEngine;
 
-    protected BaseState(PlayerController playerController) {
-      Player = playerController;
-    }
+namespace Player.States {
+  public abstract class BaseState : MonoBehaviour {
+    [NonSerialized] public bool IsActive;
 
     public virtual void OnUpdate() { }
 

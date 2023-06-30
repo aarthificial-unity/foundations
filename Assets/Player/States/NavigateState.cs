@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Player.States {
-  public class NavigateState : BaseState {
-    private readonly NavMeshPath _path = new();
+  public class NavigateState : PlayerState {
+    [NonSerialized] public Vector3 TargetPosition;
+    private NavMeshPath _path;
 
-    public NavigateState(PlayerController playerController) : base(
-      playerController
-    ) { }
+    protected override void Awake() {
+      base.Awake();
+      _path = new NavMeshPath();
+    }
 
     public override void OnEnter() {
       base.OnEnter();
@@ -16,20 +19,18 @@ namespace Player.States {
       }
 
       Player.ResetAgent();
-      Player.Agent.destination = Player.Manager.TargetPosition;
+      Player.Agent.destination = TargetPosition;
     }
 
     public override void OnUpdate() {
-      if (Player.IsActivelyNavigating()) {
-        Player.Agent.destination = Player.Manager.TargetPosition;
-      }
-
-      if (Other.InteractState.IsActive) {
+      Player.Agent.destination = TargetPosition;
+      if (!Other.FollowState.IsActive) {
         LimitWalkingDistance();
       }
     }
 
-    public void Enter() {
+    public void Enter(Vector3 targetPosition) {
+      TargetPosition = targetPosition;
       Player.SwitchState(this);
     }
 

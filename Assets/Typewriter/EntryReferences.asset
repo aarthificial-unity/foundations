@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8bafa280444162b27c54fd698676b5, type: 3}
+  m_Name: EntryReferences
+  m_EditorClassIdentifier: 
+  GlobalScope:
+    id: 475414559
+  ConversationScope:
+    id: -1936302086
+  CurrentSpeaker:
+    id: -1596563589
+  Initiator:
+    id: -963223665
+  Listener:
+    id: 1809211332
+  IsRTPresent:
+    id: -514433065
+  IsLTPresent:
+    id: -95002655
