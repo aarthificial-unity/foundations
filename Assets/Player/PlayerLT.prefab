@@ -59,6 +59,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f9fa4d90422263c47b779a389d268f72, type: 2}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
+      propertyPath: CommandAction
+      value: 
+      objectReference: {fileID: -3045247272773088673, guid: 314bc7151929a6a439a2af7e101ce57a,
+        type: 3}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
       propertyPath: _commandAction
       value: 
       objectReference: {fileID: -3045247272773088673, guid: 314bc7151929a6a439a2af7e101ce57a,

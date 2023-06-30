@@ -1,120 +1,81 @@
 ﻿using System;
 using Cinemachine;
-using Interactions;
+using Items;
+using Player.ManagerStates;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
+using UnityEngine.Assertions;
 using Utils;
+using View.Dialogue;
 
 namespace Player {
+  [RequireComponent(typeof(DialogueState))]
+  [RequireComponent(typeof(ExploreState))]
   public class PlayerManager : MonoBehaviour {
-    public enum Command {
-      None,
-      Move,
-      Interact,
-    }
-
-    [NonSerialized] public Command CurrentCommand = Command.None;
-    [NonSerialized] public Interactable Interactable;
-    [NonSerialized] public Vector3 TargetPosition;
-    private PlayerType _currentPlayer = 0;
-
-    public PlayerType CurrentPlayer {
-      get => _currentPlayer;
-      set {
-        _currentPlayer = value;
-        _target.SetActive(value != 0);
-        _target.GetComponent<MeshRenderer>().material = this[value].Material;
-      }
-    }
-
-    [SerializeField] [Inject] private PlayerConfig _config;
-    [SerializeField] private GameObject _target;
-    [SerializeField] private Camera _camera;
+    [Inject] [SerializeField] private PlayerChannel _players;
     [SerializeField] private PlayerController _rtPrefab;
     [SerializeField] private PlayerController _ltPrefab;
     [SerializeField] private Vector3 _rtStartPosition;
     [SerializeField] private Vector3 _ltStartPosition;
-    [SerializeField] private InputActionReference _targetAction;
+    [SerializeField] private ItemSlot _rtItemSlot;
+    [SerializeField] private ItemSlot _ltItemSlot;
+    [SerializeField] private DialogueButton[] _dialogueButtons;
+    private int _currentDialogueButtonIndex;
 
-    [NonSerialized] public PlayerController RT;
-    [NonSerialized] public PlayerController LT;
+    [NonSerialized] public DialogueState DialogueState;
+    [NonSerialized] public ExploreState ExploreState;
+    private ManagerState _currentState;
 
-    private void Awake() {
-      RT = Instantiate(_rtPrefab, _rtStartPosition, Quaternion.identity);
-      LT = Instantiate(_ltPrefab, _ltStartPosition, Quaternion.identity);
-      RT.Other = LT;
-      LT.Other = RT;
-      RT.Manager = this;
-      LT.Manager = this;
-
-      var group = GetComponent<CinemachineTargetGroup>();
-      group.m_Targets[0].target = RT.transform;
-      group.m_Targets[1].target = LT.transform;
-    }
-
-    private void Update() {
-      CurrentCommand = Command.None;
-      var previousInteractable = Interactable;
-      Interactable = null;
-
-      var mousePosition = _targetAction.action.ReadValue<Vector2>();
-      var ray = _camera.ScreenPointToRay(mousePosition);
-      var currentController = CurrentController;
-      var mask = _config.InteractionMask;
-      if (currentController?.IsActivelyNavigating() ?? false) {
-        mask = 1 << _config.GroundLayer;
-      }
-
-      if (!Physics.Raycast(ray, out var hit, 100, mask)) {
+    public void SwitchState(ManagerState state) {
+      if (_currentState == state) {
         return;
       }
 
-      TargetPosition = hit.point;
-      if (hit.transform.TryGetComponent<Interactable>(out var interactable)
-        && interactable.CanInteract()) {
-        CurrentCommand = Command.Interact;
-        Interactable = interactable;
-      } else {
-        CurrentCommand = Command.Move;
-        if (NavMesh.SamplePosition(
-            hit.point,
-            out var point,
-            100,
-            NavMesh.AllAreas
-          )) {
-          TargetPosition = point.position;
-        }
-      }
-
-      if (Interactable != previousInteractable) {
-        if (previousInteractable != null) {
-          previousInteractable.OnHoverExit();
-        }
-
-        if (Interactable != null) {
-          Interactable.OnHoverEnter();
-        }
-      }
-
-      LT.DrivenUpdate();
-      RT.DrivenUpdate();
-
-      if (currentController?.NavigateState.IsActive ?? false) {
-        _target.transform.position = currentController.TargetPosition;
-        _target.SetActive(true);
-      } else {
-        _target.SetActive(false);
-      }
+      _currentState?.OnExit();
+      _currentState = state;
+      _currentState?.OnEnter();
     }
 
-    public PlayerController CurrentController => this[_currentPlayer];
+    public DialogueButton BorrowButton() {
+      Assert.IsTrue(_currentDialogueButtonIndex < _dialogueButtons.Length);
+      return _dialogueButtons[_currentDialogueButtonIndex++];
+    }
 
-    public PlayerController this[PlayerType type] =>
-      type switch {
-        PlayerType.RT => RT,
-        PlayerType.LT => LT,
-        _ => null,
-      };
+    public void ReleaseButton(DialogueButton button) {
+      Assert.IsTrue(_currentDialogueButtonIndex > 0);
+      _dialogueButtons[--_currentDialogueButtonIndex] = button;
+    }
+
+    private void Awake() {
+      DialogueState = GetComponent<DialogueState>();
+      ExploreState = GetComponent<ExploreState>();
+
+      var rt = Instantiate(_rtPrefab, _rtStartPosition, Quaternion.identity);
+      var lt = Instantiate(_ltPrefab, _ltStartPosition, Quaternion.identity);
+      _players.Manager = this;
+      _players.LT = lt;
+      _players.RT = rt;
+      rt.Other = lt;
+      lt.Other = rt;
+      rt.Slot = _rtItemSlot;
+      lt.Slot = _ltItemSlot;
+
+      var group = GetComponent<CinemachineTargetGroup>();
+      group.m_Targets[0].target = rt.transform;
+      group.m_Targets[1].target = lt.transform;
+    }
+
+    private void OnDestroy() {
+      _players.Manager = null;
+      _players.LT = null;
+      _players.RT = null;
+    }
+
+    private void Start() {
+      SwitchState(ExploreState);
+    }
+
+    private void Update() {
+      _currentState?.OnUpdate();
+    }
   }
 }

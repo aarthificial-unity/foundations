@@ -31,6 +31,7 @@ namespace Input {
       }
 
       _actions.Disable();
+      _actions.FindActionMap("Pointing").Enable();
       HandleMapChanged(_inputChannel.CurrentMap);
       _inputChannel.MapChanged += HandleMapChanged;
       InputUser.onChange += HandleUserChange;

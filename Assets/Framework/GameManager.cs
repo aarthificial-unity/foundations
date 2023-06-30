@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Utils;
 
@@ -45,6 +46,26 @@ namespace Framework {
       RequestMode(MenuMode);
 #endif
     }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    private void Update() {
+      if (Keyboard.current.rKey.wasPressedThisFrame) {
+        StartCoroutine(Reload());
+      }
+
+      if (Keyboard.current.fKey.wasPressedThisFrame) {
+        Time.timeScale = Time.timeScale < 1 ? 1 : 0.2f;
+      }
+    }
+
+    private IEnumerator Reload() {
+      var scene = SceneManager.GetActiveScene().buildIndex;
+      yield return SceneManager.UnloadSceneAsync(scene);
+      yield return SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+
+      SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(scene));
+    }
+#endif
 
     private IEnumerator SwitchMode(GameMode mode) {
       yield return new WaitUntil(() => !_isSwitching);

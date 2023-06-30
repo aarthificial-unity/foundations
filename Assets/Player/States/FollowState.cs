@@ -2,12 +2,8 @@
 using Utils;
 
 namespace Player.States {
-  public class FollowState : BaseState {
+  public class FollowState : PlayerState {
     private Vector3 _otherVelocity;
-
-    public FollowState(PlayerController playerController) : base(
-      playerController
-    ) { }
 
     public override void OnEnter() {
       base.OnEnter();
