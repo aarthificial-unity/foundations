@@ -35,8 +35,8 @@ namespace Player.ManagerStates {
     public override void OnEnter() {
       base.OnEnter();
 
+      Interactable.OnInteractionEnter();
       _volume.weight = 1;
-
       _context.Setup();
       _context.Interaction = Interactable.Blackboard;
 
@@ -55,9 +55,8 @@ namespace Player.ManagerStates {
       _view.Dialogue.Wheel.Clicked -= HandleClicked;
       _view.Dialogue.Track.Finished -= HandleFinished;
       _view.Dialogue.SetActive(false);
-
       _volume.weight = 0;
-
+      Interactable.OnInteractionExit();
       Interactable = null;
     }
 
@@ -131,12 +130,12 @@ namespace Player.ManagerStates {
 
       foreach (var dispatcher in rule.onEnd) {
         if (dispatcher.reference.id == InteractionContext.CallOther) {
-          player.Other.InteractState.Enter(player.InteractState.Interactable);
-        } else if (dispatcher.reference.id == InteractionContext.PickUp
-          && Interactable.Item != null
-          && player.CanPickUpItem()) {
-          _context.Interaction.Set(InteractionContext.PickUp, 0);
-          player.PickUp(Interactable.Item);
+          player.Other.InteractState.Enter(player.InteractState.Conversation);
+          // } else if (dispatcher.reference.id == InteractionContext.PickUp
+          // && Interactable.Item != null
+          // && player.CanPickUpItem()) {
+          // _context.Interaction.Set(InteractionContext.PickUp, 0);
+          // player.PickUp(Interactable.Item);
         }
       }
     }

@@ -101,7 +101,7 @@ namespace Player.ManagerStates {
 
         switch (_currentCommand) {
           case Command.Interact:
-            player.InteractState.Enter(_interactable);
+            _interactable.Interact(player);
             break;
           case Command.Move:
             _commandedPlayer = player.Type;

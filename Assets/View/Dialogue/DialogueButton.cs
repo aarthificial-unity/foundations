@@ -14,7 +14,7 @@ namespace View.Dialogue {
     private Canvas _canvas;
     private RectTransform _rectTransform;
     private Button _button;
-    private Interactable _interactable;
+    private Conversation conversation;
 
     private void Awake() {
       _canvas = GetComponentInParent<Canvas>();
@@ -23,15 +23,15 @@ namespace View.Dialogue {
       gameObject.SetActive(false);
     }
 
-    public void SetInteraction(Interactable interactable) {
-      _interactable = interactable;
-      gameObject.SetActive(_interactable != null);
+    public void SetInteraction(Conversation conversation) {
+      this.conversation = conversation;
+      gameObject.SetActive(this.conversation != null);
     }
 
     private void LateUpdate() {
-      if (_interactable != null) {
+      if (conversation != null) {
         _rectTransform.anchoredPosition =
-          Camera.main.WorldToScreenPoint(_interactable.transform.position)
+          Camera.main.WorldToScreenPoint(conversation.transform.position)
           / _canvas.scaleFactor;
       }
     }
