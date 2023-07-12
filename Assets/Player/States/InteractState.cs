@@ -4,12 +4,12 @@ using UnityEngine.Assertions;
 
 namespace Player.States {
   public class InteractState : PlayerState {
-    [NonSerialized] public Interactable Interactable;
+    [NonSerialized] public Conversation Conversation;
 
     public override void OnEnter() {
       base.OnEnter();
       Assert.IsNotNull(
-        Interactable,
+        Conversation,
         "Interact state was entered without an interactable"
       );
 
@@ -18,42 +18,42 @@ namespace Player.States {
       }
 
       Player.ResetAgent();
-      Interactable.OnFocusEnter(Player);
+      Conversation.OnFocusEnter(Player);
       Player.Agent.stoppingDistance = 0;
-      Player.Agent.destination = Interactable.GetPosition(Player);
+      Player.Agent.destination = Conversation.GetPosition(Player);
     }
 
     public override void OnExit() {
       base.OnExit();
-      Interactable.OnFocusExit(Player);
-      Interactable = null;
+      Conversation.OnFocusExit(Player);
+      Conversation = null;
     }
 
     public override void OnUpdate() {
-      var scale = Interactable.IsReady(Player) ? 0.5f : 1f;
+      var scale = Conversation.IsReady(Player) ? 0.5f : 1f;
       Player.Agent.speed = Player.Config.WalkSpeed * scale;
       Player.Agent.acceleration = Player.Config.Acceleration * scale;
-      Player.Agent.destination = Interactable.GetPosition(Player);
+      Player.Agent.destination = Conversation.GetPosition(Player);
     }
 
-    public void Enter(Interactable interactable) {
-      Assert.AreEqual(IsActive, Interactable != null);
+    public void Enter(Conversation conversation) {
+      Assert.AreEqual(IsActive, Conversation != null);
 
-      if (Interactable == interactable) {
+      if (Conversation == conversation) {
         return;
       }
 
       Player.SwitchState(null);
-      Interactable = interactable;
+      Conversation = conversation;
       Player.SwitchState(this);
     }
 
-    public bool IsInteractingWith(Interactable interactable) {
-      return IsActive && Interactable == interactable;
+    public bool IsInteractingWith(Conversation conversation) {
+      return IsActive && Conversation == conversation;
     }
 
     public bool IsActivelyInteracting() {
-      return IsActive && Interactable.IsInteracting;
+      return IsActive && Conversation.IsInteracting;
     }
   }
 }

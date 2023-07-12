@@ -2145,22 +2145,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  Waypoints:
-  - {fileID: 1909268077}
-  - {fileID: 287494247}
+  Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     eventReference:
       id: -1055576022
     context:
       list: []
-  Item: {fileID: 782641446}
-  _radius: 2
   Blackboard:
     list: []
-  _context:
+  Context:
     Context:
       list: []
+  Waypoints:
+  - {fileID: 1909268077}
+  - {fileID: 287494247}
+  Item: {fileID: 782641446}
+  _radius: 2
 --- !u!114 &1374433494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3617,22 +3617,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  Waypoints:
-  - {fileID: 693911099}
-  - {fileID: 1515465418}
+  Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     eventReference:
       id: -1055576022
     context:
       list: []
-  Item: {fileID: 0}
-  _radius: 2
   Blackboard:
     list: []
-  _context:
+  Context:
     Context:
       list: []
+  Waypoints:
+  - {fileID: 693911099}
+  - {fileID: 1515465418}
+  Item: {fileID: 0}
+  _radius: 2
 --- !u!1 &2116653786
 GameObject:
   m_ObjectHideFlags: 0

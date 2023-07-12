@@ -2,32 +2,12 @@
 using Aarthificial.Typewriter.Blackboards;
 using Aarthificial.Typewriter.References;
 using Aarthificial.Typewriter.Tools;
-using Items;
 using Player;
-using Unity.Collections;
 using UnityEngine;
 using Utils;
-using View.Dialogue;
 
 namespace Interactions {
   public class Interactable : MonoBehaviour {
-    public struct Interaction {
-      public InteractionWaypoint Waypoint;
-      public PlayerController Player;
-      public bool IsActive;
-      public bool IsReady;
-
-      public Interaction(
-        PlayerController player,
-        InteractionWaypoint waypoint
-      ) {
-        Player = player;
-        Waypoint = waypoint;
-        IsActive = true;
-        IsReady = false;
-      }
-    }
-
     [NonSerialized] public bool IsInteracting;
     [NonSerialized] public bool IsFocused;
     [NonSerialized] public bool IsHovered;
@@ -36,188 +16,42 @@ namespace Interactions {
     [NonSerialized] public EntryReference Initiator;
     [NonSerialized] public EntryReference Listener;
 
-    [Inject] [SerializeField] private PlayerChannel _players;
-    public InteractionWaypoint[] Waypoints;
+    [Inject] [SerializeField] protected PlayerChannel Players;
     public TypewriterEvent Event;
-    public Item Item;
 
     public event Action StateChanged;
-    private PlayerLookup<Interaction> _interactions;
-
-    [SerializeField]
-    private float _radius = 0.3f;
-
     public Blackboard Blackboard = new();
-    [SerializeField] private InteractionContext _context;
-    private DialogueButton _button;
+    [SerializeField] protected InteractionContext Context;
 
     private void Awake() {
-      _context.Interaction = Blackboard;
-      _context.Setup();
+      Context.Interaction = Blackboard;
+      Context.Setup();
       Blackboard.Set(InteractionContext.PickUp, 1);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);
     }
 
     private void Start() {
-      StateChanged?.Invoke();
+      OnStateChanged();
     }
 
-    private void Update() {
-      UpdateInteraction(PlayerType.LT);
-      UpdateInteraction(PlayerType.RT);
-      UpdateState();
+    public virtual void Interact(PlayerController player) { }
 
-      Blackboard.Set(InteractionContext.IsLTPresent, IsPresent(_players.LT));
-      Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(_players.RT));
-      Blackboard.Set(InteractionContext.Initiator, Initiator);
-      Blackboard.Set(InteractionContext.Listener, Listener);
+    public virtual void OnInteractionEnter() { }
 
-      UpdateButton();
-    }
-
-    private void UpdateInteraction(PlayerType type) {
-      var interaction = _interactions[type];
-      if (!interaction.IsActive) {
-        return;
-      }
-
-      var distance = Vector3.Distance(
-        interaction.Player.transform.position,
-        transform.position
-      );
-
-      interaction.IsReady = distance < _radius;
-      _interactions[type] = interaction;
-    }
-
-    // public virtual bool IsCompatibleWith(PlayerController player) {
-    // VerificationContext.Setup(player.Type);
-    // return VerificationContext.HasMatchingRule(Event.eventReference);
-    // }
-
-    public void OnFocusEnter(PlayerController player) {
-      var otherInteraction = _interactions[player.Other.Type];
-      var otherWaypoint = otherInteraction.IsActive
-        ? otherInteraction.Waypoint
-        : null;
-
-      // relocate the other player if necessary
-      var closestWaypoint = FindClosestWaypoint(player.transform.position);
-      if (otherInteraction.IsActive && otherWaypoint == closestWaypoint) {
-        otherInteraction.Waypoint = FindClosestWaypoint(
-          otherInteraction.Player.transform.position,
-          closestWaypoint
-        );
-        _interactions[player.Type.Other()] = otherInteraction;
-      }
-
-      _interactions[player.Type] = new Interaction(player, closestWaypoint);
-      if (!otherInteraction.IsActive) {
-        Initiator = player.Fact;
-      } else {
-        Listener = player.Fact;
-      }
-    }
-
-    public void OnFocusExit(PlayerController player) {
-      _interactions[player.Type] = default;
-      Listener = default;
-      Initiator = _interactions[player.Other.Type].IsActive
-        ? player.Other.Fact
-        : default;
-    }
-
-    public Vector3 GetPosition(PlayerController player) {
-      return _interactions[player.Type].Waypoint.Position;
-    }
-
-    public bool IsReady(PlayerController player) {
-      return _interactions[player.Type].IsReady;
-    }
-
-    private void UpdateState() {
-      var playerType =
-        (_interactions.LT.IsActive ? PlayerType.LT : PlayerType.None)
-        | (_interactions.RT.IsActive ? PlayerType.RT : PlayerType.None);
-      var isFocused = _interactions.LT.IsActive || _interactions.RT.IsActive;
-      var isInteracting = _interactions.LT.IsReady || _interactions.RT.IsReady;
-      var hasDialogue = IsInteracting
-        && _context.HasMatchingRule(Event.eventReference);
-
-      if (IsFocused != isFocused
-        || IsInteracting != isInteracting
-        || PlayerType != playerType
-        || hasDialogue != HasDialogue) {
-        IsFocused = isFocused;
-        IsInteracting = isInteracting;
-        PlayerType = playerType;
-        HasDialogue = hasDialogue;
-        StateChanged?.Invoke();
-      }
-    }
-
-    private void UpdateButton() {
-      if (HasDialogue && _button == null) {
-        _button = _players.Manager.BorrowButton();
-        _button.SetInteraction(this);
-        _button.Clicked += HandleButtonClicked;
-      }
-
-      if (!HasDialogue && _button != null) {
-        _button.Clicked -= HandleButtonClicked;
-        _button.SetInteraction(null);
-        _players.Manager.ReleaseButton(_button);
-        _button = null;
-      }
-    }
-
-    private void HandleButtonClicked() {
-      _players.Manager.DialogueState.Enter(this);
-    }
-
-    private InteractionWaypoint FindClosestWaypoint(
-      Vector3 position,
-      InteractionWaypoint omit = null
-    ) {
-      var closestDistance = float.MaxValue;
-      var closestWaypoint = Waypoints[0] == omit ? Waypoints[1] : Waypoints[0];
-
-      foreach (var waypoint in Waypoints) {
-        if (waypoint == omit) {
-          continue;
-        }
-
-        var distance = Vector3.Distance(position, waypoint.Position);
-
-        if (distance < closestDistance) {
-          closestWaypoint = waypoint;
-          closestDistance = distance;
-        }
-      }
-
-      return closestWaypoint;
-    }
-
-    private int IsPresent(PlayerController player) {
-      if (_interactions[player.Type].IsActive) {
-        return 1;
-      }
-
-      if (!player.InteractState.IsActive) {
-        return 0;
-      }
-
-      return -1;
-    }
+    public virtual void OnInteractionExit() { }
 
     public void OnHoverEnter() {
       IsHovered = true;
-      StateChanged?.Invoke();
+      OnStateChanged();
     }
 
     public void OnHoverExit() {
       IsHovered = false;
+      OnStateChanged();
+    }
+
+    protected void OnStateChanged() {
       StateChanged?.Invoke();
     }
   }
