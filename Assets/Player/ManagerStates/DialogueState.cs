@@ -28,6 +28,7 @@ namespace Player.ManagerStates {
     [NonSerialized] public Interactable Interactable;
     private CommandOption[] _options = new CommandOption[16];
     private DialogueEntry[] _rules = new DialogueEntry[16];
+
     private SubState _subState = SubState.Choice;
     private DialogueEntry _currentEntry;
     private float _lastUpdateTime;
@@ -45,7 +46,7 @@ namespace Player.ManagerStates {
       _view.Dialogue.Track.Finished += HandleFinished;
       _view.Dialogue.SetActive(true);
       _view.Dialogue.Track.Restart();
-      ShowChoice(Interactable.Event.eventReference);
+      ShowChoice(Interactable.Event.EventReference);
       _lastUpdateTime = Time.time;
     }
 
@@ -61,6 +62,10 @@ namespace Player.ManagerStates {
     }
 
     public override void OnUpdate() {
+      for (int i = 0; i < 1000; i++) {
+        var a = _context.CountMatchingRules(Interactable.Event.EventReference);
+      }
+
       _players.LT.DrivenUpdate();
       _players.RT.DrivenUpdate();
     }
@@ -74,9 +79,9 @@ namespace Player.ManagerStates {
 
       ApplyRule(_currentEntry);
 
-      if (!_context.HasMatchingRule(_currentEntry.id)) {
+      if (!_context.HasMatchingRule(_currentEntry.ID)) {
         if (_context.FindMatchingRules(
-            Interactable.Event.eventReference,
+            Interactable.Event.EventReference,
             _rules
           )
           > 0) {
@@ -125,11 +130,11 @@ namespace Player.ManagerStates {
 
     private void ApplyRule(DialogueEntry rule) {
       _context.Apply(rule);
-      _context.SetSpeaker(rule.Speaker.id);
+      _context.SetSpeaker(rule.Speaker.ID);
       var player = GetSpeaker(rule) ? _players.LT : _players.RT;
 
-      foreach (var dispatcher in rule.onEnd) {
-        if (dispatcher.reference.id == InteractionContext.CallOther) {
+      foreach (var dispatcher in rule.OnEnd) {
+        if (dispatcher.Reference.ID == InteractionContext.CallOther) {
           player.Other.InteractState.Enter(player.InteractState.Conversation);
           // } else if (dispatcher.reference.id == InteractionContext.PickUp
           // && Interactable.Item != null
@@ -142,9 +147,9 @@ namespace Player.ManagerStates {
 
     private void ProcessRule(DialogueEntry rule) {
       if (rule.choice) {
-        ShowChoice(rule.Next);
+        ShowChoice(rule.ID);
       } else {
-        ShowDialogue(rule.Next);
+        ShowDialogue(rule.ID);
       }
     }
 
@@ -166,14 +171,14 @@ namespace Player.ManagerStates {
     }
 
     private bool GetSpeaker(DialogueEntry entry) {
-      return _context.Context.Get(entry.Speaker.id) == InteractionContext.LT;
+      return _context.Context.Get(entry.Speaker.ID) == InteractionContext.LT;
     }
 
     private void ShowInitialChoice() {
       _currentEntry = null;
       _subState = SubState.Choice;
       var ruleCount = _context.FindMatchingRules(
-        Interactable.Event.eventReference,
+        Interactable.Event.EventReference,
         _rules
       );
       if (ruleCount == 0) {

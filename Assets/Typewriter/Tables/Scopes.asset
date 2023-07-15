@@ -11,44 +11,44 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33d0878fa1be1f546a2a65661326a877, type: 3}
   m_Name: Scopes
-  m_EditorClassIdentifier: 
-  tableName: Scopes
-  rules: []
-  facts:
+  m_EditorClassIdentifier:
+  TableName: Scopes
+  Rules: []
+  Facts:
   - rid: 5862281751644864524
   - rid: 5862281751644864523
   - rid: 5862281760995803138
-  events: []
+  Events: []
   references:
     version: 2
     RefIds:
     - rid: 5862281751644864523
       type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
-        id: -1936302086
-        key: interaction
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
+        ID: -1936302086
+        Key: interaction
+        Scope:
+          InternalID: 0
+        Once: 0
+        Criteria: []
+        Modifications: []
     - rid: 5862281751644864524
       type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
-        id: 475414559
-        key: global
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
+        ID: 475414559
+        Key: global
+        Scope:
+          InternalID: 0
+        Once: 0
+        Criteria: []
+        Modifications: []
     - rid: 5862281760995803138
       type: {class: ScopeEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
-        id: -1768494618
-        key: context
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
+        ID: -1768494618
+        Key: context
+        Scope:
+          InternalID: 0
+        Once: 0
+        Criteria: []
+        Modifications: []

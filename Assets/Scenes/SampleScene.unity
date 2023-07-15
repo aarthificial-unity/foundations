@@ -2147,15 +2147,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
-    eventReference:
-      id: -1055576022
-    context:
-      list: []
+    EventReference:
+      InternalID: -1055576022
+    Context:
+      List: []
   Blackboard:
-    list: []
+    List:
+    - Key:
+        InternalID: -124344911
+      Value: 1
   Context:
     Context:
-      list: []
+      List: []
   Waypoints:
   - {fileID: 1909268077}
   - {fileID: 287494247}
@@ -3472,7 +3475,7 @@ MonoBehaviour:
   _volume: {fileID: 2036584226}
   _context:
     Context:
-      list: []
+      List: []
   _interactionCooldown: 0.2
 --- !u!114 &2036584226
 MonoBehaviour:
@@ -3619,15 +3622,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
-    eventReference:
-      id: -1055576022
-    context:
-      list: []
+    EventReference:
+      InternalID: -1055576022
+    Context:
+      List: []
   Blackboard:
-    list: []
+    List: []
   Context:
     Context:
-      list: []
+      List: []
   Waypoints:
   - {fileID: 693911099}
   - {fileID: 1515465418}

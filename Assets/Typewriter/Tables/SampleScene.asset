@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d0878fa1be1f546a2a65661326a877, type: 3}
   m_Name: SampleScene
   m_EditorClassIdentifier: 
-  tableName: SampleScene
-  rules:
+  TableName: SampleScene
+  Rules:
   - rid: 5862281751644864528
   - rid: 5862281776637673476
   - rid: 5862281776637673474
@@ -27,9 +27,9 @@ MonoBehaviour:
   - rid: 5862281776637673485
   - rid: 5862281776637673487
   - rid: 5862281776637673488
-  facts:
+  Facts:
   - rid: 5862281751644864529
-  events:
+  Events:
   - rid: 5862281691474427906
   references:
     version: 2
@@ -37,43 +37,47 @@ MonoBehaviour:
     - rid: 5862281691474427906
       type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
-        id: -1055576022
-        key: P_pickaxe
-        scope:
-          id: 0
-        once: 0
-        criteria:
-        - factReference:
-            id: -2028872245
-          min: 1
-          max: 1
-          type: 0
-        modifications: []
+        ID: -1055576022
+        Key: P_pickaxe
+        Scope:
+          InternalID: 0
+        Triggers:
+          List: []
+        Once: 0
+        PassThrough: 1
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -2028872245
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
     - rid: 5862281751644864528
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -15286471
-        key: 
-        scope:
-          id: -1936302086
-        once: 1
-        criteria:
-        - factReference:
-            id: -514433065
-          min: 1
-          max: 1
-          type: 0
-        modifications: []
-        isCancellable: 0
-        padding: 4
-        delay: 0
-        triggeredBy:
-          id: -1055576022
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -15286471
+        Key: 
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1055576022
+        Once: 1
+        PassThrough: 0
+        _padding: 4
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -84,17 +88,21 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281751644864529
       type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -124344911
-        key: I_pickaxe
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
+        ID: -124344911
+        Key: I_pickaxe
+        Scope:
+          InternalID: 0
+        Triggers:
+          List: []
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
         PrefabReference:
           m_AssetGUID: ec2819aabd84b1640b7c37d59fe3e52c
           m_SubObjectName: 
@@ -103,28 +111,28 @@ MonoBehaviour:
     - rid: 5862281776637673474
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1609436593
-        key: 
-        scope:
-          id: -1936302086
-        once: 1
-        criteria:
-        - factReference:
-            id: -514433065
-          min: 1
-          max: 1
-          type: 0
-        modifications: []
-        isCancellable: 0
-        padding: 2
-        delay: 0
-        triggeredBy:
-          id: -1055576022
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1609436593
+        Key: 
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1055576022
+        Once: 1
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -135,27 +143,27 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673475
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1995314502
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1609436593
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1995314502
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: -1609436593
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -166,27 +174,28 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673476
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1185813725
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -15286471
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1185813725
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: -15286471
+          - InternalID: 1485953909
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -197,39 +206,39 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -1596563589
+          InternalID: -1596563589
     - rid: 5862281776637673477
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: 1821502848
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria:
-        - factReference:
-            id: -514433065
-          min: 1
-          max: 1
-          type: 0
-        - factReference:
-            id: -95002655
-          min: 0
-          max: 0
-          type: 0
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1055576022
-        triggers:
-          id: 0
-        onStart: []
-        onEnd:
-        - reference:
-            id: 2014434846
-        text:
+        ID: 1821502848
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: -1055576022
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 0
+          Max: 0
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd:
+        - Reference:
+            InternalID: 2014434846
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -240,32 +249,32 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673479
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: 1410454897
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria:
-        - factReference:
-            id: -15286471
-          min: 1
-          max: 2147483647
-          type: 2
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: 1821502848
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: 1410454897
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: 1821502848
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -15286471
+          Min: 1
+          Max: 2147483647
+          Operation: 2
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -276,27 +285,27 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673481
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1739466758
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: 1410454897
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1739466758
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: 1410454897
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -307,27 +316,27 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -417971899
+          InternalID: -417971899
     - rid: 5862281776637673482
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1504585490
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: 1821502848
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1504585490
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: 1821502848
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -338,36 +347,36 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673483
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -1710106288
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria:
-        - factReference:
-            id: -15286471
-          min: 0
-          max: 0
-          type: 0
-        modifications:
-        - factReference:
-            id: -15286471
-          value: 1
-          type: 2
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1609436593
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -1710106288
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: -1609436593
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -15286471
+          Min: 0
+          Max: 0
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: -15286471
+          Value: 1
+          Operation: 2
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -378,27 +387,27 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -2078916288
+          InternalID: -2078916288
     - rid: 5862281776637673484
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: -472786153
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1504585490
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: -472786153
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: -1504585490
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -409,41 +418,41 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -417971899
+          InternalID: -417971899
     - rid: 5862281776637673485
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: 1485953909
-        key: 
-        scope:
-          id: -1936302086
-        once: 1
-        criteria:
-        - factReference:
-            id: -95002655
-          min: 1
-          max: 1
-          type: 0
-        - factReference:
-            id: -15286471
-          min: 0
-          max: 0
-          type: 0
-        modifications:
-        - factReference:
-            id: -15286471
-          value: 1
-          type: 2
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1055576022
-        triggers:
-          id: -15286471
-        onStart: []
-        onEnd: []
-        text:
+        ID: 1485953909
+        Key: 
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1055576022
+        Once: 1
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -15286471
+          Min: 0
+          Max: 0
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: -15286471
+          Value: 1
+          Operation: 2
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -454,38 +463,38 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -417971899
+          InternalID: -417971899
     - rid: 5862281776637673487
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: 1532091814
-        key: 
-        scope:
-          id: -1936302086
-        once: 1
-        criteria:
-        - factReference:
-            id: -95002655
-          min: 1
-          max: 1
-          type: 0
-        modifications:
-        - factReference:
-            id: -15286471
-          value: 1
-          type: 0
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: -1055576022
-        triggers:
-          id: 0
-        onStart: []
-        onEnd:
-        - reference:
-            id: -2028872245
-        text:
+        ID: 1532091814
+        Key: 
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1055576022
+        Once: 1
+        PassThrough: 0
+        _padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: -15286471
+          Value: 1
+          Operation: 0
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd:
+        - Reference:
+            InternalID: -2028872245
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -496,27 +505,27 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -417971899
+          InternalID: -417971899
     - rid: 5862281776637673488
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        id: 1863441836
-        key: 
-        scope:
-          id: 0
-        once: 0
-        criteria: []
-        modifications: []
-        isCancellable: 0
-        padding: 0
-        delay: 0
-        triggeredBy:
-          id: 1532091814
-        triggers:
-          id: 0
-        onStart: []
-        onEnd: []
-        text:
+        ID: 1863441836
+        Key: 
+        Scope:
+          InternalID: 0
+        Triggers:
+          List:
+          - InternalID: 1532091814
+        Once: 0
+        PassThrough: 0
+        _padding: 0
+        Criteria: []
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
@@ -527,4 +536,4 @@ MonoBehaviour:
           m_LocalVariables: []
         choice: 0
         Speaker:
-          id: -417971899
+          InternalID: -417971899

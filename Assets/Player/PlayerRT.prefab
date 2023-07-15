@@ -79,5 +79,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7420566343372142163, guid: 314bc7151929a6a439a2af7e101ce57a,
         type: 3}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: Fact.InternalID
+      value: -2078916288
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 723be1f20975bbb4e80d78073f628de9, type: 3}
