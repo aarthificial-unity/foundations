@@ -19,7 +19,7 @@ namespace Interactions {
           InteractionContext.IsRTPresent,
           player.Type == PlayerType.RT ? 1 : 0
         );
-        HasDialogue = Context.HasMatchingRule(Event.eventReference);
+        HasDialogue = Context.HasMatchingRule(Event.EventReference);
         if (!HasDialogue) {
           return;
         }
@@ -36,7 +36,7 @@ namespace Interactions {
         Blackboard.Set(InteractionContext.IsLTPresent, 1);
         Blackboard.Set(InteractionContext.IsRTPresent, 1);
 
-        HasDialogue = Context.HasMatchingRule(Event.eventReference);
+        HasDialogue = Context.HasMatchingRule(Event.EventReference);
         if (!HasDialogue) {
           return;
         }

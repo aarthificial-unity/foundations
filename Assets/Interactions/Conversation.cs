@@ -113,7 +113,7 @@ namespace Interactions {
       var isFocused = _interactions.LT.IsActive || _interactions.RT.IsActive;
       var isInteracting = _interactions.LT.IsReady || _interactions.RT.IsReady;
       var hasDialogue = IsInteracting
-        && Context.HasMatchingRule(Event.eventReference);
+        && Context.HasMatchingRule(Event.EventReference);
 
       if (IsFocused != isFocused
         || IsInteracting != isInteracting
