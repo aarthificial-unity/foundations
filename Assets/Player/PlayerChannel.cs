@@ -1,10 +1,26 @@
-﻿using System;
+﻿using Interactions;
+using System;
 using UnityEngine;
 
 namespace Player {
   public class PlayerChannel : ScriptableObject {
     [NonSerialized] public PlayerManager Manager;
     private PlayerLookup<PlayerController> _players;
+
+    public bool TryGetPlayer(int id, out PlayerController player) {
+      if (id == InteractionContext.LT) {
+        player = _players.LT;
+        return true;
+      }
+
+      if (id == InteractionContext.RT) {
+        player = _players.RT;
+        return true;
+      }
+
+      player = null;
+      return false;
+    }
 
     public PlayerController LT {
       get => _players.LT;

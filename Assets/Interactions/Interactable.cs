@@ -29,6 +29,7 @@ namespace Interactions {
       Blackboard.Set(InteractionContext.PickUp, 1);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);
+      Blackboard.Set(InteractionContext.InitialEvent, Event.EventReference);
     }
 
     private void Start() {

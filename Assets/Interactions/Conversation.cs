@@ -1,4 +1,5 @@
 ﻿using Aarthificial.Typewriter.Blackboards;
+using Aarthificial.Typewriter.Common;
 using Items;
 using Player;
 using UnityEngine;
@@ -143,7 +144,7 @@ namespace Interactions {
     }
 
     private void HandleButtonClicked() {
-      Players.Manager.DialogueState.Enter(this);
+      Event.Invoke(Context);
     }
 
     private InteractionWaypoint FindClosestWaypoint(

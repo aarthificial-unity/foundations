@@ -1,4 +1,5 @@
 ﻿using Aarthificial.Typewriter.Blackboards;
+using Aarthificial.Typewriter.Common;
 using Player;
 
 namespace Interactions {
@@ -9,6 +10,7 @@ namespace Interactions {
           return;
         }
 
+        Blackboard.Set(InteractionContext.InitialEvent, Event.EventReference);
         Blackboard.Set(InteractionContext.Initiator, player.Fact);
         Blackboard.Set(InteractionContext.Listener, 0);
         Blackboard.Set(
@@ -25,7 +27,7 @@ namespace Interactions {
         }
 
         player.SwitchState(player.IdleState);
-        Players.Manager.DialogueState.Enter(this);
+        Context.Invoke(Event.EventReference);
       } else {
         if (player.Other.InteractState.IsActive) {
           return;
@@ -43,7 +45,7 @@ namespace Interactions {
 
         player.Other.SwitchState(player.Other.IdleState);
         player.FollowState.Enter();
-        Players.Manager.DialogueState.Enter(this);
+        Context.Invoke(Event.EventReference);
       }
     }
   }

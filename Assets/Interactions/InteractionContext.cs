@@ -1,11 +1,13 @@
 ﻿using System;
 using Aarthificial.Typewriter.Blackboards;
+using Aarthificial.Typewriter.Common;
 using Player;
 using UnityEngine;
 
 namespace Interactions {
   [Serializable]
-  public class InteractionContext : IBlackboardProvider {
+  public class InteractionContext : ITypewriterContext {
+    public static int InitialEvent = -52982722;
     public static int Initiator = -963223665;
     public static int IsLTPresent = -95002655;
     public static int IsRTPresent = -514433065;
@@ -16,18 +18,18 @@ namespace Interactions {
     public static int CallOther = 2014434846;
     public static int PickUp = -2028872245;
 
-    private static int _contextScope = -1768494618;
-    private static int _interactionScope = -1936302086;
+    public static int ContextScope = -1768494618;
+    public  static int InteractionScope = -1936302086;
     public Blackboard Context;
     [NonSerialized] public Blackboard Interaction;
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
-      if (scope == _interactionScope) {
+      if (scope == InteractionScope) {
         blackboard = Interaction;
         return true;
       }
 
-      if (scope == _contextScope) {
+      if (scope == ContextScope) {
         blackboard = Context;
         return true;
       }

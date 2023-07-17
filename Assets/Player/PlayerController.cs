@@ -28,6 +28,8 @@ namespace Player {
     public Rigidbody ChainTarget;
     public InputActionReference CommandAction;
     [EntryFilter(Type = EntryType.Fact)] public EntryReference Fact;
+    public bool IsLT => Type == PlayerType.LT;
+    public bool IsRT => Type == PlayerType.RT;
 
     [NonSerialized] public FollowState FollowState;
     [NonSerialized] public IdleState IdleState;
