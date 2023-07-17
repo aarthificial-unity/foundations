@@ -11,7 +11,6 @@ namespace Player.ManagerStates {
       None,
       Move,
       Interact,
-      Talk,
     }
 
     [Inject] [SerializeField] private PlayerChannel _players;
@@ -25,7 +24,6 @@ namespace Player.ManagerStates {
     private Vector3 _targetPosition;
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
-    private PlayerType _talkedPlayer = PlayerType.None;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -47,6 +45,7 @@ namespace Player.ManagerStates {
     public override void OnExit() {
       _view.HUD.SetActive(false);
       _view.HUD.SetInteractive(false);
+      _target.SetActive(false);
     }
 
     public override void OnUpdate() {

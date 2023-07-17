@@ -15,6 +15,7 @@ MonoBehaviour:
   TableName: ConversationContext
   Rules: []
   Facts:
+  - rid: 5862281918226628658
   - rid: 5862281751644864518
   - rid: 5862281751644864526
   - rid: 5862281751644864527
@@ -38,8 +39,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864519
@@ -52,8 +52,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864520
@@ -66,8 +65,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864521
@@ -80,8 +78,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864522
@@ -94,8 +91,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864526
@@ -108,8 +104,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281751644864527
@@ -122,8 +117,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281776637673480
@@ -136,8 +130,7 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 1
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
     - rid: 5862281776637673489
@@ -150,7 +143,19 @@ MonoBehaviour:
         Triggers:
           List: []
         Once: 0
-        PassThrough: 1
-        _padding: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 5862281918226628658
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: -52982722
+        Key: initialEvent
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
         Criteria: []
         Modifications: []

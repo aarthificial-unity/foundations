@@ -1,5 +1,7 @@
 ﻿using System;
 using Aarthificial.Typewriter.Blackboards;
+using Aarthificial.Typewriter.Common;
+using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Interactions;
 using Typewriter;
@@ -23,30 +25,49 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private PlayerChannel _players;
     [Inject] [SerializeField] private ViewChannel _view;
     [SerializeField] private Volume _volume;
-    [SerializeField] private InteractionContext _context;
     [SerializeField] private float _interactionCooldown = 0.5f;
-    [NonSerialized] public Interactable Interactable;
     private CommandOption[] _options = new CommandOption[16];
-    private DialogueEntry[] _rules = new DialogueEntry[16];
+    private BaseEntry[] _rules = new BaseEntry[16];
 
     private SubState _subState = SubState.Choice;
-    private DialogueEntry _currentEntry;
     private float _lastUpdateTime;
+
+    private BaseEntry _queuedEntry;
+    private BaseEntry _currentEntry;
+    private ITypewriterContext _context;
+    private bool _isCancellable;
+
+    private void OnEnable() {
+      TypewriterDatabase.Instance.AddListener(HandleTypewriterEvent);
+    }
+
+    private void OnDisable() {
+      TypewriterDatabase.Instance.RemoveListener(HandleTypewriterEvent);
+    }
+
+    private void HandleTypewriterEvent(
+      BaseEntry entry,
+      ITypewriterContext context
+    ) {
+      if (context.FindMatchingRule((EntryReference)entry, out var match)) {
+        _context = context;
+        _queuedEntry = match;
+      }
+
+      if (!IsActive) {
+        Enter();
+      }
+    }
 
     public override void OnEnter() {
       base.OnEnter();
 
-      Interactable.OnInteractionEnter();
       _volume.weight = 1;
-      _context.Setup();
-      _context.Interaction = Interactable.Blackboard;
-
       _view.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
       _view.Dialogue.Wheel.Clicked += HandleClicked;
       _view.Dialogue.Track.Finished += HandleFinished;
       _view.Dialogue.SetActive(true);
       _view.Dialogue.Track.Restart();
-      ShowChoice(Interactable.Event.EventReference);
       _lastUpdateTime = Time.time;
     }
 
@@ -57,49 +78,109 @@ namespace Player.ManagerStates {
       _view.Dialogue.Track.Finished -= HandleFinished;
       _view.Dialogue.SetActive(false);
       _volume.weight = 0;
-      Interactable.OnInteractionExit();
-      Interactable = null;
+      _currentEntry = null;
+      _queuedEntry = null;
     }
 
     public override void OnUpdate() {
-      for (int i = 0; i < 1000; i++) {
-        var a = _context.CountMatchingRules(Interactable.Event.EventReference);
-      }
-
       _players.LT.DrivenUpdate();
       _players.RT.DrivenUpdate();
+
+      if (_currentEntry != null) {
+        return;
+      }
+
+      if (_queuedEntry == null) {
+        var initial = _context.Get(InteractionContext.InitialEvent);
+        if (_context.HasMatchingRule(initial)) {
+          _context.Invoke(initial);
+          return;
+        }
+
+        if (_subState != SubState.Proceed) {
+          Exit();
+        } else {
+          _view.Dialogue.Wheel.SetAction("X");
+        }
+
+        return;
+      }
+
+      if (_subState == SubState.Proceed && _queuedEntry is not ChoiceEntry) {
+        return;
+      }
+
+      var entry = _queuedEntry;
+      _queuedEntry = null;
+      ProcessEntry(entry);
+    }
+
+    private void ProcessEntry(BaseEntry entry) {
+      _currentEntry = entry;
+      if (entry is DialogueEntry dialogue) {
+        _view.Dialogue.Wheel.SetOptions(_options, 0);
+        _view.Dialogue.Wheel.SetAction(">>");
+        _view.Dialogue.Track.SetDialogue(dialogue, GetSpeaker(dialogue));
+        _subState = SubState.Dialogue;
+        _isCancellable = dialogue.IsCancellable;
+      } else if (entry is ChoiceEntry choice) {
+        var ruleCount = _context.FindMatchingRules(
+          (EntryReference)choice,
+          _rules
+        );
+        var count = 0;
+        for (var i = 0; i < ruleCount; i++) {
+          var rule = _rules[i];
+          if (rule is not DialogueEntry response) {
+            continue;
+          }
+          _options[count++] = new CommandOption {
+            Text = response.Text.GetLocalizedString(),
+            IsRT = response.Speaker == _players.RT.Fact,
+          };
+        }
+
+        if (count == 0) {
+          _currentEntry = null;
+          return;
+        }
+
+        _view.Dialogue.Wheel.SetOptions(_options, count);
+        _view.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
+        _subState = SubState.Choice;
+        _isCancellable = choice.IsCancellable;
+        _context.Invoke(choice);
+      } else if (entry is EventEntry rule) {
+        _currentEntry = null;
+        _subState = SubState.Finished;
+        _context.Invoke(rule);
+      } else {
+        _currentEntry = null;
+        _subState = SubState.Finished;
+      }
     }
 
     private void HandleFinished(DialogueEntry entry, bool force) {
       Assert.AreEqual(_currentEntry, entry);
+      Assert.AreEqual(_subState, SubState.Dialogue);
 
       if (!force) {
         _lastUpdateTime = Time.time;
       }
 
-      ApplyRule(_currentEntry);
+      ApplyRule(entry);
+      _currentEntry = null;
+      _subState = SubState.Proceed;
+      _view.Dialogue.Wheel.SetAction(">");
+      _context.Invoke(entry);
+    }
 
-      if (!_context.HasMatchingRule(_currentEntry.ID)) {
-        if (_context.FindMatchingRules(
-            Interactable.Event.EventReference,
-            _rules
-          )
-          > 0) {
-          ShowInitialChoice();
-          return;
-        }
-
-        _subState = SubState.Finished;
-        _view.Dialogue.Wheel.SetAction("X");
-        return;
-      }
-
-      if (_currentEntry.choice) {
-        ProcessRule(_currentEntry);
-      } else {
-        _view.Dialogue.Wheel.SetAction(">");
-        _subState = SubState.Proceed;
-      }
+    private void HandleOptionSelected(int index) {
+      Assert.AreEqual(_subState, SubState.Choice);
+      ApplyRule(_rules[index]);
+      _subState = SubState.Finished;
+      _currentEntry = null;
+      _context.Invoke(_rules[index]);
     }
 
     private void HandleClicked() {
@@ -110,124 +191,56 @@ namespace Player.ManagerStates {
       }
 
       switch (_subState) {
-        case SubState.Choice:
         case SubState.Finished:
+          Exit();
+          break;
+        case SubState.Choice when _isCancellable:
           Exit();
           break;
         case SubState.Dialogue:
           _view.Dialogue.Track.Skip();
           break;
         case SubState.Proceed:
-          ProcessRule(_currentEntry);
+          _subState = SubState.Finished;
           break;
       }
     }
 
-    private void HandleOptionSelected(int index) {
-      ApplyRule(_rules[index]);
-      ProcessRule(_rules[index]);
-    }
-
-    private void ApplyRule(DialogueEntry rule) {
+    private void ApplyRule(BaseEntry rule) {
       _context.Apply(rule);
-      _context.SetSpeaker(rule.Speaker.ID);
-      var player = GetSpeaker(rule) ? _players.LT : _players.RT;
+      if (rule is not DialogueEntry dialogue) {
+        return;
+      }
+      _context.Set(InteractionContext.CurrentSpeaker, dialogue.Speaker.ID);
 
-      foreach (var dispatcher in rule.OnEnd) {
-        if (dispatcher.Reference.ID == InteractionContext.CallOther) {
+      PlayerController player;
+      foreach (var dispatcher in dialogue.OnEnd) {
+        if (dispatcher.Reference.ID == InteractionContext.CallOther
+          && _players.TryGetPlayer(
+            _context.Get(InteractionContext.Initiator),
+            out player
+          )) {
           player.Other.InteractState.Enter(player.InteractState.Conversation);
-          // } else if (dispatcher.reference.id == InteractionContext.PickUp
-          // && Interactable.Item != null
-          // && player.CanPickUpItem()) {
-          // _context.Interaction.Set(InteractionContext.PickUp, 0);
-          // player.PickUp(Interactable.Item);
+        }
+
+        if (dispatcher.Reference.ID == InteractionContext.PickUp
+          && _players.TryGetPlayer(
+            _context.Get(InteractionContext.CurrentSpeaker),
+            out player
+          )
+          && player.InteractState.Conversation.Item != null
+          && player.CanPickUpItem()) {
+          _context.Set(InteractionContext.PickUp, 0);
+          player.PickUp(player.InteractState.Conversation.Item);
         }
       }
     }
 
-    private void ProcessRule(DialogueEntry rule) {
-      if (rule.choice) {
-        ShowChoice(rule.ID);
-      } else {
-        ShowDialogue(rule.ID);
-      }
-    }
-
-    private void ShowDialogue(EntryReference reference) {
-      _view.Dialogue.Wheel.SetOptions(_options, 0);
-      if (_context.FindMatchingRule(reference, out var entry)
-        && entry is DialogueEntry dialogue) {
-        _currentEntry = dialogue;
-        _subState = SubState.Dialogue;
-        _view.Dialogue.Wheel.SetOptions(_options, 0);
-        _view.Dialogue.Wheel.SetAction(">>");
-        _view.Dialogue.Track.SetDialogue(
-          _currentEntry,
-          GetSpeaker(_currentEntry)
-        );
-      } else {
-        ShowInitialChoice();
-      }
-    }
-
     private bool GetSpeaker(DialogueEntry entry) {
-      return _context.Context.Get(entry.Speaker.ID) == InteractionContext.LT;
+      return _context.Get(entry.Speaker.ID) == InteractionContext.LT;
     }
 
-    private void ShowInitialChoice() {
-      _currentEntry = null;
-      _subState = SubState.Choice;
-      var ruleCount = _context.FindMatchingRules(
-        Interactable.Event.EventReference,
-        _rules
-      );
-      if (ruleCount == 0) {
-        Exit();
-        return;
-      }
-
-      for (var i = 0; i < ruleCount; i++) {
-        var rule = _rules[i];
-        _options[i] = new CommandOption {
-          Text = rule.Text.GetLocalizedString(),
-          IsRT = rule.Speaker == _players.RT.Fact,
-        };
-      }
-
-      _view.Dialogue.Wheel.SetOptions(_options, ruleCount);
-      _view.Dialogue.Wheel.SetAction("X");
-    }
-
-    private void ShowChoice(EntryReference reference) {
-      _currentEntry = null;
-      _subState = SubState.Choice;
-      var ruleCount = _context.FindMatchingRules(reference, _rules);
-      if (ruleCount == 0) {
-        ShowInitialChoice();
-        return;
-      }
-
-      for (var i = 0; i < ruleCount; i++) {
-        var rule = _rules[i];
-        _options[i] = new CommandOption {
-          Text = rule.Text.GetLocalizedString(),
-          IsRT = rule.Speaker == _players.RT.Fact,
-        };
-      }
-
-      _view.Dialogue.Wheel.SetOptions(_options, ruleCount);
-      _view.Dialogue.Wheel.SetAction("X");
-    }
-
-    public void Enter(Interactable interactable) {
-      Assert.AreEqual(IsActive, Interactable != null);
-
-      if (Interactable == interactable || !interactable.HasDialogue) {
-        return;
-      }
-
-      Manager.SwitchState(null);
-      Interactable = interactable;
+    public void Enter() {
       Manager.SwitchState(this);
     }
 

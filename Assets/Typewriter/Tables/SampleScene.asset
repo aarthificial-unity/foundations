@@ -14,38 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TableName: SampleScene
   Rules:
-  - rid: 5862281751644864528
-  - rid: 5862281776637673476
-  - rid: 5862281776637673474
-  - rid: 5862281776637673475
-  - rid: 5862281776637673483
-  - rid: 5862281776637673477
-  - rid: 5862281776637673479
-  - rid: 5862281776637673482
-  - rid: 5862281776637673481
-  - rid: 5862281776637673484
-  - rid: 5862281776637673485
-  - rid: 5862281776637673487
-  - rid: 5862281776637673488
+  - rid: 5862281944127242243
+  - rid: 5862281944127242244
+  - rid: 5862281944127242245
+  - rid: 5862281944127242246
+  - rid: 5862281944127242247
+  - rid: 5862281944127242248
+  - rid: 5862281944127242249
+  - rid: 5862281944127242250
+  - rid: 5862281944127242251
+  - rid: 5862281944127242252
+  - rid: 5862281944127242253
+  - rid: 5862281944127242254
+  - rid: 5862281944127242255
+  - rid: 5862281944127242256
+  - rid: 5862281944127242257
+  - rid: 5862281944127242258
+  - rid: 5862281944127242259
+  - rid: 5862281944127242260
+  - rid: 5862281944127242261
+  - rid: 5862281944127242262
+  - rid: 5862281944127242263
   Facts:
-  - rid: 5862281751644864529
+  - rid: 5862281944127242264
   Events:
-  - rid: 5862281691474427906
+  - rid: 5862281944127242265
   references:
     version: 2
     RefIds:
-    - rid: 5862281691474427906
-      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+    - rid: 5862281944127242243
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: -1055576022
-        Key: P_pickaxe
+        ID: -1843988935
+        Key: C_pickaxe
         Scope:
-          InternalID: 0
+          InternalID: -1936302086
         Triggers:
-          List: []
+          List:
+          - InternalID: -1843988936
         Once: 0
-        PassThrough: 1
-        _padding: 0
+        Padding: 0
         Criteria:
         - FactReference:
             InternalID: -2028872245
@@ -53,110 +61,109 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-    - rid: 5862281751644864528
+        IsCancellable: 1
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+    - rid: 5862281944127242244
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: -15286471
-        Key: 
+        ID: -1843988934
+        Key: R_do_inspect
         Scope:
           InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1055576022
-        Once: 1
-        PassThrough: 0
-        _padding: 4
+          - InternalID: -1843988935
+        Once: 0
+        Padding: 1
         Criteria:
+        - FactReference:
+            InternalID: -1848183240
+          Min: 0
+          Max: 0
+          Operation: 0
         - FactReference:
             InternalID: -514433065
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
+        Modifications:
+        - FactReference:
+            InternalID: -1848183240
+          Value: 1
+          Operation: 0
         IsCancellable: 0
         Delay: 0
         OnStart: []
         OnEnd: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 491980664832
+            m_KeyId: 2784644253954048
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -2078916288
-    - rid: 5862281751644864529
-      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -124344911
-        Key: I_pickaxe
-        Scope:
-          InternalID: 0
-        Triggers:
-          List: []
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
-        Modifications: []
-        PrefabReference:
-          m_AssetGUID: ec2819aabd84b1640b7c37d59fe3e52c
-          m_SubObjectName: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-    - rid: 5862281776637673474
+    - rid: 5862281944127242245
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: -1609436593
-        Key: 
+        ID: -1843988933
+        Key: L_do_inspect
         Scope:
           InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1055576022
-        Once: 1
-        PassThrough: 0
-        _padding: 0
+          - InternalID: -1843988935
+        Once: 0
+        Padding: 0
         Criteria:
         - FactReference:
-            InternalID: -514433065
+            InternalID: -1848183240
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
+        Modifications:
+        - FactReference:
+            InternalID: -1848183240
+          Value: 1
+          Operation: 0
         IsCancellable: 0
         Delay: 0
         OnStart: []
         OnEnd: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 388788032712704
+            m_KeyId: 2784644262342656
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
-          InternalID: -2078916288
-    - rid: 5862281776637673475
+          InternalID: -417971899
+    - rid: 5862281944127242246
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: -1995314502
-        Key: 
+        ID: -1843988932
+        Key: inspect
         Scope:
-          InternalID: 0
+          InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1609436593
+          - InternalID: -1843988934
+          - InternalID: -1843988933
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria: []
         Modifications: []
         IsCancellable: 0
@@ -165,71 +172,308 @@ MonoBehaviour:
         OnEnd: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 415635466432512
+            m_KeyId: 2784644266536960
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
-        Speaker:
-          InternalID: -2078916288
-    - rid: 5862281776637673476
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -1185813725
-        Key: 
-        Scope:
-          InternalID: 0
-        Triggers:
-          List:
-          - InternalID: -15286471
-          - InternalID: 1485953909
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
-        Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
-        Text:
-          m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
-          m_TableEntryReference:
-            m_KeyId: 416087243304960
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -1596563589
-    - rid: 5862281776637673477
+    - rid: 5862281944127242247
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: 1821502848
-        Key: 
+        ID: -1843988931
+        Key: R_do_pick_up
         Scope:
-          InternalID: 0
+          InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1055576022
-        Once: 0
-        PassThrough: 0
-        _padding: 0
+          - InternalID: -1843988935
+        Once: 1
+        Padding: 0
         Criteria:
         - FactReference:
             InternalID: -514433065
           Min: 1
           Max: 1
           Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536961
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242248
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988930
+        Key: R_pick_up_fail
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988931
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536962
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242249
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988929
+        Key: R_inspect_and_pick_up
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988931
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -1848183240
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: -1848183240
+          Value: 1
+          Operation: 0
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536963
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242250
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988944
+        Key: E_failed_pick_up
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988930
+          - InternalID: -1843988929
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+    - rid: 5862281944127242251
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988943
+        Key: R_pick_up_fail_A
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988944
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536964
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242252
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988942
+        Key: R_pick_up_demand_help
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988943
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536965
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242253
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988941
+        Key: R_pick_up_fail_B
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988944
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536966
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242254
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988940
+        Key: R_pick_up_ask_for_help
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988941
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536967
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242255
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988939
+        Key: R_do_call_other
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988935
+        Once: 0
+        Padding: 0
+        Criteria:
         - FactReference:
             InternalID: -95002655
           Min: 0
           Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
           Operation: 0
         Modifications: []
         IsCancellable: 0
@@ -240,168 +484,145 @@ MonoBehaviour:
             InternalID: 2014434846
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 418684419256320
+            m_KeyId: 2784644266536968
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -2078916288
-    - rid: 5862281776637673479
+    - rid: 5862281944127242256
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: 1410454897
-        Key: 
+        ID: -1843988938
+        Key: R_call_other
         Scope:
-          InternalID: 0
+          InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: 1821502848
+          - InternalID: -1843988939
         Once: 0
-        PassThrough: 0
-        _padding: 0
+        Padding: 0
         Criteria:
         - FactReference:
-            InternalID: -15286471
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536969
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242257
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988937
+        Key: L_answer
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988938
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536970
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -417971899
+    - rid: 5862281944127242258
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988952
+        Key: R_pickaxe_info
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988937
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -1848183240
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536971
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -2078916288
+    - rid: 5862281944127242259
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988951
+        Key: R_call_other_for_help
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988939
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -1843988931
           Min: 1
           Max: 2147483647
           Operation: 2
-        Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
-        Text:
-          m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
-          m_TableEntryReference:
-            m_KeyId: 427415672532992
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-        choice: 0
-        Speaker:
-          InternalID: -2078916288
-    - rid: 5862281776637673481
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -1739466758
-        Key: 
-        Scope:
-          InternalID: 0
-        Triggers:
-          List:
-          - InternalID: 1410454897
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
-        Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
-        Text:
-          m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
-          m_TableEntryReference:
-            m_KeyId: 430204251353088
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-        choice: 0
-        Speaker:
-          InternalID: -417971899
-    - rid: 5862281776637673482
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -1504585490
-        Key: 
-        Scope:
-          InternalID: 0
-        Triggers:
-          List:
-          - InternalID: 1821502848
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
-        Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
-        Text:
-          m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
-          m_TableEntryReference:
-            m_KeyId: 431252449865728
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-        choice: 0
-        Speaker:
-          InternalID: -2078916288
-    - rid: 5862281776637673483
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -1710106288
-        Key: 
-        Scope:
-          InternalID: 0
-        Triggers:
-          List:
-          - InternalID: -1609436593
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria:
         - FactReference:
-            InternalID: -15286471
-          Min: 0
-          Max: 0
+            InternalID: -514433065
+          Min: 1
+          Max: 1
           Operation: 0
-        Modifications:
-        - FactReference:
-            InternalID: -15286471
-          Value: 1
-          Operation: 2
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
-        Text:
-          m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
-          m_TableEntryReference:
-            m_KeyId: 431673151139840
-            m_Key: 
-          m_FallbackState: 0
-          m_WaitForCompletion: 0
-          m_LocalVariables: []
-        choice: 0
-        Speaker:
-          InternalID: -2078916288
-    - rid: 5862281776637673484
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: -472786153
-        Key: 
-        Scope:
-          InternalID: 0
-        Triggers:
-          List:
-          - InternalID: -1504585490
-        Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
         Modifications: []
         IsCancellable: 0
         Delay: 0
@@ -409,85 +630,68 @@ MonoBehaviour:
         OnEnd: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 433628611162112
+            m_KeyId: 2784644266536972
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
-          InternalID: -417971899
-    - rid: 5862281776637673485
+          InternalID: -2078916288
+    - rid: 5862281944127242260
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: 1485953909
-        Key: 
+        ID: -1843988950
+        Key: L_give_help
         Scope:
           InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1055576022
-        Once: 1
-        PassThrough: 0
-        _padding: 0
+          - InternalID: -1843988951
+        Once: 0
+        Padding: 0
         Criteria:
         - FactReference:
             InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
-        - FactReference:
-            InternalID: -15286471
-          Min: 0
-          Max: 0
-          Operation: 0
-        Modifications:
-        - FactReference:
-            InternalID: -15286471
-          Value: 1
-          Operation: 2
+        Modifications: []
         IsCancellable: 0
         Delay: 0
         OnStart: []
         OnEnd: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 434029993472000
+            m_KeyId: 2784644266536973
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -417971899
-    - rid: 5862281776637673487
+    - rid: 5862281944127242261
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: 1532091814
-        Key: 
+        ID: -1843988949
+        Key: L_do_pick_up
         Scope:
           InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: -1055576022
-        Once: 1
-        PassThrough: 0
-        _padding: 0
+          - InternalID: -1843988935
+        Once: 0
+        Padding: 0
         Criteria:
         - FactReference:
             InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
-        Modifications:
-        - FactReference:
-            InternalID: -15286471
-          Value: 1
-          Operation: 0
+        Modifications: []
         IsCancellable: 0
         Delay: 0
         OnStart: []
@@ -496,30 +700,38 @@ MonoBehaviour:
             InternalID: -2028872245
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
-            m_KeyId: 436439512068096
+            m_KeyId: 2784644266536974
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -417971899
-    - rid: 5862281776637673488
+    - rid: 5862281944127242262
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
-        ID: 1863441836
-        Key: 
+        ID: -1843988948
+        Key: L_pick_up_inspect
         Scope:
-          InternalID: 0
+          InternalID: -1936302086
         Triggers:
           List:
-          - InternalID: 1532091814
+          - InternalID: -1843988949
         Once: 0
-        PassThrough: 0
-        _padding: 0
-        Criteria: []
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -1848183240
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
         Modifications: []
         IsCancellable: 0
         Delay: 0
@@ -529,11 +741,72 @@ MonoBehaviour:
           m_TableReference:
             m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
           m_TableEntryReference:
-            m_KeyId: 436465617416192
+            m_KeyId: 3070110769426432
             m_Key: 
           m_FallbackState: 0
           m_WaitForCompletion: 0
           m_LocalVariables: []
-        choice: 0
         Speaker:
           InternalID: -417971899
+    - rid: 5862281944127242263
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: -1843988947
+        Key: L_pick_up_success
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1843988949
+          - InternalID: -1843988948
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        IsCancellable: 0
+        Delay: 0
+        OnStart: []
+        OnEnd: []
+        Text:
+          m_TableReference:
+            m_TableCollectionName: Dialogue
+          m_TableEntryReference:
+            m_KeyId: 2784644266536975
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        Speaker:
+          InternalID: -417971899
+    - rid: 5862281944127242264
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: -1848183240
+        Key: inspected_pickaxe
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 5862281944127242265
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: -1843988936
+        Key: E_pickaxe
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: -1848183240
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
