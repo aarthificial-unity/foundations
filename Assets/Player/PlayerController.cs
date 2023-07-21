@@ -18,6 +18,8 @@ namespace Player {
   [RequireComponent(typeof(InteractState))]
   [RequireComponent(typeof(NavigateState))]
   public class PlayerController : MonoBehaviour {
+    private static readonly int _animatorSpeed = Animator.StringToHash("speed");
+
     public Material Material;
     [NonSerialized] public PlayerController Other;
     public Vector3 TargetPosition => Agent.pathEndPosition;
@@ -26,6 +28,7 @@ namespace Player {
     [Inject] public PlayerConfig Config;
     public PlayerType Type;
     public Rigidbody ChainTarget;
+    public Animator Animator;
     public InputActionReference CommandAction;
     [EntryFilter(Type = EntryType.Fact)] public EntryReference Fact;
     public bool IsLT => Type == PlayerType.LT;
@@ -59,6 +62,7 @@ namespace Player {
 
     public void DrivenUpdate() {
       _currentState.OnUpdate();
+      Animator.SetFloat(_animatorSpeed, Agent.velocity.magnitude / Config.WalkSpeed);
     }
 
     public void ResetAgent() {
