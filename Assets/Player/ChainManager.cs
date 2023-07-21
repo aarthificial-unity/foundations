@@ -40,9 +40,6 @@ namespace Player {
       var anchor = joint.connectedAnchor;
       anchor.y = -_linkLength;
       joint.connectedAnchor = anchor;
-      anchor = joint.anchor;
-      anchor.y = _linkLength;
-      joint.anchor = anchor;
 
       for (var i = 1; i < _length; i++) {
         var link = Instantiate(_link);
