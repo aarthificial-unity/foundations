@@ -21,6 +21,7 @@ MonoBehaviour:
     m_Address: Assets/I18N/Strings Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 1a5a7b11fbc1c5748b23c306b82ab566, type: 2}
   m_SchemaSet:

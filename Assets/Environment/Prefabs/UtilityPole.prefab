@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8263801308690541628}
   - component: {fileID: 3210956458222530620}
-  m_Layer: 0
+  - component: {fileID: 2025991721185246850}
+  - component: {fileID: 6882447242100966645}
+  m_Layer: 6
   m_Name: UtilityPole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,6 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214022638115226993}
+  serializedVersion: 2
   m_LocalRotation: {x: -8.923006e-18, y: 0.7762049, z: 8.613459e-17, w: -0.6304808}
   m_LocalPosition: {x: -16.4516, y: -0.22011185, z: 7.0491986}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,7 +39,6 @@ Transform:
   - {fileID: 8829957131818502717}
   - {fileID: 5613754130903888799}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3210956458222530620
 MonoBehaviour:
@@ -58,6 +60,48 @@ MonoBehaviour:
   - {fileID: 5090157259482736933}
   _target: {fileID: 0}
   _tip: {fileID: 8207278089299840653}
+--- !u!136 &2025991721185246850
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214022638115226993}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 13
+  m_Direction: 1
+  m_Center: {x: 0, y: 4, z: 0}
+--- !u!114 &6882447242100966645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214022638115226993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5925799488219350139
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8207278089299840653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,19 +125,20 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925799488219350139}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10.1, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8263801308690541628}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1611340174640333417
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8263801308690541628}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f72393abba943de4f88bf0fb8393c590,
@@ -166,7 +211,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cable
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72393abba943de4f88bf0fb8393c590, type: 3}
 --- !u!4 &1285241301582587266 stripped
 Transform:
@@ -185,6 +238,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8263801308690541628}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0f4684b1ae83a5f44a60b931b6b67288,
@@ -252,7 +306,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: UtilityPole
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0f4684b1ae83a5f44a60b931b6b67288,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4684b1ae83a5f44a60b931b6b67288, type: 3}
 --- !u!4 &2824389336907913220 stripped
 Transform:
@@ -265,6 +327,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8263801308690541628}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f72393abba943de4f88bf0fb8393c590,
@@ -337,7 +400,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72393abba943de4f88bf0fb8393c590, type: 3}
 --- !u!4 &3691847077354395555 stripped
 Transform:
@@ -356,6 +427,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8263801308690541628}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f72393abba943de4f88bf0fb8393c590,
@@ -428,7 +500,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cable (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72393abba943de4f88bf0fb8393c590, type: 3}
 --- !u!1 &5090157259482736933 stripped
 GameObject:
@@ -447,6 +527,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8263801308690541628}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f72393abba943de4f88bf0fb8393c590,
@@ -519,7 +600,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cable (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72393abba943de4f88bf0fb8393c590, type: 3}
 --- !u!1 &8197008267500081287 stripped
 GameObject:

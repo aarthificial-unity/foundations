@@ -47,7 +47,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           gitPrivateToken: ${{ secrets.PACKAGES_TOKEN }}
-          unityVersion: 2021.3.25f1
+          unityVersion: 2022.3.6f1
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Tag
       - uses: actions/upload-artifact@v3
