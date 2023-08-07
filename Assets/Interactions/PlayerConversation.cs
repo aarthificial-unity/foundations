@@ -1,5 +1,4 @@
-﻿using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
+﻿using Aarthificial.Typewriter;
 using Player;
 
 namespace Interactions {
@@ -27,7 +26,7 @@ namespace Interactions {
         }
 
         player.SwitchState(player.IdleState);
-        Context.Invoke(Event.EventReference);
+        Context.Process(Event.EventReference);
       } else {
         if (player.Other.InteractState.IsActive) {
           return;
@@ -45,7 +44,7 @@ namespace Interactions {
 
         player.Other.SwitchState(player.Other.IdleState);
         player.FollowState.Enter();
-        Context.Invoke(Event.EventReference);
+        Context.Process(Event.EventReference);
       }
     }
   }

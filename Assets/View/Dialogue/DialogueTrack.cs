@@ -47,14 +47,16 @@ namespace View.Dialogue {
     }
 
     private void Update() {
-      var ltPosition =
-        Camera.main.WorldToScreenPoint(_players.LT.transform.position);
-      var rtPosition =
-        Camera.main.WorldToScreenPoint(_players.RT.transform.position);
-      var isLtLeft = ltPosition.x < rtPosition.x;
+      if (_players.IsReady) {
+        var ltPosition =
+          Camera.main.WorldToScreenPoint(_players.LT.transform.position);
+        var rtPosition =
+          Camera.main.WorldToScreenPoint(_players.RT.transform.position);
+        var isLtLeft = ltPosition.x < rtPosition.x;
 
-      _ltBubble.UpdatePosition(ltPosition, isLtLeft);
-      _rtBubble.UpdatePosition(rtPosition, !isLtLeft);
+        _ltBubble.UpdatePosition(ltPosition, isLtLeft);
+        _rtBubble.UpdatePosition(rtPosition, !isLtLeft);
+      }
 
       if (_currentEntry == null) {
         return;

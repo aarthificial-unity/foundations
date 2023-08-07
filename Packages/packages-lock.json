@@ -1,18 +1,11 @@
 {
   "dependencies": {
-    "com.aarthificial.safekeeper": {
-      "version": "https://github.com/aarthificial/safekeeper.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "664dc43d9dab1a16cabaeca22d0cdfee9b69bc42"
-    },
     "com.aarthificial.typewriter": {
-      "version": "https://github.com/aarthificial/typewriter.git",
+      "version": "https://github.com/aarthificial-gamedev/typewriter.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "4249090e44237b35fbbff970b153659ff9e03ffe"
+      "hash": "2f4e025927526a5c8f3ef3c0453ce9a3c141e1d8"
     },
     "com.unity.addressables": {
       "version": "1.19.19",
@@ -44,13 +37,6 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.31"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.collab-proxy": {
-      "version": "2.0.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
@@ -202,16 +188,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.visualscripting": {
-      "version": "1.8.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

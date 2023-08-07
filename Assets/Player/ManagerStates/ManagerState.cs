@@ -6,7 +6,7 @@ namespace Player.ManagerStates {
   public class ManagerState : BaseState {
     protected PlayerManager Manager;
 
-    private void Awake() {
+    protected virtual void Awake() {
       Manager = GetComponent<PlayerManager>();
     }
   }

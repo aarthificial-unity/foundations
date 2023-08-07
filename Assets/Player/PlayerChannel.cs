@@ -36,5 +36,7 @@ namespace Player {
       get => _players[type];
       set => _players[type] = value;
     }
+
+    public bool IsReady => _players.RT != null && _players.LT != null;
   }
 }
