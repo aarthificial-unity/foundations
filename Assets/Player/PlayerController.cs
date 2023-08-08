@@ -2,8 +2,11 @@ using System;
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
+using FMOD.Studio;
+using FMODUnity;
 using Items;
 using Player.States;
+using Player.Surfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
@@ -24,18 +27,18 @@ namespace Player {
     [NonSerialized] public PlayerController Other;
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
-    [Inject] public NavMeshAgent Agent;
     [Inject] public PlayerConfig Config;
     [Inject] [SerializeField] private ViewChannel _view;
     public PlayerType Type;
     public Rigidbody ChainTarget;
-    public Animator Animator;
     public InputActionReference CommandAction;
     [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference Fact;
+    [SerializeField] private EventReference _stepEvent;
     public bool IsLT => Type == PlayerType.LT;
     public bool IsRT => Type == PlayerType.RT;
 
+    [NonSerialized] public NavMeshAgent Agent;
     [NonSerialized] public FollowState FollowState;
     [NonSerialized] public IdleState IdleState;
     [NonSerialized] public InteractState InteractState;
@@ -44,13 +47,62 @@ namespace Player {
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public Item CurrentItem;
 
+    private EventInstance _stepAudio;
+    private PARAMETER_ID _stepSpeedParameter;
+    private PARAMETER_ID _stepSurfaceParameter;
+    private bool _stepInitialized;
     private BaseState _currentState;
+    private PlayerAnimator _animator;
 
     private void Awake() {
+      if (!_stepEvent.IsNull) {
+        _stepAudio = RuntimeManager.CreateInstance(_stepEvent);
+        _stepAudio.getDescription(out var description);
+        description.getParameterDescriptionByName("speed", out var parameter);
+        _stepSpeedParameter = parameter.id;
+        description.getParameterDescriptionByName("surface", out parameter);
+        _stepSurfaceParameter = parameter.id;
+        _stepInitialized = true;
+      }
+
+      _animator = GetComponentInChildren<PlayerAnimator>();
+      Agent = GetComponent<NavMeshAgent>();
       FollowState = GetComponent<FollowState>();
       IdleState = GetComponent<IdleState>();
       InteractState = GetComponent<InteractState>();
       NavigateState = GetComponent<NavigateState>();
+    }
+
+    private void OnDestroy() {
+      _stepAudio.release();
+    }
+
+    private void OnEnable() {
+      _animator.Stepped += HandleStepped;
+    }
+
+    private void OnDisable() {
+      _animator.Stepped -= HandleStepped;
+    }
+
+    private void HandleStepped() {
+      if (!_stepInitialized) {
+        return;
+      }
+      if (Physics.Raycast(
+          transform.position,
+          Vector3.down,
+          out var hit,
+          2f,
+          Config.GroundMask
+        )
+        && hit.collider.TryGetComponent<ISurfaceProvider>(out var surface)) {
+        _stepAudio.setParameterByID(
+          _stepSurfaceParameter,
+          surface.GetSurface(hit)
+        );
+      }
+      _stepAudio.start();
     }
 
     private void Start() {
@@ -65,10 +117,13 @@ namespace Player {
 
     public void DrivenUpdate() {
       _currentState.OnUpdate();
-      Animator.SetFloat(
-        _animatorSpeed,
-        Agent.velocity.magnitude / Config.WalkSpeed
-      );
+      var speed = Agent.velocity.magnitude / Config.WalkSpeed;
+      _animator.Animator.SetFloat(_animatorSpeed, speed);
+
+      if (_stepInitialized) {
+        _stepAudio.setParameterByID(_stepSpeedParameter, speed);
+        _stepAudio.set3DAttributes(gameObject.To3DAttributes());
+      }
     }
 
     public void ResetAgent() {
