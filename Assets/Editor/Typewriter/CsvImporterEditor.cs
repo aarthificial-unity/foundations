@@ -1,4 +1,4 @@
-﻿using Aarthificial.Typewriter.Common;
+﻿using Aarthificial.Typewriter;
 using System.IO;
 using UnityEditor;
 using UnityEditor.AssetImporters;

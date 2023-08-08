@@ -1,8 +1,6 @@
 ﻿using System;
 using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
-using Player;
-using UnityEngine;
+using Aarthificial.Typewriter;
 
 namespace Interactions {
   [Serializable]

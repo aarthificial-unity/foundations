@@ -1,6 +1,5 @@
 ﻿using System;
-using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
+using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Interactions;
@@ -49,10 +48,10 @@ namespace Player.ManagerStates {
       BaseEntry entry,
       ITypewriterContext context
     ) {
-      if (context.FindMatchingRule((EntryReference)entry, out var match)) {
-        _context = context;
-        _queuedEntry = match;
-      }
+      // if (context.FindMatchingRule((EntryReference)entry, out var match)) {
+      _context = context;
+      _queuedEntry = entry;
+      // }
 
       if (!IsActive) {
         Enter();
@@ -92,8 +91,7 @@ namespace Player.ManagerStates {
 
       if (_queuedEntry == null) {
         var initial = _context.Get(InteractionContext.InitialEvent);
-        if (_context.HasMatchingRule(initial)) {
-          _context.Invoke(initial);
+        if (_context.Process(initial)) {
           return;
         }
 
@@ -122,7 +120,6 @@ namespace Player.ManagerStates {
         _view.Dialogue.Wheel.SetAction(">>");
         _view.Dialogue.Track.SetDialogue(dialogue, GetSpeaker(dialogue));
         _subState = SubState.Dialogue;
-        _isCancellable = dialogue.IsCancellable;
       } else if (entry is ChoiceEntry choice) {
         var ruleCount = _context.FindMatchingRules(
           (EntryReference)choice,
@@ -149,11 +146,11 @@ namespace Player.ManagerStates {
         _view.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
         _subState = SubState.Choice;
         _isCancellable = choice.IsCancellable;
-        _context.Invoke(choice);
+        _context.Process(choice);
       } else if (entry is EventEntry rule) {
         _currentEntry = null;
         _subState = SubState.Finished;
-        _context.Invoke(rule);
+        _context.Process(rule);
       } else {
         _currentEntry = null;
         _subState = SubState.Finished;
@@ -172,7 +169,7 @@ namespace Player.ManagerStates {
       _currentEntry = null;
       _subState = SubState.Proceed;
       _view.Dialogue.Wheel.SetAction(">");
-      _context.Invoke(entry);
+      _context.Process(entry);
     }
 
     private void HandleOptionSelected(int index) {
@@ -180,7 +177,7 @@ namespace Player.ManagerStates {
       ApplyRule(_rules[index]);
       _subState = SubState.Finished;
       _currentEntry = null;
-      _context.Invoke(_rules[index]);
+      _context.Process(_rules[index]);
     }
 
     private void HandleClicked() {
@@ -207,14 +204,14 @@ namespace Player.ManagerStates {
     }
 
     private void ApplyRule(BaseEntry rule) {
-      _context.Apply(rule);
+      // _context.Apply(rule);
       if (rule is not DialogueEntry dialogue) {
         return;
       }
       _context.Set(InteractionContext.CurrentSpeaker, dialogue.Speaker.ID);
 
       PlayerController player;
-      foreach (var dispatcher in dialogue.OnEnd) {
+      foreach (var dispatcher in dialogue.OnApply) {
         if (dispatcher.Reference.ID == InteractionContext.CallOther
           && _players.TryGetPlayer(
             _context.Get(InteractionContext.Initiator),

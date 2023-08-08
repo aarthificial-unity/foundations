@@ -4,13 +4,13 @@ using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Items;
 using Player.States;
-using Typewriter;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Utils;
+using View;
 
 namespace Player {
   [RequireComponent(typeof(FollowState))]
@@ -26,11 +26,13 @@ namespace Player {
 
     [Inject] public NavMeshAgent Agent;
     [Inject] public PlayerConfig Config;
+    [Inject] [SerializeField] private ViewChannel _view;
     public PlayerType Type;
     public Rigidbody ChainTarget;
     public Animator Animator;
     public InputActionReference CommandAction;
-    [EntryFilter(Type = EntryType.Fact)] public EntryReference Fact;
+    [EntryFilter(Variant = EntryVariant.Fact)]
+    public EntryReference Fact;
     public bool IsLT => Type == PlayerType.LT;
     public bool IsRT => Type == PlayerType.RT;
 
@@ -52,6 +54,7 @@ namespace Player {
     }
 
     private void Start() {
+      Slot = _view.HUD.ItemSlots[Type];
       Slot.Dropped += HandleDropped;
       SwitchState(IdleState);
     }
@@ -62,7 +65,10 @@ namespace Player {
 
     public void DrivenUpdate() {
       _currentState.OnUpdate();
-      Animator.SetFloat(_animatorSpeed, Agent.velocity.magnitude / Config.WalkSpeed);
+      Animator.SetFloat(
+        _animatorSpeed,
+        Agent.velocity.magnitude / Config.WalkSpeed
+      );
     }
 
     public void ResetAgent() {

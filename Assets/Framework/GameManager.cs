@@ -1,8 +1,4 @@
 using System.Collections;
-using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
-using Aarthificial.Typewriter.Entries;
-using Interactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;

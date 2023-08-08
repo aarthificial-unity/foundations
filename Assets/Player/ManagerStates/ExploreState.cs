@@ -16,7 +16,7 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private PlayerChannel _players;
     [Inject] [SerializeField] private ViewChannel _view;
     [Inject] [SerializeField] private PlayerConfig _config;
-    [SerializeField] private GameObject _target;
+    [Inject] [SerializeField] private GameObject _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
 
     private Command _currentCommand = Command.None;
@@ -24,6 +24,7 @@ namespace Player.ManagerStates {
     private Vector3 _targetPosition;
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
+    private GameObject _target;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -35,6 +36,11 @@ namespace Player.ManagerStates {
         _target.GetComponent<MeshRenderer>().material =
           _players[value]?.Material;
       }
+    }
+
+    protected override void Awake() {
+      base.Awake();
+      _target = Instantiate(_targetPrefab);
     }
 
     public override void OnEnter() {
@@ -95,6 +101,7 @@ namespace Player.ManagerStates {
 
     private void UpdatePlayer(PlayerController player) {
       if (player.CommandAction.action.WasPerformedThisFrame()
+        && IsMouseWithinBounds()
         && !EventSystem.current.IsPointerOverGameObject()) {
         CurrentPlayer = player.Type;
 
@@ -118,6 +125,14 @@ namespace Player.ManagerStates {
       if (IsNavigating(player)) {
         player.NavigateState.TargetPosition = _targetPosition;
       }
+    }
+
+    private bool IsMouseWithinBounds() {
+      var mousePosition = _targetAction.action.ReadValue<Vector2>();
+      return mousePosition.x >= 0
+        && mousePosition.x <= Screen.width
+        && mousePosition.y >= 0
+        && mousePosition.y <= Screen.height;
     }
 
     private bool IsNavigating(PlayerController player) {

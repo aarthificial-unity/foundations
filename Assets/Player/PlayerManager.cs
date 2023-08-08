@@ -3,23 +3,20 @@ using Cinemachine;
 using Items;
 using Player.ManagerStates;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Utils;
-using View.Dialogue;
 
 namespace Player {
   [RequireComponent(typeof(DialogueState))]
   [RequireComponent(typeof(ExploreState))]
   public class PlayerManager : MonoBehaviour {
+    private readonly int _rtPosition = Shader.PropertyToID("_RTPosition");
+    private readonly int _ltPosition = Shader.PropertyToID("_LTPosition");
+
     [Inject] [SerializeField] private PlayerChannel _players;
     [SerializeField] private PlayerController _rtPrefab;
     [SerializeField] private PlayerController _ltPrefab;
     [SerializeField] private Vector3 _rtStartPosition;
     [SerializeField] private Vector3 _ltStartPosition;
-    [SerializeField] private ItemSlot _rtItemSlot;
-    [SerializeField] private ItemSlot _ltItemSlot;
-    [SerializeField] private DialogueButton[] _dialogueButtons;
-    private int _currentDialogueButtonIndex;
 
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
@@ -35,16 +32,6 @@ namespace Player {
       _currentState?.OnEnter();
     }
 
-    public DialogueButton BorrowButton() {
-      Assert.IsTrue(_currentDialogueButtonIndex < _dialogueButtons.Length);
-      return _dialogueButtons[_currentDialogueButtonIndex++];
-    }
-
-    public void ReleaseButton(DialogueButton button) {
-      Assert.IsTrue(_currentDialogueButtonIndex > 0);
-      _dialogueButtons[--_currentDialogueButtonIndex] = button;
-    }
-
     private void Awake() {
       DialogueState = GetComponent<DialogueState>();
       ExploreState = GetComponent<ExploreState>();
@@ -56,8 +43,6 @@ namespace Player {
       _players.RT = rt;
       rt.Other = lt;
       lt.Other = rt;
-      rt.Slot = _rtItemSlot;
-      lt.Slot = _ltItemSlot;
 
       var group = GetComponent<CinemachineTargetGroup>();
       group.m_Targets[0].target = rt.transform;
@@ -76,6 +61,8 @@ namespace Player {
 
     private void Update() {
       _currentState?.OnUpdate();
+      Shader.SetGlobalVector(_rtPosition, _players.RT.transform.position);
+      Shader.SetGlobalVector(_ltPosition, _players.LT.transform.position);
     }
   }
 }

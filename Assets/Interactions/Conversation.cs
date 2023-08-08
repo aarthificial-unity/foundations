@@ -1,9 +1,9 @@
-﻿using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
+﻿using Aarthificial.Typewriter;
 using Items;
 using Player;
 using UnityEngine;
 using Utils;
+using View;
 using View.Dialogue;
 
 namespace Interactions {
@@ -30,8 +30,8 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
-    [SerializeField]
-    private float _radius = 0.3f;
+    [SerializeField] private float _radius = 0.3f;
+    [Inject] [SerializeField] private ViewChannel _view;
 
     private DialogueButton _button;
 
@@ -130,7 +130,7 @@ namespace Interactions {
 
     private void UpdateButton() {
       if (HasDialogue && _button == null) {
-        _button = Players.Manager.BorrowButton();
+        _button = _view.HUD.BorrowButton();
         _button.SetInteraction(this);
         _button.Clicked += HandleButtonClicked;
       }
@@ -138,7 +138,7 @@ namespace Interactions {
       if (!HasDialogue && _button != null) {
         _button.Clicked -= HandleButtonClicked;
         _button.SetInteraction(null);
-        Players.Manager.ReleaseButton(_button);
+        _view.HUD.ReleaseButton(_button);
         _button = null;
       }
     }

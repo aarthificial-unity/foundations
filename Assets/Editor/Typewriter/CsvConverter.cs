@@ -1,9 +1,9 @@
-﻿using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Common;
+﻿using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Blackboards;
 using Aarthificial.Typewriter.Editor.Common;
+using Aarthificial.Typewriter.Editor.Localization;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
-using Aarthificial.Typewriter.Tools;
 using Interactions;
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,7 @@ namespace Editor.Typewriter {
 
     private static readonly Dictionary<string, EntryReference> _lookup = new();
     private static readonly List<EntryReference> _triggers = new();
-    private static readonly List<TypewriterEvent.Dispatcher> _events = new();
+    private static readonly List<RuleEntry.Dispatcher> _events = new();
     private static readonly List<BlackboardCriterion> _criteria = new();
     private static readonly List<BlackboardModification> _modifications = new();
     private static readonly HashSet<int> _convertedIds = new();
@@ -225,7 +225,6 @@ namespace Editor.Typewriter {
       var entry = _lookup[cells.Key()].GetEntry() as DialogueEntry;
       BeginConversion(entry, cells, previous);
 
-      entry.IsCancellable = cells.Cancel();
       if (_lookup.TryGetValue(cells.Speaker(), out var speaker)) {
         entry.Speaker = speaker;
         if (speaker != InteractionContext.CurrentSpeaker) {
@@ -250,11 +249,11 @@ namespace Editor.Typewriter {
         var sharedEntry = _collection.SharedData.AddKey(entry.Key);
         textId = sharedEntry.Id;
         _collection.StringTables[0].AddEntry(textId, cells.Text());
-        TypewriterUtils.RaiseTableEntryAdded(_collection, sharedEntry);
+        LocalizationEvents.RaiseTableEntryAdded(_collection, sharedEntry);
       } else {
         textId = textEntry.KeyId;
         textEntry.Value = cells.Text();
-        TypewriterUtils.RaiseTableEntryModified(
+        LocalizationEvents.RaiseTableEntryModified(
           _collection.SharedData.GetEntry(textId)
         );
       }
@@ -267,9 +266,9 @@ namespace Editor.Typewriter {
       if (cells.Actions() != "") {
         _events.Clear();
         foreach (var fact in ParseReferences(cells.Actions())) {
-          _events.Add(new TypewriterEvent.Dispatcher { Reference = fact });
+          _events.Add(new RuleEntry.Dispatcher { Reference = fact });
         }
-        entry.OnEnd = _events.ToArray();
+        entry.OnApply = _events.ToArray();
       }
 
       EndConversion(entry);

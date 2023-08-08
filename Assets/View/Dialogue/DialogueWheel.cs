@@ -36,7 +36,9 @@ namespace View.Dialogue {
     }
 
     private void Update() {
-      UpdateDirection();
+      if (_players.IsReady) {
+        UpdateDirection();
+      }
     }
 
     private void UpdateDirection() {
