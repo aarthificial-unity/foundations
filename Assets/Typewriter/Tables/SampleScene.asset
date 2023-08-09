@@ -61,10 +61,9 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
+        OnApply: []
+        OnInvoke: []
         IsCancellable: 1
-        Delay: 0
-        OnStart: []
-        OnEnd: []
     - rid: 5862281944127242244
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -93,10 +92,8 @@ MonoBehaviour:
             InternalID: -1848183240
           Value: 1
           Operation: 0
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -136,10 +133,8 @@ MonoBehaviour:
             InternalID: -1848183240
           Value: 1
           Operation: 0
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -166,10 +161,8 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -200,10 +193,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -234,10 +225,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -277,10 +266,8 @@ MonoBehaviour:
             InternalID: -1848183240
           Value: 1
           Operation: 0
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -312,10 +299,9 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
+        OnApply: []
+        OnInvoke: []
         IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
     - rid: 5862281944127242251
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -335,10 +321,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -369,10 +353,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -403,10 +385,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -437,10 +417,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -476,12 +454,10 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd:
+        OnApply:
         - Reference:
             InternalID: 2014434846
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -512,10 +488,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -546,10 +520,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -585,10 +557,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -624,10 +594,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -658,10 +626,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -692,12 +658,10 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd:
+        OnApply:
         - Reference:
             InternalID: -2028872245
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue
@@ -733,13 +697,11 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
-            m_TableCollectionName: GUID:820a382dab1e26d47a58e3a7ea111607
+            m_TableCollectionName: Dialogue
           m_TableEntryReference:
             m_KeyId: 3070110769426432
             m_Key: 
@@ -768,10 +730,8 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        IsCancellable: 0
-        Delay: 0
-        OnStart: []
-        OnEnd: []
+        OnApply: []
+        OnInvoke: []
         Text:
           m_TableReference:
             m_TableCollectionName: Dialogue

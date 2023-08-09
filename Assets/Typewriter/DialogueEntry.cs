@@ -4,7 +4,7 @@ using Aarthificial.Typewriter.References;
 
 namespace Typewriter {
   public class DialogueEntry : LocalizedRuleEntry {
-    [EntryFilter(Variant = EntryVariant.Event)]
+    [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference Speaker;
   }
 }
