@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,7 @@ namespace Framework {
   public class GameManager : MonoBehaviour {
     [Inject] public MenuMode MenuMode;
     [Inject] public StoryMode StoryMode;
+    [Inject] public AudioManager Audio;
 
     private GameMode _currentMode;
     private bool _isSwitching;
