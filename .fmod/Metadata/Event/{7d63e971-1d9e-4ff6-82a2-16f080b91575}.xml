@@ -138,7 +138,7 @@
 			<value>3</value>
 		</property>
 		<property name="pitch">
-			<value>24</value>
+			<value>5.5</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
@@ -210,10 +210,13 @@
 			<value>-80</value>
 		</property>
 		<property name="lowCrossover">
-			<value>380</value>
+			<value>200</value>
 		</property>
 		<property name="highCrossover">
-			<value>320</value>
+			<value>360</value>
+		</property>
+		<property name="crossoverSlope">
+			<value>2</value>
 		</property>
 	</object>
 </objects>
