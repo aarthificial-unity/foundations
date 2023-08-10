@@ -270,27 +270,27 @@ PrefabInstance:
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _stepEvent.Path
-      value: 
+      value: event:/Player/Step
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _stepEvent.Guid.Data1
-      value: 0
+      value: 111458693
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _stepEvent.Guid.Data2
-      value: 0
+      value: 1239753413
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _stepEvent.Guid.Data3
-      value: 0
+      value: 726437284
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: _stepEvent.Guid.Data4
-      value: 0
+      value: -1383085500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

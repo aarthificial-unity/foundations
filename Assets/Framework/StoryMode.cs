@@ -123,6 +123,7 @@ namespace Framework {
         return;
       }
 
+      Manager.Audio.PlayAmbience();
       IsPaused = false;
       Time.timeScale = 1;
       _input.SwitchToGameplay();

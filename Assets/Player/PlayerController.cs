@@ -2,6 +2,7 @@ using System;
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
+using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using Items;
@@ -50,6 +51,7 @@ namespace Player {
     private EventInstance _stepAudio;
     private PARAMETER_ID _stepSpeedParameter;
     private PARAMETER_ID _stepSurfaceParameter;
+    private PARAMETER_ID _stepCharacterParameter;
     private bool _stepInitialized;
     private BaseState _currentState;
     private PlayerAnimator _animator;
@@ -62,6 +64,9 @@ namespace Player {
         _stepSpeedParameter = parameter.id;
         description.getParameterDescriptionByName("surface", out parameter);
         _stepSurfaceParameter = parameter.id;
+        description.getParameterDescriptionByName("character", out parameter);
+        _stepCharacterParameter = parameter.id;
+        _stepAudio.setParameterByID(_stepCharacterParameter, IsLT ? 0 : 1);
         _stepInitialized = true;
       }
 
@@ -148,7 +153,7 @@ namespace Player {
     }
 
     public void DropItem() {
-      Debug.Log("Drop");
+      UnityEngine.Debug.Log("Drop");
       if (CurrentItem == null) {
         return;
       }
