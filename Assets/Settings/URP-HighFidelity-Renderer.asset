@@ -168,7 +168,7 @@ MonoBehaviour:
     overrideShaderPassIndex: 0
     overrideMode: 1
     overrideDepthState: 1
-    depthCompareFunction: 8
+    depthCompareFunction: 2
     enableWrite: 0
     stencilSettings:
       overrideStencilState: 1
