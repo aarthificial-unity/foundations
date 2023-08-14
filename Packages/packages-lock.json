@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.aarthificial.typewriter": {
-      "version": "https://github.com/aarthificial-gamedev/typewriter.git",
+      "version": "file:E:/$UNITY/typewriter",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "2f4e025927526a5c8f3ef3c0453ce9a3c141e1d8"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.addressables": {
       "version": "1.21.12",

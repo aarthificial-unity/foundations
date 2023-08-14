@@ -14,8 +14,7 @@ namespace Audio {
     private void Awake() {
       if (!_ambienceEvent.IsNull) {
         _ambienceAudio = RuntimeManager.CreateInstance(_ambienceEvent);
-        _ambienceAudio.getDescription(out var description);
-        description.getParameterDescriptionByName("scene", out var parameter);
+        RuntimeManager.StudioSystem.getParameterDescriptionByName("scene", out var parameter);
         _ambienceSceneParameter = parameter.id;
         _ambienceInitialized = true;
       }
@@ -23,7 +22,7 @@ namespace Audio {
 
     public void PlayAmbience() {
       if (_ambienceInitialized) {
-        _ambienceAudio.setParameterByID (
+        RuntimeManager.StudioSystem.setParameterByID (
           _ambienceSceneParameter,
           SceneManager.GetActiveScene().buildIndex
         );

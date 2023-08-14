@@ -7,6 +7,7 @@ namespace Player.States {
 
     public override void OnEnter() {
       base.OnEnter();
+      Player.StepAudio.setParameterByName ("focus", 0);
       Player.Agent.stoppingDistance = Player.Config.MinDistance;
     }
 

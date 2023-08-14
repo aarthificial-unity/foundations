@@ -48,7 +48,7 @@ namespace Player {
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public Item CurrentItem;
 
-    private EventInstance _stepAudio;
+    [NonSerialized] public EventInstance StepAudio;
     private PARAMETER_ID _stepSpeedParameter;
     private PARAMETER_ID _stepSurfaceParameter;
     private PARAMETER_ID _stepCharacterParameter;
@@ -58,15 +58,16 @@ namespace Player {
 
     private void Awake() {
       if (!_stepEvent.IsNull) {
-        _stepAudio = RuntimeManager.CreateInstance(_stepEvent);
-        _stepAudio.getDescription(out var description);
+        StepAudio = RuntimeManager.CreateInstance(_stepEvent);
+        RuntimeManager.AttachInstanceToGameObject (StepAudio, this.transform);
+        StepAudio.getDescription(out var description);
         description.getParameterDescriptionByName("speed", out var parameter);
         _stepSpeedParameter = parameter.id;
         description.getParameterDescriptionByName("surface", out parameter);
         _stepSurfaceParameter = parameter.id;
         description.getParameterDescriptionByName("character", out parameter);
         _stepCharacterParameter = parameter.id;
-        _stepAudio.setParameterByID(_stepCharacterParameter, IsLT ? 0 : 1);
+        StepAudio.setParameterByID(_stepCharacterParameter, IsLT ? 0 : 1);
         _stepInitialized = true;
       }
 
@@ -79,7 +80,7 @@ namespace Player {
     }
 
     private void OnDestroy() {
-      _stepAudio.release();
+      StepAudio.release();
     }
 
     private void OnEnable() {
@@ -102,12 +103,12 @@ namespace Player {
           Config.GroundMask
         )
         && hit.collider.TryGetComponent<ISurfaceProvider>(out var surface)) {
-        _stepAudio.setParameterByID(
+        StepAudio.setParameterByID(
           _stepSurfaceParameter,
           surface.GetSurface(hit)
         );
       }
-      _stepAudio.start();
+      StepAudio.start();
     }
 
     private void Start() {
@@ -126,8 +127,8 @@ namespace Player {
       _animator.Animator.SetFloat(_animatorSpeed, speed);
 
       if (_stepInitialized) {
-        _stepAudio.setParameterByID(_stepSpeedParameter, speed);
-        _stepAudio.set3DAttributes(gameObject.To3DAttributes());
+        StepAudio.setParameterByID(_stepSpeedParameter, speed);
+        //_stepAudio.set3DAttributes(gameObject.To3DAttributes());
       }
     }
 
