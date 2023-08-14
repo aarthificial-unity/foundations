@@ -4,13 +4,17 @@ using UnityEngine;
 
 namespace Framework {
   public class GameMode : ScriptableObject {
-    [NonSerialized] public GameManager Manager;
+    protected GameManager Manager;
 
     public void Quit() {
       Manager.Quit();
     }
 
     public virtual void OnEditorStart() { }
+
+    public virtual void Setup(GameManager manager) {
+      Manager = manager;
+    }
 
     public virtual IEnumerator OnStart() {
       yield break;

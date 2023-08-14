@@ -27,7 +27,8 @@ namespace Framework {
     private GameModeState _state = GameModeState.Ended;
     private int _activeScene = 3;
 
-    private void OnEnable() {
+    public override void Setup(GameManager manager) {
+      base.Setup(manager);
       _state = GameModeState.Ended;
     }
 

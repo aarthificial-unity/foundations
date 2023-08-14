@@ -27,8 +27,8 @@ namespace Framework {
 
     private void Awake() {
       Time.timeScale = 0;
-      MenuMode.Manager = this;
-      StoryMode.Manager = this;
+      MenuMode.Setup(this);
+      StoryMode.Setup(this);
 
 #if UNITY_EDITOR
       switch (SceneManager.GetActiveScene().buildIndex) {

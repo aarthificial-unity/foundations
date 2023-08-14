@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36baaa8bdcb9d8b49b9199833965d2c3, type: 3}
+  m_Name: Main Camera Blends
+  m_EditorClassIdentifier: 
+  m_CustomBlends:
+  - m_From: '**ANY CAMERA**'
+    m_To: '**ANY CAMERA**'
+    m_Blend:
+      m_Style: 7
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4997611
+          value: 0.50713116
+          inSlope: 3.0191426
+          outSlope: 3.0191426
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.067112446
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: -0.059944592
+          outSlope: -0.059944592
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.11803281
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: IntroVCamera
+    m_To: '**ANY CAMERA**'
+    m_Blend:
+      m_Style: 5
+      m_Time: 2
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: IntroVCamera
+    m_Blend:
+      m_Style: 3
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: ExitVCamera
+    m_Blend:
+      m_Style: 4
+      m_Time: 0.5
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
