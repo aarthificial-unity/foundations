@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de7a31b0f504321a089bcb785c15605, type: 3}
   m_Name: InputChannel
   m_EditorClassIdentifier: 
-  currentMap: UI
+  UINavigate: {fileID: -8743243193325691087, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
+  UISubmit: {fileID: -4401986880345242183, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
+  UICancel: {fileID: -3679761885873992829, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
+  UIScrollWheel: {fileID: 92590668506717224, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
+  UIPoint: {fileID: 8969022858353728413, guid: 314bc7151929a6a439a2af7e101ce57a, type: 3}
+  UIClick: {fileID: 3238672311405781525, guid: 314bc7151929a6a439a2af7e101ce57a, type: 3}
+  UIRightClick: {fileID: -4476007396473589471, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
+  UIMiddleClick: {fileID: 2235118134016269962, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}

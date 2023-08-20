@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e6ad6701064eef9ce40c52eb299665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onClick:
+    m_PersistentCalls:
+      m_Calls: []
   _preset: {fileID: 11400000, guid: c800af1943d74c2469f79178abf5759c, type: 2}
   Label: {fileID: 4626079845017495599}
 --- !u!1 &4052576688211037950

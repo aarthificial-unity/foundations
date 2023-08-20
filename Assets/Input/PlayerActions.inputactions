@@ -313,24 +313,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Point",
-                    "type": "PassThrough",
-                    "id": "0896ac75-cdbd-4f83-bb4a-098546dc0f97",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Click",
-                    "type": "PassThrough",
-                    "id": "c5f45f4f-919a-4232-9aa4-34907f2709f5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "ScrollWheel",
                     "type": "PassThrough",
                     "id": "39e0f955-0ea8-4f97-b524-3666c8161e62",
@@ -587,28 +569,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR;Mouse&Keyboard",
                     "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "342d0a40-f7c7-4f73-86a7-e9e9eb05bb4a",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Mouse&Keyboard",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f03d2b62-c8ad-4dcd-8c44-3253f9ec1da7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Mouse&Keyboard",
-                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
