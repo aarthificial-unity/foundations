@@ -31,16 +31,21 @@ namespace Audio {
 
       Instance = RuntimeManager.CreateInstance(Event);
 
-      _parameterIdLookup = new Dictionary<FMODParameter, FMODParameterInstance>();
+      _parameterIdLookup =
+        new Dictionary<FMODParameter, FMODParameterInstance>();
       foreach (var parameter in Event.Parameters) {
         var parameterInstance = new FMODParameterInstance(parameter, this);
-        _parameterIdLookup.Add (parameter, parameterInstance);
+        _parameterIdLookup.Add(parameter, parameterInstance);
       }
 
       IsInitialized = true;
     }
 
-    public void AttachToTransform (Transform transform) {
+    ~FMODEventInstance() {
+      Release();
+    }
+
+    public void AttachToTransform(Transform transform) {
       if (transform != null) {
         RuntimeManager.AttachInstanceToGameObject(Instance, transform);
       }

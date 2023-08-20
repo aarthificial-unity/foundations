@@ -18,7 +18,7 @@ namespace Player.States {
         Other.FollowState.Enter();
       }
 
-      //Player.FootstepAudio.SetParameter("focus", 1);
+      Player.FootstepAudio.SetParameter(Player.StepFocusParam, 1);
       Player.ResetAgent();
       Player.Agent.destination = TargetPosition;
     }

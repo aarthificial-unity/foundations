@@ -6,52 +6,34 @@ using UnityEngine.SceneManagement;
 
 namespace Audio {
   public class AudioManager : ScriptableObject {
-    [SerializeField] private EventReference _ambienceEvent;
-    private EventInstance _ambienceAudio;
-    private PARAMETER_ID _ambienceSceneParameter;
-    private bool _ambienceInitialized;
+    [SerializeField] private FMODEventInstance _ambienceAudio;
+    [SerializeField] private FMODParameter _ambienceSceneParam;
 
     private void OnEnable() {
-      _ambienceInitialized = false;
 #if UNITY_EDITOR
       if (!Application.isPlaying) {
         return;
       }
 #endif
-
-      if (!_ambienceEvent.IsNull) {
-        _ambienceAudio = RuntimeManager.CreateInstance(_ambienceEvent);
-        _ambienceAudio.getDescription(out var description);
-        description.getParameterDescriptionByName("scene", out var parameter);
-        _ambienceSceneParameter = parameter.id;
-        _ambienceInitialized = true;
-
-    [SerializeField] public FMODEventInstance AmbienceAudio;
-    private const string _ambienceSceneParam = "scene";
-
-    private void Awake() {
-      if (AmbienceAudio != null) {
-        AmbienceAudio.Setup();
+      if (_ambienceAudio != null) {
+        _ambienceAudio.Setup();
       }
     }
 
     private void OnDisable() {
-      if (_ambienceInitialized) {
-        _ambienceAudio.release();
+      if (_ambienceAudio.IsInitialized) {
+        _ambienceAudio.Release();
       }
     }
 
     public void PlayAmbience() {
-      if (_ambienceInitialized) {
-        _ambienceAudio.setParameterByID(
-          _ambienceSceneParameter,
-          SceneManager.GetActiveScene().buildIndex
-        );
-        _ambienceAudio.getPlaybackState(out var state);
+      if (_ambienceAudio.IsInitialized) {
+        _ambienceAudio.SetParameter(_ambienceSceneParam, SceneManager.GetActiveScene().buildIndex);
+        _ambienceAudio.Instance.getPlaybackState(out var state);
         if (state == PLAYBACK_STATE.STOPPED) {
-          AmbienceAudio.Play();
+          _ambienceAudio.Play();
         }
-      }*/
+      }
     }
   }
 }

@@ -274,8 +274,12 @@ MonoBehaviour:
       Data3: 726437284
       Data4: -1383085500
     Path: event:/Player/Step
-  FootstepEvent:
+  FootstepAudio:
     Event: {fileID: 11400000, guid: 0fa7e7320843cd54fb6156720238ecdc, type: 2}
+  StepSpeedParam: {fileID: 11400000, guid: 834e8cfbffcb49c4c9687e27f68353bd, type: 2}
+  StepSurfaceParam: {fileID: 11400000, guid: 9614dbc22482f5d41b934e7831f99daa, type: 2}
+  StepCharacterParam: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de, type: 2}
+  StepFocusParam: {fileID: 11400000, guid: e2e3fd3add94ce24bafbc76c3843fa18, type: 2}
 --- !u!114 &2347777406688560371
 MonoBehaviour:
   m_ObjectHideFlags: 0

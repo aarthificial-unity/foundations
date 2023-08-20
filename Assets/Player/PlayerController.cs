@@ -51,9 +51,10 @@ namespace Player {
     [NonSerialized] public Item CurrentItem;
 
     [SerializeField] public FMODEventInstance FootstepAudio;
-    private const string _stepSpeedParam = "speed";
-    private const string _stepSurfaceParam = "surface";
-    private const string _stepCharacterParam = "character";
+    public FMODParameter StepSpeedParam;
+    public FMODParameter StepSurfaceParam;
+    public FMODParameter StepCharacterParam;
+    public FMODParameter StepFocusParam;
 
     private BaseState _currentState;
     private PlayerAnimator _animator;
@@ -63,7 +64,7 @@ namespace Player {
       if (FootstepAudio != null) {
         FootstepAudio.Setup();
         FootstepAudio.AttachToTransform(this.transform);
-        //FootstepAudio.SetParameter(_stepCharacterParam, IsLT ? 0 : 1);
+        FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
       }
 
       _animator = GetComponentInChildren<PlayerAnimator>();
@@ -98,7 +99,7 @@ namespace Player {
           Config.GroundMask
         )
         && hit.collider.TryGetComponent<ISurfaceProvider>(out var surface)) {
-        //FootstepAudio.SetParameter(_stepSurfaceParam, surface.GetSurface(hit));
+        FootstepAudio.SetParameter(StepSurfaceParam, surface.GetSurface(hit));
       }
       FootstepAudio.Play();
     }
@@ -119,7 +120,7 @@ namespace Player {
       _animator.Animator.SetFloat(_animatorSpeed, speed);
 
       if (FootstepAudio.IsInitialized) {
-        //FootstepAudio.SetParameter(_stepSpeedParam, speed);
+        FootstepAudio.SetParameter(StepSpeedParam, speed);
       }
     }
 
