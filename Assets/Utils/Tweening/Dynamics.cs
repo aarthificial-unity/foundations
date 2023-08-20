@@ -60,6 +60,10 @@ namespace Utils.Tweening {
       return Update(Time.fixedUnscaledDeltaTime, in config);
     }
 
+    public void AddImpulse(float impulse) {
+      _velocity.x += impulse;
+    }
+
     public void AddImpulse(Vector3 impulse) {
       _velocity += impulse;
     }
