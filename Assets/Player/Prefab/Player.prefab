@@ -274,6 +274,8 @@ MonoBehaviour:
       Data3: 726437284
       Data4: -1383085500
     Path: event:/Player/Step
+  FootstepEvent:
+    Event: {fileID: 11400000, guid: 0fa7e7320843cd54fb6156720238ecdc, type: 2}
 --- !u!114 &2347777406688560371
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
+using Audio;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;
@@ -13,6 +14,7 @@ using UnityEngine.AI;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Utils;
 using View;
 
@@ -48,27 +50,20 @@ namespace Player {
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public Item CurrentItem;
 
-    [NonSerialized] public EventInstance StepAudio;
-    private PARAMETER_ID _stepSpeedParameter;
-    private PARAMETER_ID _stepSurfaceParameter;
-    private PARAMETER_ID _stepCharacterParameter;
-    private bool _stepInitialized;
+    [SerializeField] public FMODEventInstance FootstepAudio;
+    private const string _stepSpeedParam = "speed";
+    private const string _stepSurfaceParam = "surface";
+    private const string _stepCharacterParam = "character";
+
     private BaseState _currentState;
     private PlayerAnimator _animator;
 
+
     private void Awake() {
-      if (!_stepEvent.IsNull) {
-        StepAudio = RuntimeManager.CreateInstance(_stepEvent);
-        RuntimeManager.AttachInstanceToGameObject (StepAudio, this.transform);
-        StepAudio.getDescription(out var description);
-        description.getParameterDescriptionByName("speed", out var parameter);
-        _stepSpeedParameter = parameter.id;
-        description.getParameterDescriptionByName("surface", out parameter);
-        _stepSurfaceParameter = parameter.id;
-        description.getParameterDescriptionByName("character", out parameter);
-        _stepCharacterParameter = parameter.id;
-        StepAudio.setParameterByID(_stepCharacterParameter, IsLT ? 0 : 1);
-        _stepInitialized = true;
+      if (FootstepAudio != null) {
+        FootstepAudio.Setup();
+        FootstepAudio.AttachToTransform(this.transform);
+        //FootstepAudio.SetParameter(_stepCharacterParam, IsLT ? 0 : 1);
       }
 
       _animator = GetComponentInChildren<PlayerAnimator>();
@@ -80,7 +75,7 @@ namespace Player {
     }
 
     private void OnDestroy() {
-      StepAudio.release();
+      FootstepAudio.Release();
     }
 
     private void OnEnable() {
@@ -92,7 +87,7 @@ namespace Player {
     }
 
     private void HandleStepped() {
-      if (!_stepInitialized) {
+      if (!FootstepAudio.IsInitialized) {
         return;
       }
       if (Physics.Raycast(
@@ -103,12 +98,9 @@ namespace Player {
           Config.GroundMask
         )
         && hit.collider.TryGetComponent<ISurfaceProvider>(out var surface)) {
-        StepAudio.setParameterByID(
-          _stepSurfaceParameter,
-          surface.GetSurface(hit)
-        );
+        //FootstepAudio.SetParameter(_stepSurfaceParam, surface.GetSurface(hit));
       }
-      StepAudio.start();
+      FootstepAudio.Play();
     }
 
     private void Start() {
@@ -126,9 +118,8 @@ namespace Player {
       var speed = Agent.velocity.magnitude / Config.WalkSpeed;
       _animator.Animator.SetFloat(_animatorSpeed, speed);
 
-      if (_stepInitialized) {
-        StepAudio.setParameterByID(_stepSpeedParameter, speed);
-        //_stepAudio.set3DAttributes(gameObject.To3DAttributes());
+      if (FootstepAudio.IsInitialized) {
+        //FootstepAudio.SetParameter(_stepSpeedParam, speed);
       }
     }
 
