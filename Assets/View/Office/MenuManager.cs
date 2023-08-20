@@ -7,11 +7,14 @@ namespace View.Office {
     [SerializeField] private ComputerButton _newGameButton;
     [SerializeField] private ComputerButton _continueButton;
     [SerializeField] private Clickable _exitButton;
+    [SerializeField] private Clickable _settingsButton;
+    [SerializeField] private ComputerButton _settingsExitButton;
 
     [NonSerialized] public IntroState IntroState;
     [NonSerialized] public MainMenuState MainMenuState;
     [NonSerialized] public StartGameState StartGameState;
     [NonSerialized] public ExitState ExitState;
+    [NonSerialized] public SettingsState SettingsState;
 
     private MenuState _currentState;
 
@@ -20,10 +23,13 @@ namespace View.Office {
       MainMenuState = GetComponent<MainMenuState>();
       StartGameState = GetComponent<StartGameState>();
       ExitState = GetComponent<ExitState>();
+      SettingsState = GetComponent<SettingsState>();
 
       _newGameButton.Clicked += StartGameState.NewGame;
       _continueButton.Clicked += StartGameState.ContinueGame;
       _exitButton.Clicked += ExitState.Enter;
+      _settingsButton.Clicked += SettingsState.Enter;
+      _settingsExitButton.Clicked += MainMenuState.Enter;
     }
 
     private void Start() {
