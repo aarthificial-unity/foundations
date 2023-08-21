@@ -7,18 +7,18 @@ namespace View.Office.States {
   public class SettingsState : MenuState {
     [Inject] [SerializeField] private InputChannel _input;
 
-    public override void OnEnter() {
-      base.OnEnter();
+    private void OnEnable() {
       _input.UICancel.action.performed += HandleCancel;
     }
 
-    public override void OnExit() {
-      base.OnExit();
+    public void OnDisable() {
       _input.UICancel.action.performed -= HandleCancel;
     }
 
     private void HandleCancel(InputAction.CallbackContext obj) {
-      Manager.MainMenuState.Enter();
+      if (IsActive) {
+        Manager.MainMenuState.Enter();
+      }
     }
 
     public void Enter() {

@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using Utils;
+using View.Controls;
 
 namespace View.Office {
   public class SaveTapeManager : MonoBehaviour {
@@ -11,7 +12,7 @@ namespace View.Office {
     [SerializeField] private Transform _tapePlayer;
     [SerializeField] private GameObject _selectionScreen;
     [SerializeField] private GameObject _saveMenu;
-    [SerializeField] private ComputerButton _ejectButton;
+    [SerializeField] private PaperButton _ejectButton;
     [SerializeField] private GameObject _initialCamera;
     [SerializeField] private Backdrop _backdrop;
 

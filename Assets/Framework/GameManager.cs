@@ -12,9 +12,15 @@ namespace Framework {
     [Inject] public AudioManager Audio;
 
     private GameMode _currentMode;
-    private bool _isSwitching;
+    private GameMode _switchingTo;
+
+    private bool ISSwitching => !ReferenceEquals(_switchingTo, null);
 
     public void RequestMode(GameMode mode) {
+      if (_switchingTo == mode || _currentMode == mode) {
+        return;
+      }
+
       StartCoroutine(SwitchMode(mode));
     }
 
@@ -70,13 +76,15 @@ namespace Framework {
 #endif
 
     private IEnumerator SwitchMode(GameMode mode) {
-      yield return new WaitUntil(() => !_isSwitching);
-
-      if (_currentMode == mode) {
+      if (_switchingTo == mode || _currentMode == mode) {
         yield break;
       }
 
-      _isSwitching = true;
+      if (ISSwitching) {
+        yield return new WaitUntil(() => !ISSwitching);
+      }
+
+      _switchingTo = mode;
       if (!ReferenceEquals(_currentMode, null)) {
         yield return _currentMode.OnEnd();
       }
@@ -84,7 +92,7 @@ namespace Framework {
       _currentMode = mode;
       yield return _currentMode.OnStart();
 
-      _isSwitching = false;
+      _switchingTo = null;
     }
   }
 }

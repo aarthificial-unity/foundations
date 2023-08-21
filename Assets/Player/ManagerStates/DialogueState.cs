@@ -10,6 +10,7 @@ using UnityEngine.Rendering;
 using Utils;
 using View;
 using View.Dialogue;
+using View.Overlay;
 
 namespace Player.ManagerStates {
   [Serializable]
@@ -22,7 +23,7 @@ namespace Player.ManagerStates {
     }
 
     [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private Volume _volume;
     [SerializeField] private float _interactionCooldown = 0.5f;
     private CommandOption[] _options = new CommandOption[16];
@@ -62,20 +63,20 @@ namespace Player.ManagerStates {
       base.OnEnter();
 
       _volume.weight = 1;
-      _view.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
-      _view.Dialogue.Wheel.Clicked += HandleClicked;
-      _view.Dialogue.Track.Finished += HandleFinished;
-      _view.Dialogue.SetActive(true);
-      _view.Dialogue.Track.Restart();
+      _overlay.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
+      _overlay.Dialogue.Wheel.Clicked += HandleClicked;
+      _overlay.Dialogue.Track.Finished += HandleFinished;
+      _overlay.Dialogue.SetActive(true);
+      _overlay.Dialogue.Track.Restart();
       _lastUpdateTime = Time.time;
     }
 
     public override void OnExit() {
       base.OnExit();
-      _view.Dialogue.Wheel.OptionSelected -= HandleOptionSelected;
-      _view.Dialogue.Wheel.Clicked -= HandleClicked;
-      _view.Dialogue.Track.Finished -= HandleFinished;
-      _view.Dialogue.SetActive(false);
+      _overlay.Dialogue.Wheel.OptionSelected -= HandleOptionSelected;
+      _overlay.Dialogue.Wheel.Clicked -= HandleClicked;
+      _overlay.Dialogue.Track.Finished -= HandleFinished;
+      _overlay.Dialogue.SetActive(false);
       _volume.weight = 0;
       _currentEntry = null;
       _queuedEntry = null;
@@ -98,7 +99,7 @@ namespace Player.ManagerStates {
         if (_subState != SubState.Proceed) {
           Exit();
         } else {
-          _view.Dialogue.Wheel.SetAction("X");
+          _overlay.Dialogue.Wheel.SetAction("X");
         }
 
         return;
@@ -116,9 +117,9 @@ namespace Player.ManagerStates {
     private void ProcessEntry(BaseEntry entry) {
       _currentEntry = entry;
       if (entry is DialogueEntry dialogue) {
-        _view.Dialogue.Wheel.SetOptions(_options, 0);
-        _view.Dialogue.Wheel.SetAction(">>");
-        _view.Dialogue.Track.SetDialogue(dialogue, GetSpeaker(dialogue));
+        _overlay.Dialogue.Wheel.SetOptions(_options, 0);
+        _overlay.Dialogue.Wheel.SetAction(">>");
+        _overlay.Dialogue.Track.SetDialogue(dialogue, GetSpeaker(dialogue));
         _subState = SubState.Dialogue;
       } else if (entry is ChoiceEntry choice) {
         var ruleCount = _context.FindMatchingRules(
@@ -142,8 +143,8 @@ namespace Player.ManagerStates {
           return;
         }
 
-        _view.Dialogue.Wheel.SetOptions(_options, count);
-        _view.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
+        _overlay.Dialogue.Wheel.SetOptions(_options, count);
+        _overlay.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
         _subState = SubState.Choice;
         _isCancellable = choice.IsCancellable;
         _context.Process(choice);
@@ -168,7 +169,7 @@ namespace Player.ManagerStates {
       ApplyRule(entry);
       _currentEntry = null;
       _subState = SubState.Proceed;
-      _view.Dialogue.Wheel.SetAction(">");
+      _overlay.Dialogue.Wheel.SetAction(">");
       _context.Process(entry);
     }
 
@@ -195,7 +196,7 @@ namespace Player.ManagerStates {
           Exit();
           break;
         case SubState.Dialogue:
-          _view.Dialogue.Track.Skip();
+          _overlay.Dialogue.Track.Skip();
           break;
         case SubState.Proceed:
           _subState = SubState.Finished;

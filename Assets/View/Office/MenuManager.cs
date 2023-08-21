@@ -1,14 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using View.Controls;
 using View.Office.States;
 
 namespace View.Office {
   public class MenuManager : MonoBehaviour {
-    [SerializeField] private ComputerButton _newGameButton;
-    [SerializeField] private ComputerButton _continueButton;
+    [SerializeField] private PaperButton _newGameButton;
+    [SerializeField] private PaperButton _continueButton;
     [SerializeField] private Clickable _exitButton;
     [SerializeField] private Clickable _settingsButton;
-    [SerializeField] private ComputerButton _settingsExitButton;
+    [SerializeField] private PaperButton _settingsExitButton;
 
     [NonSerialized] public IntroState IntroState;
     [NonSerialized] public MainMenuState MainMenuState;

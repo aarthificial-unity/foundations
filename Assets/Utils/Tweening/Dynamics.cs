@@ -1,62 +1,61 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Utils.Tweening {
   public struct Dynamics {
-    private Vector3 _lastTarget;
-    private Vector3 _target;
-    private Vector3 _position;
-    private Vector3 _velocity;
+    private Vector4 _lastTarget;
+    private Vector4 _target;
+    private Vector4 _position;
+    private Vector4 _velocity;
 
     public void ForceSet(float x, float y, float z) {
-      ForceSet(new Vector3(x, y, z));
+      ForceSet(new Vector4(x, y, z, 0));
     }
 
     public void ForceSet(float x, float y) {
-      ForceSet(new Vector3(x, y, 0));
+      ForceSet(new Vector4(x, y, 0, 0));
     }
 
     public void ForceSet(float target) {
-      ForceSet(new Vector3(target, 0, 0));
+      ForceSet(new Vector4(target, 0, 0, 0));
     }
 
-    public void ForceSet(Vector3 target) {
+    public void ForceSet(Vector4 target) {
       _lastTarget = target;
       _target = target;
       _position = target;
-      _velocity = Vector3.zero;
+      _velocity = Vector4.zero;
     }
 
     public void Set(float x, float y, float z) {
-      Set(new Vector3(x, y, z));
+      Set(new Vector4(x, y, z, 0));
     }
 
     public void Set(float x, float y) {
-      Set(new Vector3(x, y, 0));
+      Set(new Vector4(x, y, 0, 0));
     }
 
     public void Set(float target) {
-      Set(new Vector3(target, 0, 0));
+      Set(new Vector4(target, 0, 0, 0));
     }
 
-    public void Set(Vector3 target) {
+    public void Set(Vector4 target) {
       _target = target;
     }
 
-    public Vector3 Update(in SpringConfig config) {
+    public Vector4 Update(in SpringConfig config) {
       return Update(Time.deltaTime, in config);
     }
 
-    public Vector3 UnscaledUpdate(in SpringConfig config) {
+    public Vector4 UnscaledUpdate(in SpringConfig config) {
       return Update(Time.unscaledDeltaTime, in config);
     }
 
-    public Vector3 FixedUpdate(in SpringConfig config) {
+    public Vector4 FixedUpdate(in SpringConfig config) {
       return Update(Time.fixedDeltaTime, in config);
     }
 
-    public Vector3 FixedUnscaledUpdate(in SpringConfig config) {
+    public Vector4 FixedUnscaledUpdate(in SpringConfig config) {
       return Update(Time.fixedUnscaledDeltaTime, in config);
     }
 
@@ -64,11 +63,11 @@ namespace Utils.Tweening {
       _velocity.x += impulse;
     }
 
-    public void AddImpulse(Vector3 impulse) {
+    public void AddImpulse(Vector4 impulse) {
       _velocity += impulse;
     }
 
-    public Vector3 Update(float dt, in SpringConfig config) {
+    public Vector4 Update(float dt, in SpringConfig config) {
       if (dt == 0) {
         return _position;
       }

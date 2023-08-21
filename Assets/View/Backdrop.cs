@@ -2,6 +2,30 @@
 
 namespace View {
   public class Backdrop : MonoBehaviour {
+    public struct Handle {
+      private readonly Backdrop _backdrop;
+      private bool _requested;
+
+      public Handle(Backdrop backdrop) {
+        _backdrop = backdrop;
+        _requested = false;
+      }
+
+      public void Request() {
+        if (!_requested) {
+          _requested = true;
+          _backdrop.Request();
+        }
+      }
+
+      public void Release() {
+        if (_requested) {
+          _requested = false;
+          _backdrop.Release();
+        }
+      }
+    }
+
     [SerializeField] private float _speed;
     private CanvasGroup _group;
     private int _requests;
@@ -14,6 +38,10 @@ namespace View {
 
     public bool IsReady() {
       return _requests > 0 ? _group.alpha >= 1 : _group.alpha <= 0;
+    }
+
+    public Handle GetHandle() {
+      return new Handle(this);
     }
 
     public void Request() {

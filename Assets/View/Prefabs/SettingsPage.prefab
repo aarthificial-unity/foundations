@@ -91,6 +91,7 @@ MonoBehaviour:
   _padding: 0
   _strokeWidth: 0.1
   _filled: 1
+  _textureStrength: 0.6
 --- !u!1 &6713824688508555649
 GameObject:
   m_ObjectHideFlags: 0

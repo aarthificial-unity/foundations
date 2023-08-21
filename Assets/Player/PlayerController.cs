@@ -17,6 +17,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Utils;
 using View;
+using View.Overlay;
+using Debug = UnityEngine.Debug;
 
 namespace Player {
   [RequireComponent(typeof(FollowState))]
@@ -31,7 +33,7 @@ namespace Player {
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
     [Inject] public PlayerConfig Config;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     public PlayerType Type;
     public Rigidbody ChainTarget;
     public InputActionReference CommandAction;
@@ -106,7 +108,7 @@ namespace Player {
     }
 
     private void Start() {
-      Slot = _view.HUD.ItemSlots[Type];
+      Slot = _overlay.HUD.ItemSlots[Type];
       Slot.Dropped += HandleDropped;
       SwitchState(IdleState);
     }
