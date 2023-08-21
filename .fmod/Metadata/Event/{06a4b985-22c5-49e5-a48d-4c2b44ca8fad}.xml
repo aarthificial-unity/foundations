@@ -5,7 +5,7 @@
 			<value>Step</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d7d8a16f-2cf1-43c9-94d8-4a8b85fe4784}</destination>
@@ -578,8 +578,9 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{1a2a4f5c-ca71-42c3-ba45-80609d287818}">
 		<relationship name="effects">
-			<destination>{e4114b66-b74e-4b93-bf49-2038350d1805}</destination>
 			<destination>{7363a99c-f4a2-45f1-a088-501613ea22a6}</destination>
+			<destination>{8102785f-b98f-492d-9832-b209bce45dff}</destination>
+			<destination>{e4114b66-b74e-4b93-bf49-2038350d1805}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ecf14d7a-b76f-4522-bc5f-ab04b764cffb}" />
@@ -1087,7 +1088,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d3fbacf2-9d1b-4577-a050-2fcb2311e644}" />
-	<object class="MixerBusFader" id="{e4114b66-b74e-4b93-bf49-2038350d1805}" />
 	<object class="ThreeEQEffect" id="{7363a99c-f4a2-45f1-a088-501613ea22a6}">
 		<relationship name="automators">
 			<destination>{d31af9e6-fab4-488e-9f9c-84b2fe25c5c2}</destination>
@@ -1095,6 +1095,30 @@
 			<destination>{0dd6c6fe-05e0-4567-b26b-f14b892eb419}</destination>
 		</relationship>
 	</object>
+	<object class="SpatialiserEffect" id="{8102785f-b98f-492d-9832-b209bce45dff}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+		<property name="minimumDistance">
+			<value>0</value>
+		</property>
+		<property name="maximumDistance">
+			<value>10000</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>2</value>
+		</property>
+		<property name="soundSize">
+			<value>9.5</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>180</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{e4114b66-b74e-4b93-bf49-2038350d1805}" />
 	<object class="AutomationCurve" id="{e1edcef8-2715-47d0-a43a-4015b6dff06b}">
 		<relationship name="parameter">
 			<destination>{39c5e56f-c331-4524-8c40-89a59e0431ac}</destination>
