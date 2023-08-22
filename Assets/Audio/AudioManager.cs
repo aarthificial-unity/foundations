@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace Audio {
   public class AudioManager : ScriptableObject {
     [SerializeField] private FMODEventInstance _ambienceAudio;
-    [SerializeField] private FMODParameter _ambienceSceneParam;
+    [SerializeField] private FMODParameterInstance _ambienceSceneParam;
 
     private void OnEnable() {
 #if UNITY_EDITOR
@@ -15,20 +15,17 @@ namespace Audio {
         return;
       }
 #endif
-      if (_ambienceAudio != null) {
-        _ambienceAudio.Setup();
-      }
+      _ambienceAudio.Setup();
+      _ambienceSceneParam.Setup();
     }
 
     private void OnDisable() {
-      if (_ambienceAudio.IsInitialized) {
-        _ambienceAudio.Release();
-      }
+      _ambienceAudio.Release();
     }
 
     public void PlayAmbience() {
       if (_ambienceAudio.IsInitialized) {
-        _ambienceAudio.SetParameter(_ambienceSceneParam, SceneManager.GetActiveScene().buildIndex);
+        _ambienceSceneParam.CurrentValue = SceneManager.GetActiveScene().buildIndex;
         _ambienceAudio.Instance.getPlaybackState(out var state);
         if (state == PLAYBACK_STATE.STOPPED) {
           _ambienceAudio.Play();

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ambienceAudio:
     Event: {fileID: 11400000, guid: dcac8db30e459054e92fb6f7fa51eab6, type: 2}
-  _ambienceSceneParam: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23,
-    type: 2}
+  _ambienceSceneParam:
+    _parameter: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}

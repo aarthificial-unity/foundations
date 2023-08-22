@@ -20,7 +20,7 @@ namespace Audio {
   public class FMODEventInstance {
     public FMODEvent Event;
     public EventInstance Instance;
-    private Dictionary<FMODParameter, FMODParameterInstance> _parameterIdLookup;
+    private Dictionary<FMODParameter, PARAMETER_ID> _parameterIdLookup;
     public bool IsInitialized { private set; get; }
 
     public void Setup() {
@@ -30,11 +30,14 @@ namespace Audio {
 
       Instance = RuntimeManager.CreateInstance(Event);
 
-      _parameterIdLookup =
-        new Dictionary<FMODParameter, FMODParameterInstance>();
+      _parameterIdLookup = new Dictionary<FMODParameter, PARAMETER_ID>();
+      Instance.getDescription(out var description);
       foreach (var parameter in Event.Parameters) {
-        var parameterInstance = new FMODParameterInstance(parameter, this);
-        _parameterIdLookup.Add(parameter, parameterInstance);
+        description.getParameterDescriptionByName(
+          parameter.ParameterName,
+          out var parameterDescription
+        );
+        _parameterIdLookup.Add(parameter, parameterDescription.id);
       }
 
       IsInitialized = true;
@@ -51,21 +54,22 @@ namespace Audio {
     }
 
     public void SetParameter(FMODParameter parameter, float val) {
-      if (_parameterIdLookup.ContainsKey(parameter)) {
-        if (parameter.IsGlobal) {
-          RuntimeManager.StudioSystem.setParameterByID(_parameterIdLookup[parameter].ID, val);
-          return;
-        }
-        Instance.setParameterByID(_parameterIdLookup[parameter].ID, val);
+      if (parameter.IsGlobal)
+        return;
+
+      if (_parameterIdLookup.TryGetValue(parameter, out var instance)) {
+        Instance.setParameterByID(instance, val);
       }
     }
 
     public void Play() {
-      Instance.start();
+        Instance.start();
     }
 
     public void Release() {
-      Instance.release();
+      if (IsInitialized) {
+        Instance.release();
+      }
     }
   }
 }

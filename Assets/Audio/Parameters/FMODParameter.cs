@@ -1,5 +1,6 @@
 ﻿using System;
 using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 namespace Audio {
@@ -11,29 +12,23 @@ namespace Audio {
 
   [Serializable]
   public class FMODParameterInstance {
-    public FMODParameter Parameter;
-    private FMODEventInstance _eventInstance;
-
-    public PARAMETER_ID ID { get; private set; }
-
-    public bool IsInitialized { get; private set; }
-
-    public FMODParameterInstance(FMODParameter parameter, FMODEventInstance eventInstance) {
-      Parameter = parameter;
-
-      if (Parameter == null || eventInstance == null) return;
-      _eventInstance = eventInstance;
-      _eventInstance.Instance.getDescription(out var description);
-      description.getParameterDescriptionByName(Parameter.ParameterName, out var param);
-      ID = param.id;
-    }
+    [SerializeField] private FMODParameter _parameter;
+    private PARAMETER_ID _id;
 
     public float CurrentValue {
       get {
-        if (! IsInitialized) return -1;
-        _eventInstance.Instance.getParameterByID (ID, out float value);
+        RuntimeManager.StudioSystem.getParameterByID(_id, out var value);
         return value;
       }
+      set => RuntimeManager.StudioSystem.setParameterByID(_id, value);
+    }
+
+    public void Setup() {
+      RuntimeManager.StudioSystem.getParameterDescriptionByName(
+        _parameter.ParameterName,
+        out var description
+      );
+      _id = description.id;
     }
 
   }
