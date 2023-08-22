@@ -31,11 +31,7 @@ namespace Player.ManagerStates {
     public PlayerType CurrentPlayer {
       get => _currentPlayer;
       set {
-        if (CurrentController != null) {
-          CurrentController.SetFocus(0);
-        }
         _currentPlayer = value;
-        CurrentController.SetFocus(1);
         _target.SetActive(value != PlayerType.None);
         _target.GetComponent<MeshRenderer>().material =
           _players[value]?.Material;

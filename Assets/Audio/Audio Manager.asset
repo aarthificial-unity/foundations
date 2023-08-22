@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3652f152cd634f7697e2cd512b8f7ea5, type: 3}
   m_Name: Audio Manager
   m_EditorClassIdentifier: 
-  _ambienceAudio:
-    Event: {fileID: 11400000, guid: dcac8db30e459054e92fb6f7fa51eab6, type: 2}
-  _ambienceSceneParam:
-    _parameter: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}
+  _ambienceEvent:
+    Guid:
+      Data1: 2103699825
+      Data2: 1341529502
+      Data3: -266952062
+      Data4: 1964358016
+    Path: event:/Music/Ambience
