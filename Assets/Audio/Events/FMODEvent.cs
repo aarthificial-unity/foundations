@@ -22,6 +22,7 @@ namespace Audio {
     public EventInstance Instance;
     private Dictionary<FMODParameter, PARAMETER_ID> _parameterIdLookup;
     public bool IsInitialized { private set; get; }
+    private GameObject _positionalGameObject;
 
     public void Setup() {
       if (Event == null) {
@@ -47,14 +48,21 @@ namespace Audio {
       Release();
     }
 
-    public void AttachToTransform(Transform transform) {
-      if (transform != null) {
-        RuntimeManager.AttachInstanceToGameObject(Instance, transform);
+    public void AttachToGameObject(GameObject gameObject) {
+      if (gameObject != null) {
+        _positionalGameObject = gameObject;
+        Update3DPosition();
+      }
+    }
+
+    private void Update3DPosition() {
+      if (_positionalGameObject != null) {
+        Instance.set3DAttributes(_positionalGameObject.To3DAttributes());
       }
     }
 
     public void SetParameter(FMODParameter parameter, float val) {
-      if (parameter.IsGlobal)
+      if (!IsInitialized || parameter.IsGlobal)
         return;
 
       if (_parameterIdLookup.TryGetValue(parameter, out var instance)) {
@@ -63,7 +71,8 @@ namespace Audio {
     }
 
     public void Play() {
-        Instance.start();
+      Update3DPosition();
+      Instance.start();
     }
 
     public void Release() {

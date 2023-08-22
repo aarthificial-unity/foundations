@@ -63,8 +63,9 @@ namespace Player {
     private void Awake() {
       if (FootstepAudio != null) {
         FootstepAudio.Setup();
-        FootstepAudio.AttachToTransform(this.transform);
+        FootstepAudio.AttachToGameObject(this.gameObject);
         FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
+        SetFocus(0);
       }
 
       _animator = GetComponentInChildren<PlayerAnimator>();
@@ -183,6 +184,10 @@ namespace Player {
 
       return CurrentItem.PrefabReference.AssetGUID
         == item.PrefabReference.AssetGUID;
+    }
+
+    public void SetFocus(int value) {
+      FootstepAudio.SetParameter(StepFocusParam, value);
     }
   }
 }
