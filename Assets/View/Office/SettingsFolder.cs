@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using Utils.Tweening;
 using View.Office.States;
 using View.Settings;
 
 namespace View.Office {
   public class SettingsFolder : MonoBehaviour {
-    private static readonly int StateParam = Animator.StringToHash("State");
-
     [SerializeField] private float _closedValue;
     [SerializeField] private float _hoverValue = 0.2f;
     [SerializeField] private float _openValue = 0.5f;
-    [SerializeField] private Animator _animator;
     [SerializeField] private SettingsState _state;
-    [SerializeField] private SettingsTabs _tabs;
+    [FormerlySerializedAs("_tabs")]
+    [SerializeField]
+    private SettingsView _view;
     [SerializeField] private CanvasGroup _label;
 
     private Clickable _clickable;
@@ -48,18 +48,18 @@ namespace View.Office {
         _springConfig = SpringConfig.Slow;
         _dynamics.Set(_openValue);
         _collider.enabled = false;
-        _tabs.SetInteractive(true);
+        _view.SetInteractive(true);
         _labelDynamics.Set(0);
       } else {
         _collider.enabled = true;
-        _tabs.SetInteractive(false);
+        _view.SetInteractive(false);
         _labelDynamics.Set(1);
       }
     }
 
     private void Update() {
       var value = _dynamics.UnscaledUpdate(in _springConfig).x;
-      _animator.SetFloat(StateParam, value);
+      _view.SetAnimationFactor(value);
       var alpha = _labelDynamics.UnscaledUpdate(in SpringConfig.Snappy).x;
       _label.alpha = alpha;
       _label.interactable = alpha > 0.5;

@@ -7,6 +7,10 @@ namespace Input {
     [NonSerialized] public string CurrentMap = "UI";
     public event Action<string> MapChanged;
 
+    [Header("Gameplay Actions")]
+    public InputActionReference GameplayPause;
+
+    [Header("UI Actions")]
     public InputActionReference UINavigate;
     public InputActionReference UISubmit;
     public InputActionReference UICancel;

@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Material: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   Config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
-  _view: {fileID: 11400000, guid: f18087815d5a83e4b843a54d36bae20f, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   Type: 0
   ChainTarget: {fileID: 2839522992124909877}
   CommandAction: {fileID: 0}

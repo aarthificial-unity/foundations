@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de7a31b0f504321a089bcb785c15605, type: 3}
   m_Name: InputChannel
   m_EditorClassIdentifier: 
+  GameplayPause: {fileID: -3951493915329138849, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
   UINavigate: {fileID: -8743243193325691087, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
   UISubmit: {fileID: -4401986880345242183, guid: 314bc7151929a6a439a2af7e101ce57a,

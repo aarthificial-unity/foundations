@@ -5,6 +5,7 @@ using UnityEngine;
 using Utils;
 using View;
 using View.Dialogue;
+using View.Overlay;
 
 namespace Interactions {
   public class Conversation : Interactable {
@@ -31,7 +32,7 @@ namespace Interactions {
     private PlayerLookup<Interaction> _interactions;
 
     [SerializeField] private float _radius = 0.3f;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
 
     private DialogueButton _button;
 
@@ -130,7 +131,7 @@ namespace Interactions {
 
     private void UpdateButton() {
       if (HasDialogue && _button == null) {
-        _button = _view.HUD.BorrowButton();
+        _button = _overlay.HUD.BorrowButton();
         _button.SetInteraction(this);
         _button.Clicked += HandleButtonClicked;
       }
@@ -138,7 +139,7 @@ namespace Interactions {
       if (!HasDialogue && _button != null) {
         _button.Clicked -= HandleButtonClicked;
         _button.SetInteraction(null);
-        _view.HUD.ReleaseButton(_button);
+        _overlay.HUD.ReleaseButton(_button);
         _button = null;
       }
     }

@@ -3,9 +3,11 @@ Shader "GUI/BoxSDF"
   Properties
   {
     [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+    _PaintTex ("Paint Texture", 2D) = "white" {}
     _Radius ("Radius", Float) = 0.3
     _StrokeWidth ("Stroke Width", Float) = 0.1
     _Smoothness ("Smoothness", Float) = 0.01
+    _Test ("Test", Vector) = (0, 0, 0, 0)
 
     [HideInInspector] _StencilComp ("Stencil Comparison", Float) = 8
     [HideInInspector] _Stencil ("Stencil ID", Float) = 0
@@ -62,6 +64,7 @@ Shader "GUI/BoxSDF"
         float4 color : COLOR;
         float2 texcoord : TEXCOORD0;
         float4 params : TEXCOORD1;
+        float4 params2 : TEXCOORD2;
         UNITY_VERTEX_INPUT_INSTANCE_ID
       };
 
@@ -72,6 +75,7 @@ Shader "GUI/BoxSDF"
         float2 texcoord : TEXCOORD0;
         float4 worldPosition : TEXCOORD1;
         float4 params : TEXCOORD2;
+        float4 params2 : TEXCOORD3;
         UNITY_VERTEX_OUTPUT_STEREO
       };
 
@@ -82,6 +86,7 @@ Shader "GUI/BoxSDF"
       float _StrokeWidth;
       float _Smoothness;
       float4 _ClipRect;
+      float4 _Test;
 
       inline float roundBoxSDF(const float2 position, const float2 size, const float radius)
       {
@@ -104,6 +109,7 @@ Shader "GUI/BoxSDF"
 
         output.texcoord = input.texcoord;
         output.params = input.params;
+        output.params2 = input.params2;
         output.color = input.color;
         return output;
       }
@@ -136,6 +142,13 @@ Shader "GUI/BoxSDF"
             strokeEdge,
             distance
           );
+
+        float paint = tex2D(_PaintTex, (uv * size + input.params2.xy) * 0.01).b;
+        // color.rgb += lerp(input.params2.z, input.params2.w, paint);
+        paint -= _Test.x;
+        paint *= _Test.y;
+        paint *= input.params2.z;
+        color.rgb += paint;
 
         #ifdef UNITY_UI_CLIP_RECT
         color.a *= get2DClipping(input.worldPosition.xy, _ClipRect);

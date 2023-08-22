@@ -558,11 +558,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 596442511228719110, guid: efee0e9f77303df4ab4d89b91b30fa53,
         type: 3}
-      propertyPath: m_fontSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 596442511228719110, guid: efee0e9f77303df4ab4d89b91b30fa53,
-        type: 3}
       propertyPath: m_fontSizeBase
       value: 1
       objectReference: {fileID: 0}
@@ -951,11 +946,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 961739752}
-    - target: {fileID: 2656453769040154121, guid: efee0e9f77303df4ab4d89b91b30fa53,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 2659416713934006144, guid: efee0e9f77303df4ab4d89b91b30fa53,
         type: 3}
       propertyPath: m_Layer
@@ -1001,11 +991,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 961739752}
-    - target: {fileID: 3025429314583402152, guid: efee0e9f77303df4ab4d89b91b30fa53,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 3247309071974618583, guid: efee0e9f77303df4ab4d89b91b30fa53,
         type: 3}
       propertyPath: m_Layer
@@ -1306,11 +1291,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 961739752}
-    - target: {fileID: 4668811545358191593, guid: efee0e9f77303df4ab4d89b91b30fa53,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 4693997802350092059, guid: efee0e9f77303df4ab4d89b91b30fa53,
         type: 3}
       propertyPath: m_Layer
@@ -3814,12 +3794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cd5af8ad845088572ec714797487b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &789621606 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1183737098139889216, guid: efee0e9f77303df4ab4d89b91b30fa53,
-    type: 3}
-  m_PrefabInstance: {fileID: 186637218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &789621607 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 959450076721951562, guid: efee0e9f77303df4ab4d89b91b30fa53,
@@ -4349,7 +4323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 73464355}
-  _duration: 0.3
+  _duration: 5
   _backdrop: {fileID: 1391715818}
 --- !u!114 &966745386
 MonoBehaviour:
@@ -5375,9 +5349,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994140768751159520, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994140768751159520, guid: e6b6f0ae35e712741b23390695dd7017,
+        type: 3}
       propertyPath: _isInteractable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4994140768751159520, guid: e6b6f0ae35e712741b23390695dd7017,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1329904986}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5399,6 +5383,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75cd5af8ad845088572ec714797487b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1329904986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2474315951711707562, guid: e6b6f0ae35e712741b23390695dd7017,
+    type: 3}
+  m_PrefabInstance: {fileID: 1329904981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1360229867
@@ -5842,11 +5838,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closedValue: 0
-  _hoverValue: 0.2
-  _openValue: 0.5
-  _animator: {fileID: 789621606}
+  _hoverValue: 0.4
+  _openValue: 1
   _state: {fileID: 966745391}
-  _tabs: {fileID: 789621607}
+  _view: {fileID: 789621607}
   _label: {fileID: 831234666}
 --- !u!65 &1567338171
 BoxCollider:

@@ -7,6 +7,7 @@ namespace Utils.Tweening {
   public struct SpringConfig : ISerializationCallbackReceiver {
     public static readonly SpringConfig Bouncy = new(200, 17, 0);
     public static readonly SpringConfig Snappy = new(300, 50, 0);
+    public static readonly SpringConfig Medium = new(150, 50, 0);
     public static readonly SpringConfig Slow = new(50, 50, 0);
 
     [SerializeField] private float _frequency;

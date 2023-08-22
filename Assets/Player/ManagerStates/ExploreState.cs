@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
 using View;
+using View.Overlay;
 
 namespace Player.ManagerStates {
   public class ExploreState : ManagerState {
@@ -14,7 +15,7 @@ namespace Player.ManagerStates {
     }
 
     [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [Inject] [SerializeField] private PlayerConfig _config;
     [Inject] [SerializeField] private GameObject _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
@@ -48,13 +49,13 @@ namespace Player.ManagerStates {
     }
 
     public override void OnEnter() {
-      _view.HUD.SetActive(true);
-      _view.HUD.SetInteractive(true);
+      _overlay.HUD.SetActive(true);
+      _overlay.HUD.SetInteractive(true);
     }
 
     public override void OnExit() {
-      _view.HUD.SetActive(false);
-      _view.HUD.SetInteractive(false);
+      _overlay.HUD.SetActive(false);
+      _overlay.HUD.SetInteractive(false);
       _target.SetActive(false);
     }
 
@@ -93,7 +94,7 @@ namespace Player.ManagerStates {
       UpdatePlayer(_players.RT);
 
       var currentController = CurrentController;
-      _view.HUD.SetInteractive(!IsNavigating(currentController));
+      _overlay.HUD.SetInteractive(!IsNavigating(currentController));
 
       if (currentController?.NavigateState.IsActive ?? false) {
         _target.transform.position = currentController.TargetPosition;

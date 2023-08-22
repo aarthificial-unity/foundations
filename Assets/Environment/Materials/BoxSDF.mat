@@ -83,5 +83,6 @@ Material:
     - _Edge: {r: 0.4, g: 0.5, b: 0, a: 0}
     - _Radius: {r: -0.02, g: 1000, b: 0, a: 0}
     - _Size: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Test: {r: 0.15, g: 1, b: 0, a: 0}
     - _TopColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

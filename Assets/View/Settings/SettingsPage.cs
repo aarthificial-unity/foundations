@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
@@ -27,11 +25,17 @@ namespace View.Settings {
     private Dynamics _angleDynamics;
     private Dynamics _colorDynamics;
 
-    public void DrivenAwake(float spacing, int order, int count) {
+    public void DrivenAwake(
+      Camera worldCamera,
+      float spacing,
+      int order,
+      int count
+    ) {
       _spacing = spacing;
       _count = count;
       _canvas = GetComponent<Canvas>();
       _group = GetComponent<CanvasGroup>();
+      _canvas.worldCamera = worldCamera;
       _initialRotation = transform.localRotation.eulerAngles;
       _canvas.sortingOrder = order;
       _colorDynamics.ForceSet(order / (float)count);
