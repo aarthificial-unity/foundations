@@ -10,7 +10,7 @@ using Typewriter;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Editor.Typewriter {
+namespace DevTools.CSV {
   public static class CsvConverter {
     private enum ScriptState {
       Initial,
@@ -69,7 +69,7 @@ namespace Editor.Typewriter {
       }
 
       // _collection =
-        // LocalizationEditorSettings.GetStringTableCollection("Dialogue");
+      // LocalizationEditorSettings.GetStringTableCollection("Dialogue");
 
       _lookup.Add("LT", InteractionContext.LT);
       _lookup.Add("RT", InteractionContext.RT);
@@ -84,7 +84,7 @@ namespace Editor.Typewriter {
       BaseEntry previous = null;
       for (var i = 1; i < rows.Count; i++) {
         var cells = rows[i].Cells;
-        if (cells.Key() == "") {
+        if (cells.IsEmpty()) {
           continue;
         }
 
@@ -106,7 +106,10 @@ namespace Editor.Typewriter {
             type = typeof(FactEntry);
             break;
           default:
-            Debug.LogError($"Row {i + 1}: Unknown type {cells.Type()}", context);
+            Debug.LogError(
+              $"Row {i + 1} ({cells.Key()}): Unknown type {cells.Type()}",
+              context
+            );
             continue;
         }
 
@@ -138,7 +141,7 @@ namespace Editor.Typewriter {
 
       for (var i = 1; i < rows.Count; i++) {
         var cells = rows[i].Cells;
-        if (cells.Key() == "") {
+        if (cells.IsEmpty()) {
           previous = null;
           continue;
         }
@@ -160,7 +163,7 @@ namespace Editor.Typewriter {
               break;
           }
         } catch (Exception e) {
-          Debug.LogError($"Row {i + 1}: {e.Message}", context);
+          Debug.LogError($"Row {i + 1} ({cells.Key()}): {e.Message}", context);
           Debug.LogException(e);
         }
       }
@@ -434,6 +437,7 @@ namespace Editor.Typewriter {
         text += '\n';
       }
 
+      var isComment = false;
       var context = new ParsingContext {
         Code = text,
         Line = 0,
@@ -441,6 +445,13 @@ namespace Editor.Typewriter {
       };
 
       foreach (var c in text) {
+        if (isComment) {
+          if (c == '\n') {
+            isComment = false;
+          }
+          continue;
+        }
+
         switch (c) {
           case '\r':
           case ' ':
@@ -467,6 +478,9 @@ namespace Editor.Typewriter {
               throw new ParsingException("Unexpected '.'", context);
             }
 
+            break;
+          case '#' when state == ScriptState.Initial:
+            isComment = true;
             break;
           case '\n':
             switch (state) {
@@ -531,21 +545,31 @@ namespace Editor.Typewriter {
         text += '\n';
       }
 
+      var isComment = false;
       var builder = new StringBuilder();
       foreach (var c in text) {
         switch (c) {
           case ' ':
           case '\r':
             continue;
+          case '#' when builder.Length == 0:
+            isComment = true;
+            break;
           case ',':
           case '\n':
+            if (isComment) {
+              isComment = false;
+              builder.Clear();
+              break;
+            }
+
             var value = builder.ToString();
             builder.Clear();
             if (value.Length > 0) {
               if (_lookup.TryGetValue(value, out var entry)) {
                 yield return entry;
               } else {
-                Debug.LogWarningFormat("Missing reference {0}", value);
+                throw new Exception($"Unknown entry reference: {value}.");
               }
             }
             break;
@@ -574,6 +598,9 @@ namespace Editor.Typewriter {
 
       return builder.ToString();
     }
+
+    private static bool IsEmpty(this List<string> list) =>
+      string.IsNullOrEmpty(list[0]) || list[0].StartsWith('#');
 
     private static string Key(this List<string> list) => list[0];
     private static string Type(this List<string> list) => list[2];

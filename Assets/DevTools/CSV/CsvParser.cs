@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Editor.Typewriter {
+namespace DevTools.CSV {
   public static class CsvParser {
     [Serializable]
     public struct Row {
@@ -27,7 +27,10 @@ namespace Editor.Typewriter {
             continue;
           case '"': {
             isInsideField = !isInsideField;
-            if (!isInsideField && i + 1 < text.Length && text[i + 1] != ',') {
+            if (!isInsideField
+              && i + 1 < text.Length
+              && text[i + 1] != ','
+              && text[i + 1] != '\n') {
               _builder.Append('"');
             }
             break;
@@ -37,7 +40,9 @@ namespace Editor.Typewriter {
             break;
           case '\n' when !isInsideField:
             AddCell(cells);
-            _rows.Add(new Row { Cells = cells });
+            if (cells.Count > 0) {
+              _rows.Add(new Row { Cells = cells });
+            }
             cells = new List<string>();
             break;
           default:
