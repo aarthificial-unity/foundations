@@ -56,6 +56,8 @@ MonoBehaviour:
     type: 3}
   _rtStartPosition: {x: -1.56, y: 1, z: 0}
   _ltStartPosition: {x: 1.47, y: 1.057133, z: 1.77}
+  _cameraPrefab: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
+    type: 3}
 --- !u!114 &4796299548502591021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,4 +313,4 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: 23b92dde2e2f7804e90be51b94a6d5ec, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 8bfea386c15287348b0e7bfba8a88a3a, type: 2}

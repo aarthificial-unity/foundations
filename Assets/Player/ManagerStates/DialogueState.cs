@@ -54,7 +54,9 @@ namespace Player.ManagerStates {
       _queuedEntry = entry;
       // }
 
+      Debug.Log($"New rule occurred: {entry.Key}");
       if (!IsActive) {
+        Debug.Log($"Starting conversation: {entry.Key}");
         Enter();
       }
     }
@@ -116,6 +118,7 @@ namespace Player.ManagerStates {
 
     private void ProcessEntry(BaseEntry entry) {
       _currentEntry = entry;
+      Debug.Log($"Processing: {entry.Key}");
       if (entry is DialogueEntry dialogue) {
         _overlay.Dialogue.Wheel.SetOptions(_options, 0);
         _overlay.Dialogue.Wheel.SetAction(">>");
@@ -133,7 +136,7 @@ namespace Player.ManagerStates {
             continue;
           }
           _options[count++] = new CommandOption {
-            Text = response.Text.GetLocalizedString(),
+            Text = response.Content,
             IsRT = response.Speaker == _players.RT.Fact,
           };
         }
@@ -147,7 +150,7 @@ namespace Player.ManagerStates {
         _overlay.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
         _subState = SubState.Choice;
         _isCancellable = choice.IsCancellable;
-        _context.Process(choice);
+        choice.Apply(_context);
       } else if (entry is EventEntry rule) {
         _currentEntry = null;
         _subState = SubState.Finished;
@@ -178,6 +181,7 @@ namespace Player.ManagerStates {
       ApplyRule(_rules[index]);
       _subState = SubState.Finished;
       _currentEntry = null;
+      Debug.Log($"Selected option: {_rules[index].Key}");
       _context.Process(_rules[index]);
     }
 

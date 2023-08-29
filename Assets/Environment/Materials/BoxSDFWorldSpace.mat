@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoxSDF
+  m_Name: BoxSDFWorldSpace
   m_Shader: {fileID: 4800000, guid: e5a622392acd2284f9585355b2b222e8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -83,6 +83,6 @@ Material:
     - _Edge: {r: 0.4, g: 0.5, b: 0, a: 0}
     - _Radius: {r: -0.02, g: 1000, b: 0, a: 0}
     - _Size: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Test: {r: 0.15, g: 1, b: 0, a: 0}
+    - _Test: {r: 0.15, g: 1, b: 0.01, a: 0.01}
     - _TopColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

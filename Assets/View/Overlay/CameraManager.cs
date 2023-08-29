@@ -1,31 +1,31 @@
-﻿using Settings;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utils;
 
 namespace View.Overlay {
-  public class OverlayCamera : MonoBehaviour {
+  public class CameraManager : MonoBehaviour {
     [Inject] [SerializeField] private OverlayChannel _channel;
     [SerializeField] private float _ratio;
-    [NonSerialized] public Camera NativeCamera;
+
+    public Camera MainCamera;
+    public Camera UICamera;
+    public Camera OverlayCamera;
     private CameraFitter _fitter;
 
     private void Awake() {
-      NativeCamera = GetComponent<Camera>();
-      _fitter = new CameraFitter(_ratio, NativeCamera.fieldOfView);
+      _fitter = new CameraFitter(_ratio, OverlayCamera.fieldOfView);
     }
 
     private void OnEnable() {
-      _channel.Camera = this;
+      _channel.CameraManager = this;
     }
 
     private void OnDisable() {
-      _channel.Camera = null;
+      _channel.CameraManager = null;
     }
 
     private void Update() {
       if (_fitter.TryUpdate(out var fov)) {
-        NativeCamera.fieldOfView = fov;
+        OverlayCamera.fieldOfView = fov;
       }
     }
   }

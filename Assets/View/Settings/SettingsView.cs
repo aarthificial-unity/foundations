@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using View.Controls;
-using View.Office;
 
 namespace View.Settings {
   public class SettingsView : MonoBehaviour {

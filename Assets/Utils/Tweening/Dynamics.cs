@@ -8,6 +8,9 @@ namespace Utils.Tweening {
     private Vector4 _position;
     private Vector4 _velocity;
 
+    public Vector4 Position => _position;
+    public Vector4 Velocity => _velocity;
+
     public void ForceSet(float x, float y, float z) {
       ForceSet(new Vector4(x, y, z, 0));
     }
@@ -65,6 +68,10 @@ namespace Utils.Tweening {
 
     public void AddImpulse(Vector4 impulse) {
       _velocity += impulse;
+    }
+
+    public void Settle() {
+      ForceSet(_position);
     }
 
     public Vector4 Update(float dt, in SpringConfig config) {

@@ -31,10 +31,8 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
-    [SerializeField] private float _radius = 0.3f;
+    [SerializeField] private InteractionArea _area;
     [Inject] [SerializeField] private OverlayChannel _overlay;
-
-    private DialogueButton _button;
 
     private void Update() {
       UpdateInteraction(PlayerType.LT);
@@ -45,8 +43,6 @@ namespace Interactions {
       Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
       Blackboard.Set(InteractionContext.Initiator, Initiator);
       Blackboard.Set(InteractionContext.Listener, Listener);
-
-      UpdateButton();
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -55,17 +51,16 @@ namespace Interactions {
         return;
       }
 
-      var distance = Vector3.Distance(
-        interaction.Player.transform.position,
-        transform.position
-      );
-
-      interaction.IsReady = distance < _radius;
+      interaction.IsReady = _area.IsPlayerInside[type];
       _interactions[type] = interaction;
     }
 
     public override void Interact(PlayerController player) {
-      player.InteractState.Enter(this);
+      if (_interactions[player.Type].IsReady) {
+        Event.Invoke(Context);
+      } else if (!_interactions[player.Type].IsActive) {
+        player.InteractState.Enter(this);
+      }
     }
 
     public void OnFocusEnter(PlayerController player) {
@@ -77,11 +72,47 @@ namespace Interactions {
       // relocate the other player if necessary
       var closestWaypoint = FindClosestWaypoint(player.transform.position);
       if (otherInteraction.IsActive && otherWaypoint == closestWaypoint) {
-        otherInteraction.Waypoint = FindClosestWaypoint(
-          otherInteraction.Player.transform.position,
-          closestWaypoint
-        );
-        _interactions[player.Type.Other()] = otherInteraction;
+        var position = player.transform.position;
+        var closestDistance = float.MaxValue;
+        InteractionWaypoint betterWaypoint = null;
+
+        var otherClosestDistance = float.MaxValue;
+        var replacementWaypoint = Waypoints[0] == closestWaypoint
+          ? Waypoints[1]
+          : Waypoints[0];
+
+        foreach (var waypoint in Waypoints) {
+          if (waypoint == closestWaypoint) {
+            continue;
+          }
+
+          var distance = Vector3.Distance(position, waypoint.Position);
+          var dot = Vector3.Dot(
+            position - closestWaypoint.Position,
+            waypoint.Position - closestWaypoint.Position
+          );
+
+          if (distance < closestDistance && dot > 0) {
+            betterWaypoint = waypoint;
+            closestDistance = distance;
+          }
+
+          var otherDistance = Vector3.Distance(
+            closestWaypoint.Position,
+            waypoint.Position
+          );
+          if (otherDistance < otherClosestDistance) {
+            replacementWaypoint = waypoint;
+            otherClosestDistance = otherDistance;
+          }
+        }
+
+        if (betterWaypoint != null) {
+          closestWaypoint = betterWaypoint;
+        } else {
+          otherInteraction.Waypoint = replacementWaypoint;
+          _interactions[player.Type.Other()] = otherInteraction;
+        }
       }
 
       _interactions[player.Type] = new Interaction(player, closestWaypoint);
@@ -126,21 +157,6 @@ namespace Interactions {
         PlayerType = playerType;
         HasDialogue = hasDialogue;
         OnStateChanged();
-      }
-    }
-
-    private void UpdateButton() {
-      if (HasDialogue && _button == null) {
-        _button = _overlay.HUD.BorrowButton();
-        _button.SetInteraction(this);
-        _button.Clicked += HandleButtonClicked;
-      }
-
-      if (!HasDialogue && _button != null) {
-        _button.Clicked -= HandleButtonClicked;
-        _button.SetInteraction(null);
-        _overlay.HUD.ReleaseButton(_button);
-        _button = null;
       }
     }
 

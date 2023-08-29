@@ -1,7 +1,9 @@
 ﻿using Input;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Utils;
 using Utils.Tweening;
 using View.Settings;
@@ -41,6 +43,12 @@ namespace View.Overlay.States {
 
     private void HandleCancel(InputAction.CallbackContext _) {
       if (IsActive) {
+        if (EventSystem.current != null
+          && EventSystem.current.currentSelectedGameObject != null
+          && EventSystem.current.currentSelectedGameObject
+            .TryGetComponent<Dropdown>(out var dropdown)) {
+          dropdown.Hide();
+        }
         HandleCancel();
       }
     }

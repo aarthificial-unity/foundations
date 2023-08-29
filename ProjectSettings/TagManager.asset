@@ -14,10 +14,10 @@ TagManager:
   - Player
   - Chain
   - Interactable
-  - Outline
-  - Settings
-  - 
-  - 
+  - Overlay UI
+  - Overlay Menu
+  - Brightness
+  - IgnoreChain
   - 
   - 
   - 
