@@ -200,6 +200,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerRT
       objectReference: {fileID: 0}
+    - target: {fileID: 3786397423081031399, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _renderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786397423081031399, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 3571499956273818558}
     - target: {fileID: 4023019917035565841, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
       propertyPath: m_RootOrder
@@ -426,6 +436,12 @@ PrefabInstance:
 --- !u!95 &525827309997832027 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3e7f620fbf4ff0f4ba9a1383147ba3e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6207799283909790410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3571499956273818558 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1750197354950549132, guid: 3e7f620fbf4ff0f4ba9a1383147ba3e4,
     type: 3}
   m_PrefabInstance: {fileID: 6207799283909790410}
   m_PrefabAsset: {fileID: 0}

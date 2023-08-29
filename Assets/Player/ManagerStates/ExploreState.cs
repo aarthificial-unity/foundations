@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
-using View;
+using Utils.Tweening;
 using View.Overlay;
 
 namespace Player.ManagerStates {
@@ -26,6 +26,7 @@ namespace Player.ManagerStates {
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
     private GameObject _target;
+    private Dynamics _cameraWeight;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -45,10 +46,13 @@ namespace Player.ManagerStates {
 
     protected override void Awake() {
       base.Awake();
+      _cameraWeight.ForceSet(0.5f);
       _target = Instantiate(_targetPrefab);
     }
 
     public override void OnEnter() {
+      _currentPlayer = PlayerType.None;
+      _cameraWeight.Settle();
       _overlay.HUD.SetActive(true);
       _overlay.HUD.SetInteractive(true);
     }
@@ -65,16 +69,21 @@ namespace Player.ManagerStates {
       _interactable = null;
 
       var mousePosition = _targetAction.action.ReadValue<Vector2>();
-      var ray = Camera.main.ScreenPointToRay(mousePosition);
+      var ray =
+        _overlay.CameraManager.MainCamera.ScreenPointToRay(mousePosition);
 
       if (Physics.Raycast(ray, out var hit, 100, _config.GroundMask)) {
         _currentCommand = Command.Move;
         _targetPosition = hit.point.ToNavMesh();
       }
 
+      int interactionMask = _config.InteractionMask;
+      if (!_players.LT.InteractState.IsActive && !_players.RT.InteractState.IsActive) {
+        interactionMask |= _config.PlayerMask;
+      }
       if (!EventSystem.current.IsPointerOverGameObject()
         && !IsNavigating(CurrentController)
-        && Physics.Raycast(ray, out hit, 100, _config.InteractionMask)
+        && Physics.Raycast(ray, out hit, 100, interactionMask)
         && hit.transform.TryGetComponent<Interactable>(out var interactable)) {
         _currentCommand = Command.Interact;
         _interactable = interactable;
@@ -97,11 +106,16 @@ namespace Player.ManagerStates {
       _overlay.HUD.SetInteractive(!IsNavigating(currentController));
 
       if (currentController?.NavigateState.IsActive ?? false) {
+        _cameraWeight.Set(currentController.IsLT ? 0.2f : 0.8f);
         _target.transform.position = currentController.TargetPosition;
         _target.SetActive(true);
       } else {
         _target.SetActive(false);
       }
+
+      var weight = _cameraWeight.Update(SpringConfig.Slow).x;
+      Manager.CameraGroup.m_Targets[0].weight = weight;
+      Manager.CameraGroup.m_Targets[1].weight = 1 - weight;
     }
 
     private void UpdatePlayer(PlayerController player) {

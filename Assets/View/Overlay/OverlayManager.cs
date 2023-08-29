@@ -31,16 +31,18 @@ namespace View.Overlay {
 
     private void Start() {
       SwitchState(_storyMode.IsPaused ? PauseState : GameplayState);
-      PositionDynamics.ForceSet(_currentState.FolderTransform.position);
+      PositionDynamics.ForceSet(_currentState.FolderTransform.localPosition);
       RotationDynamics.ForceSet(
-        _currentState.FolderTransform.rotation.AsVector()
+        _currentState.FolderTransform.localRotation.AsVector()
       );
     }
 
     private void Update() {
       _currentState?.OnUpdate();
-      _folder.position = PositionDynamics.UnscaledUpdate(SpringConfig.Medium);
-      _folder.rotation = RotationDynamics.UnscaledUpdate(SpringConfig.Medium)
+      _folder.localPosition =
+        PositionDynamics.UnscaledUpdate(SpringConfig.Medium);
+      _folder.localRotation = RotationDynamics
+        .UnscaledUpdate(SpringConfig.Medium)
         .AsQuaternion();
     }
 

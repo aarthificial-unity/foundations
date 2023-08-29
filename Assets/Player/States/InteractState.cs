@@ -30,10 +30,16 @@ namespace Player.States {
     }
 
     public override void OnUpdate() {
-      var scale = Conversation.IsReady(Player) ? 0.5f : 1f;
+      var isReady = Conversation.IsReady(Player);
+      var scale = isReady ? 0.5f : 1f;
       Player.Agent.speed = Player.Config.WalkSpeed * scale;
       Player.Agent.acceleration = Player.Config.Acceleration * scale;
       Player.Agent.destination = Conversation.GetPosition(Player);
+      if (!isReady
+        && Other.InteractState.IsActive
+        && TryLimitWalkingDistance(out var position)) {
+        Player.NavigateState.Enter(position);
+      }
     }
 
     public void Enter(Conversation conversation) {

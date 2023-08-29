@@ -8,6 +8,8 @@ using Utils;
 
 namespace Interactions {
   public class Interactable : MonoBehaviour {
+    public event Action StateChanged;
+
     [NonSerialized] public bool IsInteracting;
     [NonSerialized] public bool IsFocused;
     [NonSerialized] public bool IsHovered;
@@ -19,7 +21,6 @@ namespace Interactions {
     [Inject] [SerializeField] protected PlayerChannel Players;
     public TypewriterEvent Event;
 
-    public event Action StateChanged;
     public Blackboard Blackboard = new();
     [SerializeField] protected InteractionContext Context;
 
@@ -37,10 +38,6 @@ namespace Interactions {
     }
 
     public virtual void Interact(PlayerController player) { }
-
-    public virtual void OnInteractionEnter() { }
-
-    public virtual void OnInteractionExit() { }
 
     public void OnHoverEnter() {
       IsHovered = true;

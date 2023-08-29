@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace View {
   public class BoxSDF : BaseMeshEffect {
     [SerializeField] private float _padding;
-    [SerializeField] private float _strokeWidth = 0.1f;
+    [SerializeField] private float _strokeWidth = 1;
     [SerializeField] private bool _filled;
     [SerializeField] private float _textureStrength;
     private RectTransform _rectTransform;

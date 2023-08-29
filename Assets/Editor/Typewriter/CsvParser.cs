@@ -16,6 +16,7 @@ namespace Editor.Typewriter {
       var cells = new List<string>();
 
       var isInsideField = false;
+      var previousEmpty = false;
       _builder.Clear();
       _rows.Clear();
 
@@ -36,9 +37,7 @@ namespace Editor.Typewriter {
             break;
           case '\n' when !isInsideField:
             AddCell(cells);
-            if (cells.Count > 0 && cells[0] != "") {
-              _rows.Add(new Row { Cells = cells });
-            }
+            _rows.Add(new Row { Cells = cells });
             cells = new List<string>();
             break;
           default:

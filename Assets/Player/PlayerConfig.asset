@@ -17,7 +17,10 @@ MonoBehaviour:
     RT: {r: 0.94509804, g: 0.3882353, b: 0.27058825, a: 0}
   InteractionMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 256
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   GroundMask:
     serializedVersion: 2
     m_Bits: 8

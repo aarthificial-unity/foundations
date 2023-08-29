@@ -10,8 +10,8 @@ namespace View.Overlay.States {
     public override void OnEnter() {
       base.OnEnter();
       if (FolderTransform != null) {
-        Manager.PositionDynamics.Set(FolderTransform.position);
-        Manager.RotationDynamics.Set(FolderTransform.rotation.AsVector());
+        Manager.PositionDynamics.Set(FolderTransform.localPosition);
+        Manager.RotationDynamics.Set(FolderTransform.localRotation.AsVector());
       }
     }
 

@@ -17,10 +17,13 @@ namespace Player {
     [SerializeField] private PlayerController _ltPrefab;
     [SerializeField] private Vector3 _rtStartPosition;
     [SerializeField] private Vector3 _ltStartPosition;
+    [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
+    [NonSerialized] public CinemachineTargetGroup CameraGroup;
     private ManagerState _currentState;
+    private CinemachineVirtualCamera _camera;
 
     public void SwitchState(ManagerState state) {
       if (_currentState == state) {
@@ -44,9 +47,12 @@ namespace Player {
       rt.Other = lt;
       lt.Other = rt;
 
-      var group = GetComponent<CinemachineTargetGroup>();
-      group.m_Targets[0].target = rt.transform;
-      group.m_Targets[1].target = lt.transform;
+      CameraGroup = GetComponent<CinemachineTargetGroup>();
+      CameraGroup.m_Targets[0].target = rt.transform;
+      CameraGroup.m_Targets[1].target = lt.transform;
+      CameraGroup.DoUpdate();
+      _camera = Instantiate(_cameraPrefab);
+      _camera.Follow = transform;
     }
 
     private void OnDestroy() {
@@ -64,5 +70,13 @@ namespace Player {
       Shader.SetGlobalVector(_rtPosition, _players.RT.transform.position);
       Shader.SetGlobalVector(_ltPosition, _players.LT.transform.position);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Save State")]
+    private void SaveState() {
+      _rtStartPosition = _players.RT.transform.position;
+      _ltStartPosition = _players.LT.transform.position;
+    }
+#endif
   }
 }

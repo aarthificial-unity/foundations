@@ -19,6 +19,7 @@ namespace View.Dialogue {
     [SerializeField] private RectTransform _optionContainer;
     [SerializeField] private Button _actionButton;
     [SerializeField] private TextMeshProUGUI _actionText;
+    [SerializeField] private Camera _camera;
     [Inject] [SerializeField] private PlayerChannel _players;
 
     private readonly CommandOptionButton[] _options =
@@ -42,10 +43,11 @@ namespace View.Dialogue {
     }
 
     private void UpdateDirection() {
+      // TODO Reverse control
       var ltPosition =
-        Camera.main.WorldToScreenPoint(_players.LT.transform.position);
+        _camera.WorldToScreenPoint(_players.LT.transform.position);
       var rtPosition =
-        Camera.main.WorldToScreenPoint(_players.RT.transform.position);
+        _camera.WorldToScreenPoint(_players.RT.transform.position);
       var isLtLeft = ltPosition.x < rtPosition.x;
 
       if (isLtLeft != _isLtLeft) {

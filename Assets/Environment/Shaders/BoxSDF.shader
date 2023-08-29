@@ -2,7 +2,7 @@ Shader "GUI/BoxSDF"
 {
   Properties
   {
-    [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+    _MainTex ("Sprite Texture", 2D) = "white" {}
     _PaintTex ("Paint Texture", 2D) = "white" {}
     _Radius ("Radius", Float) = 0.3
     _StrokeWidth ("Stroke Width", Float) = 0.1
@@ -128,7 +128,6 @@ Shader "GUI/BoxSDF"
 
         float2 ddxClipPos = ddx(position);
         float2 ddyClipPos = ddy(position);
-
         float smoothness = _Smoothness * (abs(ddxClipPos) + abs(ddyClipPos));
 
         color.a *=
@@ -143,7 +142,7 @@ Shader "GUI/BoxSDF"
             distance
           );
 
-        float paint = tex2D(_PaintTex, (uv * size + input.params2.xy) * 0.01).b;
+        float paint = tex2D(_PaintTex, (uv * size + input.params2.xy) * _Test.z).b;
         // color.rgb += lerp(input.params2.z, input.params2.w, paint);
         paint -= _Test.x;
         paint *= _Test.y;

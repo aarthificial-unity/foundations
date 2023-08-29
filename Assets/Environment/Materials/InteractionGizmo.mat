@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: InteractionGizmo
+  m_Shader: {fileID: 4800000, guid: 5ec53004cb1f4488b00b4262bfc7b1c3, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AtlasTex:
+        m_Texture: {fileID: 2664185534952849937, guid: 59f9e7ac8beca554bb34bfdba19cab06,
+          type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PaintTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Radius: 0.3
+    - _Smoothness: 2
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _StrokeWidth: 0.1
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _BothRect: {r: 0.609375, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Direction: {r: 1, g: 0, b: 0, a: 0}
+    - _GlyphRect: {r: 0, g: 0, b: 0, a: 0}
+    - _IconScales: {r: 2.6, g: 2.6, b: 2.23, a: 1}
+    - _LTColor: {r: 0.28627452, g: 0.64705884, b: 0.83137256, a: 1}
+    - _LTRect: {r: 0.7558594, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _MidColor: {r: 0.8301887, g: 0.5521538, b: 0.6197839, a: 1}
+    - _RTColor: {r: 0.9528302, g: 0.42457873, b: 0.373042, a: 1}
+    - _RTRect: {r: 0.46289062, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _State: {r: 0, g: 0, b: 0, a: 0}
+    - _Test: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

@@ -1,7 +1,5 @@
 ﻿using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Blackboards;
-using Aarthificial.Typewriter.Editor.Common;
-using Aarthificial.Typewriter.Editor.Localization;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Interactions;
@@ -9,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Typewriter;
-using UnityEditor.Localization;
 using UnityEngine;
-using UnityEngine.Localization;
 using Object = UnityEngine.Object;
 
 namespace Editor.Typewriter {
@@ -51,7 +47,6 @@ namespace Editor.Typewriter {
     private static readonly List<BlackboardCriterion> _criteria = new();
     private static readonly List<BlackboardModification> _modifications = new();
     private static readonly HashSet<int> _convertedIds = new();
-    private static StringTableCollection _collection;
 
     public static void Convert(
       DatabaseTable table,
@@ -64,17 +59,17 @@ namespace Editor.Typewriter {
       _lookup.Clear();
 
       foreach (var entry in table.Facts) {
-        _lookup.Add(entry.GetKey(), (EntryReference)entry);
+        _lookup.Add(entry.Key, (EntryReference)entry);
       }
       foreach (var entry in table.Rules) {
-        _lookup.Add(entry.GetKey(), (EntryReference)entry);
+        _lookup.Add(entry.Key, (EntryReference)entry);
       }
       foreach (var entry in table.Events) {
-        _lookup.Add(entry.GetKey(), (EntryReference)entry);
+        _lookup.Add(entry.Key, (EntryReference)entry);
       }
 
-      _collection =
-        LocalizationEditorSettings.GetStringTableCollection("Dialogue");
+      // _collection =
+        // LocalizationEditorSettings.GetStringTableCollection("Dialogue");
 
       _lookup.Add("LT", InteractionContext.LT);
       _lookup.Add("RT", InteractionContext.RT);
@@ -89,6 +84,10 @@ namespace Editor.Typewriter {
       BaseEntry previous = null;
       for (var i = 1; i < rows.Count; i++) {
         var cells = rows[i].Cells;
+        if (cells.Key() == "") {
+          continue;
+        }
+
         Type type;
         switch (cells.Type()) {
           case "event":
@@ -107,7 +106,7 @@ namespace Editor.Typewriter {
             type = typeof(FactEntry);
             break;
           default:
-            Debug.LogError($"Unknown type {cells.Type()}", context);
+            Debug.LogError($"Row {i + 1}: Unknown type {cells.Type()}", context);
             continue;
         }
 
@@ -139,10 +138,15 @@ namespace Editor.Typewriter {
 
       for (var i = 1; i < rows.Count; i++) {
         var cells = rows[i].Cells;
+        if (cells.Key() == "") {
+          previous = null;
+          continue;
+        }
+
         try {
           switch (cells.Type()) {
             case "fact":
-              previous = CreateFactEntry(cells, previous);
+              CreateFactEntry(cells, previous);
               break;
             case "event":
               previous = CreateEventEntry(cells, previous);
@@ -242,6 +246,7 @@ namespace Editor.Typewriter {
         throw new Exception($"Missing speaker {cells.Speaker()}.");
       }
 
+      /* TODO: Switch to localized strings later
       var textEntry = _collection.StringTables[0].GetEntry(entry.Key);
       long textId;
       if (textEntry == null) {
@@ -262,6 +267,8 @@ namespace Editor.Typewriter {
         _collection.SharedData.TableCollectionName,
         textId
       );
+      */
+      entry.Content = cells.Text();
 
       if (cells.Actions() != "") {
         _events.Clear();
@@ -569,16 +576,15 @@ namespace Editor.Typewriter {
     }
 
     private static string Key(this List<string> list) => list[0];
-    private static string Type(this List<string> list) => list[1];
-    private static string Speaker(this List<string> list) => list[2];
-    private static bool Once(this List<string> list) => list[3] == "TRUE";
-
-    private static bool Cancel(this List<string> list) => list[4] == "TRUE";
-    private static string Text(this List<string> list) => list[5];
-    private static string Triggers(this List<string> list) => list[6];
-    private static string Criteria(this List<string> list) => list[7];
-    private static string Modifications(this List<string> list) => list[8];
-    private static string Padding(this List<string> list) => list[9];
-    private static string Actions(this List<string> list) => list[11];
+    private static string Type(this List<string> list) => list[2];
+    private static string Speaker(this List<string> list) => list[3];
+    private static bool Once(this List<string> list) => list[4] == "TRUE";
+    private static bool Cancel(this List<string> list) => list[5] == "TRUE";
+    private static string Text(this List<string> list) => list[6];
+    private static string Triggers(this List<string> list) => list[7];
+    private static string Criteria(this List<string> list) => list[8];
+    private static string Modifications(this List<string> list) => list[9];
+    private static string Padding(this List<string> list) => list[10];
+    private static string Actions(this List<string> list) => list[12];
   }
 }

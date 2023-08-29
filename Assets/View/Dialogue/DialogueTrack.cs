@@ -12,6 +12,7 @@ namespace View.Dialogue {
     public event Action<DialogueEntry, bool> Finished;
     [SerializeField] private DialogueBubble _ltBubble;
     [SerializeField] private DialogueBubble _rtBubble;
+    [SerializeField] private Camera _camera;
     [Inject] [SerializeField] private PlayerChannel _players;
 
     private DialogueEntry _currentEntry;
@@ -35,7 +36,7 @@ namespace View.Dialogue {
 
       _currentBubble = isLt ? _ltBubble : _rtBubble;
 
-      _text = entry.Text.GetLocalizedString();
+      _text = entry.Content;
       _currentBubble.gameObject.SetActive(true);
       _currentBubble.SetText(_text);
       _duration = _text.Length * _speed;
@@ -49,9 +50,9 @@ namespace View.Dialogue {
     private void Update() {
       if (_players.IsReady) {
         var ltPosition =
-          Camera.main.WorldToScreenPoint(_players.LT.transform.position);
+          _camera.WorldToScreenPoint(_players.LT.transform.position);
         var rtPosition =
-          Camera.main.WorldToScreenPoint(_players.RT.transform.position);
+          _camera.WorldToScreenPoint(_players.RT.transform.position);
         var isLtLeft = ltPosition.x < rtPosition.x;
 
         _ltBubble.UpdatePosition(ltPosition, isLtLeft);
