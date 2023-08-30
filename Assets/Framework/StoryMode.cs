@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Input;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -91,6 +90,11 @@ namespace Framework {
 
       Time.timeScale = 0;
       yield return SceneManager.UnloadSceneAsync(_activeScene);
+      yield return SceneManager.UnloadSceneAsync(_uiSceneIndex);
+      yield return SceneManager.LoadSceneAsync(
+        _uiSceneIndex,
+        LoadSceneMode.Additive
+      );
       yield return SceneManager.LoadSceneAsync(
         _activeScene,
         LoadSceneMode.Additive

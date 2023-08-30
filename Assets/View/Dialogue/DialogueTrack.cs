@@ -7,7 +7,7 @@ using Utils;
 
 namespace View.Dialogue {
   public class DialogueTrack : MonoBehaviour {
-    private const float _speed = 0.05f;
+    private const float _speed = 0.03f;
 
     public event Action<DialogueEntry, bool> Finished;
     [SerializeField] private DialogueBubble _ltBubble;

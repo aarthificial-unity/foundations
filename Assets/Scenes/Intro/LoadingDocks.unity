@@ -3486,6 +3486,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 641843360846727802, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+        type: 3}
+      propertyPath: _table
+      value: 
+      objectReference: {fileID: 11400000, guid: 80e0d5ca2d53c354bb0fd7d4e23463f0,
+        type: 2}
+    - target: {fileID: 641843360846727802, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+        type: 3}
+      propertyPath: _sheetName
+      value: Sample Conversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 641843360846727802, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+        type: 3}
+      propertyPath: _documentId
+      value: 1_NMqzPlt2Vb5mtMN4VWxZhMSc6xiwM6Je3ope9KpNV4
+      objectReference: {fileID: 0}
     - target: {fileID: 4796299548502591016, guid: 7caaa6edb9217ff47acbbd01b77fec15,
         type: 3}
       propertyPath: m_Name

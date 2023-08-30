@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4796299548502590992}
   - component: {fileID: 4796299548502590993}
   - component: {fileID: 4796299548502590995}
+  - component: {fileID: 641843360846727802}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -314,3 +315,20 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: 8bfea386c15287348b0e7bfba8a88a3a, type: 2}
+--- !u!114 &641843360846727802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796299548502591016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0e7ba60ef04a6b99cf5ce52943ff18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 11400000, guid: 9625968de8e4a4046a8890e278804aab, type: 2}
+  _story: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
+  _table: {fileID: 0}
+  _documentId: 
+  _sheetName: 

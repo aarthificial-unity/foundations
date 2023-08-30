@@ -21,12 +21,15 @@ namespace Input {
     public InputActionReference UIMiddleClick;
 
     public void SwitchToGameplay() {
-      CurrentMap = "Gameplay";
-      MapChanged?.Invoke(CurrentMap);
+      SetMap("Gameplay");
     }
 
     public void SwitchToUI() {
-      CurrentMap = "UI";
+      SetMap("UI");
+    }
+
+    public void SetMap(string map) {
+      CurrentMap = map;
       MapChanged?.Invoke(CurrentMap);
     }
   }

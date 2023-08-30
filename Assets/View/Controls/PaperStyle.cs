@@ -32,7 +32,7 @@ namespace View.Controls {
     private void Update() {
       var isInteractable = _selectable.IsInteractable();
       var isSelected =
-        EventSystem.current.currentSelectedGameObject == gameObject;
+        EventSystem.current?.currentSelectedGameObject == gameObject;
       if (isInteractable != _isInteractable || isSelected != _isSelected) {
         _isInteractable = isInteractable;
         _isSelected = isSelected;
