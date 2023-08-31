@@ -1491,10 +1491,15 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+    Interactable: {fileID: 0}
   Waypoints:
   - {fileID: 1325191543}
   - {fileID: 2077034584}
   Item: {fileID: 0}
+  _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
+    type: 3}
+  _cameraTarget: {fileID: 0}
+  _orthoSize: 4
   _area: {fileID: 1718209650}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &499792038
@@ -1850,7 +1855,7 @@ PrefabInstance:
     - target: {fileID: 3397334455388534160, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5937004
+      value: 2.7027006
       objectReference: {fileID: 0}
     - target: {fileID: 3397334455388534160, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
@@ -3453,10 +3458,15 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+    Interactable: {fileID: 0}
   Waypoints:
   - {fileID: 1625339101}
   - {fileID: 113777531}
   Item: {fileID: 0}
+  _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
+    type: 3}
+  _cameraTarget: {fileID: 0}
+  _orthoSize: 4
   _area: {fileID: 1207257343}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &1022070889
@@ -7348,6 +7358,7 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+    Interactable: {fileID: 0}
   Waypoints:
   - {fileID: 2044325052}
   - {fileID: 121284913}
@@ -7356,6 +7367,10 @@ MonoBehaviour:
   - {fileID: 970516645}
   - {fileID: 1087836025}
   Item: {fileID: 0}
+  _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
+    type: 3}
+  _cameraTarget: {fileID: 0}
+  _orthoSize: 4
   _area: {fileID: 325408060}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &1309030243
@@ -7546,7 +7561,7 @@ Transform:
   m_GameObject: {fileID: 1387672424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4549999, y: 0.32999998, z: 0.41298103}
+  m_LocalPosition: {x: 3.5640001, y: 0.32999998, z: 0.41298103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9920,10 +9935,15 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+    Interactable: {fileID: 0}
   Waypoints:
   - {fileID: 7571008412870067101}
   - {fileID: 7161532799976271664}
   Item: {fileID: 0}
+  _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
+    type: 3}
+  _cameraTarget: {fileID: 0}
+  _orthoSize: 4
   _area: {fileID: 1387672427}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!114 &4398866771222208307
@@ -9951,7 +9971,7 @@ Transform:
   m_GameObject: {fileID: 3588205269978157984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.29, y: -0.64219534, z: 0.7421646}
+  m_LocalPosition: {x: 3.53541, y: -0.630679, z: 0.96673584}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10063,7 +10083,7 @@ Transform:
   m_GameObject: {fileID: 4373103960597334841}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.71000004, y: -0.6251713, z: 0.76400185}
+  m_LocalPosition: {x: 2.257304, y: -0.61623204, z: 0.80249405}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

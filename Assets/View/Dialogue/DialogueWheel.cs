@@ -15,17 +15,17 @@ namespace View.Dialogue {
 
     public event Action<int> OptionSelected;
 
+    [SerializeField] private DialogueView _view;
     [SerializeField] private CommandOptionButton _optionTemplate;
     [SerializeField] private RectTransform _optionContainer;
     [SerializeField] private Button _actionButton;
     [SerializeField] private TextMeshProUGUI _actionText;
-    [SerializeField] private Camera _camera;
-    [Inject] [SerializeField] private PlayerChannel _players;
 
     private readonly CommandOptionButton[] _options =
       new CommandOptionButton[16];
 
-    private bool _isLtLeft;
+    private Cached<bool> _isLtLeft;
+    private RectTransform _rectTransform;
 
     private void Awake() {
       for (var i = 0; i < _options.Length; i++) {
@@ -34,24 +34,13 @@ namespace View.Dialogue {
         _options[i].gameObject.SetActive(false);
         _options[i].Clicked += () => OptionSelected?.Invoke(index);
       }
+      _rectTransform = GetComponent<RectTransform>();
     }
 
-    private void Update() {
-      if (_players.IsReady) {
-        UpdateDirection();
-      }
-    }
-
-    private void UpdateDirection() {
-      // TODO Reverse control
-      var ltPosition =
-        _camera.WorldToScreenPoint(_players.LT.transform.position);
-      var rtPosition =
-        _camera.WorldToScreenPoint(_players.RT.transform.position);
-      var isLtLeft = ltPosition.x < rtPosition.x;
-
-      if (isLtLeft != _isLtLeft) {
-        _isLtLeft = isLtLeft;
+    public void DrivenUpdate() {
+      if (_isLtLeft.HasChanged(
+          _view.ScreenPosition.LT.x < _view.ScreenPosition.RT.x
+        )) {
         foreach (var option in _options) {
           option.SetLTLeft(_isLtLeft);
         }
@@ -86,7 +75,7 @@ namespace View.Dialogue {
           );
       }
 
-      UpdateDirection();
+      DrivenUpdate();
       for (var i = count; i < _options.Length; i++) {
         _options[i].gameObject.SetActive(false);
       }

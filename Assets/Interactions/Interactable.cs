@@ -24,9 +24,9 @@ namespace Interactions {
     public Blackboard Blackboard = new();
     [SerializeField] protected InteractionContext Context;
 
-    private void Awake() {
+    protected virtual void Awake() {
       Context.Interaction = Blackboard;
-      Context.Setup();
+      Context.Setup(this);
       Blackboard.Set(InteractionContext.PickUp, 1);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);
@@ -48,6 +48,10 @@ namespace Interactions {
       IsHovered = false;
       OnStateChanged();
     }
+
+    public virtual void OnDialogueEnter() { }
+
+    public virtual void OnDialogueExit() { }
 
     protected void OnStateChanged() {
       StateChanged?.Invoke();

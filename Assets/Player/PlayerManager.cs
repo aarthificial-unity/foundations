@@ -1,9 +1,9 @@
 ﻿using System;
 using Cinemachine;
-using Items;
 using Player.ManagerStates;
 using UnityEngine;
 using Utils;
+using Utils.Tweening;
 
 namespace Player {
   [RequireComponent(typeof(DialogueState))]
@@ -19,9 +19,10 @@ namespace Player {
     [SerializeField] private Vector3 _ltStartPosition;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
+    [NonSerialized] public Dynamics CameraWeight;
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
-    [NonSerialized] public CinemachineTargetGroup CameraGroup;
+    private CinemachineTargetGroup _cameraGroup;
     private ManagerState _currentState;
     private CinemachineVirtualCamera _camera;
 
@@ -47,10 +48,10 @@ namespace Player {
       rt.Other = lt;
       lt.Other = rt;
 
-      CameraGroup = GetComponent<CinemachineTargetGroup>();
-      CameraGroup.m_Targets[0].target = rt.transform;
-      CameraGroup.m_Targets[1].target = lt.transform;
-      CameraGroup.DoUpdate();
+      _cameraGroup = GetComponent<CinemachineTargetGroup>();
+      _cameraGroup.m_Targets[0].target = rt.transform;
+      _cameraGroup.m_Targets[1].target = lt.transform;
+      _cameraGroup.DoUpdate();
       _camera = Instantiate(_cameraPrefab);
       _camera.Follow = transform;
     }
@@ -67,8 +68,15 @@ namespace Player {
 
     private void Update() {
       _currentState?.OnUpdate();
-      Shader.SetGlobalVector(_rtPosition, _players.RT.transform.position);
-      Shader.SetGlobalVector(_ltPosition, _players.LT.transform.position);
+      var lt = _players.LT.transform.position;
+      var rt = _players.RT.transform.position;
+
+      var weight = CameraWeight.Update(SpringConfig.Slow).x;
+      _cameraGroup.m_Targets[0].weight = weight;
+      _cameraGroup.m_Targets[1].weight = 1 - weight;
+
+      Shader.SetGlobalVector(_ltPosition, lt);
+      Shader.SetGlobalVector(_rtPosition, rt);
     }
 
 #if UNITY_EDITOR

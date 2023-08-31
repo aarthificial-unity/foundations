@@ -49,5 +49,13 @@ namespace Utils {
     public static Quaternion AsQuaternion(this Vector4 value) {
       return new Quaternion(value.x, value.y, value.z, value.w);
     }
+
+    public static Vector4 AsVector(this Rect value) {
+      return new Vector4(value.x, value.y, value.width, value.height);
+    }
+
+    public static Rect AsRect(this Vector4 value) {
+      return new Rect(value.x, value.y, value.z, value.w);
+    }
   }
 }

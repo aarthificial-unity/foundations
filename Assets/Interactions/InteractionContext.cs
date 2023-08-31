@@ -17,9 +17,10 @@ namespace Interactions {
     public static int PickUp = -2028872245;
 
     public static int ContextScope = -1768494618;
-    public  static int InteractionScope = -1936302086;
+    public static int InteractionScope = -1936302086;
     public Blackboard Context;
     [NonSerialized] public Blackboard Interaction;
+    public Interactable Interactable;
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
       if (scope == InteractionScope) {
@@ -36,7 +37,8 @@ namespace Interactions {
       return false;
     }
 
-    public void Setup() {
+    public void Setup(Interactable interactable) {
+      Interactable = interactable;
       Context.Set(CurrentSpeaker, 0);
       Context.Set(LT, LT);
       Context.Set(RT, RT);
