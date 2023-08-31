@@ -1,45 +1,58 @@
 ﻿using System;
 using Player;
+using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Utils;
+using UnityEngine.UI;
 
 namespace View.Dialogue {
   public class DialogueTrack : MonoBehaviour {
     private const float _speed = 0.03f;
 
     public event Action<DialogueEntry, bool> Finished;
-    [SerializeField] private DialogueBubble _ltBubble;
-    [SerializeField] private DialogueBubble _rtBubble;
-    [SerializeField] private Camera _camera;
-    [Inject] [SerializeField] private PlayerChannel _players;
+    [SerializeField] private DialogueView _view;
+    [SerializeField] private DialogueBubble _template;
+    [SerializeField] private ScrollRect _container;
 
+    private readonly Stack<DialogueBubble> _pool = new();
+    private readonly Stack<DialogueBubble> _bubbles = new();
+    private RectTransform _rectTransform;
     private DialogueEntry _currentEntry;
     private DialogueBubble _currentBubble;
     private float _showTime;
     private float _duration;
     private string _text;
 
-    public void Restart() {
-      _ltBubble.gameObject.SetActive(false);
-      _rtBubble.gameObject.SetActive(false);
+    private void Awake() {
+      _rectTransform = GetComponent<RectTransform>();
+      _template.gameObject.SetActive(false);
     }
 
-    public void SetDialogue(DialogueEntry entry, bool isLt) {
+    public void Restart() {
+      _currentBubble = null;
+      while (_bubbles.Count > 0) {
+        var bubble = _bubbles.Pop();
+        bubble.gameObject.SetActive(false);
+        _pool.Push(bubble);
+      }
+    }
+
+    public void SetDialogue(DialogueEntry entry, PlayerController player) {
       Assert.IsNull(_currentEntry);
       _currentEntry = entry;
       _showTime = Time.time;
-      if (_currentBubble != null) {
-        _currentBubble.gameObject.SetActive(false);
-      }
-
-      _currentBubble = isLt ? _ltBubble : _rtBubble;
 
       _text = entry.Content;
-      _currentBubble.gameObject.SetActive(true);
-      _currentBubble.SetText(_text);
       _duration = _text.Length * _speed;
+
+      if (_currentBubble != null) {
+        _currentBubble.Store();
+      }
+      _currentBubble = BorrowBubble();
+      _currentBubble.gameObject.SetActive(true);
+      _currentBubble.Setup(_text, player);
+      _container.verticalNormalizedPosition = 0;
     }
 
     public void Skip() {
@@ -47,17 +60,19 @@ namespace View.Dialogue {
       Finish(true);
     }
 
-    private void Update() {
-      if (_players.IsReady) {
-        var ltPosition =
-          _camera.WorldToScreenPoint(_players.LT.transform.position);
-        var rtPosition =
-          _camera.WorldToScreenPoint(_players.RT.transform.position);
-        var isLtLeft = ltPosition.x < rtPosition.x;
-
-        _ltBubble.UpdatePosition(ltPosition, isLtLeft);
-        _rtBubble.UpdatePosition(rtPosition, !isLtLeft);
+    public void DrivenUpdate() {
+      foreach (var bubble in _bubbles) {
+        bubble.DrivenUpdate();
       }
+
+      _rectTransform.anchoredPosition = new Vector2(
+        _view.PlayerFrame.center.x,
+        0
+      );
+      _rectTransform.sizeDelta = new Vector2(
+        _view.CanvasSize.x,
+        _view.CanvasSize.y - _view.PlayerFrame.yMin
+      );
 
       if (_currentEntry == null) {
         return;
@@ -73,6 +88,20 @@ namespace View.Dialogue {
     private void Finish(bool force) {
       Finished?.Invoke(_currentEntry, force);
       _currentEntry = null;
+    }
+
+    private DialogueBubble BorrowBubble() {
+      DialogueBubble bubble;
+      if (_pool.Count == 0) {
+        bubble = Instantiate(_template, _container.content);
+        bubble.DrivenAwake(_view);
+      } else {
+        bubble = _pool.Pop();
+      }
+
+      bubble.transform.SetSiblingIndex(0);
+      _bubbles.Push(bubble);
+      return bubble;
     }
   }
 }

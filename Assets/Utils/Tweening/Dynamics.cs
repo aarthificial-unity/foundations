@@ -10,6 +10,7 @@ namespace Utils.Tweening {
 
     public Vector4 Position => _position;
     public Vector4 Velocity => _velocity;
+    public Vector4 Target => _target;
 
     public void ForceSet(float x, float y, float z) {
       ForceSet(new Vector4(x, y, z, 0));

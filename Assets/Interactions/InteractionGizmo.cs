@@ -1,5 +1,4 @@
 ﻿using Player;
-using System;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
@@ -18,11 +17,11 @@ namespace Interactions {
     [Inject] [SerializeField] private PlayerChannel _players;
     [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private Conversation _conversation;
-    [SerializeField] private float _angle;
 
     private MeshRenderer _renderer;
     private MaterialPropertyBlock _block;
-    private Dynamics _dynamics;
+    private Dynamics _fastDynamics;
+    private Dynamics _slowDynamics;
 
     private void Awake() {
       _renderer = GetComponent<MeshRenderer>();
@@ -47,6 +46,7 @@ namespace Interactions {
     private void Render() {
       if (_players.Manager.DialogueState.IsActive) {
         _opacity = 0.32f;
+        _opacity = 0;
         _expansion = 1;
         _playerPresence = 0;
         return;
@@ -63,11 +63,18 @@ namespace Interactions {
         : _conversation.IsHovered
           ? 0.54f
           : 0.32f;
+
       _playerType = _conversation.PlayerType switch {
         PlayerType.LT => 0,
         PlayerType.RT => 1,
         _ => 0.5f,
       };
+      if (_playerPresence == 0) {
+        _slowDynamics.ForceSet(_playerType);
+      } else {
+        _slowDynamics.Set(_playerType);
+      }
+
       _playerPresence = _conversation.IsFocused ? 1 : 0;
     }
 
@@ -76,10 +83,13 @@ namespace Interactions {
       _block ??= new MaterialPropertyBlock();
 #endif
 
-      _dynamics.Set(
-        new Vector4(_expansion, _opacity, _playerType, _playerPresence)
+      _fastDynamics.Set(_expansion, _opacity, _playerPresence);
+      var fastValue = _fastDynamics.Update(SpringConfig.Snappy);
+      var slowValue = _slowDynamics.Update(SpringConfig.Slow);
+      _block.SetVector(
+        _stateID,
+        new Vector4(fastValue.x, fastValue.y, slowValue.x, fastValue.z)
       );
-      _block.SetVector(_stateID, _dynamics.Update(SpringConfig.Snappy));
 
       if (_players.IsReady) {
         var ltPosition =

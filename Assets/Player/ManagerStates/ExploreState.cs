@@ -26,7 +26,6 @@ namespace Player.ManagerStates {
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
     private GameObject _target;
-    private Dynamics _cameraWeight;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -46,15 +45,14 @@ namespace Player.ManagerStates {
 
     protected override void Awake() {
       base.Awake();
-      _cameraWeight.ForceSet(0.5f);
       _target = Instantiate(_targetPrefab);
     }
 
     public override void OnEnter() {
       _currentPlayer = PlayerType.None;
-      _cameraWeight.Settle();
       _overlay.HUD.SetActive(true);
       _overlay.HUD.SetInteractive(true);
+      Manager.CameraWeight.Settle();
     }
 
     public override void OnExit() {
@@ -106,16 +104,12 @@ namespace Player.ManagerStates {
       _overlay.HUD.SetInteractive(!IsNavigating(currentController));
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        _cameraWeight.Set(currentController.IsLT ? 0.2f : 0.8f);
+        Manager.CameraWeight.Set(currentController.IsLT ? 0.2f : 0.8f);
         _target.transform.position = currentController.TargetPosition;
         _target.SetActive(true);
       } else {
         _target.SetActive(false);
       }
-
-      var weight = _cameraWeight.Update(SpringConfig.Slow).x;
-      Manager.CameraGroup.m_Targets[0].weight = weight;
-      Manager.CameraGroup.m_Targets[1].weight = 1 - weight;
     }
 
     private void UpdatePlayer(PlayerController player) {

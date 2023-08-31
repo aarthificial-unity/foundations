@@ -66,7 +66,7 @@ Material:
     - _EdgeSmoothness: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Radius: 103.43
+    - _Radius: 8
     - _Smoothness: 1
     - _Stencil: 0
     - _StencilComp: 8

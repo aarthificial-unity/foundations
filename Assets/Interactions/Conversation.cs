@@ -1,4 +1,5 @@
 ﻿using Aarthificial.Typewriter;
+using Cinemachine;
 using Items;
 using Player;
 using UnityEngine;
@@ -31,8 +32,30 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
+    [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
+    [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
+
+    private CinemachineVirtualCamera _camera;
+
+    protected override void Awake() {
+      base.Awake();
+      _camera = Instantiate(_cameraTemplate);
+      var cameraTarget = new GameObject("Camera Target").transform;
+      cameraTarget.SetParent(transform);
+      var position = Vector3.zero;
+      foreach (var waypoint in Waypoints) {
+        position += waypoint.Position;
+      }
+      position /= Waypoints.Length;
+      position.y += 1;
+      cameraTarget.position = position;
+
+      _camera.Follow = cameraTarget;
+      _camera.Priority = 100;
+      _camera.m_Lens.OrthographicSize = _orthoSize;
+      _camera.gameObject.SetActive(false);
+    }
 
     private void Update() {
       UpdateInteraction(PlayerType.LT);
@@ -131,6 +154,16 @@ namespace Interactions {
         : default;
     }
 
+    public override void OnDialogueEnter() {
+      base.OnDialogueEnter();
+      _camera.gameObject.SetActive(true);
+    }
+
+    public override void OnDialogueExit() {
+      base.OnDialogueExit();
+      _camera.gameObject.SetActive(false);
+    }
+
     public Vector3 GetPosition(PlayerController player) {
       return _interactions[player.Type].Waypoint.Position;
     }
@@ -158,10 +191,6 @@ namespace Interactions {
         HasDialogue = hasDialogue;
         OnStateChanged();
       }
-    }
-
-    private void HandleButtonClicked() {
-      Event.Invoke(Context);
     }
 
     private InteractionWaypoint FindClosestWaypoint(
