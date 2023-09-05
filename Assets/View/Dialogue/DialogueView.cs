@@ -1,5 +1,6 @@
 ﻿using Interactions;
 using Player;
+using System;
 using UnityEngine;
 using Utils;
 using View.Overlay;
@@ -11,15 +12,15 @@ namespace View.Dialogue {
     public DialogueTrack Track;
     public DialogueWheel Wheel;
 
-    public PlayerLookup<Vector2> ScreenPosition;
-    public Rect PlayerFrame;
-    public Vector2 CanvasSize;
-    public Vector2 WorldToCanvas;
+    [NonSerialized] public PlayerLookup<Vector2> ScreenPosition;
+    [NonSerialized] public Rect PlayerFrame;
+    [NonSerialized] public Vector2 CanvasSize;
+    [NonSerialized] public Vector2 WorldToCanvas;
 
     private CanvasGroup _canvasGroup;
-    private InteractionContext _context;
     private PlayerType _presentPlayers;
     private Canvas _canvas;
+    private InteractionContext _context;
 
     private void Awake() {
       _context = null;
@@ -30,8 +31,8 @@ namespace View.Dialogue {
     }
 
     public void SetContext(InteractionContext context) {
-      Debug.Log("Context set");
       _context = context;
+      Wheel.Button.SetGizmo(_context?.Interactable.Gizmo);
     }
 
     public void DrivenUpdate(Vector3 lt, Vector3 rt) {

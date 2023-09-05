@@ -9,7 +9,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Rendering;
 using Utils;
-using View;
 using View.Dialogue;
 using View.Overlay;
 
@@ -80,19 +79,22 @@ namespace Player.ManagerStates {
 
       _volume.weight = 1;
       _overlay.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
-      _overlay.Dialogue.Wheel.Clicked += HandleClicked;
+      _overlay.Dialogue.Wheel.Button.Clicked += HandleButtonClicked;
+      _overlay.Dialogue.Wheel.Clicked += HandleBackdropClicked;
+      _overlay.Dialogue.Track.Clicked += HandleBackdropClicked;
       _overlay.Dialogue.Track.Finished += HandleFinished;
       _overlay.Dialogue.SetActive(true);
       _overlay.Dialogue.Track.Restart();
+      _overlay.Dialogue.Wheel.Restart();
       _lastUpdateTime = Time.time;
-      _input.SwitchToUI();
     }
 
     public override void OnExit() {
       base.OnExit();
-      _input.SwitchToGameplay();
       _overlay.Dialogue.Wheel.OptionSelected -= HandleOptionSelected;
-      _overlay.Dialogue.Wheel.Clicked -= HandleClicked;
+      _overlay.Dialogue.Wheel.Button.Clicked -= HandleButtonClicked;
+      _overlay.Dialogue.Wheel.Clicked -= HandleBackdropClicked;
+      _overlay.Dialogue.Track.Clicked -= HandleBackdropClicked;
       _overlay.Dialogue.Track.Finished -= HandleFinished;
       _overlay.Dialogue.SetActive(false);
       _volume.weight = 0;
@@ -117,7 +119,9 @@ namespace Player.ManagerStates {
         if (_subState != SubState.Proceed) {
           Exit();
         } else {
-          _overlay.Dialogue.Wheel.SetAction("X");
+          _overlay.Dialogue.Wheel.Button.SetAction(
+            DialogueButton.ActionType.Cancel
+          );
         }
 
         return;
@@ -141,7 +145,9 @@ namespace Player.ManagerStates {
         Assert.IsNotNull(player, $"Missing speaker: {speaker}");
 
         _overlay.Dialogue.Wheel.SetOptions(_options, 0);
-        _overlay.Dialogue.Wheel.SetAction(">>");
+        _overlay.Dialogue.Wheel.Button.SetAction(
+          DialogueButton.ActionType.Skip
+        );
         _overlay.Dialogue.Track.SetDialogue(dialogue, player);
         _subState = SubState.Dialogue;
       } else if (entry is ChoiceEntry choice) {
@@ -167,7 +173,11 @@ namespace Player.ManagerStates {
         }
 
         _overlay.Dialogue.Wheel.SetOptions(_options, count);
-        _overlay.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
+        _overlay.Dialogue.Wheel.Button.SetAction(
+          choice.IsCancellable
+            ? DialogueButton.ActionType.Cancel
+            : DialogueButton.ActionType.None
+        );
         _subState = SubState.Choice;
         _isCancellable = choice.IsCancellable;
         choice.Apply(_context);
@@ -192,7 +202,7 @@ namespace Player.ManagerStates {
       ApplyRule(entry);
       _currentEntry = null;
       _subState = SubState.Proceed;
-      _overlay.Dialogue.Wheel.SetAction(">");
+      _overlay.Dialogue.Wheel.Button.SetAction(DialogueButton.ActionType.Play);
       _context.Process(entry);
     }
 
@@ -205,7 +215,7 @@ namespace Player.ManagerStates {
       _context.Process(_rules[index]);
     }
 
-    private void HandleClicked() {
+    private void HandleButtonClicked() {
       var duration = Time.time - _lastUpdateTime;
       _lastUpdateTime = 0;
       if (duration < _interactionCooldown) {
@@ -228,8 +238,24 @@ namespace Player.ManagerStates {
       }
     }
 
+    private void HandleBackdropClicked() {
+      var duration = Time.time - _lastUpdateTime;
+      _lastUpdateTime = 0;
+      if (duration < _interactionCooldown) {
+        return;
+      }
+
+      switch (_subState) {
+        case SubState.Dialogue:
+          _overlay.Dialogue.Track.Skip();
+          break;
+        case SubState.Proceed:
+          _subState = SubState.Finished;
+          break;
+      }
+    }
+
     private void ApplyRule(BaseEntry rule) {
-      // _context.Apply(rule);
       if (rule is not DialogueEntry dialogue) {
         return;
       }

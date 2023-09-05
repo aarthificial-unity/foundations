@@ -236,7 +236,7 @@ MonoBehaviour:
     type: 3}
   m_RightClickAction: {fileID: -4476007396473589471, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
-  m_ScrollWheelAction: {fileID: 92590668506717224, guid: 314bc7151929a6a439a2af7e101ce57a,
+  m_ScrollWheelAction: {fileID: 3674765547233274736, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
   m_TrackedDevicePositionAction: {fileID: 3175674438151083166, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}

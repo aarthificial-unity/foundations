@@ -8,10 +8,12 @@ Shader "GUI/InteractionGizmo"
     _RTColor ("RT Color", Color) = (1, 0, 0, 1)
     _Smoothness ("Smoothness", Float) = 1
     _IconScales ("Icon Scales", Vector) = (2.23, 2.23, 2.23, 1)
+    _Icon ("Icon", Vector) = (0, 0, 0, 0)
 
-    [HideInInspector] _LTRect ("LT Rect", Vector) = (0, 0, 0, 0)
-    [HideInInspector] _RTRect ("RT Rect", Vector) = (0, 0, 0, 0)
-    [HideInInspector] _BothRect ("Both Rect", Vector) = (0, 0, 0, 0)
+    [HideInInspector] _DialogueRect ("Dialogue Rect", Vector) = (0, 0, 0, 0)
+    [HideInInspector] _SkipRect ("Skip Rect", Vector) = (0, 0, 0, 0)
+    [HideInInspector] _PlayRect ("Play Rect", Vector) = (0, 0, 0, 0)
+    [HideInInspector] _CancelRect ("Cancel Rect", Vector) = (0, 0, 0, 0)
     [HideInInspector] _AtlasTex ("Atlas Texture", 2D) = "white" {}
 
     [HideInInspector] _Direction ("Direction", Vector) = (1, 0, 0, 0)
@@ -66,17 +68,19 @@ Shader "GUI/InteractionGizmo"
       };
 
       CBUFFER_START(UnityPerMaterial)
-      float4 _Color;
-      float4 _LTColor;
-      float4 _RTColor;
-      float4 _MidColor;
-      float _Smoothness;
-      float4 _IconScales;
-      float4 _LTRect;
-      float4 _RTRect;
-      float4 _BothRect;
-      sampler2D _AtlasTex;
-      float4 _AtlasTex_TexelSize;
+        float4 _Color;
+        float4 _LTColor;
+        float4 _RTColor;
+        float4 _MidColor;
+        float _Smoothness;
+        float4 _IconScales;
+        float4 _DialogueRect;
+        float4 _SkipRect;
+        float4 _PlayRect;
+        float4 _CancelRect;
+        float4 _Icon;
+        sampler2D _AtlasTex;
+        float4 _AtlasTex_TexelSize;
       CBUFFER_END
 
       float4 _State;
@@ -90,8 +94,8 @@ Shader "GUI/InteractionGizmo"
       inline float fromTo(const float smoothness, const float distance, const float from, const float to)
       {
         return
-          smoothstep(from, from - smoothness, distance) *
-          smoothstep(to - smoothness, to, distance);
+          smoothstep(from + smoothness, from - smoothness, distance) *
+          smoothstep(to - smoothness, to + smoothness, distance);
       }
 
       inline float get2DClipping(in float2 position, in float4 clipRect)
@@ -109,7 +113,8 @@ Shader "GUI/InteractionGizmo"
 
       float iconSDF(const float2 uv, const float4 rect, const float scale)
       {
-        const float2 iconUV = (uv - 0.5) * scale + 0.5;
+        const float ratio = rect.z / rect.w;
+        const float2 iconUV = (uv - 0.5) * scale * float2(1 / ratio, 1) + 0.5;
         float distance = tex2D(_AtlasTex, iconUV * rect.zw + rect.xy).a;
         distance *= get2DClipping(iconUV, float4(0, 0, 1, 1));
         distance = (0.5 - distance) / scale / 3.0;
@@ -121,7 +126,7 @@ Shader "GUI/InteractionGizmo"
         UNITY_SETUP_INSTANCE_ID(input);
         Varyings output;
 
-        const float scale = lerp(1, 0.58333333333333, _State.x);
+        const float scale = 0.5 + lerp(1, 0.58333333333333, _State.x);
         const float4 positionOS = input.positionOS * scale;
         output.positionOS = positionOS;
         output.positionCS = TransformObjectToHClip(positionOS);
@@ -153,15 +158,20 @@ Shader "GUI/InteractionGizmo"
         half4 playerColor = lerp(_LTColor, _MidColor, saturate(colorDot * 2));
         playerColor = lerp(playerColor, _RTColor, saturate(colorDot * 2 - 1));
         playerColor = lerp(_Color, playerColor, playerPresence);
-        half4 color = fromTo(smoothness, circleDistance, strokeOffset, strokeOffset - 8 / 96.0) * playerColor;
+        half4 color = fromTo(smoothness, circleDistance, strokeOffset, strokeOffset - 7 / 96.0) * playerColor;
 
         float4 iconScales = _IconScales / lerp(1, 0.5833333, saturate(expansion));
-        float bothIconDistance = iconSDF(input.uv, _BothRect, iconScales.z);
+        float4 icons = float4(
+          iconSDF(input.uv, _DialogueRect, iconScales.x),
+          iconSDF(input.uv, _PlayRect, iconScales.y),
+          iconSDF(input.uv, _SkipRect, iconScales.z),
+          iconSDF(input.uv, _CancelRect, iconScales.w)
+        );
 
-        float iconDistance = bothIconDistance;
+        float iconDistance = dot(icons, _Icon) / dot(_Icon, float4(1, 1, 1, 1));
         float innerCircle = circleDistance - (1 - 0.58333333333333) * -0.5 + (16 / 96.0);
         iconDistance = lerp(iconDistance, innerCircle, saturate(expansion * 1.25));
-        color += _Color * smoothstep(0, -smoothness, iconDistance);
+        color += _Color * smoothstep(smoothness, -smoothness, iconDistance);
         color *= opacity;
 
         return color;

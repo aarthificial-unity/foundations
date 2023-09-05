@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _ColorMask: 15
     - _Radius: 0.3
-    - _Smoothness: 2
+    - _Smoothness: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -49,16 +49,21 @@ Material:
     - _StrokeWidth: 0.1
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _BothRect: {r: 0.609375, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _BothRect: {r: 0.017578125, g: 0.38867188, b: 0.3203125, a: 0.3203125}
+    - _CancelRect: {r: 0.017578125, g: 0.7421875, b: 0.21484375, a: 0.21484375}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DialogueRect: {r: 0.017578125, g: 0.38867188, b: 0.3203125, a: 0.3203125}
     - _Direction: {r: 1, g: 0, b: 0, a: 0}
     - _GlyphRect: {r: 0, g: 0, b: 0, a: 0}
-    - _IconScales: {r: 2.6, g: 2.6, b: 2.23, a: 1}
+    - _Icon: {r: 1, g: 0, b: 0, a: 0}
+    - _IconScales: {r: 2.6, g: 3, b: 3, a: 3}
     - _LTColor: {r: 0.28627452, g: 0.64705884, b: 0.83137256, a: 1}
-    - _LTRect: {r: 0.7558594, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _LTRect: {r: 0.31640625, g: 0.017578125, b: 0.11328125, a: 0.11328125}
     - _MidColor: {r: 0.8301887, g: 0.5521538, b: 0.6197839, a: 1}
+    - _PlayRect: {r: 0.265625, g: 0.7421875, b: 0.16601562, a: 0.20703125}
     - _RTColor: {r: 0.9528302, g: 0.42457873, b: 0.373042, a: 1}
     - _RTRect: {r: 0.46289062, g: 0.017578125, b: 0.11328125, a: 0.11328125}
+    - _SkipRect: {r: 0.46484375, g: 0.7421875, b: 0.19140625, a: 0.19140625}
     - _State: {r: 0, g: 0, b: 0, a: 0}
     - _Test: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
