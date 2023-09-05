@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace View.Dialogue {
-  public class DialogueTrack : MonoBehaviour {
+  public class DialogueTrack : MonoBehaviour, IPointerClickHandler {
     private const float _speed = 0.03f;
 
     public event Action<DialogueEntry, bool> Finished;
+    public event Action Clicked;
     [SerializeField] private DialogueView _view;
     [SerializeField] private DialogueBubble _template;
     [SerializeField] private ScrollRect _container;
@@ -69,8 +71,10 @@ namespace View.Dialogue {
         _view.PlayerFrame.center.x,
         0
       );
+      _rectTransform.offsetMin = Vector2.zero;
+      _rectTransform.offsetMax = Vector2.zero;
       _rectTransform.sizeDelta = new Vector2(
-        _view.CanvasSize.x,
+        _rectTransform.sizeDelta.x,
         _view.CanvasSize.y - _view.PlayerFrame.yMin
       );
 
@@ -102,6 +106,10 @@ namespace View.Dialogue {
       bubble.transform.SetSiblingIndex(0);
       _bubbles.Push(bubble);
       return bubble;
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+      Clicked?.Invoke();
     }
   }
 }

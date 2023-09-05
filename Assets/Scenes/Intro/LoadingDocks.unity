@@ -1482,6 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gizmo: {fileID: 1306817677}
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     EventReference:
@@ -1496,12 +1497,12 @@ MonoBehaviour:
   - {fileID: 1325191543}
   - {fileID: 2077034584}
   Item: {fileID: 0}
+  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
-  _cameraTarget: {fileID: 0}
   _orthoSize: 4
   _area: {fileID: 1718209650}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &499792038
 Transform:
   m_ObjectHideFlags: 0
@@ -3449,6 +3450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gizmo: {fileID: 1053821263}
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     EventReference:
@@ -3463,12 +3465,12 @@ MonoBehaviour:
   - {fileID: 1625339101}
   - {fileID: 113777531}
   Item: {fileID: 0}
+  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
-  _cameraTarget: {fileID: 0}
   _orthoSize: 4
   _area: {fileID: 1207257343}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &1022070889
 Transform:
   m_ObjectHideFlags: 0
@@ -6814,6 +6816,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee296fcd9964c14e96bb9fd5a8d289a, type: 3}
+--- !u!114 &1053821263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1992429982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087836024
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,6 +7080,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 612517587}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202019229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
+    type: 3}
+  m_PrefabInstance: {fileID: 612517587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1207257342
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7305,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee296fcd9964c14e96bb9fd5a8d289a, type: 3}
+--- !u!114 &1306817677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
+    type: 3}
+  m_PrefabInstance: {fileID: 898634394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1309030239
 GameObject:
   m_ObjectHideFlags: 0
@@ -7349,6 +7387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gizmo: {fileID: 1784340534}
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     EventReference:
@@ -7367,12 +7406,12 @@ MonoBehaviour:
   - {fileID: 970516645}
   - {fileID: 1087836025}
   Item: {fileID: 0}
+  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
-  _cameraTarget: {fileID: 0}
   _orthoSize: 4
   _area: {fileID: 325408060}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!4 &1309030243
 Transform:
   m_ObjectHideFlags: 0
@@ -8714,6 +8753,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b25eef652a2554baa21daad53d7914, type: 3}
+--- !u!114 &1784340534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
+    type: 3}
+  m_PrefabInstance: {fileID: 519893327}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1835323246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5282856349654466969, guid: 56620576aa96a3b4fb32005a3097938b,
@@ -9926,6 +9977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gizmo: {fileID: 1202019229}
   Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   Event:
     EventReference:
@@ -9940,12 +9992,12 @@ MonoBehaviour:
   - {fileID: 7571008412870067101}
   - {fileID: 7161532799976271664}
   Item: {fileID: 0}
+  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
-  _cameraTarget: {fileID: 0}
   _orthoSize: 4
   _area: {fileID: 1387672427}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!114 &4398866771222208307
 MonoBehaviour:
   m_ObjectHideFlags: 0

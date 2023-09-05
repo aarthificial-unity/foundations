@@ -4,8 +4,6 @@ using Items;
 using Player;
 using UnityEngine;
 using Utils;
-using View;
-using View.Dialogue;
 using View.Overlay;
 
 namespace Interactions {
@@ -32,6 +30,8 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
+    [Inject] [SerializeField] private PlayerChannel _players;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
     [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
@@ -66,6 +66,8 @@ namespace Interactions {
       Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
       Blackboard.Set(InteractionContext.Initiator, Initiator);
       Blackboard.Set(InteractionContext.Listener, Listener);
+
+      UpdateGizmo();
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -226,6 +228,40 @@ namespace Interactions {
       }
 
       return -1;
+    }
+
+    private void UpdateGizmo() {
+      var ltPosition =
+        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
+          _players.LT.transform.position
+        );
+      var rtPosition =
+        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
+          _players.RT.transform.position
+        );
+
+      Gizmo.Direction = (rtPosition - ltPosition).normalized;
+      Gizmo.PlayerType = PlayerType;
+
+      // The dialogue view will take care of the gizmo
+      if (IsDialogue) {
+        return;
+      }
+
+      if (_players.Manager.DialogueState.IsActive) {
+        Gizmo.IsExpanded = false;
+        Gizmo.IsHovered = false;
+        Gizmo.IsFocused = false;
+        Gizmo.IsDisabled = true;
+        Gizmo.Icon = InteractionGizmo.DialogueIcon;
+        return;
+      }
+      Gizmo.IsDisabled = false;
+
+      Gizmo.IsExpanded = IsInteracting && HasDialogue;
+      Gizmo.IsHovered = IsHovered;
+      Gizmo.IsFocused = IsFocused;
+      Gizmo.Icon = InteractionGizmo.DialogueIcon;
     }
   }
 }

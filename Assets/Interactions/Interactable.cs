@@ -13,10 +13,12 @@ namespace Interactions {
     [NonSerialized] public bool IsInteracting;
     [NonSerialized] public bool IsFocused;
     [NonSerialized] public bool IsHovered;
+    [NonSerialized] public bool IsDialogue;
     [NonSerialized] public PlayerType PlayerType;
     [NonSerialized] public bool HasDialogue;
     [NonSerialized] public EntryReference Initiator;
     [NonSerialized] public EntryReference Listener;
+    public InteractionGizmo Gizmo;
 
     [Inject] [SerializeField] protected PlayerChannel Players;
     public TypewriterEvent Event;
@@ -49,11 +51,17 @@ namespace Interactions {
       OnStateChanged();
     }
 
-    public virtual void OnDialogueEnter() { }
+    public virtual void OnDialogueEnter() {
+      IsDialogue = true;
+      OnStateChanged();
+    }
 
-    public virtual void OnDialogueExit() { }
+    public virtual void OnDialogueExit() {
+      IsDialogue = false;
+      OnStateChanged();
+    }
 
-    protected void OnStateChanged() {
+    protected virtual void OnStateChanged() {
       StateChanged?.Invoke();
     }
   }

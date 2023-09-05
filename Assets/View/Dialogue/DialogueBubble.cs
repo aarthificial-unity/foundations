@@ -65,12 +65,14 @@ namespace View.Dialogue {
 
       _layoutElement.minHeight = _layoutElement.preferredHeight = finalLayout.x;
       _bubbleTransform.anchoredPosition = new Vector2(
-        _view.PlayerFrame.width / (_isOnLeft ? -2 : 2),
+        _view.PlayerFrame.center.x
+        + _view.PlayerFrame.width / (_isOnLeft ? -2 : 2),
         finalLayout.y
       );
-      _arrow.rectTransform.anchoredPosition = new Vector2(
-        Mathf.Lerp(0, _isOnLeft ? -40 : 40, layout.y),
-        _arrow.rectTransform.anchoredPosition.y
+      _arrow.rectTransform.localScale = Vector3.Lerp(
+        Vector3.one,
+        Vector3.zero,
+        layout.y
       );
     }
 
