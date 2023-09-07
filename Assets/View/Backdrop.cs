@@ -1,15 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace View {
   public class Backdrop : MonoBehaviour {
+    [Serializable]
     public struct Handle {
-      private readonly Backdrop _backdrop;
+      [SerializeField] private Backdrop _backdrop;
       private bool _requested;
-
-      public Handle(Backdrop backdrop) {
-        _backdrop = backdrop;
-        _requested = false;
-      }
 
       public void Request() {
         if (!_requested) {
@@ -27,21 +24,20 @@ namespace View {
     }
 
     [SerializeField] private float _speed;
+    [SerializeField] private float _delay;
     private CanvasGroup _group;
     private int _requests;
+    private float _initialTime;
 
     private void Awake() {
       _group = GetComponent<CanvasGroup>();
       _group.alpha = 1;
       _group.blocksRaycasts = true;
+      _initialTime = Time.unscaledTime;
     }
 
     public bool IsReady() {
       return _requests > 0 ? _group.alpha >= 1 : _group.alpha <= 0;
-    }
-
-    public Handle GetHandle() {
-      return new Handle(this);
     }
 
     public void Request() {
@@ -53,6 +49,10 @@ namespace View {
     }
 
     private void Update() {
+      if (Time.unscaledTime - _initialTime < _delay) {
+        return;
+      }
+
       var direction = _requests > 0 ? 1 : -1;
       _group.alpha = Mathf.Clamp01(
         _group.alpha + Time.unscaledDeltaTime * _speed * direction

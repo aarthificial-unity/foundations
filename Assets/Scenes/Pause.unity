@@ -1840,6 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
+  _delay: 0
 --- !u!1 &643632719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3402,7 @@ MonoBehaviour:
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
-  m_ClearDepth: 1
+  m_ClearDepth: 0
   m_AllowXRRendering: 1
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
@@ -5244,7 +5245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _storyMode: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _folder: {fileID: 241512092}
-  _backdrop: {fileID: 608415946}
+  _backdrop:
+    _backdrop: {fileID: 608415946}
 --- !u!4 &1955449612
 Transform:
   m_ObjectHideFlags: 0
@@ -5488,6 +5490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
+  _delay: 0.3
 --- !u!225 &2098615906
 CanvasGroup:
   m_ObjectHideFlags: 0

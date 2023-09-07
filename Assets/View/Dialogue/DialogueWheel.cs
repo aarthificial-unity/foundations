@@ -48,6 +48,8 @@ namespace View.Dialogue {
         _rectTransform.sizeDelta.x,
         _view.PlayerFrame.yMin
       );
+
+      Button.DrivenUpdate();
     }
 
     public void Restart() {

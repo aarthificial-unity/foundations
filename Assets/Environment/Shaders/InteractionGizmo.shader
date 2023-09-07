@@ -34,7 +34,7 @@ Shader "GUI/InteractionGizmo"
     Cull Off
     Lighting Off
     ZWrite Off
-    ZTest LEqual
+    ZTest Always
     Blend One OneMinusSrcAlpha
 
     Pass
