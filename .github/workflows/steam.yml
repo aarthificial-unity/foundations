@@ -20,7 +20,7 @@ jobs:
           path: .fmod/Build
   build:
     name: Build for ${{ matrix.targetPlatform }}
-    needs: [ release, fmod ]
+    needs: [ fmod ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -54,13 +54,13 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Custom
           version: ${{ needs.release.outputs.version }}
-          buildMethod: Editor.BuildScript.Build
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-  deployToSteam:
+  release:
+    name: Release to Steam
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
