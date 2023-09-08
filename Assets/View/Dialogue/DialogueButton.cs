@@ -26,6 +26,7 @@ namespace View.Dialogue {
     [Inject] [SerializeField] private OverlayChannel _overlay;
     private InteractionGizmo _gizmo;
     private bool _hasGizmo;
+    private bool _dirtyGizmo;
     private ActionType _actionType;
 
     protected override void DoStateTransition(
@@ -45,17 +46,23 @@ namespace View.Dialogue {
         _gizmo.MoveTo(_gizmo.DefaultPosition);
       }
       _gizmo = gizmo;
+      _dirtyGizmo = false;
       if (gizmo != null) {
         _hasGizmo = true;
-        gizmo.MoveTo(ButtonPosition);
-        UpdateGizmo();
+        _dirtyGizmo = true;
       } else {
         _hasGizmo = false;
       }
     }
 
-    private void LateUpdate() {
+    public void DrivenUpdate() {
       if (_hasGizmo) {
+        if (_dirtyGizmo) {
+          _dirtyGizmo = false;
+          _gizmo.MoveTo(ButtonPosition);
+          UpdateGizmo();
+        }
+
         _gizmo.DesiredPosition = ButtonPosition;
       }
     }

@@ -310,7 +310,7 @@ MonoBehaviour:
   _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
-  _targetPrefab: {fileID: 8032458700041025737, guid: 3ee265cd1d7910f458699d94b5fa0948,
+  _targetPrefab: {fileID: 4803978102406822656, guid: 3ee265cd1d7910f458699d94b5fa0948,
     type: 3}
   _targetAction: {fileID: 3091928205696429083, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}

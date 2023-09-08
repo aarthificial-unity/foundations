@@ -9,7 +9,7 @@ namespace View.Overlay {
   public class OverlayManager : MonoBehaviour {
     [Inject] [SerializeField] private StoryMode _storyMode;
     [SerializeField] private Transform _folder;
-    [SerializeField] private Backdrop _backdrop;
+    [SerializeField] private Backdrop.Handle _backdrop;
 
     [NonSerialized] public ExitState ExitState;
     [NonSerialized] public GameplayState GameplayState;
@@ -17,12 +17,10 @@ namespace View.Overlay {
     [NonSerialized] public SettingsState SettingsState;
 
     private OverlayState _currentState;
-    private Backdrop.Handle _backdropHandle;
     public Dynamics PositionDynamics;
     public Dynamics RotationDynamics;
 
     private void Awake() {
-      _backdropHandle = _backdrop.GetHandle();
       ExitState = GetComponent<ExitState>();
       GameplayState = GetComponent<GameplayState>();
       PauseState = GetComponent<PauseState>();
@@ -52,9 +50,9 @@ namespace View.Overlay {
       }
 
       if (state == GameplayState) {
-        _backdropHandle.Release();
+        _backdrop.Release();
       } else {
-        _backdropHandle.Request();
+        _backdrop.Request();
       }
 
       _currentState?.OnExit();

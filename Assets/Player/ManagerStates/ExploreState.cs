@@ -17,7 +17,7 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private PlayerChannel _players;
     [Inject] [SerializeField] private OverlayChannel _overlay;
     [Inject] [SerializeField] private PlayerConfig _config;
-    [Inject] [SerializeField] private GameObject _targetPrefab;
+    [Inject] [SerializeField] private TargetController _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
 
     private Command _currentCommand = Command.None;
@@ -25,7 +25,8 @@ namespace Player.ManagerStates {
     private Vector3 _targetPosition;
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
-    private GameObject _target;
+    private TargetController _target;
+    private Dynamics _dynamics;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -37,9 +38,8 @@ namespace Player.ManagerStates {
         }
         _currentPlayer = value;
         CurrentController.SetFocus(1);
-        _target.SetActive(value != PlayerType.None);
-        _target.GetComponent<MeshRenderer>().material =
-          _players[value]?.Material;
+        _target.Visible = false;
+        _target.Material = _players[value]?.Material;
       }
     }
 
@@ -49,6 +49,7 @@ namespace Player.ManagerStates {
     }
 
     public override void OnEnter() {
+      base.OnEnter();
       _currentPlayer = PlayerType.None;
       _overlay.HUD.SetActive(true);
       _overlay.HUD.SetInteractive(true);
@@ -56,9 +57,10 @@ namespace Player.ManagerStates {
     }
 
     public override void OnExit() {
+      base.OnExit();
       _overlay.HUD.SetActive(false);
       _overlay.HUD.SetInteractive(false);
-      _target.SetActive(false);
+      _target.Visible = false;
     }
 
     public override void OnUpdate() {
@@ -76,7 +78,8 @@ namespace Player.ManagerStates {
       }
 
       int interactionMask = _config.InteractionMask;
-      if (!_players.LT.InteractState.IsActive && !_players.RT.InteractState.IsActive) {
+      if (!_players.LT.InteractState.IsActive
+        && !_players.RT.InteractState.IsActive) {
         interactionMask |= _config.PlayerMask;
       }
       if (!EventSystem.current.IsPointerOverGameObject()
@@ -106,9 +109,15 @@ namespace Player.ManagerStates {
       if (currentController?.NavigateState.IsActive ?? false) {
         Manager.CameraWeight.Set(currentController.IsLT ? 0.2f : 0.8f);
         _target.transform.position = currentController.TargetPosition;
-        _target.SetActive(true);
+        if (currentController.CommandAction.action.IsPressed()) {
+          _dynamics.ForceSet(0.5f);
+        } else {
+          _dynamics.Set(1f);
+        }
+        _target.Scale = _dynamics.Update(in SpringConfig.Medium).x;
+        _target.Visible = true;
       } else {
-        _target.SetActive(false);
+        _target.Visible = false;
       }
     }
 
