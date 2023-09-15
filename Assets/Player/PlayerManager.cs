@@ -1,6 +1,7 @@
 ﻿using System;
 using Cinemachine;
 using Player.ManagerStates;
+using Settings.Bundles;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
@@ -12,6 +13,7 @@ namespace Player {
     private readonly int _rtPosition = Shader.PropertyToID("_RTPosition");
     private readonly int _ltPosition = Shader.PropertyToID("_LTPosition");
 
+    [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
     [Inject] [SerializeField] private PlayerChannel _players;
     [SerializeField] private PlayerController _rtPrefab;
     [SerializeField] private PlayerController _ltPrefab;
@@ -19,6 +21,7 @@ namespace Player {
     [SerializeField] private Vector3 _ltStartPosition;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
+    [NonSerialized] public PlayerType FocusedPlayer;
     [NonSerialized] public SpringTween CameraWeightTween;
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
@@ -49,8 +52,11 @@ namespace Player {
       lt.Other = rt;
 
       _cameraGroup = GetComponent<CinemachineTargetGroup>();
+      CameraWeightTween.ForceSet(0.5f);
       _cameraGroup.m_Targets[0].target = rt.transform;
+      _cameraGroup.m_Targets[0].weight = 0.5f;
       _cameraGroup.m_Targets[1].target = lt.transform;
+      _cameraGroup.m_Targets[1].weight = 0.5f;
       _cameraGroup.DoUpdate();
       _camera = Instantiate(_cameraPrefab);
       _camera.Follow = transform;
@@ -70,15 +76,25 @@ namespace Player {
       _currentState?.OnUpdate();
       var lt = _players.LT.transform.position;
       var rt = _players.RT.transform.position;
+      Shader.SetGlobalVector(_ltPosition, lt);
+      Shader.SetGlobalVector(_rtPosition, rt);
+    }
+
+    private void FixedUpdate() {
+      var offset = _bundle.CameraWeight.Get() / 100f;
+      CameraWeightTween.Set(
+        FocusedPlayer switch {
+          PlayerType.LT => 0.5f - offset,
+          PlayerType.RT => 0.5f + offset,
+          _ => 0.5f,
+        }
+      );
 
       if (CameraWeightTween.Update(SpringConfig.Slow)) {
         var weight = CameraWeightTween.X;
         _cameraGroup.m_Targets[0].weight = weight;
         _cameraGroup.m_Targets[1].weight = 1 - weight;
       }
-
-      Shader.SetGlobalVector(_ltPosition, lt);
-      Shader.SetGlobalVector(_rtPosition, rt);
     }
 
 #if UNITY_EDITOR
