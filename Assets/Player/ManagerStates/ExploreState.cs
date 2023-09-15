@@ -106,7 +106,7 @@ namespace Player.ManagerStates {
       _target.DrivenUpdate(currentController);
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.CameraWeightTween.Set(currentController.IsLT ? 0.2f : 0.8f);
+        Manager.FocusedPlayer = currentController.Type;
       }
     }
 
