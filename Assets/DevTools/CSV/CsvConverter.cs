@@ -272,6 +272,12 @@ namespace DevTools.CSV {
       );
       */
       entry.Content = cells.Text();
+      entry.Style = cells.Style() switch {
+        "speech" => DialogueEntry.BubbleStyle.Speech,
+        "thought" => DialogueEntry.BubbleStyle.Thought,
+        "action" => DialogueEntry.BubbleStyle.Action,
+        _ => throw new Exception($"Unknown style: {cells.Style()}."),
+      };
 
       if (cells.Actions() != "") {
         _events.Clear();
@@ -603,6 +609,7 @@ namespace DevTools.CSV {
       string.IsNullOrEmpty(list[0]) || list[0].StartsWith('#');
 
     private static string Key(this List<string> list) => list[0];
+    private static string Style(this List<string> list) => list[1];
     private static string Type(this List<string> list) => list[2];
     private static string Speaker(this List<string> list) => list[3];
     private static bool Once(this List<string> list) => list[4] == "TRUE";

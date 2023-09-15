@@ -4,6 +4,7 @@ using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Input;
 using Interactions;
+using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -27,7 +28,7 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private Volume _volume;
     [SerializeField] private float _interactionCooldown = 0.5f;
-    private CommandOption[] _options = new CommandOption[16];
+    private List<DialogueEntry> _options = new();
     private BaseEntry[] _rules = new BaseEntry[16];
 
     private SubState _subState = SubState.Choice;
@@ -144,7 +145,8 @@ namespace Player.ManagerStates {
         _players.TryGetPlayer(speaker, out var player);
         Assert.IsNotNull(player, $"Missing speaker: {speaker}");
 
-        _overlay.Dialogue.Wheel.SetOptions(_options, 0);
+        _options.Clear();
+        _overlay.Dialogue.Wheel.SetOptions(_options);
         _overlay.Dialogue.Wheel.Button.SetAction(
           DialogueButton.ActionType.Skip
         );
@@ -155,24 +157,20 @@ namespace Player.ManagerStates {
           (EntryReference)choice,
           _rules
         );
-        var count = 0;
+        _options.Clear();
         for (var i = 0; i < ruleCount; i++) {
           var rule = _rules[i];
-          if (rule is not DialogueEntry response) {
-            continue;
+          if (rule is DialogueEntry response) {
+            _options.Add(response);
           }
-          _options[count++] = new CommandOption {
-            Text = response.Content,
-            IsRT = response.Speaker == _players.RT.Fact,
-          };
         }
 
-        if (count == 0) {
+        if (_options.Count == 0) {
           _currentEntry = null;
           return;
         }
 
-        _overlay.Dialogue.Wheel.SetOptions(_options, count);
+        _overlay.Dialogue.Wheel.SetOptions(_options);
         _overlay.Dialogue.Wheel.Button.SetAction(
           choice.IsCancellable
             ? DialogueButton.ActionType.Cancel

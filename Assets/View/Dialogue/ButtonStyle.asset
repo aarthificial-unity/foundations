@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf63427177d4b87b37b1b89f2f90804, type: 3}
+  m_Name: ButtonStyle
+  m_EditorClassIdentifier: 
+  _speechSettings:
+    BackgroundColors:
+      LT: {r: 0.19215688, g: 0.3647059, b: 0.43529415, a: 1}
+      RT: {r: 0.4431373, g: 0.2392157, b: 0.20784315, a: 1}
+    TextColors:
+      LT: {r: 1, g: 1, b: 1, a: 0.7294118}
+      RT: {r: 1, g: 1, b: 1, a: 0.7294118}
+    Stroke: 0
+    TextureStrength: 0.2
+  _thoughtSettings:
+    BackgroundColors:
+      LT: {r: 0.19215688, g: 0.3647059, b: 0.43529415, a: 1}
+      RT: {r: 0.4431373, g: 0.2392157, b: 0.20784315, a: 1}
+    TextColors:
+      LT: {r: 1, g: 1, b: 1, a: 1}
+      RT: {r: 1, g: 1, b: 1, a: 1}
+    Stroke: 1
+    TextureStrength: 0.2
+  _actionSettings:
+    BackgroundColors:
+      LT: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+      RT: {r: 0.8000001, g: 0.8000001, b: 0.8000001, a: 1}
+    TextColors:
+      LT: {r: 0, g: 0, b: 0, a: 1}
+      RT: {r: 0, g: 0, b: 0, a: 1}
+    Stroke: 0
+    TextureStrength: 1

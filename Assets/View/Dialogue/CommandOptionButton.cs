@@ -1,6 +1,5 @@
-﻿using Player;
-using System;
-using TMPro;
+﻿using TMPro;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,13 +12,16 @@ namespace View.Dialogue {
       remove => _button.onClick.RemoveListener(value);
     }
 
+    [Inject] [SerializeField] private ButtonStyle _style;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private Image _panel;
+    [SerializeField] private BoxSDF _fill;
+    [SerializeField] private BoxSDF _stroke;
     [SerializeField] private Button _button;
     [SerializeField] private RectTransform _transform;
-    [SerializeField] private PlayerLookup<Color> _backgroundColors;
 
     private DialogueView _view;
+    private ButtonStyle.Settings _settings;
     private int _index;
     private int _total;
     private float _spacing = Mathf.PI * 0.25f;
@@ -42,7 +44,6 @@ namespace View.Dialogue {
       var from = angle / 2f;
       var sign = _isLt == _isLtLeft ? -1 : 1;
 
-      _panel.color = _isLt ? _backgroundColors.LT : _backgroundColors.RT;
       _transform.pivot = new Vector2(_isLt == _isLtLeft ? 1 : 0, 0.5f);
       _text.rectTransform.pivot = new Vector2(_isLt == _isLtLeft ? 1 : 0, 0.5f);
       _text.rectTransform.anchorMin = _text.rectTransform.anchorMax =
@@ -57,11 +58,21 @@ namespace View.Dialogue {
       _transform.sizeDelta = new Vector2(_size.x * t, _size.y);
     }
 
-    public void SetOption(CommandOption option, int index, int total) {
-      _text.text = option.Text;
+    public void SetOption(DialogueEntry option, int index, int total) {
+      _text.text = option.Content;
       _index = index;
       _total = total;
-      _isLt = !option.IsRT;
+      _isLt = option.IsLT;
+
+      var settings = _style[option.Style];
+      var backgroundColor = settings.BackgroundColors[option.PlayerType];
+
+      _fill.Color = backgroundColor;
+      _fill.TextureStrength = settings.TextureStrength;
+      _stroke.Color = backgroundColor;
+      _stroke.TextureStrength = settings.TextureStrength;
+      _stroke.Dash = settings.Stroke ? 4 : 0;
+      _text.color = settings.TextColors[option.PlayerType];
     }
   }
 }

@@ -28,7 +28,6 @@ namespace View.Dialogue {
 
     private void Awake() {
       _rectTransform = GetComponent<RectTransform>();
-      _template.gameObject.SetActive(false);
     }
 
     public void Restart() {
@@ -53,7 +52,7 @@ namespace View.Dialogue {
       }
       _currentBubble = BorrowBubble();
       _currentBubble.gameObject.SetActive(true);
-      _currentBubble.Setup(_text, player);
+      _currentBubble.Setup(_text, entry.Style, player);
       _container.verticalNormalizedPosition = 0;
     }
 
