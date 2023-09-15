@@ -17,8 +17,8 @@ namespace View.Overlay {
     [NonSerialized] public SettingsState SettingsState;
 
     private OverlayState _currentState;
-    public Dynamics PositionDynamics;
-    public Dynamics RotationDynamics;
+    [NonSerialized] public SpringTween PositionTween;
+    [NonSerialized] public SpringTween RotationTween;
 
     private void Awake() {
       ExitState = GetComponent<ExitState>();
@@ -29,19 +29,19 @@ namespace View.Overlay {
 
     private void Start() {
       SwitchState(_storyMode.IsPaused ? PauseState : GameplayState);
-      PositionDynamics.ForceSet(_currentState.FolderTransform.localPosition);
-      RotationDynamics.ForceSet(
-        _currentState.FolderTransform.localRotation.AsVector()
-      );
+      PositionTween.ForceSet(_currentState.FolderTransform.localPosition);
+      RotationTween.ForceSet(_currentState.FolderTransform.localRotation);
     }
 
     private void Update() {
       _currentState?.OnUpdate();
-      _folder.localPosition =
-        PositionDynamics.UnscaledUpdate(SpringConfig.Medium);
-      _folder.localRotation = RotationDynamics
-        .UnscaledUpdate(SpringConfig.Medium)
-        .AsQuaternion();
+
+      if (PositionTween.UnscaledUpdate(SpringConfig.Medium)) {
+        _folder.localPosition = PositionTween.Value;
+      }
+      if (RotationTween.UnscaledUpdate(SpringConfig.Medium)) {
+        _folder.localRotation = RotationTween.Quaternion;
+      }
     }
 
     public void SwitchState(OverlayState state) {

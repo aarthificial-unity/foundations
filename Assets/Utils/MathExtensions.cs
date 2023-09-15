@@ -42,20 +42,15 @@ namespace Utils {
       );
     }
 
-    public static Vector4 AsVector(this Quaternion value) {
-      return new Vector4(value.x, value.y, value.z, value.w);
-    }
-
-    public static Quaternion AsQuaternion(this Vector4 value) {
-      return new Quaternion(value.x, value.y, value.z, value.w);
-    }
-
-    public static Vector4 AsVector(this Rect value) {
-      return new Vector4(value.x, value.y, value.width, value.height);
-    }
-
-    public static Rect AsRect(this Vector4 value) {
-      return new Rect(value.x, value.y, value.z, value.w);
+    public static bool RoughlyEquals(
+      this Vector4 lhs,
+      Vector4 rhs,
+      float precision = 0.0001f
+    ) {
+      return Mathf.Abs(lhs.x - rhs.x) < precision
+        && Mathf.Abs(lhs.y - rhs.y) < precision
+        && Mathf.Abs(lhs.z - rhs.z) < precision
+        && Mathf.Abs(lhs.w - rhs.w) < precision;
     }
   }
 }

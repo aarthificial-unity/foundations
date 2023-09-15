@@ -15,9 +15,8 @@ namespace View.Office {
     public event Action StateChanged;
 
     [SerializeField] private UnityEvent _onClick;
-    [SerializeField] private ToggleSpringPreset _preset;
     [SerializeField] protected TextMeshProUGUI Label;
-    private ToggleSpring _toggle;
+    private SpringTween _toggle;
     private Color _textColor;
     private FontStyles _fontStyle;
     private bool _isHovered;
@@ -27,25 +26,29 @@ namespace View.Office {
     public bool IsInteractable => _isInteractable;
 
     protected virtual void Awake() {
-      _toggle = _preset.Create();
       _textColor = Label.color;
       _fontStyle = Label.fontStyle;
     }
 
-    private void Update() {
-      var value = _toggle.Update(Time.unscaledDeltaTime);
+    private void FixedUpdate() {
+      if (!_toggle.FixedUpdate(
+          _toggle.Target.x == 0 ? SpringConfig.Snappy : SpringConfig.Bouncy
+        )) {
+        return;
+      }
+
       Label.color = new Color(
         _textColor.r,
         _textColor.g,
         _textColor.b,
-        value.Map(_textColor.a, 1f)
+        _toggle.X.Map(_textColor.a, 1f)
       );
     }
 
     public void SetInteractable(bool interactable) {
       _isInteractable = interactable;
       if (!interactable) {
-        _toggle.ForceToggle(false);
+        _toggle.ForceSet(0);
       }
       UpdateState();
     }
@@ -63,10 +66,10 @@ namespace View.Office {
     private void UpdateState() {
       if (_isInteractable && _isHovered) {
         Label.fontStyle = _fontStyle | FontStyles.Underline;
-        _toggle.Toggle(true);
+        _toggle.Set(1);
       } else {
         Label.fontStyle = _fontStyle;
-        _toggle.Toggle(false);
+        _toggle.Set(0);
       }
       StateChanged?.Invoke();
     }

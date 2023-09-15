@@ -13,11 +13,11 @@ namespace View.Overlay.States {
     [SerializeField] private StudioEventEmitter _pauseSound;
     [SerializeField] private CanvasGroup _group;
 
-    private Dynamics _dynamics;
+    private SpringTween _alphaTween;
 
     public override void OnEnter() {
       base.OnEnter();
-      _dynamics.Set(1);
+      _alphaTween.Set(1);
       _group.interactable = true;
       _group.blocksRaycasts = true;
       _storyMode.Resume();
@@ -25,7 +25,7 @@ namespace View.Overlay.States {
 
     public override void OnExit() {
       base.OnExit();
-      _dynamics.Set(0);
+      _alphaTween.Set(0);
       _group.interactable = false;
       _group.blocksRaycasts = false;
       _storyMode.Pause();
@@ -40,7 +40,9 @@ namespace View.Overlay.States {
     }
 
     private void Update() {
-      _group.alpha = _dynamics.UnscaledUpdate(SpringConfig.Snappy).x;
+      if (_alphaTween.UnscaledUpdate(SpringConfig.Snappy)) {
+        _group.alpha = _alphaTween.X;
+      }
     }
 
     private void HandleCancel(InputAction.CallbackContext _) {

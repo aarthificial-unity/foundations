@@ -13,19 +13,19 @@ namespace View.Overlay.States {
     [Inject] [SerializeField] private InputChannel _input;
     [SerializeField] private SettingsView _view;
 
-    private Dynamics _dynamics;
+    private SpringTween _animationTween;
 
     public override void OnEnter() {
       base.OnEnter();
       _view.SetInteractive(true);
-      _dynamics.Set(1);
+      _animationTween.Set(1);
       _view.ExitButton.Clicked += HandleCancel;
     }
 
     public override void OnExit() {
       base.OnExit();
       _view.SetInteractive(false);
-      _dynamics.Set(0);
+      _animationTween.Set(0);
       _view.ExitButton.Clicked -= HandleCancel;
     }
 
@@ -38,7 +38,9 @@ namespace View.Overlay.States {
     }
 
     private void Update() {
-      _view.SetAnimationFactor(_dynamics.UnscaledUpdate(SpringConfig.Medium).x);
+      if (_animationTween.UnscaledUpdate(SpringConfig.Medium)) {
+        _view.SetAnimationFactor(_animationTween.X);
+      }
     }
 
     private void HandleCancel(InputAction.CallbackContext _) {

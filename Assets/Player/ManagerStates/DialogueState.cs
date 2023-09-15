@@ -128,7 +128,7 @@ namespace Player.ManagerStates {
         return;
       }
 
-      if (_subState == SubState.Proceed && _queuedEntry is not ChoiceEntry) {
+      if (_subState == SubState.Proceed && _queuedEntry is DialogueEntry) {
         return;
       }
 

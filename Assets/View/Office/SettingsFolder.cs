@@ -18,8 +18,8 @@ namespace View.Office {
     private Clickable _clickable;
     private BoxCollider _collider;
     private SpringConfig _springConfig = SpringConfig.Snappy;
-    private Dynamics _dynamics;
-    private Dynamics _labelDynamics;
+    private SpringTween _animationTween;
+    private SpringTween _labelAlphaTween;
 
     private void Awake() {
       _clickable = GetComponent<Clickable>();
@@ -28,8 +28,8 @@ namespace View.Office {
       _clickable.StateChanged += HandleStateChanged;
       _state.Entered += HandleTransitioned;
       _state.Exited += HandleTransitioned;
-      _dynamics.ForceSet(_closedValue);
-      _labelDynamics.ForceSet(1);
+      _animationTween.ForceSet(_closedValue);
+      _labelAlphaTween.ForceSet(1);
     }
 
     private void HandleStateChanged() {
@@ -40,30 +40,34 @@ namespace View.Office {
       _springConfig = _clickable.IsHovered
         ? SpringConfig.Bouncy
         : SpringConfig.Snappy;
-      _dynamics.Set(_clickable.IsHovered ? _hoverValue : _closedValue);
+      _animationTween.Set(_clickable.IsHovered ? _hoverValue : _closedValue);
     }
 
     private void HandleTransitioned() {
       if (_state.IsActive) {
         _springConfig = SpringConfig.Slow;
-        _dynamics.Set(_openValue);
+        _animationTween.Set(_openValue);
         _collider.enabled = false;
         _view.SetInteractive(true);
-        _labelDynamics.Set(0);
+        _labelAlphaTween.Set(0);
       } else {
         _collider.enabled = true;
         _view.SetInteractive(false);
-        _labelDynamics.Set(1);
+        _labelAlphaTween.Set(1);
       }
     }
 
-    private void Update() {
-      var value = _dynamics.UnscaledUpdate(in _springConfig).x;
-      _view.SetAnimationFactor(value);
-      var alpha = _labelDynamics.UnscaledUpdate(in SpringConfig.Snappy).x;
-      _label.alpha = alpha;
-      _label.interactable = alpha > 0.5;
-      _label.blocksRaycasts = alpha > 0.5;
+    private void FixedUpdate() {
+      if (_animationTween.FixedUpdate(_springConfig)) {
+        _view.SetAnimationFactor(_animationTween.X);
+      }
+
+      if (_labelAlphaTween.FixedUpdate(SpringConfig.Snappy)) {
+        var alpha = _labelAlphaTween.X;
+        _label.alpha = alpha;
+        _label.interactable = alpha > 0.5;
+        _label.blocksRaycasts = alpha > 0.5;
+      }
     }
   }
 }
