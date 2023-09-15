@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
@@ -58,40 +60,40 @@ namespace View.Dialogue {
       }
     }
 
-    public void SetOptions(CommandOption[] options, int count) {
-      if (count == 0) {
+    public void SetOptions(List<DialogueEntry> options) {
+      if (options.Count == 0) {
         _dynamics.Set(0);
         return;
       }
 
       _dynamics.ForceSet(0);
       _dynamics.Set(1);
-      _count = count;
+      _count = options.Count;
       var rtCount = 0;
       var ltCount = 0;
-      for (var i = 0; i < count; i++) {
-        if (options[i].IsRT) {
-          rtCount++;
-        } else {
+      for (var i = 0; i < options.Count; i++) {
+        if (options[i].IsLT) {
           ltCount++;
+        } else {
+          rtCount++;
         }
       }
 
       var rtIndex = 0;
       var ltIndex = 0;
-      for (var i = 0; i < count; i++) {
+      for (var i = 0; i < options.Count; i++) {
         var option = options[i];
         _options[i].gameObject.SetActive(true);
         _options[i]
           .SetOption(
             option,
-            option.IsRT ? rtIndex++ : ltIndex++,
-            option.IsRT ? rtCount : ltCount
+            option.IsLT ? ltIndex++ : rtIndex++,
+            option.IsLT ? ltCount : rtCount
           );
       }
 
       DrivenUpdate();
-      for (var i = count; i < _options.Length; i++) {
+      for (var i = options.Count; i < _options.Length; i++) {
         _options[i].gameObject.SetActive(false);
       }
     }

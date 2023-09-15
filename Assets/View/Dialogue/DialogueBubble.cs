@@ -1,5 +1,6 @@
 ﻿using Player;
 using TMPro;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -8,12 +9,15 @@ using Utils.Tweening;
 namespace View.Dialogue {
   public class DialogueBubble : MonoBehaviour {
     public TextMeshProUGUI Text;
+    [Inject] [SerializeField] private ButtonStyle _style;
     [SerializeField] private RectTransform _bubbleTransform;
     [SerializeField] private HorizontalLayoutGroup _rootLayout;
-    [SerializeField] private Image _background;
+    [SerializeField] private BoxSDF _backgroundBox;
+    [SerializeField] private BoxSDF _fillBox;
     [SerializeField] private Image _arrow;
-    [SerializeField] private PlayerLookup<Color> _backgroundColors;
+    [SerializeField] private RectMask2D _arrowGroup;
     [SerializeField] private float spacing;
+
     private LayoutElement _layoutElement;
     private Dynamics _heightDynamics;
     private PlayerController _player;
@@ -35,8 +39,12 @@ namespace View.Dialogue {
         _rootLayout.childAlignment = _isOnLeft
           ? TextAnchor.UpperRight
           : TextAnchor.UpperLeft;
-        _arrow.rectTransform.anchorMin = new Vector2(_isOnLeft ? 1 : 0, 1);
-        _arrow.rectTransform.anchorMax = new Vector2(_isOnLeft ? 1 : 0, 1);
+        _arrowGroup.rectTransform.anchorMin = new Vector2(_isOnLeft ? 1 : 0, 1);
+        _arrowGroup.rectTransform.anchorMax = new Vector2(_isOnLeft ? 1 : 0, 1);
+        _arrowGroup.rectTransform.anchoredPosition = new Vector2(
+          _isOnLeft ? -4 : 4,
+          -37
+        );
       }
 
       var layout = _heightDynamics.Update(SpringConfig.Medium);
@@ -69,10 +77,16 @@ namespace View.Dialogue {
         + _view.PlayerFrame.width / (_isOnLeft ? -2 : 2),
         finalLayout.y
       );
-      _arrow.rectTransform.localScale = Vector3.Lerp(
+      _arrowGroup.rectTransform.localScale = Vector3.Lerp(
         Vector3.one,
         Vector3.zero,
         layout.y
+      );
+      _arrowGroup.padding = new Vector4(
+        _isOnLeft ? 25 * (1 - layout.y) : 0,
+        0,
+        _isOnLeft ? 0 : 25 * (1 - layout.y),
+        0
       );
     }
 
@@ -80,16 +94,28 @@ namespace View.Dialogue {
       _heightDynamics.Set(1, 1);
     }
 
-    public void Setup(string text, PlayerController player) {
+    public void Setup(
+      string text,
+      DialogueEntry.BubbleStyle style,
+      PlayerController player
+    ) {
       _player = player;
       _heightDynamics.ForceSet(0, 0);
       Text.text = text;
       Text.maxVisibleCharacters = 0;
       _layoutElement.minHeight = _layoutElement.preferredHeight = 0;
 
-      var color = _backgroundColors[_player.Type];
-      _background.color = color;
-      _arrow.color = color;
+      var settings = _style[style];
+      var backgroundColor = settings.BackgroundColors[_player.Type];
+      var textColor = settings.TextColors[_player.Type];
+
+      Text.color = textColor;
+      _arrow.color = backgroundColor;
+      _backgroundBox.Color = backgroundColor;
+      _backgroundBox.TextureStrength = settings.TextureStrength;
+      _fillBox.Color = backgroundColor;
+      _fillBox.TextureStrength = settings.TextureStrength;
+      _fillBox.Dash = settings.Stroke ? 4 : 0;
 
       _heightDynamics.Set(1, 0);
     }
