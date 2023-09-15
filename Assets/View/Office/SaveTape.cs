@@ -18,15 +18,17 @@ namespace View.Office {
     private int _index;
     private bool _isSelected;
     private bool _isHovered;
-    private Dynamics _dynamics;
+    private SpringTween _positionTween;
     private SpringConfig _springConfig = SpringConfig.Snappy;
 
     private void Start() {
       Render();
     }
 
-    private void Update() {
-      _tape.localPosition = _dynamics.UnscaledUpdate(in _springConfig);
+    private void FixedUpdate() {
+      if (_positionTween.FixedUpdate(_springConfig)) {
+        _tape.localPosition = _positionTween.Value;
+      }
     }
 
     public void SetIndex(int index) {
@@ -44,8 +46,8 @@ namespace View.Office {
       _tapeContainer.rotation = tapePlayer.rotation;
       Physics.SyncTransforms();
 
-      _dynamics.ForceSet(Vector3.forward * _extenstion);
-      _dynamics.Set(Vector3.zero);
+      _positionTween.ForceSet(Vector3.forward * _extenstion);
+      _positionTween.Set(Vector3.zero);
     }
 
     public void Deselect() {
@@ -58,7 +60,7 @@ namespace View.Office {
       _tapeContainer.localRotation = Quaternion.identity;
       Physics.SyncTransforms();
 
-      _dynamics.ForceSet(Vector3.forward * -_extenstion);
+      _positionTween.ForceSet(Vector3.forward * -_extenstion);
       Render();
     }
 
@@ -73,7 +75,7 @@ namespace View.Office {
     }
 
     private void Render() {
-      _dynamics.Set(Vector3.forward * (_isHovered ? _extenstion : 0));
+      _positionTween.Set(Vector3.forward * (_isHovered ? _extenstion : 0));
       _springConfig = _isHovered ? SpringConfig.Bouncy : SpringConfig.Snappy;
       _label.fontStyle = _isHovered
         ? FontStyles.Underline | FontStyles.Bold

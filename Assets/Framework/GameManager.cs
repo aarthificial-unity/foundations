@@ -1,5 +1,6 @@
 using System.Collections;
 using Audio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -32,9 +33,12 @@ namespace Framework {
     }
 
     private void Awake() {
-      Time.timeScale = 0;
       MenuMode.Setup(this);
       StoryMode.Setup(this);
+
+      // Force FMOD initialization to avoid a framerate drop when the first
+      // sound is played.
+      _ = RuntimeManager.StudioSystem;
 
 #if UNITY_EDITOR
       switch (SceneManager.GetActiveScene().buildIndex) {

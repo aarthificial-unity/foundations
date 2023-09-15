@@ -26,7 +26,6 @@ namespace Player.ManagerStates {
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
     private TargetController _target;
-    private Dynamics _dynamics;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -39,7 +38,6 @@ namespace Player.ManagerStates {
         _currentPlayer = value;
         CurrentController.SetFocus(1);
         _target.Visible = false;
-        _target.Material = _players[value]?.Material;
       }
     }
 
@@ -53,7 +51,7 @@ namespace Player.ManagerStates {
       _currentPlayer = PlayerType.None;
       _overlay.HUD.SetActive(true);
       _overlay.HUD.SetInteractive(true);
-      Manager.CameraWeight.Settle();
+      Manager.CameraWeightTween.Settle();
     }
 
     public override void OnExit() {
@@ -105,19 +103,10 @@ namespace Player.ManagerStates {
 
       var currentController = CurrentController;
       _overlay.HUD.SetInteractive(!IsNavigating(currentController));
+      _target.DrivenUpdate(currentController);
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.CameraWeight.Set(currentController.IsLT ? 0.2f : 0.8f);
-        _target.transform.position = currentController.TargetPosition;
-        if (currentController.CommandAction.action.IsPressed()) {
-          _dynamics.ForceSet(0.5f);
-        } else {
-          _dynamics.Set(1f);
-        }
-        _target.Scale = _dynamics.Update(in SpringConfig.Medium).x;
-        _target.Visible = true;
-      } else {
-        _target.Visible = false;
+        Manager.CameraWeightTween.Set(currentController.IsLT ? 0.2f : 0.8f);
       }
     }
 

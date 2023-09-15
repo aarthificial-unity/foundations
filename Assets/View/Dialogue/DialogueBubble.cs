@@ -19,7 +19,7 @@ namespace View.Dialogue {
     [SerializeField] private float spacing;
 
     private LayoutElement _layoutElement;
-    private Dynamics _heightDynamics;
+    private SpringTween _layoutTween;
     private PlayerController _player;
     private DialogueView _view;
     private Cached<bool> _isOnLeft;
@@ -47,7 +47,8 @@ namespace View.Dialogue {
         );
       }
 
-      var layout = _heightDynamics.Update(SpringConfig.Medium);
+      _layoutTween.Update(SpringConfig.Medium);
+      var layout = _layoutTween.Value;
       var eyeOffset = _view.WorldToCanvas.y * (_player.IsLT ? 0.9f : 0.6f);
       var baseLayout = new Vector2(
         0,
@@ -91,7 +92,7 @@ namespace View.Dialogue {
     }
 
     public void Store() {
-      _heightDynamics.Set(1, 1);
+      _layoutTween.Set(1, 1);
     }
 
     public void Setup(
@@ -100,7 +101,6 @@ namespace View.Dialogue {
       PlayerController player
     ) {
       _player = player;
-      _heightDynamics.ForceSet(0, 0);
       Text.text = text;
       Text.maxVisibleCharacters = 0;
       _layoutElement.minHeight = _layoutElement.preferredHeight = 0;
@@ -117,7 +117,8 @@ namespace View.Dialogue {
       _fillBox.TextureStrength = settings.TextureStrength;
       _fillBox.Dash = settings.Stroke ? 4 : 0;
 
-      _heightDynamics.Set(1, 0);
+      _layoutTween.ForceSet(0, 0);
+      _layoutTween.Set(1, 0);
     }
 
     public void SetCompletion(float percentage) {

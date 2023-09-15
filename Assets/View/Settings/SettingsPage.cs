@@ -21,9 +21,9 @@ namespace View.Settings {
     private float _spacing;
 
     private Vector3 _initialRotation;
-    private Dynamics _positionDynamics;
-    private Dynamics _angleDynamics;
-    private Dynamics _colorDynamics;
+    private SpringTween _positionTween;
+    private SpringTween _angleTween;
+    private SpringTween _colorTween;
 
     public void DrivenAwake(
       Camera worldCamera,
@@ -38,37 +38,44 @@ namespace View.Settings {
       _canvas.worldCamera = worldCamera;
       _initialRotation = transform.localRotation.eulerAngles;
       _canvas.sortingOrder = order;
-      _colorDynamics.ForceSet(order / (float)count);
-      _angleDynamics.ForceSet(_angle);
-      _positionDynamics.ForceSet(
+      _colorTween.ForceSet(order / (float)count);
+      _angleTween.ForceSet(_angle);
+      _positionTween.ForceSet(
         new Vector3(_position.x, order * spacing, _position.y)
       );
     }
 
     private void Update() {
-      transform.localPosition =
-        _positionDynamics.UnscaledUpdate(SpringConfig.Snappy);
-      transform.localRotation = Quaternion.Euler(
-        _initialRotation.x,
-        _initialRotation.y,
-        180 - _angleDynamics.UnscaledUpdate(SpringConfig.Snappy).x
-      );
-      _paper.color = Color.Lerp(
-        _palette.Paper,
-        _palette.PaperSelected,
-        _colorDynamics.UnscaledUpdate(SpringConfig.Snappy).x
-      );
+      if (_positionTween.UnscaledUpdate(SpringConfig.Snappy)) {
+        transform.localPosition = _positionTween.Value;
+      }
+
+      if (_angleTween.UnscaledUpdate(SpringConfig.Snappy)) {
+        transform.localRotation = Quaternion.Euler(
+          _initialRotation.x,
+          _initialRotation.y,
+          180 - _angleTween.X
+        );
+      }
+
+      if (_colorTween.UnscaledUpdate(SpringConfig.Snappy)) {
+        _paper.color = Color.Lerp(
+          _palette.Paper,
+          _palette.PaperSelected,
+          _colorTween.X
+        );
+      }
     }
 
     public void SetOrder(int order) {
-      _positionDynamics.Set(
+      _positionTween.Set(
         new Vector3(_position.x, order * _spacing, _position.y)
       );
       _canvas.sortingOrder = order;
       if (order == _count) {
-        _colorDynamics.ForceSet(1);
+        _colorTween.ForceSet(1);
       } else {
-        _colorDynamics.Set(order / (float)_count);
+        _colorTween.Set(order / (float)_count);
       }
     }
 
@@ -78,8 +85,8 @@ namespace View.Settings {
     }
 
     public void Nudge() {
-      _positionDynamics.AddImpulse(new Vector3(-200, -100, 0));
-      _angleDynamics.AddImpulse(200);
+      _positionTween.AddImpulse(new Vector3(-200, -100, 0));
+      _angleTween.AddImpulse(200);
     }
   }
 }

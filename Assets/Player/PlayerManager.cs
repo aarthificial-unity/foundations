@@ -19,7 +19,7 @@ namespace Player {
     [SerializeField] private Vector3 _ltStartPosition;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
-    [NonSerialized] public Dynamics CameraWeight;
+    [NonSerialized] public SpringTween CameraWeightTween;
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
     private CinemachineTargetGroup _cameraGroup;
@@ -71,9 +71,11 @@ namespace Player {
       var lt = _players.LT.transform.position;
       var rt = _players.RT.transform.position;
 
-      var weight = CameraWeight.Update(SpringConfig.Slow).x;
-      _cameraGroup.m_Targets[0].weight = weight;
-      _cameraGroup.m_Targets[1].weight = 1 - weight;
+      if (CameraWeightTween.Update(SpringConfig.Slow)) {
+        var weight = CameraWeightTween.X;
+        _cameraGroup.m_Targets[0].weight = weight;
+        _cameraGroup.m_Targets[1].weight = 1 - weight;
+      }
 
       Shader.SetGlobalVector(_ltPosition, lt);
       Shader.SetGlobalVector(_rtPosition, rt);

@@ -24,7 +24,7 @@ namespace View.Dialogue {
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
     private int _count;
-    private Dynamics _dynamics;
+    private SpringTween _animationTween;
 
     private void Awake() {
       _rectTransform = GetComponent<RectTransform>();
@@ -38,7 +38,8 @@ namespace View.Dialogue {
     }
 
     public void DrivenUpdate() {
-      var t = _dynamics.Update(in SpringConfig.Snappy).x;
+      _animationTween.Update(SpringConfig.Snappy);
+      var t = _animationTween.X;
       for (var i = 0; i < _count; i++) {
         _options[i].DrivenUpdate(t);
       }
@@ -62,12 +63,12 @@ namespace View.Dialogue {
 
     public void SetOptions(List<DialogueEntry> options) {
       if (options.Count == 0) {
-        _dynamics.Set(0);
+        _animationTween.Set(0);
         return;
       }
 
-      _dynamics.ForceSet(0);
-      _dynamics.Set(1);
+      _animationTween.ForceSet(0);
+      _animationTween.Set(1);
       _count = options.Count;
       var rtCount = 0;
       var ltCount = 0;

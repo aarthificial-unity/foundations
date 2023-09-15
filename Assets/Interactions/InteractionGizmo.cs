@@ -31,10 +31,10 @@ namespace Interactions {
     [Inject] [SerializeField] private OverlayChannel _overlay;
     private MeshRenderer _renderer;
     private MaterialPropertyBlock _block;
-    private Dynamics _stateDynamics;
-    private Dynamics _playerDynamics;
-    private Dynamics _iconDynamics;
-    private Dynamics _positionDynamics;
+    private SpringTween _stateTween;
+    private SpringTween _playerTween;
+    private SpringTween _iconTween;
+    private SpringTween _positionTween;
 
     private void Awake() {
       _renderer = GetComponent<MeshRenderer>();
@@ -46,8 +46,8 @@ namespace Interactions {
     public void MoveTo(Vector3 desiredPosition) {
       DesiredPosition = desiredPosition;
       var currentPosition = transform.position;
-      _positionDynamics.ForceSet(currentPosition - desiredPosition);
-      _positionDynamics.Set(0);
+      _positionTween.ForceSet(currentPosition - desiredPosition);
+      _positionTween.Set(0, 0, 0);
     }
 
     private void LateUpdate() {
@@ -84,31 +84,33 @@ namespace Interactions {
         opacity = 0;
       }
 
-      if (_stateDynamics.Position.z < 0.1f) {
-        _playerDynamics.ForceSet(playerType);
+      if (_stateTween.Value.z < 0.1f) {
+        _playerTween.ForceSet(playerType);
       } else {
-        _playerDynamics.Set(playerType);
+        _playerTween.Set(playerType);
       }
 
-      _iconDynamics.Set(Icon);
-      _stateDynamics.Set(expansion, opacity, playerPresence);
+      _iconTween.Set(Icon);
+      _stateTween.Set(expansion, opacity, playerPresence);
 
-      var stateValue = _stateDynamics.Update(SpringConfig.Snappy);
-      var iconValue = _iconDynamics.Update(SpringConfig.Snappy);
-      var playerValue = _playerDynamics.Update(SpringConfig.Slow);
+      _playerTween.Update(SpringConfig.Slow);
+      _iconTween.Update(SpringConfig.Snappy);
+      _stateTween.Update(SpringConfig.Snappy);
+      var stateValue = _stateTween.Value;
       _block.SetVector(
         _stateID,
-        new Vector4(stateValue.x, stateValue.y, playerValue.x, stateValue.z)
+        new Vector4(stateValue.x, stateValue.y, _playerTween.X, stateValue.z)
       );
       _block.SetVector(
         _directionID,
         new Vector4(Direction.x, Direction.y, 0, 0)
       );
-      _block.SetVector(_iconID, iconValue);
+      _block.SetVector(_iconID, _iconTween.Value);
+
       _renderer.SetPropertyBlock(_block);
 
-      transform.position = DesiredPosition
-        + (Vector3)_positionDynamics.Update(SpringConfig.Medium);
+      _positionTween.Update(SpringConfig.Medium);
+      transform.position = DesiredPosition + (Vector3)_positionTween.Value;
     }
   }
 }
