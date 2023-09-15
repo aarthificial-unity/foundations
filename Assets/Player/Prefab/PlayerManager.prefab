@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _input: {fileID: 11400000, guid: 9625968de8e4a4046a8890e278804aab, type: 2}
   _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
@@ -343,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0e7ba60ef04a6b99cf5ce52943ff18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   _input: {fileID: 11400000, guid: 9625968de8e4a4046a8890e278804aab, type: 2}
   _story: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _table: {fileID: 0}

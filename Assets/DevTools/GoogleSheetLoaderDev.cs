@@ -1,9 +1,12 @@
 ﻿#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Entries;
+using Aarthificial.Typewriter.References;
 using DevTools.CSV;
 using Framework;
 using Input;
-using System;
+using Interactions;
+using Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +19,7 @@ namespace DevTools {
     private static string _customDocumentId;
     private static string _customSheetName;
 
+    [SerializeField] [Inject] private PlayerChannel _players;
     [SerializeField] [Inject] private InputChannel _input;
     [SerializeField] [Inject] private StoryMode _story;
     [SerializeField] private DatabaseTable _table;
@@ -24,6 +28,10 @@ namespace DevTools {
 
     private bool _isOpen;
     private string _previousMap;
+    private Vector2 _scrollPosition;
+    private bool _onlyFacts;
+    private bool _hideEmpty = true;
+    private string _searchText = "";
 
     private void OnEnable() {
       if (string.IsNullOrEmpty(_customDocumentId)) {
@@ -70,6 +78,9 @@ namespace DevTools {
         return;
       }
 
+      var isInConversation = _players.Manager.DialogueState.IsActive
+        && _players.Manager.DialogueState.Context != null;
+
       var size = new Vector2(640, 160);
       var rect = new Rect(
         (Screen.width - size.x) / 2,
@@ -78,6 +89,19 @@ namespace DevTools {
         size.y
       );
 
+      if (isInConversation) {
+        rect.y -= size.y - 8;
+      }
+
+      LoaderGUI(rect);
+      if (isInConversation) {
+        rect.y += rect.height + 16;
+        rect.height *= 2;
+        BlackboardGUI(rect);
+      }
+    }
+
+    private Rect BoxGUI(Rect rect) {
       GUI.Box(rect, null as string);
       GUI.Box(rect, null as string);
       GUI.Box(rect, null as string);
@@ -87,6 +111,13 @@ namespace DevTools {
       rect.y += 20;
       rect.width -= 40;
       rect.height -= 40;
+
+      return rect;
+    }
+
+    private void LoaderGUI(Rect rect) {
+      rect = BoxGUI(rect);
+
       GUILayout.BeginArea(rect);
       GUILayout.BeginVertical();
       GUILayout.Label("Google Sheet Loader", GUI.skin.label);
@@ -114,6 +145,54 @@ namespace DevTools {
 
       GUILayout.EndHorizontal();
       GUILayout.EndVertical();
+      GUILayout.EndArea();
+    }
+
+    private void BlackboardGUI(Rect rect) {
+      rect = BoxGUI(rect);
+      GUILayout.BeginArea(rect);
+
+      GUILayout.Label("Current blackboard", GUI.skin.label);
+      GUILayout.BeginHorizontal();
+      _searchText = GUILayout.TextField(_searchText, GUILayout.MinWidth(300));
+      _onlyFacts = GUILayout.Toggle(_onlyFacts, "Facts only");
+      _hideEmpty = GUILayout.Toggle(_hideEmpty, "Hide empty");
+      GUILayout.FlexibleSpace();
+      GUILayout.EndHorizontal();
+
+      _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
+
+      var context = _players.Manager.DialogueState.Context;
+      if (context.TryGetBlackboard(
+          InteractionContext.InteractionScope,
+          out var blackboard
+        )) {
+        foreach (var pair in blackboard) {
+          var entry = pair.Key.GetEntry();
+          if ((_onlyFacts && entry is not FactEntry)
+            || (_hideEmpty && pair.Value == 0)) {
+            continue;
+          }
+
+          if (!string.IsNullOrEmpty(_searchText)
+            && !entry.Key.Contains(_searchText)) {
+            continue;
+          }
+
+          var stringValue =
+            ((EntryReference)pair.Value).TryGetEntry(out var reference)
+              ? $"{reference.Key} ({pair.Value})"
+              : pair.Value.ToString();
+
+          GUILayout.BeginHorizontal();
+          GUILayout.Label(entry.Key);
+          GUILayout.FlexibleSpace();
+          GUILayout.Label(stringValue);
+          GUILayout.EndHorizontal();
+        }
+      }
+
+      GUILayout.EndScrollView();
       GUILayout.EndArea();
     }
 

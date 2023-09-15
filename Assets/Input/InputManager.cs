@@ -62,6 +62,12 @@ namespace Input {
       oldMap?.Disable();
       _currentActionMap = _actions.FindActionMap(map);
       _currentActionMap?.Enable();
+
+      if (_currentActionMap == null) {
+        _actions.FindActionMap("Pointing").Disable();
+      } else {
+        _actions.FindActionMap("Pointing").Enable();
+      }
     }
 
     private bool HandlePrefilterUnpairedDeviceActivity(
