@@ -6,6 +6,7 @@ using Utils;
 using View.Controls;
 
 namespace View.Settings {
+  [DefaultExecutionOrder(100)]
   public class GameplaySettingsView : MonoBehaviour {
     [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
 

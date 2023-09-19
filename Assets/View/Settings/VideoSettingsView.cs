@@ -6,6 +6,7 @@ using Utils;
 using View.Controls;
 
 namespace View.Settings {
+  [DefaultExecutionOrder(100)]
   public class VideoSettingsView : MonoBehaviour {
     [Inject] [SerializeField] private VideoSettingsBundle _bundle;
 

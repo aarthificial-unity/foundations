@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512027171}
   - component: {fileID: 512027174}
+  - component: {fileID: 512027175}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -169,7 +170,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuMode: {fileID: 11400000, guid: ba7468ea69d7e1742b4237631535e008, type: 2}
   StoryMode: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
-  Audio: {fileID: 11400000, guid: 443715d2fc2d8bb45aee92c8fe45599c, type: 2}
+  Audio: {fileID: 512027175}
+--- !u!114 &512027175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512027170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3652f152cd634f7697e2cd512b8f7ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bundle: {fileID: 11400000, guid: 4ca15592e6d0dd645af1e47645da2bb2, type: 2}
+  _ambienceAudio:
+    Event: {fileID: 11400000, guid: dcac8db30e459054e92fb6f7fa51eab6, type: 2}
+  _ambienceSceneParam:
+    _parameter: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}
 --- !u!1 &1273982844
 GameObject:
   m_ObjectHideFlags: 0
