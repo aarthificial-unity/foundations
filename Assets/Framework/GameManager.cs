@@ -10,7 +10,7 @@ namespace Framework {
   public class GameManager : MonoBehaviour {
     [Inject] public MenuMode MenuMode;
     [Inject] public StoryMode StoryMode;
-    [Inject] public AudioManager Audio;
+    public AudioManager Audio;
 
     private GameMode _currentMode;
     private GameMode _switchingTo;
