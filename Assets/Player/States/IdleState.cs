@@ -5,6 +5,7 @@
       if (Other.NavigateState.IsActive || Other.InteractState.IsActive) {
         Player.FollowState.Enter();
       }
+      base.OnUpdate();
     }
   }
 }

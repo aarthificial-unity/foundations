@@ -22,6 +22,7 @@ namespace Player.States {
         && TryLimitWalkingDistance(out var position)) {
         Player.Agent.destination = position;
       }
+      base.OnUpdate();
     }
 
     public void Enter(Vector3 targetPosition) {

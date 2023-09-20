@@ -11,6 +11,11 @@ namespace Player.States {
     }
 
     public override void OnUpdate() {
+      UpdateNavigation();
+      base.OnUpdate();
+    }
+
+    private void UpdateNavigation() {
       var thisPosition = Player.transform.position;
       var otherPosition = Other.transform.position;
       var relativePosition = thisPosition - otherPosition;

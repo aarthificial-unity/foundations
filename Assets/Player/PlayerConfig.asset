@@ -26,6 +26,7 @@ MonoBehaviour:
     m_Bits: 8
   Acceleration: 30
   WalkSpeed: 5
+  RotationSpeed: 400
   CloseDistance: 2
   MinDistance: 3
   MaxDistance: 5

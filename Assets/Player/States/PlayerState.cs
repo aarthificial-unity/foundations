@@ -6,6 +6,17 @@ namespace Player.States {
     protected PlayerController Player;
     protected PlayerController Other => Player.Other;
     private NavMeshPath _path;
+    protected Quaternion TargetRotation;
+
+    public Quaternion Rotation => TargetRotation;
+
+    public override void OnUpdate() {
+      var velocity = Player.Agent.desiredVelocity;
+      var planeVelocity = new Vector3(velocity.x, 0, velocity.z);
+      if (planeVelocity.magnitude > 0.1f) {
+        TargetRotation = Quaternion.LookRotation(planeVelocity);
+      }
+    }
 
     protected virtual void Awake() {
       Player = GetComponent<PlayerController>();

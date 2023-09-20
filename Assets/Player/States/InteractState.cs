@@ -1,5 +1,6 @@
 ﻿using System;
 using Interactions;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Player.States {
@@ -39,6 +40,15 @@ namespace Player.States {
         && Other.InteractState.IsActive
         && TryLimitWalkingDistance(out var position)) {
         Player.NavigateState.Enter(position);
+      }
+
+      base.OnUpdate();
+      if (isReady) {
+        TargetRotation = Quaternion.Lerp(
+          Conversation.GetRotation(Player),
+          TargetRotation,
+          Player.Agent.remainingDistance
+        );
       }
     }
 

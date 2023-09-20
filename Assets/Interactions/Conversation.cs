@@ -170,6 +170,10 @@ namespace Interactions {
       return _interactions[player.Type].Waypoint.Position;
     }
 
+    public Quaternion GetRotation(PlayerController player) {
+      return _interactions[player.Type].Waypoint.transform.rotation;
+    }
+
     public bool IsReady(PlayerController player) {
       return _interactions[player.Type].IsReady;
     }
