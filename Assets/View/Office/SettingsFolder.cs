@@ -37,10 +37,10 @@ namespace View.Office {
         return;
       }
 
-      _springConfig = _clickable.IsHovered
+      _springConfig = _clickable.IsFocused
         ? SpringConfig.Bouncy
         : SpringConfig.Snappy;
-      _animationTween.Set(_clickable.IsHovered ? _hoverValue : _closedValue);
+      _animationTween.Set(_clickable.IsFocused ? _hoverValue : _closedValue);
     }
 
     private void HandleTransitioned() {
@@ -48,10 +48,12 @@ namespace View.Office {
         _springConfig = SpringConfig.Slow;
         _animationTween.Set(_openValue);
         _collider.enabled = false;
+        _clickable.interactable = false;
         _view.SetInteractive(true);
         _labelAlphaTween.Set(0);
       } else {
         _collider.enabled = true;
+        _clickable.interactable = true;
         _view.SetInteractive(false);
         _labelAlphaTween.Set(1);
       }

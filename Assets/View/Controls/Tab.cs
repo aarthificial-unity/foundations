@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Audio;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,10 +8,7 @@ using Utils;
 using View.Office;
 
 namespace View.Controls {
-  public class Tab : Selectable,
-    IPointerClickHandler,
-    IPointerMoveHandler,
-    ISubmitHandler {
+  public class Tab : Selectable, IPointerClickHandler, ISubmitHandler {
     public event Action<int> Clicked;
 
     [Inject] [SerializeField] private OfficePalette _palette;
@@ -18,31 +16,34 @@ namespace View.Controls {
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private bool _isToggled;
     private int _index;
+    [SerializeField] private FMODEventInstance _clickSound;
+
+    protected override void Awake() {
+      base.Awake();
+      _clickSound.Setup();
+    }
 
     public void DrivenAwake(int index) {
       _index = index;
     }
 
+    protected override void OnDestroy() {
+      _clickSound.Release();
+      base.OnDestroy();
+    }
+
     public void OnPointerClick(PointerEventData eventData) {
-      if (IsInteractable()) {
+      if (IsInteractable() && !_isToggled) {
+        _clickSound.Play();
         Clicked?.Invoke(_index);
       }
     }
 
     public void OnSubmit(BaseEventData eventData) {
-      if (IsInteractable()) {
+      if (IsInteractable() && !_isToggled) {
+        _clickSound.Play();
         Clicked?.Invoke(_index);
       }
-    }
-
-    public void OnPointerMove(PointerEventData eventData) {
-      if (IsInteractable()) {
-        Select();
-      }
-    }
-
-    public void Toggle() {
-      Toggle(!_isToggled);
     }
 
     public void Toggle(bool value) {
@@ -64,7 +65,6 @@ namespace View.Controls {
         case SelectionState.Normal:
           break;
         case SelectionState.Highlighted:
-          fontStyle = FontStyles.Underline;
           break;
         case SelectionState.Pressed:
           fontStyle = FontStyles.Underline;

@@ -1,14 +1,18 @@
-﻿using Framework;
+﻿using Audio;
+using Framework;
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 using View.Controls;
 
 namespace View.Office {
   public class SaveTapeManager : MonoBehaviour {
     [Inject] [SerializeField] private StoryMode _storyMode;
+    [SerializeField] private FMODEventInstance _selectSound;
+    [SerializeField] private FMODEventInstance _deselectSound;
     [SerializeField] private SaveTape[] _tapes;
+    [SerializeField] private Selectable _selectOnChoice;
     [SerializeField] private Transform _tapePlayer;
     [SerializeField] private GameObject _selectionScreen;
     [SerializeField] private GameObject _saveMenu;
@@ -21,10 +25,21 @@ namespace View.Office {
     private void Awake() {
       for (var i = 0; i < _tapes.Length; i++) {
         _tapes[i].SetIndex(i);
-        _tapes[i].Selected += HandleSelected;
+        _tapes[i].Clicked += HandleClicked;
       }
       Render();
-      _ejectButton.Clicked += () => HandleSelected(-1);
+      _selectSound.Setup();
+      _deselectSound.Setup();
+      _ejectButton.Clicked += () => HandleClicked(-1);
+    }
+
+    private void OnDestroy() {
+      _selectSound.Release();
+      _deselectSound.Release();
+    }
+
+    private void Start() {
+      _tapes[0].QuietSelect();
     }
 
     private IEnumerator StartGame() {
@@ -34,10 +49,11 @@ namespace View.Office {
       _storyMode.RequestStart();
     }
 
-    private void HandleSelected(int index) {
+    private void HandleClicked(int index) {
       if (index < 0) {
         if (_selectedTapeIndex >= 0) {
-          _tapes[_selectedTapeIndex].Deselect();
+          _tapes[_selectedTapeIndex].Eject();
+          _tapes[_selectedTapeIndex].Select();
         }
         _selectedTapeIndex = -1;
         Render();
@@ -45,18 +61,18 @@ namespace View.Office {
       }
 
       if (_selectedTapeIndex == index) {
-        _tapes[_selectedTapeIndex].Deselect();
+        _tapes[_selectedTapeIndex].Eject();
         _selectedTapeIndex = -1;
         Render();
         return;
       }
 
       if (_selectedTapeIndex >= 0) {
-        _tapes[_selectedTapeIndex].Deselect();
+        _tapes[_selectedTapeIndex].Eject();
       }
 
       _selectedTapeIndex = index;
-      _tapes[_selectedTapeIndex].Select(_tapePlayer);
+      _tapes[_selectedTapeIndex].Insert(_tapePlayer);
       Render();
     }
 
@@ -64,6 +80,12 @@ namespace View.Office {
       var isAnyTapeSelected = _selectedTapeIndex >= 0;
       _selectionScreen.SetActive(!isAnyTapeSelected);
       _saveMenu.SetActive(isAnyTapeSelected);
+      if (isAnyTapeSelected) {
+        _selectOnChoice.QuietSelect();
+        _selectSound.Play();
+      } else {
+        _deselectSound.Play();
+      }
     }
   }
 }

@@ -32,7 +32,7 @@ namespace View.Overlay.States {
       _settingsButton.Clicked += Manager.SettingsState.Enter;
       _menuButton.Clicked += Manager.ExitState.Enter;
       _exitButton.Clicked += _menuMode.Quit;
-      _resumeButton.Select();
+      _resumeButton.QuietSelect();
     }
 
     public override void OnExit() {

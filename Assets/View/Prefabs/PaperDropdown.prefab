@@ -126,6 +126,7 @@ MonoBehaviour:
   _strokeWidth: 0
   _filled: 1
   _textureStrength: 0.6
+  _dash: 0
 --- !u!1 &1297491309532222190
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +354,7 @@ MonoBehaviour:
   _strokeWidth: 0
   _filled: 1
   _textureStrength: 0
+  _dash: 0
 --- !u!1 &2133908599272427807
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +369,7 @@ GameObject:
   - component: {fileID: 2476022469321720913}
   - component: {fileID: 4097868851211225785}
   - component: {fileID: 6020324428281646110}
+  - component: {fileID: 3530197358871563892}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -417,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: cee324826696d384e9cdec982f03dfe2, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
+  m_Color: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -443,7 +446,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133908599272427807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ffacabed1a94cc987187d10b50c0dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -494,6 +497,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0
+  _openSound:
+    Event: {fileID: 11400000, guid: 0134f5e37e6e5cf44b90b5975c219373, type: 2}
+  _closeSound:
+    Event: {fileID: 11400000, guid: 5369205e5c01536489ea7dfab82fe647, type: 2}
 --- !u!114 &4097868851211225785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +517,7 @@ MonoBehaviour:
   _strokeWidth: 1
   _filled: 0
   _textureStrength: 0
+  _dash: 0
 --- !u!114 &6020324428281646110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +542,20 @@ MonoBehaviour:
   - {fileID: 1194037809003802092}
   _backgrounds:
   - {fileID: 7425476361227137333}
+--- !u!114 &3530197358871563892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133908599272427807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15d253ebb0b455c9b557586cd8d814c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusSound:
+    Event: {fileID: 11400000, guid: 87a7bf489cb5afc49af55a4aa7836d66, type: 2}
 --- !u!1 &2682655372667582429
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,8 +668,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3690987520
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.8627451}
+    rgba: 4282269763
+  m_fontColor: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -943,8 +965,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3690987520
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.8627451}
+    rgba: 4282269763
+  m_fontColor: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1110,6 +1132,7 @@ MonoBehaviour:
   _strokeWidth: 0
   _filled: 1
   _textureStrength: 0.6
+  _dash: 0
 --- !u!1 &5850646294578586151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1225,7 @@ MonoBehaviour:
   _strokeWidth: 0
   _filled: 1
   _textureStrength: 0.6
+  _dash: 0
 --- !u!1 &6148964934855310739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: cee324826696d384e9cdec982f03dfe2, type: 2}
-  m_Color: {r: 0.43529412, g: 0.4117647, b: 0.39215687, a: 1}
+  m_Color: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1294,6 +1318,7 @@ MonoBehaviour:
   _strokeWidth: 1
   _filled: 0
   _textureStrength: 0
+  _dash: 0
 --- !u!1 &7126694956418073384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,8 +1430,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3690987520
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.8627451}
+    rgba: 4282269763
+  m_fontColor: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
