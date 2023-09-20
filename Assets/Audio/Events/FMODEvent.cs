@@ -5,8 +5,7 @@ using FMODUnity;
 using UnityEngine;
 
 namespace Audio {
-
-  [CreateAssetMenu (fileName = "New FMODEvent", menuName = "FMOD Event")]
+  [CreateAssetMenu(fileName = "New FMODEvent", menuName = "FMOD Event")]
   public class FMODEvent : ScriptableObject {
     public EventReference Event;
     public FMODParameter[] Parameters;
@@ -25,6 +24,12 @@ namespace Audio {
     private GameObject _positionalGameObject;
 
     public void Setup() {
+#if UNITY_EDITOR
+      if (!Application.isPlaying) {
+        return;
+      }
+#endif
+
       if (Event == null) {
         return;
       }
@@ -71,8 +76,10 @@ namespace Audio {
     }
 
     public void Play() {
-      Update3DPosition();
-      Instance.start();
+      if (IsInitialized) {
+        Update3DPosition();
+        Instance.start();
+      }
     }
 
     public void Release() {

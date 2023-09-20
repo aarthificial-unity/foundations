@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8497916887854816222}
   - component: {fileID: 3873055265102392437}
   - component: {fileID: 7210311448815699264}
+  - component: {fileID: 2535026504429230911}
   m_Layer: 5
   m_Name: Tab
   m_TagString: Untagged
@@ -96,6 +97,7 @@ MonoBehaviour:
   _strokeWidth: 0
   _filled: 1
   _textureStrength: 0.6
+  _dash: 0
 --- !u!114 &8497916887854816222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +169,8 @@ MonoBehaviour:
   _background: {fileID: 7992547533704635554}
   _text: {fileID: 8075870232677191891}
   _isToggled: 0
+  _clickSound:
+    Event: {fileID: 11400000, guid: f0151552c6b31ae4398eb7c56886cec5, type: 2}
 --- !u!114 &7210311448815699264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +191,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &2535026504429230911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461550605098596930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15d253ebb0b455c9b557586cd8d814c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusSound:
+    Event: {fileID: 11400000, guid: 87a7bf489cb5afc49af55a4aa7836d66, type: 2}
 --- !u!1 &7958086913910853727
 GameObject:
   m_ObjectHideFlags: 0

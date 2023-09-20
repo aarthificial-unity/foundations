@@ -29,12 +29,12 @@ namespace View.Office {
         _springConfig = SpringConfig.Slow;
         _angleTween.Set(_openAngle);
       } else {
-        _springConfig = _clickable.IsHovered
+        _springConfig = _clickable.IsFocused
           ? SpringConfig.Bouncy
           : SpringConfig.Snappy;
-        _angleTween.Set(_clickable.IsHovered ? _tiltAngle : _closedAngle);
+        _angleTween.Set(_clickable.IsFocused ? _tiltAngle : _closedAngle);
 
-        if (_clickable.IsHovered) {
+        if (_clickable.IsSelected) {
           _handleTween.AddImpulse(new Vector3(-600, 0));
         }
       }

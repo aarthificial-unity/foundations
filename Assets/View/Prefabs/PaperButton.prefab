@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6433381650840226073}
   - component: {fileID: 2474315951711707562}
   - component: {fileID: 4994140768751159520}
-  - component: {fileID: 2151329950816357247}
-  - component: {fileID: 5976180077011950560}
+  - component: {fileID: 4504880786794192837}
+  - component: {fileID: 4105413487815787855}
   m_Layer: 5
   m_Name: PaperButton
   m_TagString: Untagged
@@ -78,8 +78,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2030043135
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.47058824}
+    rgba: 4282269763
+  m_fontColor: {r: 0.2627451, g: 0.2509804, b: 0.24313726, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -179,9 +179,9 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2474315951711707562}
-  _focusSound: {fileID: 2151329950816357247}
-  _clickSound: {fileID: 5976180077011950560}
---- !u!114 &2151329950816357247
+  _clickSound:
+    Event: {fileID: 11400000, guid: f0151552c6b31ae4398eb7c56886cec5, type: 2}
+--- !u!114 &4504880786794192837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,29 +190,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4338380334164648230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 221ada2abc444d23b4a75d495352e67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -321991487
-      Data2: 1085514565
-      Data3: -2146028885
-      Data4: 852153367
-    Path: event:/UI/Focus
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &5976180077011950560
+  _palette: {fileID: 11400000, guid: bca954d20e443ef40ba3a1718b406943, type: 2}
+  _texts:
+  - {fileID: 2474315951711707562}
+  _underline:
+  - {fileID: 2474315951711707562}
+  _images: []
+  _backgrounds: []
+--- !u!114 &4105413487815787855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,25 +209,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4338380334164648230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: f15d253ebb0b455c9b557586cd8d814c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 506805605
-      Data2: 1264616104
-      Data3: -1593420123
-      Data4: -1685643163
-    Path: event:/UI/Okay
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _focusSound:
+    Event: {fileID: 11400000, guid: 87a7bf489cb5afc49af55a4aa7836d66, type: 2}

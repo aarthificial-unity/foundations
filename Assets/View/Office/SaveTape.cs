@@ -2,14 +2,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Utils.Tweening;
 
 namespace View.Office {
-  public class SaveTape : MonoBehaviour,
-    IPointerEnterHandler,
-    IPointerExitHandler,
-    IPointerClickHandler {
-    public event Action<int> Selected;
+  public class SaveTape : Selectable, IPointerClickHandler, ISubmitHandler {
+    public event Action<int> Clicked;
 
     [SerializeField] private float _extenstion = 0.1f;
     [SerializeField] private TextMeshProUGUI _label;
@@ -17,13 +15,8 @@ namespace View.Office {
     [SerializeField] private Transform _tapeContainer;
     private int _index;
     private bool _isSelected;
-    private bool _isHovered;
     private SpringTween _positionTween;
     private SpringConfig _springConfig = SpringConfig.Snappy;
-
-    private void Start() {
-      Render();
-    }
 
     private void FixedUpdate() {
       if (_positionTween.FixedUpdate(_springConfig)) {
@@ -36,7 +29,7 @@ namespace View.Office {
       _label.text = $"SAVE {_index + 1}";
     }
 
-    public void Select(Transform tapePlayer) {
+    public void Insert(Transform tapePlayer) {
       if (_isSelected) {
         return;
       }
@@ -45,12 +38,9 @@ namespace View.Office {
       _tapeContainer.position = tapePlayer.position;
       _tapeContainer.rotation = tapePlayer.rotation;
       Physics.SyncTransforms();
-
-      _positionTween.ForceSet(Vector3.forward * _extenstion);
-      _positionTween.Set(Vector3.zero);
     }
 
-    public void Deselect() {
+    public void Eject() {
       if (!_isSelected) {
         return;
       }
@@ -59,31 +49,28 @@ namespace View.Office {
       _tapeContainer.localPosition = Vector3.zero;
       _tapeContainer.localRotation = Quaternion.identity;
       Physics.SyncTransforms();
-
-      _positionTween.ForceSet(Vector3.forward * -_extenstion);
-      Render();
     }
 
-    public void OnPointerEnter(PointerEventData eventData) {
-      _isHovered = true;
-      Render();
-    }
+    protected override void DoStateTransition(
+      SelectionState state,
+      bool instant
+    ) {
+      var isFocused = state == SelectionState.Selected
+        || state == SelectionState.Pressed;
 
-    public void OnPointerExit(PointerEventData eventData) {
-      _isHovered = false;
-      Render();
-    }
-
-    private void Render() {
-      _positionTween.Set(Vector3.forward * (_isHovered ? _extenstion : 0));
-      _springConfig = _isHovered ? SpringConfig.Bouncy : SpringConfig.Snappy;
-      _label.fontStyle = _isHovered
+      _positionTween.Set(Vector3.forward * (isFocused ? _extenstion : 0));
+      _springConfig = isFocused ? SpringConfig.Bouncy : SpringConfig.Snappy;
+      _label.fontStyle = isFocused
         ? FontStyles.Underline | FontStyles.Bold
         : FontStyles.Bold;
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-      Selected?.Invoke(_index);
+      OnSubmit(eventData);
+    }
+
+    public void OnSubmit(BaseEventData eventData) {
+      Clicked?.Invoke(_index);
     }
   }
 }
