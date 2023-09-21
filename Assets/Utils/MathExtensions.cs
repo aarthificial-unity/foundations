@@ -41,5 +41,16 @@ namespace Utils {
         toOut
       );
     }
+
+    public static bool RoughlyEquals(
+      this Vector4 lhs,
+      Vector4 rhs,
+      float precision = 0.0001f
+    ) {
+      return Mathf.Abs(lhs.x - rhs.x) < precision
+        && Mathf.Abs(lhs.y - rhs.y) < precision
+        && Mathf.Abs(lhs.z - rhs.z) < precision
+        && Mathf.Abs(lhs.w - rhs.w) < precision;
+    }
   }
 }

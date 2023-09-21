@@ -98,6 +98,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Custom
           version: ${{ needs.release.outputs.version }}
+          buildMethod: Editor.BuildScript.Build
       - name: Create zip archive
         run: |
           cd build/${{ matrix.targetPlatform }}

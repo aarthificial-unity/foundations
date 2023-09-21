@@ -50,6 +50,7 @@ jobs:
           unityVersion: 2022.3.6f1
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Tag
+          buildMethod: Editor.BuildScript.Build
       - uses: actions/upload-artifact@v3
         with:
           name: Build

@@ -1,5 +1,6 @@
 using System.Collections;
 using Audio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,12 +10,18 @@ namespace Framework {
   public class GameManager : MonoBehaviour {
     [Inject] public MenuMode MenuMode;
     [Inject] public StoryMode StoryMode;
-    [Inject] public AudioManager Audio;
+    public AudioManager Audio;
 
     private GameMode _currentMode;
-    private bool _isSwitching;
+    private GameMode _switchingTo;
+
+    private bool ISSwitching => !ReferenceEquals(_switchingTo, null);
 
     public void RequestMode(GameMode mode) {
+      if (_switchingTo == mode || _currentMode == mode) {
+        return;
+      }
+
       StartCoroutine(SwitchMode(mode));
     }
 
@@ -26,9 +33,12 @@ namespace Framework {
     }
 
     private void Awake() {
-      Time.timeScale = 0;
       MenuMode.Setup(this);
       StoryMode.Setup(this);
+
+      // Force FMOD initialization to avoid a framerate drop when the first
+      // sound is played.
+      _ = RuntimeManager.StudioSystem;
 
 #if UNITY_EDITOR
       switch (SceneManager.GetActiveScene().buildIndex) {
@@ -51,32 +61,28 @@ namespace Framework {
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     private void Update() {
-      if (Keyboard.current.rKey.wasPressedThisFrame) {
-        StartCoroutine(Reload());
+      if (Keyboard.current.rKey.wasPressedThisFrame
+        && Keyboard.current.ctrlKey.isPressed) {
+        StoryMode.Reload();
       }
 
-      if (Keyboard.current.fKey.wasPressedThisFrame) {
+      if (Keyboard.current.fKey.wasPressedThisFrame
+        && Keyboard.current.ctrlKey.isPressed) {
         Time.timeScale = Time.timeScale < 1 ? 1 : 0.2f;
       }
-    }
-
-    private IEnumerator Reload() {
-      var scene = SceneManager.GetActiveScene().buildIndex;
-      yield return SceneManager.UnloadSceneAsync(scene);
-      yield return SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-
-      SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(scene));
     }
 #endif
 
     private IEnumerator SwitchMode(GameMode mode) {
-      yield return new WaitUntil(() => !_isSwitching);
-
-      if (_currentMode == mode) {
+      if (_switchingTo == mode || _currentMode == mode) {
         yield break;
       }
 
-      _isSwitching = true;
+      if (ISSwitching) {
+        yield return new WaitUntil(() => !ISSwitching);
+      }
+
+      _switchingTo = mode;
       if (!ReferenceEquals(_currentMode, null)) {
         yield return _currentMode.OnEnd();
       }
@@ -84,7 +90,7 @@ namespace Framework {
       _currentMode = mode;
       yield return _currentMode.OnStart();
 
-      _isSwitching = false;
+      _switchingTo = null;
     }
   }
 }

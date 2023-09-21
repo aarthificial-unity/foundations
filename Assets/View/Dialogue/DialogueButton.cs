@@ -1,39 +1,92 @@
 ﻿using Interactions;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils;
+using View.Overlay;
 
 namespace View.Dialogue {
-  [RequireComponent(typeof(RectTransform))]
-  public class DialogueButton : MonoBehaviour {
-    public event UnityAction Clicked {
-      add => _button.onClick.AddListener(value);
-      remove => _button.onClick.RemoveListener(value);
+  [DefaultExecutionOrder(300)]
+  public class DialogueButton : Selectable, IPointerClickHandler {
+    public enum ActionType {
+      None,
+      Play,
+      Skip,
+      Cancel,
     }
 
-    private Canvas _canvas;
-    private RectTransform _rectTransform;
-    private Button _button;
-    private Conversation conversation;
+    public event Action Clicked;
 
-    private void Awake() {
-      _canvas = GetComponentInParent<Canvas>();
-      _button = GetComponent<Button>();
-      _rectTransform = GetComponent<RectTransform>();
-      gameObject.SetActive(false);
+    public Vector3 ButtonPosition =>
+      _overlay.CameraManager.MainCamera.ScreenToWorldPoint(
+        transform.position + Vector3.forward
+      );
+
+    [Inject] [SerializeField] private OverlayChannel _overlay;
+    private InteractionGizmo _gizmo;
+    private bool _hasGizmo;
+    private bool _dirtyGizmo;
+    private ActionType _actionType;
+
+    protected override void DoStateTransition(
+      SelectionState state,
+      bool instant
+    ) {
+      UpdateGizmo();
     }
 
-    public void SetInteraction(Conversation conversation) {
-      this.conversation = conversation;
-      gameObject.SetActive(this.conversation != null);
+    public void SetAction(ActionType actionType) {
+      _actionType = actionType;
+      UpdateGizmo();
     }
 
-    private void LateUpdate() {
-      if (conversation != null) {
-        _rectTransform.anchoredPosition =
-          Camera.main.WorldToScreenPoint(conversation.transform.position)
-          / _canvas.scaleFactor;
+    public void SetGizmo(InteractionGizmo gizmo) {
+      if (_gizmo != null) {
+        _gizmo.MoveTo(_gizmo.DefaultPosition);
       }
+      _gizmo = gizmo;
+      _dirtyGizmo = false;
+      if (gizmo != null) {
+        _hasGizmo = true;
+        _dirtyGizmo = true;
+      } else {
+        _hasGizmo = false;
+      }
+    }
+
+    public void DrivenUpdate() {
+      if (_hasGizmo) {
+        if (_dirtyGizmo) {
+          _dirtyGizmo = false;
+          _gizmo.MoveTo(ButtonPosition);
+          UpdateGizmo();
+        }
+
+        _gizmo.DesiredPosition = ButtonPosition;
+      }
+    }
+
+    private void UpdateGizmo() {
+      if (!_hasGizmo) {
+        return;
+      }
+
+      _gizmo.Icon = _actionType switch {
+        ActionType.Play => InteractionGizmo.PlayIcon,
+        ActionType.Skip => InteractionGizmo.SkipIcon,
+        ActionType.Cancel => InteractionGizmo.CancelIcon,
+        _ => InteractionGizmo.DialogueIcon,
+      };
+
+      _gizmo.IsExpanded = true;
+      _gizmo.IsFocused = true;
+      _gizmo.IsHovered = currentSelectionState == SelectionState.Highlighted;
+      _gizmo.IsDisabled = currentSelectionState == SelectionState.Disabled;
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+      Clicked?.Invoke();
     }
   }
 }

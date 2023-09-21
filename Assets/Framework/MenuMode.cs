@@ -14,6 +14,7 @@ namespace Framework {
     }
 
     public override IEnumerator OnStart() {
+      Time.timeScale = 0;
       yield return SceneManager.LoadSceneAsync(
         _sceneIndex,
         LoadSceneMode.Additive
@@ -22,10 +23,12 @@ namespace Framework {
       SceneManager.SetActiveScene(
         SceneManager.GetSceneByBuildIndex(_sceneIndex)
       );
+      Time.timeScale = 1;
       _input.SwitchToUI();
     }
 
     public override IEnumerator OnEnd() {
+      Time.timeScale = 0;
       yield return SceneManager.UnloadSceneAsync(_sceneIndex);
     }
 

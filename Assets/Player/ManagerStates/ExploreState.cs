@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
-using View;
+using Utils.Tweening;
+using View.Overlay;
 
 namespace Player.ManagerStates {
   public class ExploreState : ManagerState {
@@ -14,9 +15,9 @@ namespace Player.ManagerStates {
     }
 
     [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [Inject] [SerializeField] private PlayerConfig _config;
-    [Inject] [SerializeField] private GameObject _targetPrefab;
+    [Inject] [SerializeField] private TargetController _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
 
     private Command _currentCommand = Command.None;
@@ -24,7 +25,7 @@ namespace Player.ManagerStates {
     private Vector3 _targetPosition;
     private PlayerType _currentPlayer = PlayerType.None;
     private PlayerType _commandedPlayer = PlayerType.None;
-    private GameObject _target;
+    private TargetController _target;
 
     private PlayerController CurrentController => _players[_currentPlayer];
 
@@ -36,9 +37,7 @@ namespace Player.ManagerStates {
         }
         _currentPlayer = value;
         CurrentController.SetFocus(1);
-        _target.SetActive(value != PlayerType.None);
-        _target.GetComponent<MeshRenderer>().material =
-          _players[value]?.Material;
+        _target.Visible = false;
       }
     }
 
@@ -48,14 +47,18 @@ namespace Player.ManagerStates {
     }
 
     public override void OnEnter() {
-      _view.HUD.SetActive(true);
-      _view.HUD.SetInteractive(true);
+      base.OnEnter();
+      _currentPlayer = PlayerType.None;
+      _overlay.HUD.SetActive(true);
+      _overlay.HUD.SetInteractive(true);
+      Manager.CameraWeightTween.Settle();
     }
 
     public override void OnExit() {
-      _view.HUD.SetActive(false);
-      _view.HUD.SetInteractive(false);
-      _target.SetActive(false);
+      base.OnExit();
+      _overlay.HUD.SetActive(false);
+      _overlay.HUD.SetInteractive(false);
+      _target.Visible = false;
     }
 
     public override void OnUpdate() {
@@ -64,16 +67,22 @@ namespace Player.ManagerStates {
       _interactable = null;
 
       var mousePosition = _targetAction.action.ReadValue<Vector2>();
-      var ray = Camera.main.ScreenPointToRay(mousePosition);
+      var ray =
+        _overlay.CameraManager.MainCamera.ScreenPointToRay(mousePosition);
 
       if (Physics.Raycast(ray, out var hit, 100, _config.GroundMask)) {
         _currentCommand = Command.Move;
         _targetPosition = hit.point.ToNavMesh();
       }
 
+      int interactionMask = _config.InteractionMask;
+      if (!_players.LT.InteractState.IsActive
+        && !_players.RT.InteractState.IsActive) {
+        interactionMask |= _config.PlayerMask;
+      }
       if (!EventSystem.current.IsPointerOverGameObject()
         && !IsNavigating(CurrentController)
-        && Physics.Raycast(ray, out hit, 100, _config.InteractionMask)
+        && Physics.Raycast(ray, out hit, 100, interactionMask)
         && hit.transform.TryGetComponent<Interactable>(out var interactable)) {
         _currentCommand = Command.Interact;
         _interactable = interactable;
@@ -93,13 +102,11 @@ namespace Player.ManagerStates {
       UpdatePlayer(_players.RT);
 
       var currentController = CurrentController;
-      _view.HUD.SetInteractive(!IsNavigating(currentController));
+      _overlay.HUD.SetInteractive(!IsNavigating(currentController));
+      _target.DrivenUpdate(currentController);
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        _target.transform.position = currentController.TargetPosition;
-        _target.SetActive(true);
-      } else {
-        _target.SetActive(false);
+        Manager.FocusedPlayer = currentController.Type;
       }
     }
 

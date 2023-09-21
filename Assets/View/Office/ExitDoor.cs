@@ -13,40 +13,41 @@ namespace View.Office {
     [SerializeField] private ExitState _state;
 
     private SpringConfig _springConfig = SpringConfig.Snappy;
-    private Dynamics _dynamics;
-    private Dynamics _handleDynamics;
+    private SpringTween _angleTween;
+    private SpringTween _handleTween;
     private float _closedAngle;
 
     private void Awake() {
       _clickable.StateChanged += HandleStateChanged;
       _state.Entered += HandleStateChanged;
       _closedAngle = _door.localRotation.eulerAngles.y;
-      _dynamics.ForceSet(_closedAngle);
+      _angleTween.ForceSet(_closedAngle);
     }
 
     private void HandleStateChanged() {
       if (_state.IsActive) {
         _springConfig = SpringConfig.Slow;
-        _dynamics.Set(_openAngle);
+        _angleTween.Set(_openAngle);
       } else {
-        _springConfig = _clickable.IsHovered
+        _springConfig = _clickable.IsFocused
           ? SpringConfig.Bouncy
           : SpringConfig.Snappy;
-        _dynamics.Set(_clickable.IsHovered ? _tiltAngle : _closedAngle);
+        _angleTween.Set(_clickable.IsFocused ? _tiltAngle : _closedAngle);
 
-        if (_clickable.IsHovered) {
-          _handleDynamics.AddImpulse(new Vector3(-600, 0));
+        if (_clickable.IsSelected) {
+          _handleTween.AddImpulse(new Vector3(-600, 0));
         }
       }
     }
 
-    private void Update() {
-      var angle = _dynamics.UnscaledUpdate(in _springConfig).x;
-      _door.localRotation = Quaternion.Euler(0, angle, 0);
+    private void FixedUpdate() {
+      if (_angleTween.FixedUpdate(_springConfig)) {
+        _door.localRotation = Quaternion.Euler(0, _angleTween.X, 0);
+      }
 
-      var handleAngle =
-        _handleDynamics.UnscaledUpdate(in SpringConfig.Bouncy).x;
-      _handle.localRotation = Quaternion.Euler(0, 0, handleAngle);
+      if (_handleTween.FixedUpdate(SpringConfig.Bouncy)) {
+        _handle.localRotation = Quaternion.Euler(0, 0, _handleTween.X);
+      }
     }
   }
 }

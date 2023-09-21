@@ -1,10 +1,10 @@
 ﻿using Aarthificial.Typewriter;
+using Cinemachine;
 using Items;
 using Player;
 using UnityEngine;
 using Utils;
-using View;
-using View.Dialogue;
+using View.Overlay;
 
 namespace Interactions {
   public class Conversation : Interactable {
@@ -30,10 +30,32 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
-    [SerializeField] private float _radius = 0.3f;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private PlayerChannel _players;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
+    [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
+    [SerializeField] private float _orthoSize = 4;
+    [SerializeField] private InteractionArea _area;
 
-    private DialogueButton _button;
+    private CinemachineVirtualCamera _camera;
+
+    protected override void Awake() {
+      base.Awake();
+      _camera = Instantiate(_cameraTemplate);
+      var cameraTarget = new GameObject("Camera Target").transform;
+      cameraTarget.SetParent(transform);
+      var position = Vector3.zero;
+      foreach (var waypoint in Waypoints) {
+        position += waypoint.Position;
+      }
+      position /= Waypoints.Length;
+      position.y += 1;
+      cameraTarget.position = position;
+
+      _camera.Follow = cameraTarget;
+      _camera.Priority = 100;
+      _camera.m_Lens.OrthographicSize = _orthoSize;
+      _camera.gameObject.SetActive(false);
+    }
 
     private void Update() {
       UpdateInteraction(PlayerType.LT);
@@ -45,7 +67,7 @@ namespace Interactions {
       Blackboard.Set(InteractionContext.Initiator, Initiator);
       Blackboard.Set(InteractionContext.Listener, Listener);
 
-      UpdateButton();
+      UpdateGizmo();
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -54,17 +76,16 @@ namespace Interactions {
         return;
       }
 
-      var distance = Vector3.Distance(
-        interaction.Player.transform.position,
-        transform.position
-      );
-
-      interaction.IsReady = distance < _radius;
+      interaction.IsReady = _area.IsPlayerInside[type];
       _interactions[type] = interaction;
     }
 
     public override void Interact(PlayerController player) {
-      player.InteractState.Enter(this);
+      if (_interactions[player.Type].IsReady) {
+        Event.Invoke(Context);
+      } else if (!_interactions[player.Type].IsActive) {
+        player.InteractState.Enter(this);
+      }
     }
 
     public void OnFocusEnter(PlayerController player) {
@@ -76,11 +97,47 @@ namespace Interactions {
       // relocate the other player if necessary
       var closestWaypoint = FindClosestWaypoint(player.transform.position);
       if (otherInteraction.IsActive && otherWaypoint == closestWaypoint) {
-        otherInteraction.Waypoint = FindClosestWaypoint(
-          otherInteraction.Player.transform.position,
-          closestWaypoint
-        );
-        _interactions[player.Type.Other()] = otherInteraction;
+        var position = player.transform.position;
+        var closestDistance = float.MaxValue;
+        InteractionWaypoint betterWaypoint = null;
+
+        var otherClosestDistance = float.MaxValue;
+        var replacementWaypoint = Waypoints[0] == closestWaypoint
+          ? Waypoints[1]
+          : Waypoints[0];
+
+        foreach (var waypoint in Waypoints) {
+          if (waypoint == closestWaypoint) {
+            continue;
+          }
+
+          var distance = Vector3.Distance(position, waypoint.Position);
+          var dot = Vector3.Dot(
+            position - closestWaypoint.Position,
+            waypoint.Position - closestWaypoint.Position
+          );
+
+          if (distance < closestDistance && dot > 0) {
+            betterWaypoint = waypoint;
+            closestDistance = distance;
+          }
+
+          var otherDistance = Vector3.Distance(
+            closestWaypoint.Position,
+            waypoint.Position
+          );
+          if (otherDistance < otherClosestDistance) {
+            replacementWaypoint = waypoint;
+            otherClosestDistance = otherDistance;
+          }
+        }
+
+        if (betterWaypoint != null) {
+          closestWaypoint = betterWaypoint;
+        } else {
+          otherInteraction.Waypoint = replacementWaypoint;
+          _interactions[player.Type.Other()] = otherInteraction;
+        }
       }
 
       _interactions[player.Type] = new Interaction(player, closestWaypoint);
@@ -99,8 +156,22 @@ namespace Interactions {
         : default;
     }
 
+    public override void OnDialogueEnter() {
+      base.OnDialogueEnter();
+      _camera.gameObject.SetActive(true);
+    }
+
+    public override void OnDialogueExit() {
+      base.OnDialogueExit();
+      _camera.gameObject.SetActive(false);
+    }
+
     public Vector3 GetPosition(PlayerController player) {
       return _interactions[player.Type].Waypoint.Position;
+    }
+
+    public Quaternion GetRotation(PlayerController player) {
+      return _interactions[player.Type].Waypoint.transform.rotation;
     }
 
     public bool IsReady(PlayerController player) {
@@ -126,25 +197,6 @@ namespace Interactions {
         HasDialogue = hasDialogue;
         OnStateChanged();
       }
-    }
-
-    private void UpdateButton() {
-      if (HasDialogue && _button == null) {
-        _button = _view.HUD.BorrowButton();
-        _button.SetInteraction(this);
-        _button.Clicked += HandleButtonClicked;
-      }
-
-      if (!HasDialogue && _button != null) {
-        _button.Clicked -= HandleButtonClicked;
-        _button.SetInteraction(null);
-        _view.HUD.ReleaseButton(_button);
-        _button = null;
-      }
-    }
-
-    private void HandleButtonClicked() {
-      Event.Invoke(Context);
     }
 
     private InteractionWaypoint FindClosestWaypoint(
@@ -180,6 +232,40 @@ namespace Interactions {
       }
 
       return -1;
+    }
+
+    private void UpdateGizmo() {
+      var ltPosition =
+        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
+          _players.LT.transform.position
+        );
+      var rtPosition =
+        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
+          _players.RT.transform.position
+        );
+
+      Gizmo.Direction = (rtPosition - ltPosition).normalized;
+      Gizmo.PlayerType = PlayerType;
+
+      // The dialogue view will take care of the gizmo
+      if (IsDialogue) {
+        return;
+      }
+
+      if (_players.Manager.DialogueState.IsActive) {
+        Gizmo.IsExpanded = false;
+        Gizmo.IsHovered = false;
+        Gizmo.IsFocused = false;
+        Gizmo.IsDisabled = true;
+        Gizmo.Icon = InteractionGizmo.DialogueIcon;
+        return;
+      }
+      Gizmo.IsDisabled = false;
+
+      Gizmo.IsExpanded = IsInteracting && HasDialogue;
+      Gizmo.IsHovered = IsHovered;
+      Gizmo.IsFocused = IsFocused;
+      Gizmo.Icon = InteractionGizmo.DialogueIcon;
     }
   }
 }

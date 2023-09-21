@@ -313,15 +313,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ScrollWheel",
-                    "type": "PassThrough",
-                    "id": "39e0f955-0ea8-4f97-b524-3666c8161e62",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MiddleClick",
                     "type": "PassThrough",
                     "id": "93a6e764-0a8b-4a07-a2c7-a4a49c557707",
@@ -574,17 +565,6 @@
                 },
                 {
                     "name": "",
-                    "id": "67af57e6-bf0f-49f0-bcd7-aaa9ef883f7a",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Mouse&Keyboard",
-                    "action": "ScrollWheel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b469155b-c12b-4a7d-a4fd-81cab261fe27",
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
@@ -628,6 +608,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "PassThrough",
+                    "id": "c5b99163-9440-4b19-94ac-76d906232f51",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -650,6 +639,17 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9e3d0da-b69d-4f82-b2a5-e109cba4a4a5",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

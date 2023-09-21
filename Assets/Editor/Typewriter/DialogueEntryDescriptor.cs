@@ -4,7 +4,7 @@ using Typewriter;
 namespace Editor.Typewriter
 {
     [CustomEntryDescriptor(typeof(DialogueEntry))]
-    public class DialogueEntryDescriptor : LocalizedRuleEntryDescriptor
+    public class DialogueEntryDescriptor : RuleEntryDescriptor
     {
         public override string Name => "Dialogue";
     }

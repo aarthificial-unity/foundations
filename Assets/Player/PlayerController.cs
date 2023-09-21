@@ -17,6 +17,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Utils;
 using View;
+using View.Overlay;
+using Debug = UnityEngine.Debug;
 
 namespace Player {
   [RequireComponent(typeof(FollowState))]
@@ -31,7 +33,7 @@ namespace Player {
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
     [Inject] public PlayerConfig Config;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     public PlayerType Type;
     public Rigidbody ChainTarget;
     public InputActionReference CommandAction;
@@ -56,9 +58,8 @@ namespace Player {
     public FMODParameter StepCharacterParam;
     public FMODParameter StepFocusParam;
 
-    private BaseState _currentState;
+    private PlayerState _currentState;
     private PlayerAnimator _animator;
-
 
     private void Awake() {
       if (FootstepAudio != null) {
@@ -74,6 +75,8 @@ namespace Player {
       IdleState = GetComponent<IdleState>();
       InteractState = GetComponent<InteractState>();
       NavigateState = GetComponent<NavigateState>();
+
+      Agent.updateRotation = false;
     }
 
     private void OnDestroy() {
@@ -106,7 +109,7 @@ namespace Player {
     }
 
     private void Start() {
-      Slot = _view.HUD.ItemSlots[Type];
+      Slot = _overlay.HUD.ItemSlots[Type];
       Slot.Dropped += HandleDropped;
       SwitchState(IdleState);
     }
@@ -117,11 +120,25 @@ namespace Player {
 
     public void DrivenUpdate() {
       _currentState.OnUpdate();
-      var speed = Agent.velocity.magnitude / Config.WalkSpeed;
-      _animator.Animator.SetFloat(_animatorSpeed, speed);
+      transform.rotation = Quaternion.RotateTowards(
+        transform.rotation,
+        _currentState.Rotation,
+        Config.RotationSpeed
+        * Time.deltaTime
+        * Agent.velocity.magnitude.ClampRemap(0, Agent.speed, 0.5f, 1)
+      );
+
+      var speed = Agent.velocity.magnitude;
+      if (Agent.remainingDistance > Agent.stoppingDistance + 1) {
+        speed = (Agent.velocity.magnitude + Agent.desiredVelocity.magnitude)
+          / 2f;
+      }
+
+      var speedFactor = speed / Config.WalkSpeed;
+      _animator.Animator.SetFloat(_animatorSpeed, speedFactor);
 
       if (FootstepAudio.IsInitialized) {
-        FootstepAudio.SetParameter(StepSpeedParam, speed);
+        FootstepAudio.SetParameter(StepSpeedParam, speedFactor);
       }
     }
 
@@ -132,7 +149,7 @@ namespace Player {
       Agent.autoBraking = true;
     }
 
-    public void SwitchState(BaseState state) {
+    public void SwitchState(PlayerState state) {
       if (_currentState == state) {
         return;
       }

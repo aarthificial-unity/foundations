@@ -8,24 +8,27 @@ using Utils;
 
 namespace Interactions {
   public class Interactable : MonoBehaviour {
+    public event Action StateChanged;
+
     [NonSerialized] public bool IsInteracting;
     [NonSerialized] public bool IsFocused;
     [NonSerialized] public bool IsHovered;
+    [NonSerialized] public bool IsDialogue;
     [NonSerialized] public PlayerType PlayerType;
     [NonSerialized] public bool HasDialogue;
     [NonSerialized] public EntryReference Initiator;
     [NonSerialized] public EntryReference Listener;
+    public InteractionGizmo Gizmo;
 
     [Inject] [SerializeField] protected PlayerChannel Players;
     public TypewriterEvent Event;
 
-    public event Action StateChanged;
     public Blackboard Blackboard = new();
     [SerializeField] protected InteractionContext Context;
 
-    private void Awake() {
+    protected virtual void Awake() {
       Context.Interaction = Blackboard;
-      Context.Setup();
+      Context.Setup(this);
       Blackboard.Set(InteractionContext.PickUp, 1);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);
@@ -38,10 +41,6 @@ namespace Interactions {
 
     public virtual void Interact(PlayerController player) { }
 
-    public virtual void OnInteractionEnter() { }
-
-    public virtual void OnInteractionExit() { }
-
     public void OnHoverEnter() {
       IsHovered = true;
       OnStateChanged();
@@ -52,7 +51,17 @@ namespace Interactions {
       OnStateChanged();
     }
 
-    protected void OnStateChanged() {
+    public virtual void OnDialogueEnter() {
+      IsDialogue = true;
+      OnStateChanged();
+    }
+
+    public virtual void OnDialogueExit() {
+      IsDialogue = false;
+      OnStateChanged();
+    }
+
+    protected virtual void OnStateChanged() {
       StateChanged?.Invoke();
     }
   }

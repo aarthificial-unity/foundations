@@ -173,12 +173,14 @@ GameObject:
   - component: {fileID: 4023019917035565841}
   - component: {fileID: 2844085693279365743}
   - component: {fileID: 1239912855192742084}
+  - component: {fileID: 3271100436145471721}
   - component: {fileID: 7182595737060933988}
   - component: {fileID: 2347777406688560371}
   - component: {fileID: 4695604894641087686}
   - component: {fileID: 5350247751762554484}
   - component: {fileID: 2422429867999183394}
   - component: {fileID: 9220605009596291365}
+  - component: {fileID: 3786397423081031399}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -247,6 +249,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 0
+--- !u!54 &3271100436145471721
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307801604843387854}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7182595737060933988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Material: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   Config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
-  _view: {fileID: 11400000, guid: f18087815d5a83e4b843a54d36bae20f, type: 2}
+  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   Type: 0
   ChainTarget: {fileID: 2839522992124909877}
   CommandAction: {fileID: 0}
@@ -349,3 +378,18 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+--- !u!114 &3786397423081031399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307801604843387854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8084cf3afdd848d38f2d36d54e7dd26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 8f38c9a1de57a664ba68a864013554e1, type: 2}
+  _interactable: {fileID: 9220605009596291365}
+  _renderers: []

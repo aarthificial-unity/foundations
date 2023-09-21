@@ -7,6 +7,10 @@ namespace Input {
     [NonSerialized] public string CurrentMap = "UI";
     public event Action<string> MapChanged;
 
+    [Header("Gameplay Actions")]
+    public InputActionReference GameplayPause;
+
+    [Header("UI Actions")]
     public InputActionReference UINavigate;
     public InputActionReference UISubmit;
     public InputActionReference UICancel;
@@ -17,12 +21,15 @@ namespace Input {
     public InputActionReference UIMiddleClick;
 
     public void SwitchToGameplay() {
-      CurrentMap = "Gameplay";
-      MapChanged?.Invoke(CurrentMap);
+      SetMap("Gameplay");
     }
 
     public void SwitchToUI() {
-      CurrentMap = "UI";
+      SetMap("UI");
+    }
+
+    public void SetMap(string map) {
+      CurrentMap = map;
       MapChanged?.Invoke(CurrentMap);
     }
   }

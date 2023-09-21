@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Input;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
@@ -45,7 +44,7 @@ namespace Framework {
       IsPaused = false;
       Time.timeScale = 0;
 
-      var ui = SceneManager.LoadSceneAsync(
+      yield return SceneManager.LoadSceneAsync(
         _uiSceneIndex,
         LoadSceneMode.Additive
       );
@@ -53,7 +52,6 @@ namespace Framework {
         _activeScene,
         LoadSceneMode.Additive
       );
-      yield return ui;
 
       SceneManager.SetActiveScene(
         SceneManager.GetSceneByBuildIndex(_activeScene)
@@ -71,9 +69,8 @@ namespace Framework {
       _state = GameModeState.Ending;
       Time.timeScale = 0;
 
-      var ui = SceneManager.UnloadSceneAsync(_uiSceneIndex);
       yield return SceneManager.UnloadSceneAsync(_activeScene);
-      yield return ui;
+      yield return SceneManager.UnloadSceneAsync(_uiSceneIndex);
 
       _state = GameModeState.Ended;
     }
@@ -93,6 +90,11 @@ namespace Framework {
 
       Time.timeScale = 0;
       yield return SceneManager.UnloadSceneAsync(_activeScene);
+      yield return SceneManager.UnloadSceneAsync(_uiSceneIndex);
+      yield return SceneManager.LoadSceneAsync(
+        _uiSceneIndex,
+        LoadSceneMode.Additive
+      );
       yield return SceneManager.LoadSceneAsync(
         _activeScene,
         LoadSceneMode.Additive

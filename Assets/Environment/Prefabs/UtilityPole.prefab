@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3210956458222530620}
   - component: {fileID: 2025991721185246850}
   - component: {fileID: 6882447242100966645}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: UtilityPole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8207278089299840653}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -309,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0f4684b1ae83a5f44a60b931b6b67288,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -403,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -503,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f72393abba943de4f88bf0fb8393c590,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,14 +2,16 @@
 using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
+using Input;
 using Interactions;
+using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Rendering;
 using Utils;
-using View;
 using View.Dialogue;
+using View.Overlay;
 
 namespace Player.ManagerStates {
   [Serializable]
@@ -21,20 +23,26 @@ namespace Player.ManagerStates {
       Finished,
     }
 
+    [NonSerialized] public BaseEntry CurrentEntry;
+    [NonSerialized] public InteractionContext Context;
+
     [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private ViewChannel _view;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private Volume _volume;
     [SerializeField] private float _interactionCooldown = 0.5f;
-    private CommandOption[] _options = new CommandOption[16];
+    private List<DialogueEntry> _options = new();
     private BaseEntry[] _rules = new BaseEntry[16];
 
     private SubState _subState = SubState.Choice;
     private float _lastUpdateTime;
 
     private BaseEntry _queuedEntry;
-    private BaseEntry _currentEntry;
-    private ITypewriterContext _context;
     private bool _isCancellable;
+
+    protected override void Awake() {
+      base.Awake();
+      Assert.IsNull(Context, "How?");
+    }
 
     private void OnEnable() {
       TypewriterDatabase.Instance.AddListener(HandleTypewriterEvent);
@@ -48,12 +56,21 @@ namespace Player.ManagerStates {
       BaseEntry entry,
       ITypewriterContext context
     ) {
-      // if (context.FindMatchingRule((EntryReference)entry, out var match)) {
-      _context = context;
-      _queuedEntry = entry;
-      // }
+      var newContext = context as InteractionContext;
+      Assert.IsNotNull(newContext);
 
+      if (Context != newContext) {
+        _overlay.Dialogue.SetContext(newContext);
+        Context?.Interactable.OnDialogueExit();
+        Context = newContext;
+        Context.Interactable.OnDialogueEnter();
+      }
+
+      _queuedEntry = entry;
+
+      Debug.Log($"New rule occurred: {entry.Key}");
       if (!IsActive) {
+        Debug.Log($"Starting conversation: {entry.Key}");
         Enter();
       }
     }
@@ -62,22 +79,27 @@ namespace Player.ManagerStates {
       base.OnEnter();
 
       _volume.weight = 1;
-      _view.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
-      _view.Dialogue.Wheel.Clicked += HandleClicked;
-      _view.Dialogue.Track.Finished += HandleFinished;
-      _view.Dialogue.SetActive(true);
-      _view.Dialogue.Track.Restart();
+      _overlay.Dialogue.Wheel.OptionSelected += HandleOptionSelected;
+      _overlay.Dialogue.Wheel.Button.Clicked += HandleButtonClicked;
+      _overlay.Dialogue.Wheel.Clicked += HandleBackdropClicked;
+      _overlay.Dialogue.Track.Clicked += HandleBackdropClicked;
+      _overlay.Dialogue.Track.Finished += HandleFinished;
+      _overlay.Dialogue.SetActive(true);
+      _overlay.Dialogue.Track.Restart();
+      _overlay.Dialogue.Wheel.Restart();
       _lastUpdateTime = Time.time;
     }
 
     public override void OnExit() {
       base.OnExit();
-      _view.Dialogue.Wheel.OptionSelected -= HandleOptionSelected;
-      _view.Dialogue.Wheel.Clicked -= HandleClicked;
-      _view.Dialogue.Track.Finished -= HandleFinished;
-      _view.Dialogue.SetActive(false);
+      _overlay.Dialogue.Wheel.OptionSelected -= HandleOptionSelected;
+      _overlay.Dialogue.Wheel.Button.Clicked -= HandleButtonClicked;
+      _overlay.Dialogue.Wheel.Clicked -= HandleBackdropClicked;
+      _overlay.Dialogue.Track.Clicked -= HandleBackdropClicked;
+      _overlay.Dialogue.Track.Finished -= HandleFinished;
+      _overlay.Dialogue.SetActive(false);
       _volume.weight = 0;
-      _currentEntry = null;
+      CurrentEntry = null;
       _queuedEntry = null;
     }
 
@@ -85,26 +107,28 @@ namespace Player.ManagerStates {
       _players.LT.DrivenUpdate();
       _players.RT.DrivenUpdate();
 
-      if (_currentEntry != null) {
+      if (CurrentEntry != null) {
         return;
       }
 
       if (_queuedEntry == null) {
-        var initial = _context.Get(InteractionContext.InitialEvent);
-        if (_context.Process(initial)) {
+        var initial = Context.Get(InteractionContext.InitialEvent);
+        if (Context.Process(initial)) {
           return;
         }
 
         if (_subState != SubState.Proceed) {
           Exit();
         } else {
-          _view.Dialogue.Wheel.SetAction("X");
+          _overlay.Dialogue.Wheel.Button.SetAction(
+            DialogueButton.ActionType.Cancel
+          );
         }
 
         return;
       }
 
-      if (_subState == SubState.Proceed && _queuedEntry is not ChoiceEntry) {
+      if (_subState == SubState.Proceed && _queuedEntry is DialogueEntry) {
         return;
       }
 
@@ -114,51 +138,59 @@ namespace Player.ManagerStates {
     }
 
     private void ProcessEntry(BaseEntry entry) {
-      _currentEntry = entry;
+      CurrentEntry = entry;
+      Debug.Log($"Processing: {entry.Key}");
       if (entry is DialogueEntry dialogue) {
-        _view.Dialogue.Wheel.SetOptions(_options, 0);
-        _view.Dialogue.Wheel.SetAction(">>");
-        _view.Dialogue.Track.SetDialogue(dialogue, GetSpeaker(dialogue));
+        var speaker = Context.Get(dialogue.Speaker.ID);
+        _players.TryGetPlayer(speaker, out var player);
+        Assert.IsNotNull(player, $"Missing speaker: {speaker}");
+
+        _options.Clear();
+        _overlay.Dialogue.Wheel.SetOptions(_options);
+        _overlay.Dialogue.Wheel.Button.SetAction(
+          DialogueButton.ActionType.Skip
+        );
+        _overlay.Dialogue.Track.SetDialogue(dialogue, player);
         _subState = SubState.Dialogue;
       } else if (entry is ChoiceEntry choice) {
-        var ruleCount = _context.FindMatchingRules(
+        var ruleCount = Context.FindMatchingRules(
           (EntryReference)choice,
           _rules
         );
-        var count = 0;
+        _options.Clear();
         for (var i = 0; i < ruleCount; i++) {
           var rule = _rules[i];
-          if (rule is not DialogueEntry response) {
-            continue;
+          if (rule is DialogueEntry response) {
+            _options.Add(response);
           }
-          _options[count++] = new CommandOption {
-            Text = response.Text.GetLocalizedString(),
-            IsRT = response.Speaker == _players.RT.Fact,
-          };
         }
 
-        if (count == 0) {
-          _currentEntry = null;
+        if (_options.Count == 0) {
+          CurrentEntry = null;
           return;
         }
 
-        _view.Dialogue.Wheel.SetOptions(_options, count);
-        _view.Dialogue.Wheel.SetAction(choice.IsCancellable ? "X" : "");
+        _overlay.Dialogue.Wheel.SetOptions(_options);
+        _overlay.Dialogue.Wheel.Button.SetAction(
+          choice.IsCancellable
+            ? DialogueButton.ActionType.Cancel
+            : DialogueButton.ActionType.None
+        );
         _subState = SubState.Choice;
         _isCancellable = choice.IsCancellable;
-        _context.Process(choice);
+        choice.Apply(Context);
       } else if (entry is EventEntry rule) {
-        _currentEntry = null;
+        CurrentEntry = null;
         _subState = SubState.Finished;
-        _context.Process(rule);
+        Context.Process(rule);
       } else {
-        _currentEntry = null;
+        CurrentEntry = null;
         _subState = SubState.Finished;
       }
     }
 
     private void HandleFinished(DialogueEntry entry, bool force) {
-      Assert.AreEqual(_currentEntry, entry);
+      Assert.AreEqual(CurrentEntry, entry);
       Assert.AreEqual(_subState, SubState.Dialogue);
 
       if (!force) {
@@ -166,21 +198,22 @@ namespace Player.ManagerStates {
       }
 
       ApplyRule(entry);
-      _currentEntry = null;
+      CurrentEntry = null;
       _subState = SubState.Proceed;
-      _view.Dialogue.Wheel.SetAction(">");
-      _context.Process(entry);
+      _overlay.Dialogue.Wheel.Button.SetAction(DialogueButton.ActionType.Play);
+      Context.Process(entry);
     }
 
     private void HandleOptionSelected(int index) {
       Assert.AreEqual(_subState, SubState.Choice);
       ApplyRule(_rules[index]);
       _subState = SubState.Finished;
-      _currentEntry = null;
-      _context.Process(_rules[index]);
+      CurrentEntry = null;
+      Debug.Log($"Selected option: {_rules[index].Key}");
+      Context.Process(_rules[index]);
     }
 
-    private void HandleClicked() {
+    private void HandleButtonClicked() {
       var duration = Time.time - _lastUpdateTime;
       _lastUpdateTime = 0;
       if (duration < _interactionCooldown) {
@@ -195,7 +228,24 @@ namespace Player.ManagerStates {
           Exit();
           break;
         case SubState.Dialogue:
-          _view.Dialogue.Track.Skip();
+          _overlay.Dialogue.Track.Skip();
+          break;
+        case SubState.Proceed:
+          _subState = SubState.Finished;
+          break;
+      }
+    }
+
+    private void HandleBackdropClicked() {
+      var duration = Time.time - _lastUpdateTime;
+      _lastUpdateTime = 0;
+      if (duration < _interactionCooldown) {
+        return;
+      }
+
+      switch (_subState) {
+        case SubState.Dialogue:
+          _overlay.Dialogue.Track.Skip();
           break;
         case SubState.Proceed:
           _subState = SubState.Finished;
@@ -204,17 +254,16 @@ namespace Player.ManagerStates {
     }
 
     private void ApplyRule(BaseEntry rule) {
-      // _context.Apply(rule);
       if (rule is not DialogueEntry dialogue) {
         return;
       }
-      _context.Set(InteractionContext.CurrentSpeaker, dialogue.Speaker.ID);
+      Context.Set(InteractionContext.CurrentSpeaker, dialogue.Speaker.ID);
 
       PlayerController player;
       foreach (var dispatcher in dialogue.OnApply) {
         if (dispatcher.Reference.ID == InteractionContext.CallOther
           && _players.TryGetPlayer(
-            _context.Get(InteractionContext.Initiator),
+            Context.Get(InteractionContext.Initiator),
             out player
           )) {
           player.Other.InteractState.Enter(player.InteractState.Conversation);
@@ -222,19 +271,15 @@ namespace Player.ManagerStates {
 
         if (dispatcher.Reference.ID == InteractionContext.PickUp
           && _players.TryGetPlayer(
-            _context.Get(InteractionContext.CurrentSpeaker),
+            Context.Get(InteractionContext.CurrentSpeaker),
             out player
           )
           && player.InteractState.Conversation.Item != null
           && player.CanPickUpItem()) {
-          _context.Set(InteractionContext.PickUp, 0);
+          Context.Set(InteractionContext.PickUp, 0);
           player.PickUp(player.InteractState.Conversation.Item);
         }
       }
-    }
-
-    private bool GetSpeaker(DialogueEntry entry) {
-      return _context.Get(entry.Speaker.ID) == InteractionContext.LT;
     }
 
     public void Enter() {
@@ -243,6 +288,9 @@ namespace Player.ManagerStates {
 
     private void Exit() {
       _subState = SubState.Finished;
+      Context.Interactable.OnDialogueExit();
+      Context = null;
+      _overlay.Dialogue.SetContext(null);
       Manager.SwitchState(Manager.ExploreState);
     }
   }
