@@ -5146,9 +5146,6 @@ MonoBehaviour:
   _tapePlayer: {fileID: 895906931}
   _selectionScreen: {fileID: 217215584}
   _saveMenu: {fileID: 1455234593}
-  _ejectButton: {fileID: 738140601}
-  _initialCamera: {fileID: 73464354}
-  _backdrop: {fileID: 1391715818}
 --- !u!4 &853743974
 Transform:
   m_ObjectHideFlags: 0
@@ -5212,6 +5209,7 @@ GameObject:
   - component: {fileID: 961739750}
   - component: {fileID: 961739754}
   - component: {fileID: 961739756}
+  - component: {fileID: 961739757}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5387,6 +5385,19 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &961739757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961739749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &966745383
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,6 +5463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _newGameButton: {fileID: 1263582030}
   _continueButton: {fileID: 1329904985}
+  _ejectButton: {fileID: 738140601}
   _exitButton: {fileID: 218504167}
   _settingsButton: {fileID: 1567338172}
   _settingsExitButton: {fileID: 43880730}
@@ -5939,6 +5951,7 @@ MonoBehaviour:
     type: 3}
   _range: {x: 0.005, y: 0.005}
   _target: {fileID: 594427575}
+  _mainCamera: {fileID: 961739752}
 --- !u!114 &1152413852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6476,7 +6489,7 @@ PrefabInstance:
     - target: {fileID: 2474315951711707562, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
       propertyPath: m_fontColor.a
-      value: 0.11764706
+      value: 0.47058824
       objectReference: {fileID: 0}
     - target: {fileID: 2474315951711707562, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
@@ -6496,7 +6509,7 @@ PrefabInstance:
     - target: {fileID: 2474315951711707562, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4287073172
+      value: 2030043135
       objectReference: {fileID: 0}
     - target: {fileID: 4338380334164648230, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
@@ -6509,11 +6522,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6abcd6ea3b2e56149ac970e8da78b2b1,
         type: 2}
-    - target: {fileID: 4994140768751159520, guid: e6b6f0ae35e712741b23390695dd7017,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4994140768751159520, guid: e6b6f0ae35e712741b23390695dd7017,
         type: 3}
       propertyPath: _isInteractable

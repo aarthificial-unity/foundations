@@ -19,7 +19,7 @@ namespace Framework {
     public override void OnEnter() {
       base.OnEnter();
       IsPaused = false;
-      _activeScene = 1;
+      _activeScene = App.Save.Current.SceneIndex;
       if (SceneManager.GetActiveScene().buildIndex != _activeScene) {
         SceneManager.LoadScene(_activeScene);
       }

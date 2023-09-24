@@ -1,6 +1,7 @@
 using Audio;
 using FMODUnity;
 using Input;
+using Saves;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ namespace Framework {
     public static GameManager Game;
     public static InputManager Input;
     public static AudioManager Audio;
+    public static SaveManager Save;
     public static InputActions Actions;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -27,6 +29,7 @@ namespace Framework {
       Game = app.GetComponent<GameManager>();
       Input = app.GetComponent<InputManager>();
       Audio = app.GetComponent<AudioManager>();
+      Save = app.GetComponent<SaveManager>();
       Actions = Input.Actions;
 
       Game.DrivenAwake();
