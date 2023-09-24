@@ -79,7 +79,10 @@ namespace DevTools.CSV {
       _lookup.Add("is_LT_present", InteractionContext.IsLTPresent);
       _lookup.Add("is_RT_present", InteractionContext.IsRTPresent);
       _lookup.Add("call_other", InteractionContext.CallOther);
-      _lookup.Add("pick_up", InteractionContext.PickUp);
+      _lookup.Add("enter", InteractionContext.Enter);
+      _lookup.Add("available_item", InteractionContext.AvailableItem);
+      _lookup.Add("LT_item", InteractionContext.LTItem);
+      _lookup.Add("RT_item", InteractionContext.RTItem);
 
       BaseEntry previous = null;
       for (var i = 1; i < rows.Count; i++) {
@@ -104,6 +107,9 @@ namespace DevTools.CSV {
             break;
           case "fact":
             type = typeof(FactEntry);
+            break;
+          case "item":
+            type = typeof(ItemEntry);
             break;
           default:
             Debug.LogError(
@@ -149,6 +155,7 @@ namespace DevTools.CSV {
         try {
           switch (cells.Type()) {
             case "fact":
+            case "item":
               CreateFactEntry(cells, previous);
               break;
             case "event":

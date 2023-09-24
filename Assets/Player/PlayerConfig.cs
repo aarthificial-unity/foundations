@@ -12,6 +12,7 @@ namespace Player {
     public LayerMask GroundMask;
     public float Acceleration = 30;
     public float WalkSpeed = 5;
+    public float Smoothing = 5;
     public float RotationSpeed = 400;
     public float CloseDistance = 2;
     public float MinDistance = 4;

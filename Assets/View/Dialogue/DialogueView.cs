@@ -20,10 +20,10 @@ namespace View.Dialogue {
     private CanvasGroup _canvasGroup;
     private PlayerType _presentPlayers;
     private Canvas _canvas;
-    private InteractionContext _context;
+    public InteractionContext Context;
 
     private void Awake() {
-      _context = null;
+      Context = null;
       _canvasGroup = GetComponent<CanvasGroup>();
       _canvas = GetComponentInParent<Canvas>();
       _overlay.Dialogue = this;
@@ -31,8 +31,8 @@ namespace View.Dialogue {
     }
 
     public void SetContext(InteractionContext context) {
-      _context = context;
-      Wheel.Button.SetGizmo(_context?.Interactable.Gizmo);
+      Context = context;
+      Wheel.Button.SetGizmo(Context?.Interactable.Gizmo);
     }
 
     public void DrivenUpdate(Vector3 lt, Vector3 rt) {
@@ -59,8 +59,8 @@ namespace View.Dialogue {
         / 2;
       var capsuleSize = WorldToCanvas * new Vector2(0.5f, 1f);
 
-      if (_context != null) {
-        _presentPlayers = _context.Interactable.PlayerType;
+      if (Context != null) {
+        _presentPlayers = Context.Interactable.PlayerType;
       }
 
       PlayerFrame = _presentPlayers switch {

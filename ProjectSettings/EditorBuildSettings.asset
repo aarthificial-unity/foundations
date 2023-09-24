@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Pause.unity
     guid: b71a60da96d824b408a955c879080862
   - enabled: 1
+    path: Assets/Scenes/Intro/EntryGate.unity
+    guid: d3d00d6c72bccf7478ca19004637feca
+  - enabled: 1
     path: Assets/Scenes/Intro/LoadingDocks.unity
     guid: 60d535fdc5996bf489a8d6f2fb7f5827
   m_configObjects:

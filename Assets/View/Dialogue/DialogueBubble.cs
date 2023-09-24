@@ -116,6 +116,7 @@ namespace View.Dialogue {
       _fillBox.Color = backgroundColor;
       _fillBox.TextureStrength = settings.TextureStrength;
       _fillBox.Dash = settings.Stroke ? 4 : 0;
+      _arrowGroup.gameObject.SetActive(!settings.HideArrow);
 
       _layoutTween.ForceSet(0, 0);
       _layoutTween.Set(1, 0);

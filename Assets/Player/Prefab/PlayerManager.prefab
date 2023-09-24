@@ -53,12 +53,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
   _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _rtPrefab: {fileID: 2897407815665303685, guid: 7695e04cceb218c45a115902e4ccb462,
-    type: 3}
-  _ltPrefab: {fileID: 5244182199563603624, guid: 92e7c9ff0c925d449ba5ab7811653d5e,
-    type: 3}
-  _rtStartPosition: {x: -1.56, y: 1, z: 0}
-  _ltStartPosition: {x: 1.47, y: 1.057133, z: 1.77}
+  _setups:
+    LT:
+      _prefab: {fileID: 5244182199563603624, guid: 92e7c9ff0c925d449ba5ab7811653d5e,
+        type: 3}
+      _startPosition: {x: 0, y: 0, z: 0}
+      _startRotation: {x: 0, y: 0, z: 0, w: 0}
+    RT:
+      _prefab: {fileID: 2897407815665303685, guid: 7695e04cceb218c45a115902e4ccb462,
+        type: 3}
+      _startPosition: {x: 0, y: 0, z: 0}
+      _startRotation: {x: 0, y: 0, z: 0, w: 0}
   _cameraPrefab: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
 --- !u!114 &4796299548502591021

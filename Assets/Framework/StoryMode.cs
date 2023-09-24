@@ -26,6 +26,10 @@ namespace Framework {
     private GameModeState _state = GameModeState.Ended;
     private int _activeScene = 3;
 
+    public bool IsReady() {
+      return _state == GameModeState.Started;
+    }
+
     public override void Setup(GameManager manager) {
       base.Setup(manager);
       _state = GameModeState.Ended;
@@ -107,6 +111,30 @@ namespace Framework {
       _state = GameModeState.Started;
 
       Reloaded?.Invoke();
+    }
+
+    public void SwapScene(string scenePath) {
+      if (!IsStarted()) {
+        return;
+      }
+
+      _state = GameModeState.Loading;
+      Manager.StartCoroutine(SwapSceneCoroutine(scenePath));
+    }
+
+    private IEnumerator SwapSceneCoroutine(string scenePath) {
+      Time.timeScale = 0;
+
+      yield return SceneManager.UnloadSceneAsync(_activeScene);
+      yield return SceneManager.LoadSceneAsync(
+        scenePath,
+        LoadSceneMode.Additive
+      );
+      SceneManager.SetActiveScene(SceneManager.GetSceneByPath(scenePath));
+      _activeScene = SceneManager.GetActiveScene().buildIndex;
+
+      Time.timeScale = 1;
+      _state = GameModeState.Started;
     }
 
     public void Pause() {

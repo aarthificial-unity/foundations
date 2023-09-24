@@ -197,7 +197,6 @@ namespace Player.ManagerStates {
         _lastUpdateTime = Time.time;
       }
 
-      ApplyRule(entry);
       CurrentEntry = null;
       _subState = SubState.Proceed;
       _overlay.Dialogue.Wheel.Button.SetAction(DialogueButton.ActionType.Play);
@@ -206,7 +205,6 @@ namespace Player.ManagerStates {
 
     private void HandleOptionSelected(int index) {
       Assert.AreEqual(_subState, SubState.Choice);
-      ApplyRule(_rules[index]);
       _subState = SubState.Finished;
       CurrentEntry = null;
       Debug.Log($"Selected option: {_rules[index].Key}");
@@ -250,35 +248,6 @@ namespace Player.ManagerStates {
         case SubState.Proceed:
           _subState = SubState.Finished;
           break;
-      }
-    }
-
-    private void ApplyRule(BaseEntry rule) {
-      if (rule is not DialogueEntry dialogue) {
-        return;
-      }
-      Context.Set(InteractionContext.CurrentSpeaker, dialogue.Speaker.ID);
-
-      PlayerController player;
-      foreach (var dispatcher in dialogue.OnApply) {
-        if (dispatcher.Reference.ID == InteractionContext.CallOther
-          && _players.TryGetPlayer(
-            Context.Get(InteractionContext.Initiator),
-            out player
-          )) {
-          player.Other.InteractState.Enter(player.InteractState.Conversation);
-        }
-
-        if (dispatcher.Reference.ID == InteractionContext.PickUp
-          && _players.TryGetPlayer(
-            Context.Get(InteractionContext.CurrentSpeaker),
-            out player
-          )
-          && player.InteractState.Conversation.Item != null
-          && player.CanPickUpItem()) {
-          Context.Set(InteractionContext.PickUp, 0);
-          player.PickUp(player.InteractState.Conversation.Item);
-        }
       }
     }
 

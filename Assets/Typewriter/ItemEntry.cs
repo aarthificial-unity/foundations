@@ -1,8 +1,10 @@
 ﻿using Aarthificial.Typewriter.Entries;
-using UnityEngine.AddressableAssets;
+using Items;
+using UnityEngine;
 
 namespace Typewriter {
   public class ItemEntry : FactEntry {
-    public AssetReference PrefabReference;
+    public Sprite Icon;
+    public Item Prefab;
   }
 }
