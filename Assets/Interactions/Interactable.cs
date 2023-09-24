@@ -4,7 +4,6 @@ using Aarthificial.Typewriter.References;
 using Aarthificial.Typewriter.Tools;
 using Player;
 using UnityEngine;
-using Utils;
 
 namespace Interactions {
   public class Interactable : MonoBehaviour {
@@ -19,16 +18,16 @@ namespace Interactions {
     [NonSerialized] public EntryReference Initiator;
     [NonSerialized] public EntryReference Listener;
     public InteractionGizmo Gizmo;
-
-    [Inject] [SerializeField] protected PlayerChannel Players;
     public TypewriterEvent Event;
 
     public Blackboard Blackboard = new();
     public InteractionContext Context;
+    protected PlayerManager Players;
 
     protected virtual void Awake() {
+      Players = FindObjectOfType<PlayerManager>();
       Context.Interaction = Blackboard;
-      Context.Global = Players.Manager.GlobalBlackboard;
+      Context.Global = Players.GlobalBlackboard;
       Context.Setup(this);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);

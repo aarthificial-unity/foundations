@@ -1,6 +1,7 @@
 ﻿using Aarthificial.Typewriter.Blackboards;
 using System;
 using Cinemachine;
+using Interactions;
 using Player.ManagerStates;
 using Settings.Bundles;
 using UnityEngine;
@@ -12,32 +13,14 @@ namespace Player {
   [RequireComponent(typeof(DialogueState))]
   [RequireComponent(typeof(ExploreState))]
   public class PlayerManager : MonoBehaviour {
-    [Serializable]
-    private struct PlayerSetup {
-      [SerializeField] private PlayerController _prefab;
-      [SerializeField] private Vector3 _startPosition;
-      [SerializeField] private Quaternion _startRotation;
-
-      public PlayerController Instantiate() {
-        return Object.Instantiate(_prefab, _startPosition, _startRotation);
-      }
-
-#if UNITY_EDITOR
-      public void SaveState(Component player) {
-        _startPosition = player.transform.position;
-        _startRotation = player.transform.rotation;
-      }
-#endif
-    }
-
     private readonly int _rtPosition = Shader.PropertyToID("_RTPosition");
     private readonly int _ltPosition = Shader.PropertyToID("_LTPosition");
 
     [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
-    [Inject] [SerializeField] private PlayerChannel _players;
-    [SerializeField] private PlayerLookup<PlayerSetup> _setups;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
+    public PlayerController RT;
+    public PlayerController LT;
     [NonSerialized] public PlayerType FocusedPlayer;
     [NonSerialized] public SpringTween CameraWeightTween;
     [NonSerialized] public DialogueState DialogueState;
@@ -61,29 +44,11 @@ namespace Player {
       DialogueState = GetComponent<DialogueState>();
       ExploreState = GetComponent<ExploreState>();
 
-      _players.Manager = this;
-      var rt = _setups.RT.Instantiate();
-      var lt = _setups.LT.Instantiate();
-      _players.LT = lt;
-      _players.RT = rt;
-      rt.Other = lt;
-      lt.Other = rt;
-
       _cameraGroup = GetComponent<CinemachineTargetGroup>();
       CameraWeightTween.ForceSet(0.5f);
-      _cameraGroup.m_Targets[0].target = rt.transform;
-      _cameraGroup.m_Targets[0].weight = 0.5f;
-      _cameraGroup.m_Targets[1].target = lt.transform;
-      _cameraGroup.m_Targets[1].weight = 0.5f;
       _cameraGroup.DoUpdate();
       _camera = Instantiate(_cameraPrefab);
       _camera.Follow = transform;
-    }
-
-    private void OnDestroy() {
-      _players.Manager = null;
-      _players.LT = null;
-      _players.RT = null;
     }
 
     private void Start() {
@@ -92,10 +57,8 @@ namespace Player {
 
     private void Update() {
       _currentState?.OnUpdate();
-      var lt = _players.LT.transform.position;
-      var rt = _players.RT.transform.position;
-      Shader.SetGlobalVector(_ltPosition, lt);
-      Shader.SetGlobalVector(_rtPosition, rt);
+      Shader.SetGlobalVector(_ltPosition, LT.transform.position);
+      Shader.SetGlobalVector(_rtPosition, RT.transform.position);
     }
 
     private void FixedUpdate() {
@@ -115,12 +78,26 @@ namespace Player {
       }
     }
 
-#if UNITY_EDITOR
-    [ContextMenu("Save State")]
-    private void SaveState() {
-      _setups.RT.SaveState(_players.RT);
-      _setups.LT.SaveState(_players.LT);
+    public bool TryGetPlayer(int id, out PlayerController player) {
+      if (id == InteractionContext.LT) {
+        player = LT;
+        return true;
+      }
+
+      if (id == InteractionContext.RT) {
+        player = RT;
+        return true;
+      }
+
+      player = null;
+      return false;
     }
-#endif
+
+    public PlayerController this[PlayerType type] =>
+      type switch {
+        PlayerType.LT => LT,
+        PlayerType.RT => RT,
+        _ => null,
+      };
   }
 }

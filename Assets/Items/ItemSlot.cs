@@ -15,7 +15,7 @@ namespace Items {
     [SerializeField] private BoxSDF _fill;
     [SerializeField] private BoxSDF _stroke;
 
-    private void Awake() {
+    private void Start() {
       var style = _styles[_style];
       var color = style.BackgroundColors[_player];
 

@@ -8,6 +8,7 @@ namespace View.Office {
     [SerializeField] private Transform _target;
 
     private void Update() {
+      // TODO Get rid of Camera main
       var mousePosition = _lookAction.action.ReadValue<Vector2>();
       var viewportPoint = Camera.main.ScreenToViewportPoint(mousePosition);
       _target.localPosition = new Vector3(

@@ -106,7 +106,7 @@ Shader "GUI/BoxSDF"
       {
         UNITY_SETUP_INSTANCE_ID(input);
         Varyings output;
-        output.worldPosition = float4(TransformWorldToObject(input.vertex), 0.0);
+        output.worldPosition = float4(TransformWorldToObject(input.vertex.xyz), 0.0);
         output.vertex = TransformObjectToHClip(input.vertex);
 
         output.texcoord = input.texcoord;

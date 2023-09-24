@@ -25,11 +25,10 @@ namespace Player {
     private static readonly int _animatorSpeed = Animator.StringToHash("speed");
 
     public Material Material;
-    [NonSerialized] public PlayerController Other;
+    public PlayerController Other;
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
     [Inject] public PlayerConfig Config;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     public PlayerType Type;
     public Rigidbody ChainTarget;
     public InputActionReference CommandAction;
@@ -61,21 +60,20 @@ namespace Player {
     private float _speedFactor;
 
     private void Awake() {
-      if (FootstepAudio != null) {
-        FootstepAudio.Setup();
-        FootstepAudio.AttachToGameObject(gameObject);
-        FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
-        SetFocus(0);
-      }
-
       _animator = GetComponentInChildren<PlayerAnimator>();
       Agent = GetComponent<NavMeshAgent>();
       FollowState = GetComponent<FollowState>();
       IdleState = GetComponent<IdleState>();
       InteractState = GetComponent<InteractState>();
       NavigateState = GetComponent<NavigateState>();
+      Slot = FindObjectOfType<HUDView>().ItemSlots[Type];
 
       Agent.updateRotation = false;
+
+      FootstepAudio.Setup();
+      FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
+      FootstepAudio.AttachToGameObject(gameObject);
+      SetFocus(0);
     }
 
     private void OnDestroy() {
@@ -126,7 +124,6 @@ namespace Player {
     }
 
     private void Start() {
-      Slot = _overlay.HUD.ItemSlots[Type];
       SwitchState(IdleState);
     }
 
@@ -152,9 +149,7 @@ namespace Player {
 
       _animator.Animator.SetFloat(_animatorSpeed, _speedFactor);
 
-      if (FootstepAudio.IsInitialized) {
-        FootstepAudio.SetParameter(StepSpeedParam, _speedFactor);
-      }
+      FootstepAudio.SetParameter(StepSpeedParam, _speedFactor);
     }
 
     public void ResetAgent() {

@@ -1,32 +1,51 @@
+using Audio;
+using FMODUnity;
+using Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Framework {
-  // TODO Move to the editor namespace maybe?
-#if UNITY_EDITOR
   public static class App {
+    public static GameManager Game;
+    public static InputManager Input;
+    public static AudioManager Audio;
+    public static InputActions Actions;
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Bootstrap() {
-      if (ShouldBootstrap()) {
-        SceneManager.LoadScene(0, LoadSceneMode.Additive);
+    private static void BetterBootstrap() {
+#if UNITY_EDITOR
+      if (ShouldSkip()) {
+        return;
       }
+#endif
+
+      // Force FMOD initialization to avoid a framerate drop when the first
+      // sound is played.
+      _ = RuntimeManager.StudioSystem;
+
+      var app = Object.Instantiate(Resources.Load<GameObject>("App"));
+      Game = app.GetComponent<GameManager>();
+      Input = app.GetComponent<InputManager>();
+      Audio = app.GetComponent<AudioManager>();
+      Actions = Input.Actions;
+
+      Game.DrivenAwake();
+
+      Object.DontDestroyOnLoad(app);
     }
 
-    private static bool ShouldBootstrap() {
+#if UNITY_EDITOR
+    private static bool ShouldSkip() {
       var activeScene = SceneManager.GetActiveScene();
-      if (activeScene.buildIndex == 0) {
-        return false;
-      }
-
       var path = activeScene.path;
       foreach (var scene in UnityEditor.EditorBuildSettings.scenes) {
         if (scene.path == path) {
-          return true;
+          return false;
         }
       }
 
-      return false;
+      return true;
     }
-  }
 #endif
+  }
 }

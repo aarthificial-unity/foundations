@@ -1,18 +1,11 @@
 ﻿using Framework;
-using Input;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
 using View.Controls;
-using View.Office;
-using View.Settings;
 
 namespace View.Overlay.States {
   public class PauseState : OverlayState {
-    [Inject] [SerializeField] private InputChannel _input;
-    [Inject] [SerializeField] private MenuMode _menuMode;
-
     [SerializeField] private Camera _worldCamera;
     [SerializeField] private InteractiveGroup _menu;
     [SerializeField] private PaperButton _resumeButton;
@@ -31,8 +24,9 @@ namespace View.Overlay.States {
       _resumeButton.Clicked += HandleCancel;
       _settingsButton.Clicked += Manager.SettingsState.Enter;
       _menuButton.Clicked += Manager.ExitState.Enter;
-      _exitButton.Clicked += _menuMode.Quit;
+      _exitButton.Clicked += App.Game.Quit;
       _resumeButton.QuietSelect();
+      App.Actions.UICancel.action.performed += HandleCancel;
     }
 
     public override void OnExit() {
@@ -40,16 +34,9 @@ namespace View.Overlay.States {
       _menu.SetInteractive(false);
       _resumeButton.Clicked -= HandleCancel;
       _settingsButton.Clicked -= Manager.SettingsState.Enter;
-      _menuButton.Clicked -= _menuMode.RequestStart;
-      _exitButton.Clicked -= _menuMode.Quit;
-    }
-
-    private void OnEnable() {
-      _input.UICancel.action.performed += HandleCancel;
-    }
-
-    private void OnDisable() {
-      _input.UICancel.action.performed -= HandleCancel;
+      _menuButton.Clicked -= App.Game.Menu.Enter;
+      _exitButton.Clicked -= App.Game.Quit;
+      App.Actions.UICancel.action.performed -= HandleCancel;
     }
 
     private void HandleCancel(InputAction.CallbackContext _) {

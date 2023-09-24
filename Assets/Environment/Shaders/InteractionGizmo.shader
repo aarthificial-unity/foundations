@@ -129,7 +129,7 @@ Shader "GUI/InteractionGizmo"
         const float scale = 0.5 + lerp(1, 0.58333333333333, _State.x);
         const float4 positionOS = input.positionOS * scale;
         output.positionOS = positionOS;
-        output.positionCS = TransformObjectToHClip(positionOS);
+        output.positionCS = TransformObjectToHClip(positionOS.xyz);
 
         output.uv = (input.uv - 0.5) * scale + 0.5;
         output.color = input.color;

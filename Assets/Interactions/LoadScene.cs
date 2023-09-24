@@ -9,14 +9,15 @@ using View.Overlay;
 namespace Interactions {
   [RequireComponent(typeof(Conversation))]
   public class LoadScene : MonoBehaviour {
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] [ScenePath] private string _scenePath;
     [SerializeField]
     [EntryFilter(Variant = EntryVariant.Event)]
     private EntryReference _event;
     private Conversation _conversation;
+    private OverlayManager _overlay;
 
     private void Awake() {
+      _overlay = FindObjectOfType<OverlayManager>();
       _conversation = GetComponent<Conversation>();
       TypewriterDatabase.Instance.AddListener(_event, HandleTypewriterEvent);
     }
@@ -30,7 +31,7 @@ namespace Interactions {
       ITypewriterContext context
     ) {
       if (_conversation.Context == context) {
-        _overlay.Manager.SwapState.Enter(_scenePath);
+        _overlay.SwapState.Enter(_scenePath);
       }
     }
   }

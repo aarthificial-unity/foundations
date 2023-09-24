@@ -5134,7 +5134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a225478534da4a45b9e8c150d13d00e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _storyMode: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _selectSound:
     Event: {fileID: 11400000, guid: 7cf79edaa8daf68409ec76fd25b0f6be, type: 2}
   _deselectSound:
@@ -5437,7 +5436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 73464355}
-  _duration: 5
+  _duration: 0.3
   _backdrop: {fileID: 1391715818}
 --- !u!114 &966745386
 MonoBehaviour:
@@ -5487,7 +5486,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 73464355}
-  _storyMode: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _backdrop: {fileID: 1391715818}
 --- !u!114 &966745389
 MonoBehaviour:
@@ -5502,7 +5500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 1940349963}
-  _menuMode: {fileID: 11400000, guid: ba7468ea69d7e1742b4237631535e008, type: 2}
   _duration: 0.7
 --- !u!114 &966745390
 MonoBehaviour:
@@ -5530,7 +5527,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 254826031}
-  _input: {fileID: 11400000, guid: 9625968de8e4a4046a8890e278804aab, type: 2}
 --- !u!1 &1025657597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7146521406498821007, guid: d4b4ea87132d72c4d9c06edb3f1e1be8,

@@ -1,18 +1,16 @@
-﻿using Input;
-using UnityEngine;
+﻿using Framework;
 using UnityEngine.InputSystem;
-using Utils;
 
 namespace View.Office.States {
   public class SettingsState : MenuState {
-    [Inject] [SerializeField] private InputChannel _input;
-
-    private void OnEnable() {
-      _input.UICancel.action.performed += HandleCancel;
+    public override void OnEnter() {
+      base.OnEnter();
+      App.Actions.UICancel.action.performed += HandleCancel;
     }
 
-    public void OnDisable() {
-      _input.UICancel.action.performed -= HandleCancel;
+    public override void OnExit() {
+      base.OnExit();
+      App.Actions.UICancel.action.performed -= HandleCancel;
     }
 
     private void HandleCancel(InputAction.CallbackContext obj) {

@@ -8,7 +8,6 @@ using View.Controls;
 
 namespace View.Office {
   public class SaveTapeManager : MonoBehaviour {
-    [Inject] [SerializeField] private StoryMode _storyMode;
     [SerializeField] private FMODEventInstance _selectSound;
     [SerializeField] private FMODEventInstance _deselectSound;
     [SerializeField] private SaveTape[] _tapes;
@@ -38,15 +37,12 @@ namespace View.Office {
       _deselectSound.Release();
     }
 
-    private void Start() {
-      _tapes[0].QuietSelect();
-    }
-
+    // TODO Move somewhere else
     private IEnumerator StartGame() {
       _initialCamera.SetActive(true);
       _backdrop.Request();
       yield return new WaitForSecondsRealtime(1f);
-      _storyMode.RequestStart();
+      App.Game.Story.Enter();
     }
 
     private void HandleClicked(int index) {

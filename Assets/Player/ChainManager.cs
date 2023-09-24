@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-using Utils;
+﻿using UnityEngine;
 
 namespace Player {
   [DefaultExecutionOrder(2)]
   public class ChainManager : MonoBehaviour {
-    [Inject] [SerializeField] private PlayerChannel _players;
     [SerializeField] private GameObject _link;
     [SerializeField] private int _length;
     [SerializeField] private float _linkLength = 1;
@@ -27,9 +23,9 @@ namespace Player {
       }
 #endif
 
-      var manager = GetComponent<PlayerManager>();
-      var from = _players.LT.ChainTarget;
-      var to = _players.RT.ChainTarget;
+      var players = GetComponent<PlayerManager>();
+      var from = players.LT.ChainTarget;
+      var to = players.RT.ChainTarget;
 
       _links = new Rigidbody[_length];
       var prev = Instantiate(_link);
