@@ -16,7 +16,6 @@ namespace DevTools.CSV {
       var cells = new List<string>();
 
       var isInsideField = false;
-      var previousEmpty = false;
       _builder.Clear();
       _rows.Clear();
 

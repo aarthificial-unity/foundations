@@ -1,14 +1,14 @@
-﻿using Framework;
-using System;
+﻿using System;
 using UnityEngine;
-using Utils;
 using Utils.Tweening;
 using View.Overlay.States;
 
 namespace View.Overlay {
+  [DefaultExecutionOrder(-100)]
   public class OverlayManager : MonoBehaviour {
-    [Inject] [SerializeField] private StoryMode _storyMode;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
+    public static Camera Camera => FindObjectOfType<OverlayManager>()._camera;
+
+    [SerializeField] private Camera _camera;
     [SerializeField] private Transform _folder;
     [SerializeField] private Backdrop.Handle _backdrop;
 
@@ -23,7 +23,6 @@ namespace View.Overlay {
     [NonSerialized] public SpringTween RotationTween;
 
     private void Awake() {
-      _overlay.Manager = this;
       ExitState = GetComponent<ExitState>();
       SwapState = GetComponent<SwapState>();
       GameplayState = GetComponent<GameplayState>();
@@ -32,7 +31,7 @@ namespace View.Overlay {
     }
 
     private void Start() {
-      SwitchState(_storyMode.IsPaused ? PauseState : GameplayState);
+      SwitchState(GameplayState);
       PositionTween.ForceSet(_currentState.FolderTransform.localPosition);
       RotationTween.ForceSet(_currentState.FolderTransform.localRotation);
     }

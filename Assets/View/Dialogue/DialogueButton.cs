@@ -19,15 +19,18 @@ namespace View.Dialogue {
     public event Action Clicked;
 
     public Vector3 ButtonPosition =>
-      _overlay.CameraManager.MainCamera.ScreenToWorldPoint(
-        transform.position + Vector3.forward
-      );
+      _mainCamera.ScreenToWorldPoint(transform.position + Vector3.forward);
 
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     private InteractionGizmo _gizmo;
     private bool _hasGizmo;
     private bool _dirtyGizmo;
     private ActionType _actionType;
+    private Camera _mainCamera;
+
+    protected override void Awake() {
+      base.Awake();
+      _mainCamera = OverlayManager.Camera;
+    }
 
     protected override void DoStateTransition(
       SelectionState state,

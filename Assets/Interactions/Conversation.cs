@@ -2,6 +2,7 @@
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.References;
 using Cinemachine;
+using Framework;
 using Items;
 using Player;
 using Typewriter;
@@ -34,8 +35,6 @@ namespace Interactions {
 
     private PlayerLookup<Interaction> _interactions;
 
-    [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
     [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
@@ -43,9 +42,11 @@ namespace Interactions {
 
     private CinemachineVirtualCamera _camera;
     private Item _itemInstance;
+    private Camera _mainCamera;
 
     protected override void Awake() {
       base.Awake();
+      _mainCamera = OverlayManager.Camera;
       _camera = Instantiate(_cameraTemplate);
       var cameraTarget = new GameObject("Camera Target").transform;
       cameraTarget.SetParent(transform);
@@ -267,13 +268,9 @@ namespace Interactions {
 
     private void UpdateGizmo() {
       var ltPosition =
-        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
-          _players.LT.transform.position
-        );
+        (Vector2)_mainCamera.WorldToScreenPoint(Players.LT.transform.position);
       var rtPosition =
-        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
-          _players.RT.transform.position
-        );
+        (Vector2)_mainCamera.WorldToScreenPoint(Players.RT.transform.position);
 
       Gizmo.Direction = (rtPosition - ltPosition).normalized;
       Gizmo.PlayerType = PlayerType;
@@ -283,7 +280,7 @@ namespace Interactions {
         return;
       }
 
-      if (_players.Manager.DialogueState.IsActive) {
+      if (Players.DialogueState.IsActive) {
         Gizmo.IsExpanded = false;
         Gizmo.IsHovered = false;
         Gizmo.IsFocused = false;

@@ -2,15 +2,14 @@
 using Player;
 using System;
 using UnityEngine;
-using Utils;
 using View.Overlay;
 
 namespace View.Dialogue {
   public class DialogueView : MonoBehaviour {
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private RectTransform _frame;
     public DialogueTrack Track;
     public DialogueWheel Wheel;
+    public InteractionContext Context;
 
     [NonSerialized] public PlayerLookup<Vector2> ScreenPosition;
     [NonSerialized] public Rect PlayerFrame;
@@ -20,13 +19,13 @@ namespace View.Dialogue {
     private CanvasGroup _canvasGroup;
     private PlayerType _presentPlayers;
     private Canvas _canvas;
-    public InteractionContext Context;
+    private Camera _mainCamera;
 
     private void Awake() {
       Context = null;
+      _mainCamera = OverlayManager.Camera;
       _canvasGroup = GetComponent<CanvasGroup>();
       _canvas = GetComponentInParent<Canvas>();
-      _overlay.Dialogue = this;
       SetActive(false);
     }
 
@@ -43,18 +42,13 @@ namespace View.Dialogue {
         _canvas.scaleFactor = Screen.width / 1920f;
       }
 
-      ScreenPosition.LT =
-        _overlay.CameraManager.MainCamera.WorldToScreenPoint(lt)
+      ScreenPosition.LT = _mainCamera.WorldToScreenPoint(lt)
         / _canvas.scaleFactor;
-      ScreenPosition.RT =
-        _overlay.CameraManager.MainCamera.WorldToScreenPoint(rt)
+      ScreenPosition.RT = _mainCamera.WorldToScreenPoint(rt)
         / _canvas.scaleFactor;
 
       CanvasSize = _canvas.pixelRect.size / _canvas.scaleFactor;
-      WorldToCanvas =
-        _overlay.CameraManager.MainCamera.projectionMatrix.MultiplyVector(
-          Vector3.one
-        )
+      WorldToCanvas = _mainCamera.projectionMatrix.MultiplyVector(Vector3.one)
         * CanvasSize
         / 2;
       var capsuleSize = WorldToCanvas * new Vector2(0.5f, 1f);
@@ -89,10 +83,6 @@ namespace View.Dialogue {
 
       Wheel.DrivenUpdate();
       Track.DrivenUpdate();
-    }
-
-    private void OnDestroy() {
-      _overlay.Dialogue = null;
     }
 
     public void SetActive(bool value) {

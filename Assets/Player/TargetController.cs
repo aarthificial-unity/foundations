@@ -6,6 +6,7 @@ namespace Player {
     [SerializeField] private SkinnedMeshRenderer _mesh;
     [SerializeField] private Transform _bone;
     private SpringTween _scaleTween;
+    private PlayerType _previousPlayer;
 
     public bool Visible {
       set => gameObject.SetActive(value);
@@ -13,6 +14,10 @@ namespace Player {
 
     public void DrivenUpdate(PlayerController player) {
       if (player != null) {
+        if (_previousPlayer != player.Type) {
+          Visible = false;
+        }
+
         _mesh.sharedMaterial = player.Material;
 
         if (player.NavigateState.IsActive) {
@@ -22,7 +27,10 @@ namespace Player {
           } else {
             _scaleTween.Set(1f);
           }
-          Visible = true;
+
+          if (!player.Agent.pathPending) {
+            Visible = true;
+          }
         } else {
           Visible = false;
         }

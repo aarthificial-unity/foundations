@@ -1,16 +1,29 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
-using Utils;
 
 namespace Input {
   public class InputManager : MonoBehaviour {
-    [SerializeField] [Inject] private InputChannel _inputChannel;
+    public InputActions Actions;
+    [NonSerialized] public string CurrentMap = "UI";
     [SerializeField] private InputActionAsset _actions;
-
     private InputUser _user;
     private InputActionMap _currentActionMap;
+
+    public void SwitchToGameplay() {
+      SetMap("Gameplay");
+    }
+
+    public void SwitchToUI() {
+      SetMap("UI");
+    }
+
+    public void SetMap(string map) {
+      CurrentMap = map;
+      HandleMapChanged(CurrentMap);
+    }
 
     private void OnEnable() {
       _user = InputUser.CreateUserWithoutPairedDevices();
@@ -32,8 +45,7 @@ namespace Input {
 
       _actions.Disable();
       _actions.FindActionMap("Pointing").Enable();
-      HandleMapChanged(_inputChannel.CurrentMap);
-      _inputChannel.MapChanged += HandleMapChanged;
+      HandleMapChanged(CurrentMap);
       InputUser.onChange += HandleUserChange;
       InputUser.onPrefilterUnpairedDeviceActivity +=
         HandlePrefilterUnpairedDeviceActivity;
@@ -47,7 +59,6 @@ namespace Input {
       InputUser.onPrefilterUnpairedDeviceActivity -=
         HandlePrefilterUnpairedDeviceActivity;
       InputUser.onChange -= HandleUserChange;
-      _inputChannel.MapChanged -= HandleMapChanged;
       _actions.Disable();
       if (_user.valid) {
         _user.UnpairDevicesAndRemoveUser();

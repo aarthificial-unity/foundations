@@ -1,7 +1,6 @@
 ﻿using Player;
 using System;
 using UnityEngine;
-using Utils;
 using Utils.Tweening;
 using View.Overlay;
 
@@ -28,15 +27,16 @@ namespace Interactions {
     [NonSerialized] public Vector4 Icon;
     [NonSerialized] public Vector2 Direction;
 
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     private MeshRenderer _renderer;
     private MaterialPropertyBlock _block;
     private SpringTween _stateTween;
     private SpringTween _playerTween;
     private SpringTween _iconTween;
     private SpringTween _positionTween;
+    private Camera _mainCamera;
 
     private void Awake() {
+      _mainCamera = OverlayManager.Camera;
       _renderer = GetComponent<MeshRenderer>();
       _block = new MaterialPropertyBlock();
       DefaultPosition = transform.position;
@@ -55,7 +55,7 @@ namespace Interactions {
       _block ??= new MaterialPropertyBlock();
 #endif
 
-      var scale = _overlay.CameraManager.MainCamera.orthographicSize / 20f * 3;
+      var scale = _mainCamera.orthographicSize / 20f * 3;
       var ratio = Screen.width / (float)Screen.height;
       if (ratio < 16 / 9f) {
         scale *= ratio / 16f * 9f;

@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
-using Utils;
-using View.Overlay;
+using View.Dialogue;
 
 namespace Player {
   [DefaultExecutionOrder(300)]
   public class PlayerUI : MonoBehaviour {
-    [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
+    private PlayerManager _players;
+    private DialogueView _dialogue;
+
+    private void Awake() {
+      _players = GetComponent<PlayerManager>();
+      _dialogue = FindObjectOfType<DialogueView>();
+    }
 
     private void LateUpdate() {
-      var lt = _players.LT.transform.position;
-      var rt = _players.RT.transform.position;
-      _overlay.Dialogue.DrivenUpdate(lt, rt);
+      _dialogue.DrivenUpdate(
+        _players.LT.transform.position,
+        _players.RT.transform.position
+      );
     }
   }
 }
