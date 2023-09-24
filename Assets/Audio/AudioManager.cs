@@ -1,4 +1,5 @@
-﻿using FMOD.Studio;
+﻿using Audio.Ambiance;
+using FMOD.Studio;
 using FMODUnity;
 using Settings.Bundles;
 using UnityEngine;
@@ -37,10 +38,9 @@ namespace Audio {
       _bundle.MusicVolume.Changed -= HandleMusicVolumeChanged;
     }
 
-    public void PlayAmbience() {
+    public void SetAmbiance(AmbianceType ambianceType) {
       if (_ambienceAudio.IsInitialized) {
-        _ambienceSceneParam.CurrentValue =
-          SceneManager.GetActiveScene().buildIndex;
+        _ambienceSceneParam.CurrentValue = ambianceType.Value;
         _ambienceAudio.Instance.getPlaybackState(out var state);
         if (state == PLAYBACK_STATE.STOPPED) {
           _ambienceAudio.Play();

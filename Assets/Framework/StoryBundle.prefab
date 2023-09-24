@@ -471,6 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2888997551274503474}
+  - component: {fileID: 1386345358296973798}
   m_Layer: 0
   m_Name: StoryBundle
   m_TagString: Untagged
@@ -509,6 +510,19 @@ Transform:
   - {fileID: 5189593381247620878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1386345358296973798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343655413921635414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfe8f8598994da18e22c540a13fe61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ambianceType: {fileID: 0}
 --- !u!1 &2365801536616246098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,8 +1095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2bd8c7472240e5b52fb4619c63bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUD: {fileID: 3887099106951607860}
-  Dialogue: {fileID: 6294782551871750872}
   _camera: {fileID: 797737585370614369}
   _folder: {fileID: 726742277015538154}
   _backdrop:
