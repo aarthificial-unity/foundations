@@ -1,3 +1,4 @@
+using Saves;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +16,11 @@ namespace Framework {
       Story = GetComponent<StoryState>();
 
 #if UNITY_EDITOR
-      if (SceneManager.GetActiveScene().buildIndex == 0) {
+      var currentIndex = SceneManager.GetActiveScene().buildIndex;
+      if (currentIndex == 0) {
         SwitchState(Menu);
       } else {
+        App.Save.Current = new SaveController { SceneIndex = currentIndex };
         SwitchState(Story);
       }
 #else

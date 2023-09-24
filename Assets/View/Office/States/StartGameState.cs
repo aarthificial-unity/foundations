@@ -1,4 +1,5 @@
 ﻿using Framework;
+using Saves;
 using UnityEngine;
 
 namespace View.Office.States {
@@ -18,10 +19,12 @@ namespace View.Office.States {
     }
 
     public void NewGame() {
+      App.Save.Current = new SaveController { SceneIndex = 1 };
       Manager.SwitchState(this);
     }
 
     public void ContinueGame() {
+      App.Save.Current = new SaveController { SceneIndex = 2 };
       Manager.SwitchState(this);
     }
   }

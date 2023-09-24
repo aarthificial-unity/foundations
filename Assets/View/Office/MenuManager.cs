@@ -7,6 +7,7 @@ namespace View.Office {
   public class MenuManager : MonoBehaviour {
     [SerializeField] private PaperButton _newGameButton;
     [SerializeField] private PaperButton _continueButton;
+    [SerializeField] private PaperButton _ejectButton;
     [SerializeField] private Clickable _exitButton;
     [SerializeField] private Clickable _settingsButton;
     [SerializeField] private PaperButton _settingsExitButton;
@@ -18,8 +19,10 @@ namespace View.Office {
     [NonSerialized] public SettingsState SettingsState;
 
     private MenuState _currentState;
+    private SaveTapeManager _saveTapeManager;
 
     private void Awake() {
+      _saveTapeManager = FindObjectOfType<SaveTapeManager>();
       IntroState = GetComponent<IntroState>();
       MainMenuState = GetComponent<MainMenuState>();
       StartGameState = GetComponent<StartGameState>();
@@ -28,6 +31,7 @@ namespace View.Office {
 
       _newGameButton.Clicked += StartGameState.NewGame;
       _continueButton.Clicked += StartGameState.ContinueGame;
+      _ejectButton.Clicked += _saveTapeManager.Eject;
       _exitButton.Clicked += ExitState.Enter;
       _settingsButton.Clicked += SettingsState.Enter;
       _settingsExitButton.Clicked += MainMenuState.Enter;
