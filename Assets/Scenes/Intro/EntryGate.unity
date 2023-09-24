@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f00f770dbcd4c59bdda8afe07b12938, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &571759173
 Transform:
   m_ObjectHideFlags: 0
@@ -383,8 +383,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8084cf3afdd848d38f2d36d54e7dd26c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: 599736ef716593e4e9599f8a109b899f, type: 2}
   _interactable: {fileID: 592781869}
   _renderers:
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Gizmo: {fileID: 993094069}
   Event:
     EventReference:
@@ -472,8 +472,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1426fa33a92b460ab4724b0282e234b0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _scenePath: Assets/Scenes/Intro/LoadingDocks.unity
   _event:
     InternalID: 1389397
@@ -506,8 +506,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8084cf3afdd848d38f2d36d54e7dd26c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: 599736ef716593e4e9599f8a109b899f, type: 2}
   _interactable: {fileID: 649345888}
   _renderers:
@@ -544,8 +544,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Gizmo: {fileID: 1069914046}
   Event:
     EventReference:
@@ -644,8 +644,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Size: {x: 4, y: 5.71, z: 46.29}
   m_Center: {x: 0, y: 1, z: 0}
   m_Area: 1
@@ -681,7 +681,7 @@ PrefabInstance:
     - target: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
       propertyPath: _conversation
-      value:
+      value: 
       objectReference: {fileID: 592781869}
     - target: {fileID: 2736293608084336562, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
@@ -785,8 +785,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f00f770dbcd4c59bdda8afe07b12938, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &830425541
 Transform:
   m_ObjectHideFlags: 0
@@ -829,8 +829,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Size: {x: 4, y: 6.69, z: 46.29}
   m_Center: {x: 0, y: 1, z: 0}
   m_Area: 1
@@ -945,8 +945,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f00f770dbcd4c59bdda8afe07b12938, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &942423352
 Transform:
   m_ObjectHideFlags: 0
@@ -972,8 +972,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &993094074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3397334455388534160, guid: 8f75fded23ad17f4d91ba1386877096e,
@@ -990,8 +990,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b726c70262574368b736872d92dfcc8a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1069914051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3397334455388534160, guid: 8f75fded23ad17f4d91ba1386877096e,
@@ -4023,6 +4023,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoryBundle
       objectReference: {fileID: 0}
+    - target: {fileID: 1386345358296973798, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: _ambianceType
+      value: 
+      objectReference: {fileID: 11400000, guid: 23c9d479b30919c4db79ff38bf402663,
+        type: 2}
     - target: {fileID: 1392038562825563043, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4341,7 +4347,7 @@ PrefabInstance:
     - target: {fileID: 5164006571463039121, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: _table
-      value:
+      value: 
       objectReference: {fileID: 11400000, guid: eecc874d96be21f41abcdb7adfee4c41,
         type: 2}
     - target: {fileID: 5164006571463039121, guid: c1dfdad7307460e4c8857ce3d5c50c95,
@@ -4770,7 +4776,7 @@ LightingSettings:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 6
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
@@ -4992,8 +4998,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77870a28781a4d4b81619784c36df2b3, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1304049363
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5048,7 +5054,7 @@ PrefabInstance:
     - target: {fileID: 2200932180627228171, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
       propertyPath: _conversation
-      value:
+      value: 
       objectReference: {fileID: 649345888}
     - target: {fileID: 2736293608084336562, guid: 8f75fded23ad17f4d91ba1386877096e,
         type: 3}
@@ -5158,8 +5164,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f00f770dbcd4c59bdda8afe07b12938, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1748375161
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,8 +5208,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Size: {x: 4, y: 5.39, z: 46.29}
   m_Center: {x: 0, y: 1, z: 0}
   m_Area: 1
@@ -5282,8 +5288,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77870a28781a4d4b81619784c36df2b3, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2064129435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5331,7 +5337,7 @@ PrefabInstance:
     - target: {fileID: 678209152566858648, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
         type: 3}
       propertyPath: m_NavMeshData
-      value:
+      value: 
       objectReference: {fileID: 23800000, guid: 40a091b67ca91784b9b2bcdb927cd0fe,
         type: 2}
     - target: {fileID: 1677171056344123326, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,

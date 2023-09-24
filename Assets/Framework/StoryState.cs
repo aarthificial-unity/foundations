@@ -52,7 +52,6 @@ namespace Framework {
     public void Resume() {
       Assert.IsTrue(IsActive);
 
-      App.Audio.PlayAmbience();
       App.Input.SwitchToGameplay();
       IsPaused = false;
       Time.timeScale = 1;
