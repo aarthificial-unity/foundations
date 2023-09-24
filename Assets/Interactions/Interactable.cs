@@ -24,12 +24,12 @@ namespace Interactions {
     public TypewriterEvent Event;
 
     public Blackboard Blackboard = new();
-    [SerializeField] protected InteractionContext Context;
+    public InteractionContext Context;
 
     protected virtual void Awake() {
       Context.Interaction = Blackboard;
+      Context.Global = Players.Manager.GlobalBlackboard;
       Context.Setup(this);
-      Blackboard.Set(InteractionContext.PickUp, 1);
       Blackboard.Set(InteractionContext.IsLTPresent, 0);
       Blackboard.Set(InteractionContext.IsRTPresent, 0);
       Blackboard.Set(InteractionContext.InitialEvent, Event.EventReference);
@@ -63,6 +63,15 @@ namespace Interactions {
 
     protected virtual void OnStateChanged() {
       StateChanged?.Invoke();
+    }
+
+    public virtual void UseItem(EntryReference item) {
+      Blackboard.Set(InteractionContext.AvailableItem, item);
+    }
+
+    public virtual EntryReference PickUpItem() {
+      Blackboard.Set(InteractionContext.AvailableItem, 0);
+      return 0;
     }
   }
 }

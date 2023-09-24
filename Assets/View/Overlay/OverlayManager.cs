@@ -8,10 +8,12 @@ using View.Overlay.States;
 namespace View.Overlay {
   public class OverlayManager : MonoBehaviour {
     [Inject] [SerializeField] private StoryMode _storyMode;
+    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private Transform _folder;
     [SerializeField] private Backdrop.Handle _backdrop;
 
     [NonSerialized] public ExitState ExitState;
+    [NonSerialized] public SwapState SwapState;
     [NonSerialized] public GameplayState GameplayState;
     [NonSerialized] public PauseState PauseState;
     [NonSerialized] public SettingsState SettingsState;
@@ -21,7 +23,9 @@ namespace View.Overlay {
     [NonSerialized] public SpringTween RotationTween;
 
     private void Awake() {
+      _overlay.Manager = this;
       ExitState = GetComponent<ExitState>();
+      SwapState = GetComponent<SwapState>();
       GameplayState = GetComponent<GameplayState>();
       PauseState = GetComponent<PauseState>();
       SettingsState = GetComponent<SettingsState>();

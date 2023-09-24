@@ -1,30 +1,48 @@
-﻿using System;
+﻿using Aarthificial.Typewriter.Blackboards;
+using System;
 using Cinemachine;
 using Player.ManagerStates;
 using Settings.Bundles;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
+using Object = UnityEngine.Object;
 
 namespace Player {
   [RequireComponent(typeof(DialogueState))]
   [RequireComponent(typeof(ExploreState))]
   public class PlayerManager : MonoBehaviour {
+    [Serializable]
+    private struct PlayerSetup {
+      [SerializeField] private PlayerController _prefab;
+      [SerializeField] private Vector3 _startPosition;
+      [SerializeField] private Quaternion _startRotation;
+
+      public PlayerController Instantiate() {
+        return Object.Instantiate(_prefab, _startPosition, _startRotation);
+      }
+
+#if UNITY_EDITOR
+      public void SaveState(Component player) {
+        _startPosition = player.transform.position;
+        _startRotation = player.transform.rotation;
+      }
+#endif
+    }
+
     private readonly int _rtPosition = Shader.PropertyToID("_RTPosition");
     private readonly int _ltPosition = Shader.PropertyToID("_LTPosition");
 
     [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
     [Inject] [SerializeField] private PlayerChannel _players;
-    [SerializeField] private PlayerController _rtPrefab;
-    [SerializeField] private PlayerController _ltPrefab;
-    [SerializeField] private Vector3 _rtStartPosition;
-    [SerializeField] private Vector3 _ltStartPosition;
+    [SerializeField] private PlayerLookup<PlayerSetup> _setups;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
 
     [NonSerialized] public PlayerType FocusedPlayer;
     [NonSerialized] public SpringTween CameraWeightTween;
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
+    [NonSerialized] public Blackboard GlobalBlackboard = new();
     private CinemachineTargetGroup _cameraGroup;
     private ManagerState _currentState;
     private CinemachineVirtualCamera _camera;
@@ -43,9 +61,9 @@ namespace Player {
       DialogueState = GetComponent<DialogueState>();
       ExploreState = GetComponent<ExploreState>();
 
-      var rt = Instantiate(_rtPrefab, _rtStartPosition, Quaternion.identity);
-      var lt = Instantiate(_ltPrefab, _ltStartPosition, Quaternion.identity);
       _players.Manager = this;
+      var rt = _setups.RT.Instantiate();
+      var lt = _setups.LT.Instantiate();
       _players.LT = lt;
       _players.RT = rt;
       rt.Other = lt;
@@ -100,8 +118,8 @@ namespace Player {
 #if UNITY_EDITOR
     [ContextMenu("Save State")]
     private void SaveState() {
-      _rtStartPosition = _players.RT.transform.position;
-      _ltStartPosition = _players.LT.transform.position;
+      _setups.RT.SaveState(_players.RT);
+      _setups.LT.SaveState(_players.LT);
     }
 #endif
   }

@@ -163,37 +163,45 @@ namespace DevTools {
       _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
 
       var context = _players.Manager.DialogueState.Context;
-      if (context.TryGetBlackboard(
-          InteractionContext.InteractionScope,
-          out var blackboard
-        )) {
-        foreach (var pair in blackboard) {
-          var entry = pair.Key.GetEntry();
-          if ((_onlyFacts && entry is not FactEntry)
-            || (_hideEmpty && pair.Value == 0)) {
-            continue;
-          }
-
-          if (!string.IsNullOrEmpty(_searchText)
-            && !entry.Key.Contains(_searchText)) {
-            continue;
-          }
-
-          var stringValue =
-            ((EntryReference)pair.Value).TryGetEntry(out var reference)
-              ? $"{reference.Key} ({pair.Value})"
-              : pair.Value.ToString();
-
-          GUILayout.BeginHorizontal();
-          GUILayout.Label(entry.Key);
-          GUILayout.FlexibleSpace();
-          GUILayout.Label(stringValue);
-          GUILayout.EndHorizontal();
-        }
-      }
+      BlackboardEntriesGUI(context, InteractionContext.GlobalScope);
+      BlackboardEntriesGUI(context, InteractionContext.InteractionScope);
+      BlackboardEntriesGUI(context, InteractionContext.ContextScope);
 
       GUILayout.EndScrollView();
       GUILayout.EndArea();
+    }
+
+    private void BlackboardEntriesGUI(ITypewriterContext context, int scope) {
+      if (!context.TryGetBlackboard(scope, out var blackboard)) {
+        return;
+      }
+
+      foreach (var pair in blackboard) {
+        if (!pair.Key.TryGetEntry(out var entry)) {
+          continue;
+        }
+
+        if ((_onlyFacts && entry is not FactEntry)
+          || (_hideEmpty && pair.Value == 0)) {
+          continue;
+        }
+
+        if (!string.IsNullOrEmpty(_searchText)
+          && !entry.Key.Contains(_searchText)) {
+          continue;
+        }
+
+        var stringValue =
+          ((EntryReference)pair.Value).TryGetEntry(out var reference)
+            ? $"{reference.Key} ({pair.Value})"
+            : pair.Value.ToString();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(entry.Key);
+        GUILayout.FlexibleSpace();
+        GUILayout.Label(stringValue);
+        GUILayout.EndHorizontal();
+      }
     }
 
     private IEnumerator Reload() {

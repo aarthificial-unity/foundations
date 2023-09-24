@@ -247,6 +247,11 @@ PrefabInstance:
       propertyPath: Fact.InternalID
       value: -417971899
       objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: ItemFact.InternalID
+      value: 1389380
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

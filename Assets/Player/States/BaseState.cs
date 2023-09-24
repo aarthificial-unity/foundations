@@ -19,5 +19,11 @@ namespace Player.States {
       IsActive = false;
       Exited?.Invoke();
     }
+
+    protected virtual void OnDestroy() {
+      if (IsActive) {
+        OnExit();
+      }
+    }
   }
 }

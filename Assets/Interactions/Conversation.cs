@@ -1,7 +1,10 @@
 ﻿using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Attributes;
+using Aarthificial.Typewriter.References;
 using Cinemachine;
 using Items;
 using Player;
+using Typewriter;
 using UnityEngine;
 using Utils;
 using View.Overlay;
@@ -26,7 +29,8 @@ namespace Interactions {
     }
 
     public InteractionWaypoint[] Waypoints;
-    public Item Item;
+    [EntryFilter(BaseType = typeof(ItemEntry), AllowEmpty = true)]
+    public EntryReference Item;
 
     private PlayerLookup<Interaction> _interactions;
 
@@ -35,8 +39,10 @@ namespace Interactions {
     [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
     [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
+    [SerializeField] private Transform _itemTransform;
 
     private CinemachineVirtualCamera _camera;
+    private Item _itemInstance;
 
     protected override void Awake() {
       base.Awake();
@@ -55,6 +61,9 @@ namespace Interactions {
       _camera.Priority = 100;
       _camera.m_Lens.OrthographicSize = _orthoSize;
       _camera.gameObject.SetActive(false);
+
+      Blackboard.Set(InteractionContext.AvailableItem, Item);
+      TryInstantiateItem();
     }
 
     private void Update() {
@@ -232,6 +241,28 @@ namespace Interactions {
       }
 
       return -1;
+    }
+
+    public override void UseItem(EntryReference item) {
+      base.UseItem(item);
+      Item = item;
+      TryInstantiateItem();
+    }
+
+    public override EntryReference PickUpItem() {
+      base.PickUpItem();
+      if (_itemInstance != null) {
+        Destroy(_itemInstance.gameObject);
+        _itemInstance = null;
+      }
+
+      return Item;
+    }
+
+    private void TryInstantiateItem() {
+      if (Item.TryGetEntry(out ItemEntry itemEntry)) {
+        _itemInstance = Instantiate(itemEntry.Prefab, _itemTransform);
+      }
     }
 
     private void UpdateGizmo() {

@@ -10,6 +10,7 @@ namespace View.Dialogue {
       public PlayerLookup<Color> BackgroundColors;
       public PlayerLookup<Color> TextColors;
       public bool Stroke;
+      public bool HideArrow;
       public float TextureStrength;
     }
 

@@ -21,6 +21,10 @@ namespace View {
           _backdrop.Release();
         }
       }
+
+      public bool IsReady() {
+        return _backdrop.IsReady();
+      }
     }
 
     [SerializeField] private float _speed;

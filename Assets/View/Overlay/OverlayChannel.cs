@@ -5,6 +5,7 @@ using View.Dialogue;
 namespace View.Overlay {
   public class OverlayChannel : ScriptableObject {
     [NonSerialized] public bool IsReady;
+    [NonSerialized] public OverlayManager Manager;
     [NonSerialized] public HUDView HUD;
     [NonSerialized] public DialogueView Dialogue;
 
