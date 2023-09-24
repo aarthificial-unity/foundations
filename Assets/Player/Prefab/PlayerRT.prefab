@@ -337,6 +337,11 @@ PrefabInstance:
       propertyPath: _stepEvent.Guid.Data4
       value: -1383085500
       objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: PresenceFact.InternalID
+      value: -514433065
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -2,6 +2,7 @@
 using Player;
 using System;
 using UnityEngine;
+using Utils.Tweening;
 using View.Overlay;
 
 namespace View.Dialogue {
@@ -20,6 +21,8 @@ namespace View.Dialogue {
     private PlayerType _presentPlayers;
     private Canvas _canvas;
     private Camera _mainCamera;
+    private PlayerType _lastIndividualPlayer;
+    private SpringTween _frameTween;
 
     private void Awake() {
       Context = null;
@@ -32,6 +35,11 @@ namespace View.Dialogue {
     public void SetContext(InteractionContext context) {
       Context = context;
       Wheel.Button.SetGizmo(Context?.Interactable.Gizmo);
+      if (Context != null) {
+        _frameTween.ForceSet(
+          Context.Interactable.PlayerType == PlayerType.Both ? 1 : 0
+        );
+      }
     }
 
     public void DrivenUpdate(Vector3 lt, Vector3 rt) {
@@ -55,28 +63,37 @@ namespace View.Dialogue {
 
       if (Context != null) {
         _presentPlayers = Context.Interactable.PlayerType;
+        _lastIndividualPlayer = _presentPlayers switch {
+          PlayerType.LT => PlayerType.LT,
+          PlayerType.RT => PlayerType.RT,
+          _ => _lastIndividualPlayer,
+        };
+        _frameTween.Set(_presentPlayers == PlayerType.Both ? 1 : 0);
       }
 
-      PlayerFrame = _presentPlayers switch {
-        PlayerType.LT => Rect.MinMaxRect(
-          ScreenPosition.LT.x - capsuleSize.x,
-          ScreenPosition.LT.y - capsuleSize.y,
-          ScreenPosition.LT.x + capsuleSize.x,
-          ScreenPosition.LT.y + capsuleSize.y
+      var individualScreenPosition = ScreenPosition[_lastIndividualPlayer];
+      var individualFrame = Rect.MinMaxRect(
+        individualScreenPosition.x - capsuleSize.x,
+        individualScreenPosition.y - capsuleSize.y,
+        individualScreenPosition.x + capsuleSize.x,
+        individualScreenPosition.y + capsuleSize.y
+      );
+      var bothFrame = Rect.MinMaxRect(
+        Mathf.Min(ScreenPosition.LT.x, ScreenPosition.RT.x) - capsuleSize.x,
+        Mathf.Min(ScreenPosition.LT.y, ScreenPosition.RT.y) - capsuleSize.y,
+        Mathf.Max(ScreenPosition.LT.x, ScreenPosition.RT.x) + capsuleSize.x,
+        Mathf.Max(ScreenPosition.LT.y, ScreenPosition.RT.y) + capsuleSize.y
+      );
+
+      _frameTween.Update(SpringConfig.Snappy);
+      PlayerFrame = new Rect(
+        Vector2.Lerp(
+          individualFrame.position,
+          bothFrame.position,
+          _frameTween.X
         ),
-        PlayerType.RT => Rect.MinMaxRect(
-          ScreenPosition.RT.x - capsuleSize.x,
-          ScreenPosition.RT.y - capsuleSize.y,
-          ScreenPosition.RT.x + capsuleSize.x,
-          ScreenPosition.RT.y + capsuleSize.y
-        ),
-        _ => Rect.MinMaxRect(
-          Mathf.Min(ScreenPosition.LT.x, ScreenPosition.RT.x) - capsuleSize.x,
-          Mathf.Min(ScreenPosition.LT.y, ScreenPosition.RT.y) - capsuleSize.y,
-          Mathf.Max(ScreenPosition.LT.x, ScreenPosition.RT.x) + capsuleSize.x,
-          Mathf.Max(ScreenPosition.LT.y, ScreenPosition.RT.y) + capsuleSize.y
-        ),
-      };
+        Vector2.Lerp(individualFrame.size, bothFrame.size, _frameTween.X)
+      );
 
       _frame.offsetMin = PlayerFrame.min;
       _frame.offsetMax = PlayerFrame.max - CanvasSize;

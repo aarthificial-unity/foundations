@@ -4,7 +4,6 @@ using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Audio;
-using FMODUnity;
 using Interactions;
 using Items;
 using Player.States;
@@ -36,7 +35,9 @@ namespace Player {
     public EntryReference Fact;
     [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference ItemFact;
-    [SerializeField] private EventReference _stepEvent;
+    [EntryFilter(Variant = EntryVariant.Fact)]
+    public EntryReference PresenceFact;
+
     public bool IsLT => Type == PlayerType.LT;
     public bool IsRT => Type == PlayerType.RT;
 
@@ -199,8 +200,11 @@ namespace Player {
     }
 
     private void HandleCallOther(BaseEntry entry, ITypewriterContext context) {
-      if (context.Get(InteractionContext.Initiator) == Fact.ID) {
-        Other.InteractState.Enter(InteractState.Conversation);
+      if (context.Get(PresenceFact) == 0
+        && context is InteractionContext {
+          Interactable: Conversation conversation,
+        }) {
+        InteractState.Enter(conversation);
       }
     }
 
