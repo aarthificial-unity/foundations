@@ -3894,6 +3894,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4796299548502591021, guid: 7caaa6edb9217ff47acbbd01b77fec15,
         type: 3}
+      propertyPath: _chainEvent.Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 762e5b8737e77ec41900fa62e882f68d,
+        type: 2}
+    - target: {fileID: 4796299548502591021, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+        type: 3}
+      propertyPath: _chainAccelerationParam
+      value: 
+      objectReference: {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0,
+        type: 2}
+    - target: {fileID: 4796299548502591021, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+        type: 3}
       propertyPath: _positions.Array.data[0].x
       value: -10.089843
       objectReference: {fileID: 0}

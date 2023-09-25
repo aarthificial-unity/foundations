@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Audio;
 using UnityEngine;
 using Utils;
 
@@ -14,7 +15,11 @@ namespace Player {
     [SerializeField] private Vector3[] _positions;
     [SerializeField] private Quaternion[] _rotations;
 
+    [SerializeField] private FMODEventInstance _chainEvent;
+    [SerializeField] private FMODParameter _chainAccelerationParam;
+
     private Rigidbody[] _links;
+    private Vector3 _prevFrameVelocity;
 
     private void Awake() {
 #if UNITY_EDITOR
@@ -74,6 +79,24 @@ namespace Player {
         _links[i].rotation = _rotations[i];
         _links[i].velocity = Vector3.zero;
       }
+      _prevFrameVelocity = Vector3.zero;
+      _chainEvent.Setup();
+      _chainEvent.AttachToGameObject(this.gameObject);
+      _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
+      _chainEvent.Play();
+    }
+
+    private void Update() {
+      _chainEvent.Update3DPosition();
+      Vector3 currentVelocity = Vector3.zero;
+      for (var i = 0; i < _length; i++) {
+        currentVelocity += _links[i].velocity;
+      }
+      Vector3 accel = currentVelocity - _prevFrameVelocity;
+      _prevFrameVelocity = currentVelocity;
+      float accelMagnitude = accel.sqrMagnitude * 0.01f;
+      _chainEvent.SetParameter(_chainAccelerationParam, accelMagnitude);
+      //Debug.Log(accelMagnitude);
     }
 
 #if UNITY_EDITOR
