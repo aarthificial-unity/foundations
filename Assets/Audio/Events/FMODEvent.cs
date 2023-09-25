@@ -60,7 +60,7 @@ namespace Audio {
       }
     }
 
-    private void Update3DPosition() {
+    public void Update3DPosition() {
       if (_positionalGameObject != null) {
         Instance.set3DAttributes(_positionalGameObject.To3DAttributes());
       }
