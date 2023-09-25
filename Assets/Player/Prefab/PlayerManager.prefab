@@ -52,15 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _rtPrefab: {fileID: 2897407815665303685, guid: 7695e04cceb218c45a115902e4ccb462,
-    type: 3}
-  _ltPrefab: {fileID: 5244182199563603624, guid: 92e7c9ff0c925d449ba5ab7811653d5e,
-    type: 3}
-  _rtStartPosition: {x: -1.56, y: 1, z: 0}
-  _ltStartPosition: {x: 1.47, y: 1.057133, z: 1.77}
   _cameraPrefab: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
+  RT: {fileID: 0}
+  LT: {fileID: 0}
 --- !u!114 &4796299548502591021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a99719d4b64cd49c9365512137a312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
   _link: {fileID: 8012408627624135789, guid: d230c944bb16d0440be0e42045187b58, type: 3}
   _length: 82
   _linkLength: 0.05
@@ -243,6 +237,10 @@ MonoBehaviour:
   - {x: -0.29186255, y: -0.90911645, z: -0.2853181, w: -0.0831696}
   - {x: 0.16639873, y: 0.958762, z: 0.20154549, w: 0.11165281}
   - {x: 0.15414913, y: -0.111765034, z: -0.13882022, w: 0.97184134}
+  _chainEvent:
+    Event: {fileID: 11400000, guid: 762e5b8737e77ec41900fa62e882f68d, type: 2}
+  _chainAccelerationParam: {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0,
+    type: 2}
 --- !u!114 &7942872571327056023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0afa5d2cac42a6bbf5b17df65db3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
 --- !u!114 &4796299548502591023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,8 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fd6b180b554c6d9f680608ecd3b5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
 --- !u!114 &4796299548502590993
@@ -307,8 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2804565c70e4770a968f378e8476b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   _config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
   _targetPrefab: {fileID: 4803978102406822656, guid: 3ee265cd1d7910f458699d94b5fa0948,
     type: 3}
@@ -343,8 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0e7ba60ef04a6b99cf5ce52943ff18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
-  _input: {fileID: 11400000, guid: 9625968de8e4a4046a8890e278804aab, type: 2}
   _story: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _table: {fileID: 0}
   _documentId: 

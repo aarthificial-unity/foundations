@@ -1,12 +1,10 @@
 ﻿using Framework;
+using Saves;
 using UnityEngine;
-using Utils;
 
 namespace View.Office.States {
   public class StartGameState : MenuState {
-    [Inject] [SerializeField] private StoryMode _storyMode;
     [SerializeField] private Backdrop _backdrop;
-    private bool _newGame;
 
     public override void OnEnter() {
       base.OnEnter();
@@ -16,17 +14,17 @@ namespace View.Office.States {
     public override void OnUpdate() {
       base.OnUpdate();
       if (_backdrop.IsReady()) {
-        _storyMode.RequestStart();
+        App.Game.Story.Enter();
       }
     }
 
     public void NewGame() {
-      _newGame = true;
+      App.Save.Current = new SaveController { SceneIndex = 1 };
       Manager.SwitchState(this);
     }
 
     public void ContinueGame() {
-      _newGame = false;
+      App.Save.Current = new SaveController { SceneIndex = 2 };
       Manager.SwitchState(this);
     }
   }

@@ -10,20 +10,17 @@ namespace View.Office.States {
 
     protected override void Awake() {
       base.Awake();
-      _startTime = Time.unscaledTime;
-      if (SplashScreen.isFinished) {
-        _duration = 0;
-      }
+      _startTime = Time.time;
       _backdrop.Request();
     }
 
     public override void OnUpdate() {
       base.OnUpdate();
       if (!SplashScreen.isFinished) {
-        _startTime = Time.unscaledTime;
+        _startTime = Time.time;
       }
 
-      if (Time.unscaledTime - _startTime > _duration) {
+      if (Time.time - _startTime > _duration) {
         _backdrop.Release();
         Manager.SwitchState(Manager.MainMenuState);
       }

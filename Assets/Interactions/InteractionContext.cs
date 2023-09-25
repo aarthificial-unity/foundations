@@ -14,12 +14,17 @@ namespace Interactions {
     public static int LT = -417971899;
     public static int RT = -2078916288;
     public static int CallOther = 2014434846;
-    public static int PickUp = -2028872245;
+    public static int Enter = 1389397;
+    public static int AvailableItem = 1389379;
+    public static int LTItem = 1389380;
+    public static int RTItem = 1389381;
 
     public static int ContextScope = -1768494618;
     public static int InteractionScope = -1936302086;
+    public static int GlobalScope = 475414559;
     public Blackboard Context;
     [NonSerialized] public Blackboard Interaction;
+    [NonSerialized] public Blackboard Global;
     public Interactable Interactable;
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
@@ -30,6 +35,11 @@ namespace Interactions {
 
       if (scope == ContextScope) {
         blackboard = Context;
+        return true;
+      }
+
+      if (scope == GlobalScope) {
+        blackboard = Global;
         return true;
       }
 

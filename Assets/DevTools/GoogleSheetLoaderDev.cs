@@ -4,7 +4,6 @@ using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using DevTools.CSV;
 using Framework;
-using Input;
 using Interactions;
 using Player;
 using System.Collections;
@@ -19,9 +18,7 @@ namespace DevTools {
     private static string _customDocumentId;
     private static string _customSheetName;
 
-    [SerializeField] [Inject] private PlayerChannel _players;
-    [SerializeField] [Inject] private InputChannel _input;
-    [SerializeField] [Inject] private StoryMode _story;
+    [SerializeField] [Inject] private StoryState _story;
     [SerializeField] private DatabaseTable _table;
     [SerializeField] private string _documentId;
     [SerializeField] private string _sheetName;
@@ -32,6 +29,11 @@ namespace DevTools {
     private bool _onlyFacts;
     private bool _hideEmpty = true;
     private string _searchText = "";
+    private PlayerManager _players;
+
+    private void Awake() {
+      _players = GetComponent<PlayerManager>();
+    }
 
     private void OnEnable() {
       if (string.IsNullOrEmpty(_customDocumentId)) {
@@ -58,8 +60,8 @@ namespace DevTools {
       }
 
       _isOpen = true;
-      _previousMap = _input.CurrentMap;
-      _input.SetMap("None");
+      _previousMap = App.Input.CurrentMap;
+      App.Input.SetMap("None");
       Time.timeScale = 0;
     }
 
@@ -69,7 +71,7 @@ namespace DevTools {
       }
 
       _isOpen = false;
-      _input.SetMap(_previousMap);
+      App.Input.SetMap(_previousMap);
       Time.timeScale = 1;
     }
 
@@ -78,8 +80,8 @@ namespace DevTools {
         return;
       }
 
-      var isInConversation = _players.Manager.DialogueState.IsActive
-        && _players.Manager.DialogueState.Context != null;
+      var isInConversation = _players.DialogueState.IsActive
+        && _players.DialogueState.Context != null;
 
       var size = new Vector2(640, 160);
       var rect = new Rect(
@@ -162,38 +164,46 @@ namespace DevTools {
 
       _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
 
-      var context = _players.Manager.DialogueState.Context;
-      if (context.TryGetBlackboard(
-          InteractionContext.InteractionScope,
-          out var blackboard
-        )) {
-        foreach (var pair in blackboard) {
-          var entry = pair.Key.GetEntry();
-          if ((_onlyFacts && entry is not FactEntry)
-            || (_hideEmpty && pair.Value == 0)) {
-            continue;
-          }
-
-          if (!string.IsNullOrEmpty(_searchText)
-            && !entry.Key.Contains(_searchText)) {
-            continue;
-          }
-
-          var stringValue =
-            ((EntryReference)pair.Value).TryGetEntry(out var reference)
-              ? $"{reference.Key} ({pair.Value})"
-              : pair.Value.ToString();
-
-          GUILayout.BeginHorizontal();
-          GUILayout.Label(entry.Key);
-          GUILayout.FlexibleSpace();
-          GUILayout.Label(stringValue);
-          GUILayout.EndHorizontal();
-        }
-      }
+      var context = _players.DialogueState.Context;
+      BlackboardEntriesGUI(context, InteractionContext.GlobalScope);
+      BlackboardEntriesGUI(context, InteractionContext.InteractionScope);
+      BlackboardEntriesGUI(context, InteractionContext.ContextScope);
 
       GUILayout.EndScrollView();
       GUILayout.EndArea();
+    }
+
+    private void BlackboardEntriesGUI(ITypewriterContext context, int scope) {
+      if (!context.TryGetBlackboard(scope, out var blackboard)) {
+        return;
+      }
+
+      foreach (var pair in blackboard) {
+        if (!pair.Key.TryGetEntry(out var entry)) {
+          continue;
+        }
+
+        if ((_onlyFacts && entry is not FactEntry)
+          || (_hideEmpty && pair.Value == 0)) {
+          continue;
+        }
+
+        if (!string.IsNullOrEmpty(_searchText)
+          && !entry.Key.Contains(_searchText)) {
+          continue;
+        }
+
+        var stringValue =
+          ((EntryReference)pair.Value).TryGetEntry(out var reference)
+            ? $"{reference.Key} ({pair.Value})"
+            : pair.Value.ToString();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(entry.Key);
+        GUILayout.FlexibleSpace();
+        GUILayout.Label(stringValue);
+        GUILayout.EndHorizontal();
+      }
     }
 
     private IEnumerator Reload() {

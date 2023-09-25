@@ -67,8 +67,9 @@ namespace Audio {
     }
 
     public void SetParameter(FMODParameter parameter, float val) {
-      if (!IsInitialized || parameter.IsGlobal)
+      if (!IsInitialized || parameter.IsGlobal) {
         return;
+      }
 
       if (_parameterIdLookup.TryGetValue(parameter, out var instance)) {
         Instance.setParameterByID(instance, val);
@@ -85,6 +86,7 @@ namespace Audio {
     public void Release() {
       if (IsInitialized) {
         Instance.release();
+        IsInitialized = false;
       }
     }
   }

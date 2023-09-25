@@ -1,16 +1,13 @@
-﻿using Input;
-using System;
+﻿using Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Utils;
 using Utils.Tweening;
 using View.Settings;
 
 namespace View.Overlay.States {
   public class SettingsState : OverlayState {
-    [Inject] [SerializeField] private InputChannel _input;
     [SerializeField] private SettingsView _view;
 
     private SpringTween _animationTween;
@@ -20,6 +17,7 @@ namespace View.Overlay.States {
       _view.SetInteractive(true);
       _animationTween.Set(1);
       _view.ExitButton.Clicked += HandleCancel;
+      App.Actions.UICancel.action.performed += HandleCancel;
     }
 
     public override void OnExit() {
@@ -27,14 +25,7 @@ namespace View.Overlay.States {
       _view.SetInteractive(false);
       _animationTween.Set(0);
       _view.ExitButton.Clicked -= HandleCancel;
-    }
-
-    private void OnEnable() {
-      _input.UICancel.action.performed += HandleCancel;
-    }
-
-    private void OnDisable() {
-      _input.UICancel.action.performed -= HandleCancel;
+      App.Actions.UICancel.action.performed -= HandleCancel;
     }
 
     private void Update() {

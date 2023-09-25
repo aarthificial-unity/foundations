@@ -20,6 +20,7 @@ MonoBehaviour:
       LT: {r: 1, g: 1, b: 1, a: 0.7294118}
       RT: {r: 1, g: 1, b: 1, a: 0.7294118}
     Stroke: 0
+    HideArrow: 0
     TextureStrength: 0.2
   _thoughtSettings:
     BackgroundColors:
@@ -29,6 +30,7 @@ MonoBehaviour:
       LT: {r: 1, g: 1, b: 1, a: 1}
       RT: {r: 1, g: 1, b: 1, a: 1}
     Stroke: 1
+    HideArrow: 0
     TextureStrength: 0.2
   _actionSettings:
     BackgroundColors:
@@ -38,4 +40,5 @@ MonoBehaviour:
       LT: {r: 0, g: 0, b: 0, a: 1}
       RT: {r: 0, g: 0, b: 0, a: 1}
     Stroke: 0
+    HideArrow: 1
     TextureStrength: 1

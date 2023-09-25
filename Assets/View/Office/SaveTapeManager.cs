@@ -1,14 +1,10 @@
 ﻿using Audio;
-using Framework;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
-using View.Controls;
 
 namespace View.Office {
   public class SaveTapeManager : MonoBehaviour {
-    [Inject] [SerializeField] private StoryMode _storyMode;
     [SerializeField] private FMODEventInstance _selectSound;
     [SerializeField] private FMODEventInstance _deselectSound;
     [SerializeField] private SaveTape[] _tapes;
@@ -16,11 +12,12 @@ namespace View.Office {
     [SerializeField] private Transform _tapePlayer;
     [SerializeField] private GameObject _selectionScreen;
     [SerializeField] private GameObject _saveMenu;
-    [SerializeField] private PaperButton _ejectButton;
-    [SerializeField] private GameObject _initialCamera;
-    [SerializeField] private Backdrop _backdrop;
 
     private int _selectedTapeIndex = -1;
+
+    public void Eject() {
+      HandleClicked(-1);
+    }
 
     private void Awake() {
       for (var i = 0; i < _tapes.Length; i++) {
@@ -30,23 +27,11 @@ namespace View.Office {
       Render();
       _selectSound.Setup();
       _deselectSound.Setup();
-      _ejectButton.Clicked += () => HandleClicked(-1);
     }
 
     private void OnDestroy() {
       _selectSound.Release();
       _deselectSound.Release();
-    }
-
-    private void Start() {
-      _tapes[0].QuietSelect();
-    }
-
-    private IEnumerator StartGame() {
-      _initialCamera.SetActive(true);
-      _backdrop.Request();
-      yield return new WaitForSecondsRealtime(1f);
-      _storyMode.RequestStart();
     }
 
     private void HandleClicked(int index) {

@@ -1,0 +1,447 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0878fa1be1f546a2a65661326a877, type: 3}
+  m_Name: EntryGate
+  m_EditorClassIdentifier: 
+  TableName: EntryGate
+  Rules:
+  - rid: 2933227056775036933
+  - rid: 2933227056775036934
+  - rid: 2933227056775036935
+  - rid: 2933227056775036936
+  - rid: 2933227056775036937
+  - rid: 2933227056775036938
+  - rid: 2933227056775036939
+  - rid: 2933227056775036940
+  - rid: 2933227056775036941
+  - rid: 2933227056775036942
+  - rid: 2933227056775036943
+  - rid: 2933227056775036949
+  - rid: 2933227056775036950
+  Facts:
+  - rid: 2933227056775036944
+  - rid: 2933227056775036947
+  Events:
+  - rid: 2933227056775036945
+  - rid: 2933227056775036946
+  references:
+    version: 2
+    RefIds:
+    - rid: 2933227056775036933
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389384
+        Key: C_rolling_gate
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389383
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        IsCancellable: 1
+    - rid: 2933227056775036934
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389385
+        Key: L_do_inspect_gate
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389384
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything special?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036935
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389386
+        Key: L_do_place_chair
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389384
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389380
+          Min: 1389396
+          Max: 1389396
+          Operation: 1
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389380
+        OnInvoke: []
+        Content: Place the chair.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036936
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389387
+        Key: R_do_inspect_gate
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389384
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything of note?
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2933227056775036937
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389389
+        Key: C_security_kiosk
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389388
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        IsCancellable: 1
+    - rid: 2933227056775036938
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389390
+        Key: L_do_inspect_kiosk
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389389
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything special?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036939
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389391
+        Key: L_do_break_window
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389389
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: 1389382
+          Value: 1
+          Operation: 0
+        OnApply: []
+        OnInvoke: []
+        Content: Break the window.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036940
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389392
+        Key: L_do_take_chair
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389389
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389380
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: 1389379
+          Min: 1389396
+          Max: 1389396
+          Operation: 1
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389379
+        OnInvoke: []
+        Content: Pick up the chair.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036941
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389393
+        Key: R_do_inspect_kiosk
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389389
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything of note?
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2933227056775036942
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389394
+        Key: R_do_break_window
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389389
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: 1389382
+          Value: 1
+          Operation: 0
+        OnApply: []
+        OnInvoke: []
+        Content: Break the window.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2933227056775036943
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389395
+        Key: LR_break_window
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389391
+          - InternalID: 1389394
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The window shatters.
+        Style: 2
+        Speaker:
+          InternalID: -1596563589
+    - rid: 2933227056775036944
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389382
+        Key: window_broken
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2933227056775036945
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389383
+        Key: E_rolling_gate
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2933227056775036946
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389388
+        Key: E_security_kiosk
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2933227056775036947
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389396
+        Key: I_chair
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 21300000, guid: 2fe5507f6ba999847b66505d2ff2f845, type: 3}
+        Prefab: {fileID: 8969503142398932967, guid: 55b75d579b90d2d4f94bc1c4f1def031,
+          type: 3}
+    - rid: 2933227056775036949
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389398
+        Key: L_do_jump_over
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389384
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389379
+          Min: 1389396
+          Max: 1389396
+          Operation: 1
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389397
+        OnInvoke: []
+        Content: Jump over the gate.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 2933227056775036950
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389408
+        Key: L_take_chair
+        Scope:
+          InternalID: -1936302086
+        Triggers:
+          List:
+          - InternalID: 1389392
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: You picked up the chair.
+        Style: 2
+        Speaker:
+          InternalID: -417971899

@@ -10,6 +10,7 @@ namespace View.Dialogue {
       public PlayerLookup<Color> BackgroundColors;
       public PlayerLookup<Color> TextColors;
       public bool Stroke;
+      public bool HideArrow;
       public float TextureStrength;
     }
 
@@ -19,9 +20,9 @@ namespace View.Dialogue {
 
     public Settings this[DialogueEntry.BubbleStyle style] =>
       style switch {
-        DialogueEntry.BubbleStyle.Speech => _speechSettings,
         DialogueEntry.BubbleStyle.Thought => _thoughtSettings,
         DialogueEntry.BubbleStyle.Action => _actionSettings,
+        _ => _speechSettings,
       };
   }
 }

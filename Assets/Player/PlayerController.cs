@@ -1,24 +1,19 @@
+using Aarthificial.Typewriter;
 using System;
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Audio;
-using FMOD;
-using FMOD.Studio;
-using FMODUnity;
+using Interactions;
 using Items;
 using Player.States;
 using Player.Surfaces;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Utils;
-using View;
 using View.Overlay;
-using Debug = UnityEngine.Debug;
 
 namespace Player {
   [RequireComponent(typeof(FollowState))]
@@ -29,17 +24,20 @@ namespace Player {
     private static readonly int _animatorSpeed = Animator.StringToHash("speed");
 
     public Material Material;
-    [NonSerialized] public PlayerController Other;
+    public PlayerController Other;
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
     [Inject] public PlayerConfig Config;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     public PlayerType Type;
     public Rigidbody ChainTarget;
     public InputActionReference CommandAction;
     [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference Fact;
-    [SerializeField] private EventReference _stepEvent;
+    [EntryFilter(Variant = EntryVariant.Fact)]
+    public EntryReference ItemFact;
+    [EntryFilter(Variant = EntryVariant.Fact)]
+    public EntryReference PresenceFact;
+
     public bool IsLT => Type == PlayerType.LT;
     public bool IsRT => Type == PlayerType.RT;
 
@@ -50,7 +48,7 @@ namespace Player {
     [NonSerialized] public NavigateState NavigateState;
 
     [NonSerialized] public ItemSlot Slot;
-    [NonSerialized] public Item CurrentItem;
+    [NonSerialized] public EntryReference CurrentItem;
 
     [SerializeField] public FMODEventInstance FootstepAudio;
     public FMODParameter StepSpeedParam;
@@ -60,23 +58,23 @@ namespace Player {
 
     private PlayerState _currentState;
     private PlayerAnimator _animator;
+    private float _speedFactor;
 
     private void Awake() {
-      if (FootstepAudio != null) {
-        FootstepAudio.Setup();
-        FootstepAudio.AttachToGameObject(this.gameObject);
-        FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
-        SetFocus(0);
-      }
-
       _animator = GetComponentInChildren<PlayerAnimator>();
       Agent = GetComponent<NavMeshAgent>();
       FollowState = GetComponent<FollowState>();
       IdleState = GetComponent<IdleState>();
       InteractState = GetComponent<InteractState>();
       NavigateState = GetComponent<NavigateState>();
+      Slot = FindObjectOfType<HUDView>().ItemSlots[Type];
 
       Agent.updateRotation = false;
+
+      FootstepAudio.Setup();
+      FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
+      FootstepAudio.AttachToGameObject(gameObject);
+      SetFocus(0);
     }
 
     private void OnDestroy() {
@@ -85,10 +83,28 @@ namespace Player {
 
     private void OnEnable() {
       _animator.Stepped += HandleStepped;
+      TypewriterDatabase.Instance.AddListener(ItemFact, HandleItemUsed);
+      TypewriterDatabase.Instance.AddListener(
+        InteractionContext.AvailableItem,
+        HandleItemPickedUp
+      );
+      TypewriterDatabase.Instance.AddListener(
+        InteractionContext.CallOther,
+        HandleCallOther
+      );
     }
 
     private void OnDisable() {
       _animator.Stepped -= HandleStepped;
+      TypewriterDatabase.Instance.RemoveListener(ItemFact, HandleItemUsed);
+      TypewriterDatabase.Instance.RemoveListener(
+        InteractionContext.AvailableItem,
+        HandleItemPickedUp
+      );
+      TypewriterDatabase.Instance.RemoveListener(
+        InteractionContext.CallOther,
+        HandleCallOther
+      );
     }
 
     private void HandleStepped() {
@@ -109,13 +125,7 @@ namespace Player {
     }
 
     private void Start() {
-      Slot = _overlay.HUD.ItemSlots[Type];
-      Slot.Dropped += HandleDropped;
       SwitchState(IdleState);
-    }
-
-    private void HandleDropped() {
-      DropItem();
     }
 
     public void DrivenUpdate() {
@@ -123,9 +133,7 @@ namespace Player {
       transform.rotation = Quaternion.RotateTowards(
         transform.rotation,
         _currentState.Rotation,
-        Config.RotationSpeed
-        * Time.deltaTime
-        * Agent.velocity.magnitude.ClampRemap(0, Agent.speed, 0.5f, 1)
+        Config.RotationSpeed * Time.deltaTime
       );
 
       var speed = Agent.velocity.magnitude;
@@ -134,12 +142,15 @@ namespace Player {
           / 2f;
       }
 
-      var speedFactor = speed / Config.WalkSpeed;
-      _animator.Animator.SetFloat(_animatorSpeed, speedFactor);
+      _speedFactor = Mathf.Lerp(
+        _speedFactor,
+        speed / Config.WalkSpeed,
+        Config.Smoothing * Time.deltaTime
+      );
 
-      if (FootstepAudio.IsInitialized) {
-        FootstepAudio.SetParameter(StepSpeedParam, speedFactor);
-      }
+      _animator.Animator.SetFloat(_animatorSpeed, _speedFactor);
+
+      FootstepAudio.SetParameter(StepSpeedParam, _speedFactor);
     }
 
     public void ResetAgent() {
@@ -159,48 +170,42 @@ namespace Player {
       _currentState?.OnEnter();
     }
 
-    public bool CanPickUpItem() {
-      return CurrentItem == null || CurrentItem.CanDrop();
-    }
-
-    public void DropItem() {
-      UnityEngine.Debug.Log("Drop");
-      if (CurrentItem == null) {
+    private void HandleItemUsed(BaseEntry entry, ITypewriterContext context) {
+      if (!CurrentItem.HasValue
+        || context is not InteractionContext interactionContext) {
         return;
       }
 
-      Assert.IsTrue(CurrentItem.CanDrop());
-
-      CurrentItem.transform.parent = null;
-      SceneManager.MoveGameObjectToScene(
-        CurrentItem.gameObject,
-        SceneManager.GetActiveScene()
-      );
-      CurrentItem.transform.position = transform.position.ToNavMesh();
-      CurrentItem.gameObject.SetActive(true);
-      CurrentItem = null;
-      Slot.SetItem(CurrentItem);
+      interactionContext.Interactable.UseItem(CurrentItem.ID);
+      context.Set(ItemFact, 0);
+      CurrentItem = default;
+      Slot.SetItem(null);
     }
 
-    public void PickUp(Item item) {
-      DropItem();
-      CurrentItem = item;
-      item.gameObject.SetActive(false);
-      item.transform.parent = transform;
-      Slot.SetItem(CurrentItem);
+    private void HandleItemPickedUp(
+      BaseEntry entry,
+      ITypewriterContext context
+    ) {
+      if (CurrentItem.HasValue
+        || context is not InteractionContext interactionContext
+        || context.Get(InteractionContext.CurrentSpeaker) != Fact.ID) {
+        return;
+      }
+
+      CurrentItem = interactionContext.Interactable.PickUpItem();
+      if (CurrentItem.HasValue) {
+        context.Set(ItemFact, CurrentItem);
+        Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
+      }
     }
 
-    public bool HasItem(Item item) {
-      if (item == null) {
-        return true;
+    private void HandleCallOther(BaseEntry entry, ITypewriterContext context) {
+      if (context.Get(PresenceFact) == 0
+        && context is InteractionContext {
+          Interactable: Conversation conversation,
+        }) {
+        InteractState.Enter(conversation);
       }
-
-      if (CurrentItem == null) {
-        return false;
-      }
-
-      return CurrentItem.PrefabReference.AssetGUID
-        == item.PrefabReference.AssetGUID;
     }
 
     public void SetFocus(int value) {

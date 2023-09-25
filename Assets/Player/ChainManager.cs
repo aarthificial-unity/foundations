@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using Audio;
+﻿using Audio;
 using UnityEngine;
-using Utils;
 
 namespace Player {
   [DefaultExecutionOrder(2)]
   public class ChainManager : MonoBehaviour {
-    [Inject] [SerializeField] private PlayerChannel _players;
     [SerializeField] private GameObject _link;
     [SerializeField] private int _length;
     [SerializeField] private float _linkLength = 1;
@@ -20,6 +16,7 @@ namespace Player {
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
+    private float _averageMultipler;
 
     private void Awake() {
 #if UNITY_EDITOR
@@ -32,9 +29,9 @@ namespace Player {
       }
 #endif
 
-      var manager = GetComponent<PlayerManager>();
-      var from = _players.LT.ChainTarget;
-      var to = _players.RT.ChainTarget;
+      var players = GetComponent<PlayerManager>();
+      var from = players.LT.ChainTarget;
+      var to = players.RT.ChainTarget;
 
       _links = new Rigidbody[_length];
       var prev = Instantiate(_link);
@@ -84,6 +81,7 @@ namespace Player {
       _chainEvent.AttachToGameObject(this.gameObject);
       _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
       _chainEvent.Play();
+      _averageMultipler = 1.0f / _links.Length;
     }
 
     private void Update() {
@@ -94,7 +92,7 @@ namespace Player {
       }
       Vector3 accel = currentVelocity - _prevFrameVelocity;
       _prevFrameVelocity = currentVelocity;
-      float accelMagnitude = accel.sqrMagnitude * 0.01f;
+      float accelMagnitude = accel.sqrMagnitude * _averageMultipler;
       _chainEvent.SetParameter(_chainAccelerationParam, accelMagnitude);
       //Debug.Log(accelMagnitude);
     }

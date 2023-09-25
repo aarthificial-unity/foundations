@@ -1,48 +1,35 @@
-﻿using System;
+﻿using Player;
+using Typewriter;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils;
+using View;
+using View.Dialogue;
 
 namespace Items {
-  public class ItemSlot : MonoBehaviour,
-    IDragHandler,
-    IBeginDragHandler,
-    IEndDragHandler {
-    public event Action Dropped;
-
+  public class ItemSlot : MonoBehaviour {
+    [Inject] [SerializeField] private ButtonStyle _styles;
+    [SerializeField] private DialogueEntry.BubbleStyle _style;
+    [SerializeField] private PlayerType _player;
     [SerializeField] private Image _icon;
-    private RectTransform _draggableTransform;
-    private Vector2 _initialPosition;
-    private Canvas _canvas;
+    [SerializeField] private BoxSDF _fill;
+    [SerializeField] private BoxSDF _stroke;
 
-    private void Awake() {
-      _draggableTransform = _icon.GetComponent<RectTransform>();
-      _canvas = GetComponentInParent<Canvas>();
-      _initialPosition = _draggableTransform.anchoredPosition;
+    private void Start() {
+      var style = _styles[_style];
+      var color = style.BackgroundColors[_player];
+
+      _fill.Color = color;
+      _stroke.Color = color;
+      _fill.TextureStrength = style.TextureStrength;
+      _stroke.TextureStrength = style.TextureStrength;
+
+      gameObject.SetActive(false);
     }
 
-    public void SetItem(Item item) {
-      _icon.sprite = item == null ? null : item.Icon;
-      _icon.enabled = item != null;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData) { }
-
-    public void OnDrag(PointerEventData eventData) {
-      _draggableTransform.anchoredPosition +=
-        eventData.delta / _canvas.scaleFactor;
-    }
-
-    public void OnEndDrag(PointerEventData eventData) {
-      if (Vector2.Distance(
-          _draggableTransform.anchoredPosition,
-          _initialPosition
-        )
-        > 60 / _canvas.scaleFactor) {
-        Dropped?.Invoke();
-      }
-
-      _draggableTransform.anchoredPosition = _initialPosition;
+    public void SetItem(ItemEntry item) {
+      _icon.sprite = item?.Icon;
+      gameObject.SetActive(item != null);
     }
   }
 }

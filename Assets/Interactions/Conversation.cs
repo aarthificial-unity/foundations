@@ -1,7 +1,11 @@
 ﻿using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Attributes;
+using Aarthificial.Typewriter.References;
 using Cinemachine;
+using Framework;
 using Items;
 using Player;
+using Typewriter;
 using UnityEngine;
 using Utils;
 using View.Overlay;
@@ -26,20 +30,23 @@ namespace Interactions {
     }
 
     public InteractionWaypoint[] Waypoints;
-    public Item Item;
+    [EntryFilter(BaseType = typeof(ItemEntry), AllowEmpty = true)]
+    public EntryReference Item;
 
     private PlayerLookup<Interaction> _interactions;
 
-    [Inject] [SerializeField] private PlayerChannel _players;
-    [Inject] [SerializeField] private OverlayChannel _overlay;
     [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
     [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
+    [SerializeField] private Transform _itemTransform;
 
     private CinemachineVirtualCamera _camera;
+    private Item _itemInstance;
+    private Camera _mainCamera;
 
     protected override void Awake() {
       base.Awake();
+      _mainCamera = OverlayManager.Camera;
       _camera = Instantiate(_cameraTemplate);
       var cameraTarget = new GameObject("Camera Target").transform;
       cameraTarget.SetParent(transform);
@@ -55,6 +62,9 @@ namespace Interactions {
       _camera.Priority = 100;
       _camera.m_Lens.OrthographicSize = _orthoSize;
       _camera.gameObject.SetActive(false);
+
+      Blackboard.Set(InteractionContext.AvailableItem, Item);
+      TryInstantiateItem();
     }
 
     private void Update() {
@@ -234,15 +244,33 @@ namespace Interactions {
       return -1;
     }
 
+    public override void UseItem(EntryReference item) {
+      base.UseItem(item);
+      Item = item;
+      TryInstantiateItem();
+    }
+
+    public override EntryReference PickUpItem() {
+      base.PickUpItem();
+      if (_itemInstance != null) {
+        Destroy(_itemInstance.gameObject);
+        _itemInstance = null;
+      }
+
+      return Item;
+    }
+
+    private void TryInstantiateItem() {
+      if (Item.TryGetEntry(out ItemEntry itemEntry)) {
+        _itemInstance = Instantiate(itemEntry.Prefab, _itemTransform);
+      }
+    }
+
     private void UpdateGizmo() {
       var ltPosition =
-        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
-          _players.LT.transform.position
-        );
+        (Vector2)_mainCamera.WorldToScreenPoint(Players.LT.transform.position);
       var rtPosition =
-        (Vector2)_overlay.CameraManager.MainCamera.WorldToScreenPoint(
-          _players.RT.transform.position
-        );
+        (Vector2)_mainCamera.WorldToScreenPoint(Players.RT.transform.position);
 
       Gizmo.Direction = (rtPosition - ltPosition).normalized;
       Gizmo.PlayerType = PlayerType;
@@ -252,7 +280,7 @@ namespace Interactions {
         return;
       }
 
-      if (_players.Manager.DialogueState.IsActive) {
+      if (Players.DialogueState.IsActive) {
         Gizmo.IsExpanded = false;
         Gizmo.IsHovered = false;
         Gizmo.IsFocused = false;
