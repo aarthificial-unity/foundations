@@ -16,7 +16,6 @@ namespace Player {
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
-    private float _averageMultipler;
 
     private void Awake() {
 #if UNITY_EDITOR
@@ -81,10 +80,9 @@ namespace Player {
       _chainEvent.AttachToGameObject(this.gameObject);
       _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
       _chainEvent.Play();
-      _averageMultipler = 1.0f / _links.Length;
     }
 
-    private void Update() {
+    private void FixedUpdate() {
       _chainEvent.Update3DPosition();
       Vector3 currentVelocity = Vector3.zero;
       for (var i = 0; i < _length; i++) {
@@ -92,9 +90,7 @@ namespace Player {
       }
       Vector3 accel = currentVelocity - _prevFrameVelocity;
       _prevFrameVelocity = currentVelocity;
-      float accelMagnitude = accel.sqrMagnitude * _averageMultipler;
-      _chainEvent.SetParameter(_chainAccelerationParam, accelMagnitude);
-      //Debug.Log(accelMagnitude);
+      _chainEvent.SetParameter(_chainAccelerationParam, accel.magnitude);
     }
 
 #if UNITY_EDITOR
