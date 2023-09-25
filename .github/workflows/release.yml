@@ -65,8 +65,8 @@ jobs:
           name: FMOD Build
           path: .fmod/Build
   build:
-    name: Build for ${{ matrix.targetPlatform }}
-    needs: [release, fmod]
+    name: ${{ matrix.mode }} for ${{ matrix.targetPlatform }}
+    needs: [ release, fmod ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -74,6 +74,11 @@ jobs:
           - StandaloneWindows64
           - StandaloneLinux64
           - StandaloneOSX
+        mode: [ Build ]
+        include:
+          - targetPlatform: StandaloneWindows64
+            method: Editor.BuildScript.Build
+            mode: Dev
     steps:
       - uses: actions/checkout@v3
         with:
@@ -98,11 +103,11 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Custom
           version: ${{ needs.release.outputs.version }}
-          buildMethod: Editor.BuildScript.Build
+          buildMethod: ${{ matrix.method }}
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Build-${{ matrix.targetPlatform }}
+          name: ${{ matrix.mode }}-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
       - name: Create zip archive
         run: |
@@ -113,7 +118,7 @@ jobs:
         with:
           script: |
             const release_id = `${{ needs.release.outputs.release }}`;
-            const name = `Build-${{ matrix.targetPlatform }}.zip`;
+            const name = `${{ matrix.mode }}-${{ matrix.targetPlatform }}.zip`;
 
             await github.rest.repos.uploadReleaseAsset({
               owner: context.repo.owner,
@@ -124,7 +129,7 @@ jobs:
             });
   steam:
     name: Deploy to Steam
-    needs: [ build ]
+    needs: [ release, build ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -151,7 +156,7 @@ jobs:
           username: ${{ secrets.STEAM_USERNAME }}
           configVdf: ${{ secrets.STEAM_CONFIG_VDF}}
           appId: ${{ secrets.STEAM_APP_ID }}
-          buildDescription: v${{ needs.build.outputs.buildVersion }}
+          buildDescription: v${{ needs.release.outputs.version }}
           rootPath: build
           depot1Path: StandaloneWindows64
           depot2Path: StandaloneLinux64
