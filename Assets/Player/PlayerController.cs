@@ -111,7 +111,7 @@ namespace Player {
         return;
       }
       if (Physics.Raycast(
-          transform.position,
+          transform.position + transform.forward * 0.4f,
           Vector3.down,
           out var hit,
           2f,
