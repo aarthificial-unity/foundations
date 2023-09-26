@@ -28,9 +28,18 @@ namespace Player.States {
         )
         > 0.5f;
 
+      var minDistance = Player.Config.MinDistance;
+      var maxDistance = Player.Config.MaxDistance;
+
       Player.Agent.autoBraking = false;
       Player.Agent.destination = otherPosition;
-      Player.Agent.stoppingDistance = Player.Config.MinDistance;
+      if (Player.CommandAction.action.IsPressed()) {
+        Player.Agent.destination = Player.Other.Agent.destination;
+        minDistance = Player.Other.Agent.remainingDistance;
+        maxDistance = minDistance + 1f;
+      }
+
+      Player.Agent.stoppingDistance = minDistance;
 
       if (isWalkingTowards) {
         if (distance < Player.Config.CloseDistance) {
@@ -50,8 +59,8 @@ namespace Player.States {
       }
 
       var range = Player.Agent.remainingDistance.ToClampedRange(
-        Player.Config.MinDistance,
-        Player.Config.MaxDistance
+        minDistance,
+        maxDistance
       );
       Player.Agent.speed = range.Map(0f, Player.Config.WalkSpeed);
       Player.Agent.acceleration = range.Map(8f, Player.Config.Acceleration);

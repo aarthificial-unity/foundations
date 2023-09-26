@@ -82,8 +82,7 @@ namespace Player.ManagerStates {
         && !Manager.RT.InteractState.IsActive) {
         interactionMask |= _config.PlayerMask;
       }
-      if (!EventSystem.current.IsPointerOverGameObject()
-        && !IsNavigating(CurrentController)
+      if (!IsNavigating(CurrentController)
         && Physics.Raycast(ray, out hit, 100, interactionMask)
         && hit.transform.TryGetComponent<Interactable>(out var interactable)) {
         _currentCommand = Command.Interact;
@@ -105,7 +104,7 @@ namespace Player.ManagerStates {
 
       var currentController = CurrentController;
       _hud.SetInteractive(!IsNavigating(currentController));
-      _target.DrivenUpdate(currentController);
+      _target.DrivenUpdate(Manager, currentController);
 
       if (currentController?.NavigateState.IsActive ?? false) {
         Manager.FocusedPlayer = currentController.Type;
@@ -114,8 +113,8 @@ namespace Player.ManagerStates {
 
     private void UpdatePlayer(PlayerController player) {
       if (player.CommandAction.action.WasPerformedThisFrame()
-        && IsMouseWithinBounds()
-        && !EventSystem.current.IsPointerOverGameObject()) {
+        && _commandedPlayer == PlayerType.None
+        && IsMouseWithinBounds()) {
         CurrentPlayer = player.Type;
 
         switch (_currentCommand) {
@@ -131,7 +130,14 @@ namespace Player.ManagerStates {
 
       if (player.CommandAction.action.WasReleasedThisFrame()
         && _commandedPlayer == player.Type) {
-        _commandedPlayer = PlayerType.None;
+        if (_currentCommand == Command.Move
+          && player.Other.CommandAction.action.IsPressed()) {
+          _commandedPlayer = player.Other.Type;
+          CurrentPlayer = player.Other.Type;
+          player.Other.NavigateState.Enter(_targetPosition);
+        } else {
+          _commandedPlayer = PlayerType.None;
+        }
       }
 
       player.DrivenUpdate();
