@@ -1,4 +1,5 @@
 ﻿using Audio;
+using Framework;
 using UnityEngine;
 
 namespace Player {
@@ -16,6 +17,7 @@ namespace Player {
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
+    private float _acceleration;
 
     private void Awake() {
 #if UNITY_EDITOR
@@ -69,6 +71,10 @@ namespace Player {
       joint.connectedAnchor = anchor;
     }
 
+    private void OnDestroy() {
+      _chainEvent.Release();
+    }
+
     private void Start() {
       for (var i = 0; i < _length; i++) {
         _links[i].position = _positions[i];
@@ -77,20 +83,26 @@ namespace Player {
       }
       _prevFrameVelocity = Vector3.zero;
       _chainEvent.Setup();
-      _chainEvent.AttachToGameObject(this.gameObject);
+      _chainEvent.AttachToGameObject(gameObject);
       _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
       _chainEvent.Play();
     }
 
     private void FixedUpdate() {
-      _chainEvent.Update3DPosition();
-      Vector3 currentVelocity = Vector3.zero;
+      var currentVelocity = Vector3.zero;
       for (var i = 0; i < _length; i++) {
         currentVelocity += _links[i].velocity;
       }
-      Vector3 accel = currentVelocity - _prevFrameVelocity;
+      _acceleration = (currentVelocity - _prevFrameVelocity).magnitude;
       _prevFrameVelocity = currentVelocity;
-      _chainEvent.SetParameter(_chainAccelerationParam, accel.magnitude);
+    }
+
+    private void Update() {
+      _chainEvent.Update3DPosition();
+      _chainEvent.SetParameter(
+        _chainAccelerationParam,
+        App.Game.Story.IsPaused ? 0 : _acceleration
+      );
     }
 
 #if UNITY_EDITOR

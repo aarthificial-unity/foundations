@@ -6,7 +6,12 @@ using View.Overlay.States;
 namespace View.Overlay {
   [DefaultExecutionOrder(-100)]
   public class OverlayManager : MonoBehaviour {
-    public static Camera Camera => FindObjectOfType<OverlayManager>()._camera;
+    public static Camera Camera {
+      get {
+        var instance = FindObjectOfType<OverlayManager>();
+        return instance != null ? instance._camera : Camera.main;
+      }
+    }
 
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _folder;

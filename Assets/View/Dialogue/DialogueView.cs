@@ -43,13 +43,6 @@ namespace View.Dialogue {
     }
 
     public void DrivenUpdate(Vector3 lt, Vector3 rt) {
-      var ratio = Screen.width / (float)Screen.height;
-      if (ratio > 16 / 9f) {
-        _canvas.scaleFactor = Screen.height / 1080f;
-      } else {
-        _canvas.scaleFactor = Screen.width / 1920f;
-      }
-
       ScreenPosition.LT = _mainCamera.WorldToScreenPoint(lt)
         / _canvas.scaleFactor;
       ScreenPosition.RT = _mainCamera.WorldToScreenPoint(rt)
