@@ -3,23 +3,40 @@ using Utils.Tweening;
 
 namespace Player {
   public class TargetController : MonoBehaviour {
+    private static readonly int _playerTypeID =
+      Shader.PropertyToID("_PlayerType");
+
     [SerializeField] private SkinnedMeshRenderer _mesh;
     [SerializeField] private Transform _bone;
     private SpringTween _scaleTween;
+    private SpringTween _playerTypeTween;
     private PlayerType _previousPlayer;
+    private MaterialPropertyBlock _block;
+    private bool _areBothActive;
 
     public bool Visible {
+      get => gameObject.activeSelf;
       set => gameObject.SetActive(value);
     }
 
-    public void DrivenUpdate(PlayerController player) {
+    private void Awake() {
+      _block = new MaterialPropertyBlock();
+    }
+
+    public void DrivenUpdate(PlayerManager manager, PlayerController player) {
+      var wereBothActive = _areBothActive;
+      var forceSet = false;
+      _areBothActive = false;
       if (player != null) {
         if (_previousPlayer != player.Type) {
           Visible = false;
         }
 
-        _mesh.sharedMaterial = player.Material;
+        if (player.Other.CommandAction.action.IsPressed()) {
+          _areBothActive = true;
+        }
 
+        _previousPlayer = player.Type;
         if (player.NavigateState.IsActive) {
           transform.position = player.TargetPosition;
           if (player.CommandAction.action.IsPressed()) {
@@ -28,13 +45,36 @@ namespace Player {
             _scaleTween.Set(1f);
           }
 
-          if (!player.Agent.pathPending) {
+          if (!Visible && !player.Agent.pathPending) {
             Visible = true;
+            forceSet = true;
           }
         } else {
           Visible = false;
         }
       }
+
+      var playerTypeValue = _areBothActive
+        ? 0
+        : _previousPlayer == PlayerType.LT
+          ? -1
+          : 1;
+      if (forceSet && !wereBothActive) {
+        _playerTypeTween.ForceSet(playerTypeValue);
+      } else {
+        _playerTypeTween.Set(playerTypeValue);
+      }
+
+      if (_playerTypeTween.Update(SpringConfig.Slow)) {
+        _block.SetFloat(_playerTypeID, _playerTypeTween.X);
+        _mesh.SetPropertyBlock(_block);
+      }
+
+      var direction = manager.LT.transform.position
+        - manager.RT.transform.position;
+      transform.rotation = Quaternion.LookRotation(
+        new Vector3(direction.x, 0, direction.z).normalized
+      );
 
       if (_scaleTween.Update(SpringConfig.Medium)) {
         _bone.localScale = new Vector3(_scaleTween.X, 1, _scaleTween.X);

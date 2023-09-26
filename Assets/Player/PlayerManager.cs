@@ -7,7 +7,6 @@ using Settings.Bundles;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
-using Object = UnityEngine.Object;
 
 namespace Player {
   [RequireComponent(typeof(DialogueState))]

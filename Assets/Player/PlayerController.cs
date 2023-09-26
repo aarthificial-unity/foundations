@@ -23,7 +23,6 @@ namespace Player {
   public class PlayerController : MonoBehaviour {
     private static readonly int _animatorSpeed = Animator.StringToHash("speed");
 
-    public Material Material;
     public PlayerController Other;
     public Vector3 TargetPosition => Agent.pathEndPosition;
 
