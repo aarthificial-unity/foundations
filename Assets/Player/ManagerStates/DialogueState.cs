@@ -130,6 +130,11 @@ namespace Player.ManagerStates {
       ProcessEntry(entry);
     }
 
+    private void UpdatePlayer(PlayerController player) {
+      player.FollowState.TightDistance = false;
+      player.DrivenUpdate();
+    }
+
     private void ProcessEntry(BaseEntry entry) {
       CurrentEntry = entry;
       Debug.Log($"Processing: {entry.Key}");

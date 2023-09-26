@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b4e6da8eab420687358720540e6087, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  Colors:
-    LT: {r: 0.23137255, g: 0.7372549, b: 0.8862745, a: 0}
-    RT: {r: 0.94509804, g: 0.3882353, b: 0.27058825, a: 0}
   InteractionMask:
     serializedVersion: 2
     m_Bits: 256
@@ -30,5 +27,7 @@ MonoBehaviour:
   RotationSpeed: 400
   CloseDistance: 2
   MinDistance: 3
-  MaxDistance: 5
+  MaxDistance: 6
   LimitDistance: 8
+  MinTightDistance: 0.5
+  MaxTightDistance: 1.5
