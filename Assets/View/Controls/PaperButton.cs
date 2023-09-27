@@ -31,10 +31,7 @@ namespace View.Controls {
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-      if (IsInteractable()) {
-        _clickSound.Play();
-        Clicked?.Invoke();
-      }
+      OnSubmit(eventData);
     }
 
     public void OnSubmit(BaseEventData eventData) {

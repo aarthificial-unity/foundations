@@ -299,6 +299,10 @@ MonoBehaviour:
     InternalID: -1848183240
   PresenceFact:
     InternalID: -1848183240
+  InteractSound:
+    Event: {fileID: 11400000, guid: a8a5b322d268f91479193a90fffc224f, type: 2}
+  EnterDialogueSound:
+    Event: {fileID: 11400000, guid: b7729e8999b074a449fa60ba6a91d86d, type: 2}
   FootstepAudio:
     Event: {fileID: 11400000, guid: 0fa7e7320843cd54fb6156720238ecdc, type: 2}
   StepSpeedParam: {fileID: 11400000, guid: 834e8cfbffcb49c4c9687e27f68353bd, type: 2}
@@ -317,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3495f6833c2444ebb16cf28555b378c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TightDistance: 0
 --- !u!114 &4695604894641087686
 MonoBehaviour:
   m_ObjectHideFlags: 0

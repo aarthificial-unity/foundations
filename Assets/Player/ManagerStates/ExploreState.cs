@@ -1,6 +1,6 @@
-﻿using Interactions;
+﻿using Audio;
+using Interactions;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
 using View.Overlay;
@@ -16,6 +16,7 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private PlayerConfig _config;
     [SerializeField] private TargetController _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
+    [SerializeField] private FMODEventInstance _interactionHoverSound;
 
     private Command _currentCommand = Command.None;
     private Interactable _interactable;
@@ -45,6 +46,12 @@ namespace Player.ManagerStates {
       _mainCamera = OverlayManager.Camera;
       _hud = FindObjectOfType<HUDView>();
       _target = Instantiate(_targetPrefab);
+      _interactionHoverSound.Setup();
+    }
+
+    protected override void OnDestroy() {
+      base.OnDestroy();
+      _interactionHoverSound.Release();
     }
 
     public override void OnEnter() {
@@ -95,6 +102,7 @@ namespace Player.ManagerStates {
         }
 
         if (_interactable != null) {
+          _interactionHoverSound.Play();
           _interactable.OnHoverEnter();
         }
       }

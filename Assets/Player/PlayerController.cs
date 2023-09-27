@@ -49,7 +49,9 @@ namespace Player {
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public EntryReference CurrentItem;
 
-    [SerializeField] public FMODEventInstance FootstepAudio;
+    public FMODEventInstance InteractSound;
+    public FMODEventInstance EnterDialogueSound;
+    public FMODEventInstance FootstepAudio;
     public FMODParameter StepSpeedParam;
     public FMODParameter StepSurfaceParam;
     public FMODParameter StepCharacterParam;
@@ -70,6 +72,8 @@ namespace Player {
 
       Agent.updateRotation = false;
 
+      InteractSound.Setup();
+      EnterDialogueSound.Setup();
       FootstepAudio.Setup();
       FootstepAudio.SetParameter(StepCharacterParam, IsLT ? 0 : 1);
       FootstepAudio.AttachToGameObject(gameObject);
@@ -77,6 +81,8 @@ namespace Player {
     }
 
     private void OnDestroy() {
+      InteractSound.Release();
+      EnterDialogueSound.Release();
       FootstepAudio.Release();
     }
 

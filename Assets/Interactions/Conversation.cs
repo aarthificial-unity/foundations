@@ -92,8 +92,10 @@ namespace Interactions {
 
     public override void Interact(PlayerController player) {
       if (_interactions[player.Type].IsReady) {
+        player.EnterDialogueSound.Play();
         Event.Invoke(Context);
       } else if (!_interactions[player.Type].IsActive) {
+        player.InteractSound.Play();
         player.InteractState.Enter(this);
       }
     }
