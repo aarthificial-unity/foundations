@@ -71,13 +71,15 @@ namespace Interactions {
       UpdateInteraction(PlayerType.LT);
       UpdateInteraction(PlayerType.RT);
       UpdateState();
+      UpdateBlackboard();
+      UpdateGizmo();
+    }
 
+    private void UpdateBlackboard() {
       Blackboard.Set(InteractionContext.IsLTPresent, IsPresent(Players.LT));
       Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
       Blackboard.Set(InteractionContext.Initiator, Initiator);
       Blackboard.Set(InteractionContext.Listener, Listener);
-
-      UpdateGizmo();
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -158,6 +160,8 @@ namespace Interactions {
       } else {
         Listener = player.Fact;
       }
+
+      UpdateBlackboard();
     }
 
     public void OnFocusExit(PlayerController player) {
