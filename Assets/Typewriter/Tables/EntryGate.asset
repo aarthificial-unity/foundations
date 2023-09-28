@@ -42,7 +42,7 @@ MonoBehaviour:
         ID: 1389384
         Key: C_rolling_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389383
@@ -59,7 +59,7 @@ MonoBehaviour:
         ID: 1389385
         Key: L_do_inspect_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -84,7 +84,7 @@ MonoBehaviour:
         ID: 1389386
         Key: L_do_place_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -116,7 +116,7 @@ MonoBehaviour:
         ID: 1389387
         Key: R_do_inspect_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -141,7 +141,7 @@ MonoBehaviour:
         ID: 1389389
         Key: C_security_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389388
@@ -158,7 +158,7 @@ MonoBehaviour:
         ID: 1389390
         Key: L_do_inspect_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -183,7 +183,7 @@ MonoBehaviour:
         ID: 1389391
         Key: L_do_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -217,7 +217,7 @@ MonoBehaviour:
         ID: 1389392
         Key: L_do_take_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -259,7 +259,7 @@ MonoBehaviour:
         ID: 1389393
         Key: R_do_inspect_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -284,7 +284,7 @@ MonoBehaviour:
         ID: 1389394
         Key: R_do_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -318,7 +318,7 @@ MonoBehaviour:
         ID: 1389395
         Key: LR_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389391
@@ -339,7 +339,7 @@ MonoBehaviour:
         ID: 1389382
         Key: window_broken
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
         ID: 1389383
         Key: E_rolling_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -365,7 +365,7 @@ MonoBehaviour:
         ID: 1389388
         Key: E_security_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
         ID: 1389396
         Key: I_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
         ID: 1389398
         Key: L_do_jump_over
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -426,7 +426,7 @@ MonoBehaviour:
         ID: 1389408
         Key: L_take_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389392

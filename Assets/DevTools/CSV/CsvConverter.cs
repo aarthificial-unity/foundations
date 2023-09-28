@@ -308,7 +308,7 @@ namespace DevTools.CSV {
       _modifications.Clear();
 
       entry.Key = cells.Key();
-      entry.Scope = InteractionContext.InteractionScope;
+      entry.Scope = InteractionContext.GlobalScope;
 
       if (cells.Triggers() != "") {
         _triggers.AddRange(ParseReferences(cells.Triggers()));
