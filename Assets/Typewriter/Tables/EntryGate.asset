@@ -30,9 +30,12 @@ MonoBehaviour:
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
+  - rid: 2933227198024777731
   Events:
   - rid: 2933227056775036945
   - rid: 2933227056775036946
+  - rid: 2933227198024777732
+  - rid: 2933227198024777733
   references:
     version: 2
     RefIds:
@@ -445,3 +448,45 @@ MonoBehaviour:
         Style: 2
         Speaker:
           InternalID: -417971899
+    - rid: 2933227198024777731
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389410
+        Key: I_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 0}
+        Prefab: {fileID: 5716112002554090600, guid: 70e2810510a37c54db89a6e54e0621c6,
+          type: 3}
+    - rid: 2933227198024777732
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389411
+        Key: E_barriers
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2933227198024777733
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389412
+        Key: E_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
