@@ -38,6 +38,7 @@ namespace Player.States {
       Player.Agent.destination = Conversation.GetPosition(Player);
       if (!isReady
         && Other.InteractState.IsActive
+        && Other.InteractState.Conversation != Conversation
         && TryLimitWalkingDistance(out var position)) {
         Player.NavigateState.Enter(position);
       }
