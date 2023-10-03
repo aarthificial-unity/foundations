@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91b2b2ddd5f499ea8ac23c7d36aeb89, type: 3}
+  m_Name: SupportersData
+  m_EditorClassIdentifier:
+  Entries:
+  - Sparrow
+  - Hiroshi Rio
+  - Duane Sibilly
+  - Ree
+  - Andrew Magnuson
+  - rymol81
+  - loltron410
+  - Sean Myers
+  - Jan-Helme Henke
+  - Peter D H
+  - Antonio Capo
+  - Wilheries
+  - Joshua Mayberry
+  - Chae Taylor
+  - Jake Silberstein
+  - Horizon
+  - Lt.Noname
+  - bitbrain
+  - Philipp
+  - Gerardo Ortega
+  - IkedaTenji
+  - JanFrederick
+  - Daniel Andersen
+  - Steffen John
+  - CaptainCrounche
+  - Christian Dimas
+  - Saika
+  - Pidge
+  - Mattias Petter Johansson
+  - Chris Mangum
+  - HasteReapr
+  - Forthwind
+  - Zack Maril
+  - Ben Edwards
+  - Nicolas Arqueros
+  - Johno Scott
+  - Alecto
+  - SamsterJam
+  - Owlruler
+  - Hunter H
+  - Kai Sassnowski
+  - Digital Analog
+  - Colin K
+  - Miha Mitič
+  - dova
+  - Muzzy
+  - Alister Kerr
+  - hofstee
+  - Eve
+  - Frederick Parotat
+  - BattleDash
+  - Elias
+  - Matteo Cannizzo
+  - AshMW
+  - Ar4ys
+  - Chairles_III
+  - Christian Petersen
+  - Adam Emslie
+  - Spyemma
+  - Steets
+  - Eva Mathews
+  - Ivan Georgiev
+  - Miles Manners
+  - Rida F'kih
+  - Liam Killen
+  - Nathan Ewan
+  - YASUHIRO YAMAZAKI
+  - ちひと だがし
+  - Brendan Gilet
+  - Tomatech Games
+  - BluePain
+  - Tom
+  - iam_nekk
+  - Noah Solomon
+  - Eforen
+  - Sef
+  - MeanOldMathMan
+  - OrpheusDev
+  - Jesper the End
+  - Brandon Pelfrey
+  - Charlotte Som
+  - Shayne Fitzgerald
+  - King Jellycycle
+  - Christopher Bernjus
+  - Robert Grünberger
+  - MasterNetwork
+  - Klemen Slavic
+  - Nicolás Gargano
+  - Milos Laptosevic
+  - Andrew Schreiber
+  - Zageron
+  - Patrick Kennedy
+  - Jonathon Cooke-Akaiwa
+  - Ashley H
+  - yellp1
+  - Riley Shaw
+  - GreenerC
+  - Jaytorrent
+  - Nick Novack
+  - Joshua Brock
+  - Aurélien Bouvaist
+  - Jan-Stefan Janetzky
+  - Logan Morgengard
+  - Evan Malmud
+  - Zanen Coy
+  - Daniel Holz
+  - Gala
+  - Kyle
+  - Michael Orenstein
+  - Sam Cole
+  - Parsley the Standard
+  - Matt Sylvia
+  - zAudio951 .
+  - Dorri__
+  - Not_Nugget
+  - Guilherme Moraes
+  - Steve Biggs
+  - ProfessorT
+  - sweaters
+  - xAqult
+  - Eric Haavind-Berman
+  - Sergio Papini
+  - Nimphious
+  - Phendan
+  - ErikTheBerik
+  - Christoph Richards
