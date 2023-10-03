@@ -23,17 +23,18 @@ namespace Player {
       _block = new MaterialPropertyBlock();
     }
 
-    public void DrivenUpdate(PlayerManager manager, PlayerController player) {
+    public void DrivenUpdate(
+      PlayerManager manager,
+      PlayerController player,
+      bool areBothActive
+    ) {
       var wereBothActive = _areBothActive;
+      _areBothActive = areBothActive;
+
       var forceSet = false;
-      _areBothActive = false;
       if (player != null) {
         if (_previousPlayer != player.Type) {
           Visible = false;
-        }
-
-        if (player.Other.CommandAction.action.IsPressed()) {
-          _areBothActive = true;
         }
 
         _previousPlayer = player.Type;
