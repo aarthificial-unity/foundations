@@ -17,6 +17,7 @@ namespace Player.ManagerStates {
     [SerializeField] private TargetController _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
     [SerializeField] private FMODEventInstance _interactionHoverSound;
+    [SerializeField] private float _keyReleaseDelay = 0.1f;
 
     private Command _currentCommand = Command.None;
     private Interactable _interactable;
@@ -26,6 +27,8 @@ namespace Player.ManagerStates {
     private TargetController _target;
     private Camera _mainCamera;
     private HUDView _hud;
+    private float _lastBothTime;
+    private bool _areBothPressed;
 
     private PlayerController CurrentController => Manager[_currentPlayer];
 
@@ -107,12 +110,30 @@ namespace Player.ManagerStates {
         }
       }
 
+      if (Manager.LT.CommandAction.action.WasPerformedThisFrame()
+        || Manager.RT.CommandAction.action.WasPerformedThisFrame()) {
+        _areBothPressed = false;
+        _lastBothTime = -_keyReleaseDelay;
+      }
+
+      if (Manager.LT.CommandAction.action.IsPressed()
+        && Manager.RT.CommandAction.action.IsPressed()) {
+        _areBothPressed = true;
+        _lastBothTime = Time.unscaledTime;
+      }
+
+      if (Manager.LT.CommandAction.action.IsPressed()
+        != Manager.RT.CommandAction.action.IsPressed()
+        && Time.unscaledTime - _lastBothTime > _keyReleaseDelay) {
+        _areBothPressed = false;
+      }
+
       UpdatePlayer(Manager.LT);
       UpdatePlayer(Manager.RT);
 
       var currentController = CurrentController;
       _hud.SetInteractive(!IsNavigating(currentController));
-      _target.DrivenUpdate(Manager, currentController);
+      _target.DrivenUpdate(Manager, currentController, _areBothPressed);
 
       if (currentController?.NavigateState.IsActive ?? false) {
         Manager.FocusedPlayer = currentController.Type;
@@ -136,20 +157,27 @@ namespace Player.ManagerStates {
         }
       }
 
-      if (player.CommandAction.action.WasReleasedThisFrame()
+      if (player.CommandAction.action.WasPerformedThisFrame()
+        && _commandedPlayer == player.Other.Type
+        && _currentCommand == Command.Move) {
+        player.FollowState.Enter();
+      }
+
+      if (!player.CommandAction.action.IsPressed()
         && _commandedPlayer == player.Type) {
         if (_currentCommand == Command.Move
           && player.Other.CommandAction.action.IsPressed()) {
-          _commandedPlayer = player.Other.Type;
-          CurrentPlayer = player.Other.Type;
-          player.Other.NavigateState.Enter(_targetPosition);
+          if (Time.unscaledTime - _lastBothTime > _keyReleaseDelay) {
+            _commandedPlayer = player.Other.Type;
+            CurrentPlayer = player.Other.Type;
+            player.Other.NavigateState.Enter(_targetPosition);
+          }
         } else {
           _commandedPlayer = PlayerType.None;
         }
       }
 
-      player.FollowState.TightDistance =
-        player.CommandAction.action.IsPressed();
+      player.FollowState.TightDistance = _areBothPressed;
       player.DrivenUpdate();
       if (IsNavigating(player)) {
         player.NavigateState.TargetPosition = _targetPosition;
