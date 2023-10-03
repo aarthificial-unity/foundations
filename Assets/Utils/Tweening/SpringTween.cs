@@ -109,6 +109,7 @@ namespace Utils.Tweening {
     }
 
     public void AddImpulse(float impulse) {
+      _settled = false;
       _velocity.x += impulse;
     }
 
