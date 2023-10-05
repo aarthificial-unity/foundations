@@ -64,19 +64,22 @@ namespace View.Dialogue {
         _frameTween.Set(_presentPlayers == PlayerType.Both ? 1 : 0);
       }
 
-      var individualScreenPosition = ScreenPosition[_lastIndividualPlayer];
-      var individualFrame = Rect.MinMaxRect(
-        individualScreenPosition.x - capsuleSize.x,
-        individualScreenPosition.y - capsuleSize.y,
-        individualScreenPosition.x + capsuleSize.x,
-        individualScreenPosition.y + capsuleSize.y
-      );
       var bothFrame = Rect.MinMaxRect(
         Mathf.Min(ScreenPosition.LT.x, ScreenPosition.RT.x) - capsuleSize.x,
         Mathf.Min(ScreenPosition.LT.y, ScreenPosition.RT.y) - capsuleSize.y,
         Mathf.Max(ScreenPosition.LT.x, ScreenPosition.RT.x) + capsuleSize.x,
         Mathf.Max(ScreenPosition.LT.y, ScreenPosition.RT.y) + capsuleSize.y
       );
+
+      var individualScreenPosition = ScreenPosition[_lastIndividualPlayer];
+      var individualFrame = _lastIndividualPlayer == PlayerType.None
+        ? bothFrame
+        : Rect.MinMaxRect(
+          individualScreenPosition.x - capsuleSize.x,
+          individualScreenPosition.y - capsuleSize.y,
+          individualScreenPosition.x + capsuleSize.x,
+          individualScreenPosition.y + capsuleSize.y
+        );
 
       _frameTween.Update(SpringConfig.Snappy);
       PlayerFrame = new Rect(

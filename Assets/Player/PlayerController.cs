@@ -129,10 +129,6 @@ namespace Player {
       FootstepAudio.Play();
     }
 
-    private void Start() {
-      SwitchState(IdleState);
-    }
-
     public void DrivenUpdate() {
       _currentState.OnUpdate();
       transform.rotation = Quaternion.RotateTowards(

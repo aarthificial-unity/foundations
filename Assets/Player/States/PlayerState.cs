@@ -23,8 +23,11 @@ namespace Player.States {
       _path = new NavMeshPath();
     }
 
-    protected bool TryLimitWalkingDistance(out Vector3 position) {
-      Other.Agent.CalculatePath(Player.Agent.destination, _path);
+    protected bool TryLimitWalkingDistance(
+      Vector3 target,
+      out Vector3 position
+    ) {
+      Other.Agent.CalculatePath(target, _path);
       var corners = _path.corners;
       var fullLength = 0f;
       for (var i = 1; i < corners.Length; i++) {

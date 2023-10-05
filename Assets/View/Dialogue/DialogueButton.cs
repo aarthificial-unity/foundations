@@ -9,7 +9,8 @@ using View.Overlay;
 
 namespace View.Dialogue {
   [DefaultExecutionOrder(300)]
-  public class DialogueButton : Selectable, IPointerClickHandler, ISubmitHandler {
+  public class
+    DialogueButton : Selectable, IPointerClickHandler, ISubmitHandler {
     public enum ActionType {
       None,
       Play,
@@ -20,7 +21,7 @@ namespace View.Dialogue {
     public event Action Clicked;
 
     public Vector3 ButtonPosition =>
-      _mainCamera.ScreenToWorldPoint(transform.position + Vector3.forward);
+      _mainCamera.ScreenToWorldPoint(transform.position + Vector3.forward * 50);
 
     private InteractionGizmo _gizmo;
     private bool _hasGizmo;

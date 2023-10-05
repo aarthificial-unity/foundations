@@ -7,7 +7,6 @@ using Settings.Bundles;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
-
 namespace Player {
   [RequireComponent(typeof(DialogueState))]
   [RequireComponent(typeof(ExploreState))]
@@ -17,7 +16,7 @@ namespace Player {
 
     [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
-
+    [SerializeField] private Conversation _initialConversation;
     public PlayerController RT;
     public PlayerController LT;
     [NonSerialized] public PlayerType FocusedPlayer;
@@ -48,10 +47,19 @@ namespace Player {
       _cameraGroup.DoUpdate();
       _camera = Instantiate(_cameraPrefab);
       _camera.Follow = transform;
+      FindObjectOfType<CinemachineBrain>().ManualUpdate();
     }
 
     private void Start() {
-      SwitchState(ExploreState);
+      if (_initialConversation != null) {
+        LT.InteractState.Enter(_initialConversation);
+        RT.InteractState.Enter(_initialConversation);
+        _initialConversation.Event.Invoke(_initialConversation.Context);
+      } else {
+        SwitchState(ExploreState);
+        LT.SwitchState(LT.IdleState);
+        RT.SwitchState(RT.IdleState);
+      }
     }
 
     private void Update() {

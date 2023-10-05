@@ -10,11 +10,14 @@ namespace Interactions {
     private static readonly int _playRectID = Shader.PropertyToID("_PlayRect");
     private static readonly int _cancelRectID =
       Shader.PropertyToID("_CancelRect");
+    private static readonly int _mouseRectID =
+      Shader.PropertyToID("_MouseRect");
 
     private const char _dialogueIcon = '\ue0bf';
     private const char _skipIcon = '\ue044';
     private const char _playIcon = '\ue037';
     private const char _cancelIcon = '\ue5cd';
+    private const char _mouseIcon = '\ue323';
 
     [SerializeField] private TMP_FontAsset _font;
     [SerializeField] private Material _material;
@@ -31,6 +34,7 @@ namespace Interactions {
       SetRect(_skipRectID, _skipIcon);
       SetRect(_playRectID, _playIcon);
       SetRect(_cancelRectID, _cancelIcon);
+      SetRect(_mouseRectID, _mouseIcon);
     }
 
     private void SetRect(int id, char icon) {

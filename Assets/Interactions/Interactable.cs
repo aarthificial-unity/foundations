@@ -38,6 +38,11 @@ namespace Interactions {
       OnStateChanged();
     }
 
+    public void SetEvent(EntryReference entry) {
+      Event.EventReference = entry;
+      Blackboard.Set(InteractionContext.InitialEvent, entry);
+    }
+
     public virtual void Interact(PlayerController player) { }
 
     public void OnHoverEnter() {
