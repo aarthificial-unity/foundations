@@ -136,7 +136,8 @@ namespace Player.ManagerStates {
       _target.DrivenUpdate(Manager, currentController, _areBothPressed);
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.FocusedPlayer = currentController.Type;
+        Manager.FocusedPlayer =
+          _areBothPressed ? PlayerType.Both : currentController.Type;
       }
     }
 
