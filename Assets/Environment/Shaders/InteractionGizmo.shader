@@ -9,11 +9,13 @@ Shader "GUI/InteractionGizmo"
     _Smoothness ("Smoothness", Float) = 1
     _IconScales ("Icon Scales", Vector) = (2.23, 2.23, 2.23, 1)
     _Icon ("Icon", Vector) = (0, 0, 0, 0)
+    _Mouse ("Mouse", Vector) = (0, 0, 0, 0)
 
     [HideInInspector] _DialogueRect ("Dialogue Rect", Vector) = (0, 0, 0, 0)
     [HideInInspector] _SkipRect ("Skip Rect", Vector) = (0, 0, 0, 0)
     [HideInInspector] _PlayRect ("Play Rect", Vector) = (0, 0, 0, 0)
     [HideInInspector] _CancelRect ("Cancel Rect", Vector) = (0, 0, 0, 0)
+    [HideInInspector] _MouseRect ("Mouse Rect", Vector) = (0, 0, 0, 0)
     [HideInInspector] _AtlasTex ("Atlas Texture", 2D) = "white" {}
 
     [HideInInspector] _Direction ("Direction", Vector) = (1, 0, 0, 0)
@@ -78,11 +80,13 @@ Shader "GUI/InteractionGizmo"
         float4 _SkipRect;
         float4 _PlayRect;
         float4 _CancelRect;
-        float4 _Icon;
+        float4 _MouseRect;
         sampler2D _AtlasTex;
         float4 _AtlasTex_TexelSize;
       CBUFFER_END
 
+      float4 _Icon;
+      float4 _Mouse;
       float4 _State;
       float4 _Direction;
 
@@ -158,7 +162,8 @@ Shader "GUI/InteractionGizmo"
         half4 playerColor = lerp(_LTColor, _MidColor, saturate(colorDot * 2));
         playerColor = lerp(playerColor, _RTColor, saturate(colorDot * 2 - 1));
         playerColor = lerp(_Color, playerColor, playerPresence);
-        half4 color = fromTo(smoothness, circleDistance, strokeOffset, strokeOffset - 7 / 96.0) * playerColor;
+        float stroke = fromTo(smoothness, circleDistance, strokeOffset, strokeOffset - 7 / 96.0);
+        half4 color = stroke * playerColor;
 
         float4 iconScales = _IconScales / lerp(1, 0.5833333, saturate(expansion));
         float4 icons = float4(
@@ -168,8 +173,17 @@ Shader "GUI/InteractionGizmo"
           iconSDF(input.uv, _CancelRect, iconScales.w)
         );
 
+        float mouse = iconSDF(input.uv, _MouseRect, 2);
         float iconDistance = dot(icons, _Icon) / dot(_Icon, float4(1, 1, 1, 1));
         float innerCircle = circleDistance - (1 - 0.58333333333333) * -0.5 + (16 / 96.0);
+
+        if (_Mouse.x > 0.5)
+        {
+          iconDistance = mouse;
+          float button = lerp(step(input.uv.x, 0.5), step(0.5, input.uv.x), _Mouse.y);
+          opacity *= lerp(_Mouse.z, 1, saturate(button * step(0.54, input.uv.y) + stroke));
+        }
+
         iconDistance = lerp(iconDistance, innerCircle, saturate(expansion * 1.25));
         color += _Color * smoothstep(smoothness, -smoothness, iconDistance);
         color *= opacity;

@@ -17,11 +17,13 @@ namespace Player.States {
     }
 
     public override void OnUpdate() {
-      Player.Agent.destination = TargetPosition;
       if (!Other.FollowState.IsActive
-        && TryLimitWalkingDistance(out var position)) {
+        && TryLimitWalkingDistance(TargetPosition, out var position)) {
         Player.Agent.destination = position;
+      } else {
+        Player.Agent.destination = TargetPosition;
       }
+
       base.OnUpdate();
     }
 

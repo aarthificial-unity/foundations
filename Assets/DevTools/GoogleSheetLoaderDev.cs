@@ -18,7 +18,6 @@ namespace DevTools {
     private static string _customDocumentId;
     private static string _customSheetName;
 
-    [SerializeField] [Inject] private StoryState _story;
     [SerializeField] private DatabaseTable _table;
     [SerializeField] private string _documentId;
     [SerializeField] private string _sheetName;
@@ -220,7 +219,7 @@ namespace DevTools {
       }
 
       Close();
-      _story.Reload();
+      App.Game.Story.Reload();
     }
   }
 }

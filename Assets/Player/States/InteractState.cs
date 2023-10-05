@@ -39,7 +39,10 @@ namespace Player.States {
       if (!isReady
         && Other.InteractState.IsActive
         && Other.InteractState.Conversation != Conversation
-        && TryLimitWalkingDistance(out var position)) {
+        && TryLimitWalkingDistance(
+          Player.Agent.destination,
+          out var position
+        )) {
         Player.NavigateState.Enter(position);
       }
 
