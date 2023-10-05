@@ -13,7 +13,10 @@ namespace View.Office.States {
     protected virtual void Awake() {
       Manager = GetComponent<MenuManager>();
       _brain = FindObjectOfType<CinemachineBrain>();
-      OnProgress(0);
+    }
+
+    private void Start() {
+      OnProgress(_progress);
     }
 
     protected virtual void Update() {
