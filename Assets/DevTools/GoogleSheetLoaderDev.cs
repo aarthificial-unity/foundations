@@ -138,6 +138,11 @@ namespace DevTools {
       if (GUILayout.Button("Cancel")) {
         Close();
       }
+      GUI.enabled = !App.Game.Story.IsLoading;
+      if (GUILayout.Button(App.Game.Story.IsLoading ? "Saving" : "Save")) {
+        StartCoroutine(Save());
+      }
+      GUI.enabled = true;
       if (GUILayout.Button("Reload")) {
         StartCoroutine(Reload());
       }
@@ -203,6 +208,17 @@ namespace DevTools {
         GUILayout.Label(stringValue);
         GUILayout.EndHorizontal();
       }
+    }
+
+    private IEnumerator Save() {
+      App.Game.Story.Save();
+      while (!App.Game.Story.IsLoading) {
+        yield return null;
+      }
+      while (App.Game.Story.IsLoading) {
+        yield return null;
+      }
+      Close();
     }
 
     private IEnumerator Reload() {

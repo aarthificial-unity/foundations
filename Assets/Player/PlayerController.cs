@@ -1,3 +1,6 @@
+using Aarthificial.Safekeeper;
+using Aarthificial.Safekeeper.Attributes;
+using Aarthificial.Safekeeper.Stores;
 using Aarthificial.Typewriter;
 using System;
 using Aarthificial.Typewriter.Attributes;
@@ -8,6 +11,7 @@ using Interactions;
 using Items;
 using Player.States;
 using Player.Surfaces;
+using Saves;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,7 +24,13 @@ namespace Player {
   [RequireComponent(typeof(IdleState))]
   [RequireComponent(typeof(InteractState))]
   [RequireComponent(typeof(NavigateState))]
-  public class PlayerController : MonoBehaviour {
+  public class PlayerController : MonoBehaviour, ISaveStore {
+    [Serializable]
+    private class SerializedTransform {
+      public Vector3 Position;
+      public Quaternion Rotation;
+    }
+
     private static readonly int _animatorSpeed = Animator.StringToHash("speed");
 
     public PlayerController Other;
@@ -36,6 +46,7 @@ namespace Player {
     public EntryReference ItemFact;
     [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference PresenceFact;
+    [ObjectLocation] [SerializeField] private SaveLocation _id;
 
     public bool IsLT => Type == PlayerType.LT;
     public bool IsRT => Type == PlayerType.RT;
@@ -60,6 +71,7 @@ namespace Player {
     private PlayerState _currentState;
     private PlayerAnimator _animator;
     private float _speedFactor;
+    private SerializedTransform _savedTransform = new();
 
     private void Awake() {
       _animator = GetComponentInChildren<PlayerAnimator>();
@@ -86,7 +98,26 @@ namespace Player {
       FootstepAudio.Release();
     }
 
+    public void OnLoad(SaveControllerBase save) {
+      if (save.Data.Read(_id, _savedTransform)) {
+        transform.position = _savedTransform.Position;
+        Agent.destination = _savedTransform.Position;
+        IdleState.TargetRotation = FollowState.TargetRotation =
+          transform.rotation = _savedTransform.Rotation;
+      }
+
+      CurrentItem = ((SaveController)save).GlobalData.Blackboard.Get(ItemFact);
+      Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
+    }
+
+    public void OnSave(SaveControllerBase save) {
+      _savedTransform.Position = transform.position;
+      _savedTransform.Rotation = transform.rotation;
+      save.Data.Write(_id, _savedTransform);
+    }
+
     private void OnEnable() {
+      SaveStoreRegistry.Register(this);
       _animator.Stepped += HandleStepped;
       TypewriterDatabase.Instance.AddListener(ItemFact, HandleItemUsed);
       TypewriterDatabase.Instance.AddListener(
@@ -100,6 +131,7 @@ namespace Player {
     }
 
     private void OnDisable() {
+      SaveStoreRegistry.Unregister(this);
       _animator.Stepped -= HandleStepped;
       TypewriterDatabase.Instance.RemoveListener(ItemFact, HandleItemUsed);
       TypewriterDatabase.Instance.RemoveListener(
@@ -133,7 +165,7 @@ namespace Player {
       _currentState.OnUpdate();
       transform.rotation = Quaternion.RotateTowards(
         transform.rotation,
-        _currentState.Rotation,
+        _currentState.TargetRotation,
         Config.RotationSpeed * Time.deltaTime
       );
 

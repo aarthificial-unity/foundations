@@ -1,43 +1,112 @@
-﻿using System;
+﻿using Aarthificial.Safekeeper;
+using Aarthificial.Safekeeper.Stores;
+using Saves;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
+using Utils;
 
 namespace Framework {
   public class StoryState : GameState {
     [NonSerialized] public bool IsPaused;
+    public event Action<bool> LoadingChanged;
     public event Action Paused;
     public event Action Resumed;
     public event Action Reloaded;
 
-    private int _activeScene = 1;
+    private bool _isLoading;
+    public bool IsLoading {
+      get => _isLoading;
+      private set {
+        if (_isLoading == value) {
+          return;
+        }
+        _isLoading = value;
+        LoadingChanged?.Invoke(_isLoading);
+      }
+    }
 
-    public void Enter() {
+    private SaveController _saveController;
+    private string _swapScene;
+    private bool _saveScene;
+    private bool _reloadScene;
+
+    public void Enter(SaveController saveController) {
+      _saveController = saveController;
       Manager.SwitchState(this);
     }
 
-    public override void OnEnter() {
-      base.OnEnter();
+    public override IEnumerator OnEnter() {
+      Assert.IsNotNull(_saveController);
+
+      yield return base.OnEnter();
       IsPaused = false;
-      _activeScene = App.Save.Current.SceneIndex;
-      if (SceneManager.GetActiveScene().buildIndex != _activeScene) {
-        SceneManager.LoadScene(_activeScene);
+      IsLoading = true;
+      yield return _saveController.Create().AsIEnumerator();
+      yield return _saveController.Load(SaveMode.Full).AsIEnumerator();
+      if (SceneManager.GetActiveScene().name
+        != _saveController.GlobalData.SceneName) {
+        yield return SceneManager.LoadSceneAsync(
+          _saveController.GlobalData.SceneName
+        );
       }
+      yield return _saveController.Load().AsIEnumerator();
+      IsLoading = false;
       Resume();
     }
 
-    public void Reload() {
-      Assert.IsTrue(IsActive);
+    public override IEnumerator OnExit() {
+      while (_saveController.IsLoading) {
+        yield return null;
+      }
 
-      SceneManager.LoadScene(_activeScene);
-      Reloaded?.Invoke();
+      yield return base.OnExit();
+      SaveStoreRegistry.Clear();
+      _saveController = null;
+      _saveScene = false;
+      _reloadScene = false;
+      _swapScene = null;
+    }
+
+    public override IEnumerator OnUpdate() {
+      if (_saveScene) {
+        IsLoading = true;
+        yield return _saveController.Save(SaveMode.Full).AsIEnumerator();
+        IsLoading = false;
+        _saveScene = false;
+      }
+
+      if (_swapScene != null) {
+        IsLoading = true;
+        yield return SwapSceneCoroutine(_swapScene);
+        IsLoading = false;
+        _swapScene = null;
+      } else if (_reloadScene) {
+        yield return SceneManager.LoadSceneAsync(
+          _saveController.GlobalData.SceneName
+        );
+        yield return _saveController.Load().AsIEnumerator();
+        _reloadScene = false;
+        Reloaded?.Invoke();
+      }
+    }
+
+    public void Reload() {
+      _reloadScene = true;
     }
 
     public void SwapScene(string scenePath) {
       Assert.IsTrue(IsActive);
+      _swapScene = scenePath;
+    }
 
-      SceneManager.LoadScene(scenePath);
-      _activeScene = SceneManager.GetSceneByPath(scenePath).buildIndex;
+    private IEnumerator SwapSceneCoroutine(string scenePath) {
+      _saveController.GlobalData.SceneName = scenePath;
+      yield return _saveController.Save(SaveMode.Full).AsIEnumerator();
+      yield return SceneManager.LoadSceneAsync(scenePath);
+      yield return _saveController.Load().AsIEnumerator();
     }
 
     public void Pause() {
@@ -56,6 +125,16 @@ namespace Framework {
       IsPaused = false;
       Time.timeScale = 1;
       Resumed?.Invoke();
+    }
+
+    public void AutoSave() {
+      if (_saveController.AutoSave) {
+        _saveScene = true;
+      }
+    }
+
+    public void Save() {
+      _saveScene = true;
     }
   }
 }

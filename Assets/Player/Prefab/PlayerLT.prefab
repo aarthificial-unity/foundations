@@ -232,6 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 6168768229353314369}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
+      propertyPath: _id.ObjectId
+      value: lt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
       propertyPath: CommandAction
       value: 
       objectReference: {fileID: -3045247272773088673, guid: 314bc7151929a6a439a2af7e101ce57a,
@@ -256,6 +261,21 @@ PrefabInstance:
         type: 3}
       propertyPath: PresenceFact.InternalID
       value: -95002655
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220605009596291365, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _id.ChunkId
+      value: 92e7c9ff0c925d449ba5ab7811653d5e
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220605009596291365, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _id.ObjectId
+      value: 6096902267112675049-0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220605009596291365, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
+      propertyPath: _playerId.ObjectId
+      value: lt_conversation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

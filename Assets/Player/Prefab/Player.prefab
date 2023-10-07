@@ -299,6 +299,9 @@ MonoBehaviour:
     InternalID: -1848183240
   PresenceFact:
     InternalID: -1848183240
+  _id:
+    ChunkId: default
+    ObjectId: 
   InteractSound:
     Event: {fileID: 11400000, guid: a8a5b322d268f91479193a90fffc224f, type: 2}
   EnterDialogueSound:
@@ -370,6 +373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116f3676cc543c380b861ddd6f57b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id:
+    ChunkId: 723be1f20975bbb4e80d78073f628de9
+    ObjectId: 9220605009596291365-0
   Gizmo: {fileID: 0}
   Event:
     EventReference:
@@ -380,6 +386,9 @@ MonoBehaviour:
     Context:
       List: []
     Interactable: {fileID: 0}
+  _playerId:
+    ChunkId: default
+    ObjectId: 
 --- !u!114 &3786397423081031399
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Framework {
@@ -9,8 +10,8 @@ namespace Framework {
       Manager.SwitchState(this);
     }
 
-    public override void OnEnter() {
-      base.OnEnter();
+    public override IEnumerator OnEnter() {
+      yield return base.OnEnter();
       Time.timeScale = 1;
       if (SceneManager.GetActiveScene().buildIndex != _sceneIndex) {
         SceneManager.LoadScene(_sceneIndex);

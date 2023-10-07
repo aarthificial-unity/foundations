@@ -1,10 +1,18 @@
-﻿using Audio;
+﻿using Aarthificial.Safekeeper;
+using Aarthificial.Safekeeper.Attributes;
+using Aarthificial.Safekeeper.Stores;
+using Audio;
 using Framework;
 using UnityEngine;
 
 namespace Player {
   [DefaultExecutionOrder(2)]
-  public class ChainManager : MonoBehaviour {
+  public class ChainManager : MonoBehaviour, ISaveStore {
+    private class StoredData {
+      public Vector3[] Positions;
+      public Quaternion[] Rotations;
+    }
+
     [SerializeField] private GameObject _link;
     [SerializeField] private int _length;
     [SerializeField] private float _linkLength = 1;
@@ -14,10 +22,12 @@ namespace Player {
 
     [SerializeField] private FMODEventInstance _chainEvent;
     [SerializeField] private FMODParameter _chainAccelerationParam;
+    [ObjectLocation] [SerializeField] private SaveLocation _id;
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
     private float _acceleration;
+    private StoredData _storedData;
 
     private void Awake() {
 #if UNITY_EDITOR
@@ -29,6 +39,11 @@ namespace Player {
         _rotations = new Quaternion[_length];
       }
 #endif
+
+      _storedData = new StoredData {
+        Positions = _positions,
+        Rotations = _rotations,
+      };
 
       var players = GetComponent<PlayerManager>();
       var from = players.LT.ChainTarget;
@@ -75,10 +90,30 @@ namespace Player {
       _chainEvent.Release();
     }
 
+    private void OnEnable() {
+      SaveStoreRegistry.Register(this);
+    }
+
+    private void OnDisable() {
+      SaveStoreRegistry.Unregister(this);
+    }
+
+    public void OnLoad(SaveControllerBase save) {
+      save.Data.Read(_id, _storedData);
+    }
+
+    public void OnSave(SaveControllerBase save) {
+      for (var i = 0; i < _length; i++) {
+        _storedData.Positions[i] = _links[i].position;
+        _storedData.Rotations[i] = _links[i].rotation;
+      }
+      save.Data.Write(_id, _storedData);
+    }
+
     private void Start() {
       for (var i = 0; i < _length; i++) {
-        _links[i].position = _positions[i];
-        _links[i].rotation = _rotations[i];
+        _links[i].position = _storedData.Positions[i];
+        _links[i].rotation = _storedData.Rotations[i];
         _links[i].velocity = Vector3.zero;
       }
       _prevFrameVelocity = Vector3.zero;
