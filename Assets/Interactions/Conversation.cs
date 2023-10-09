@@ -63,7 +63,7 @@ namespace Interactions {
       _camera.m_Lens.OrthographicSize = _orthoSize;
       _camera.gameObject.SetActive(false);
 
-      Blackboard.Set(InteractionContext.AvailableItem, Item);
+      Context.Set(InteractionContext.AvailableItem, Item);
       TryInstantiateItem();
     }
 
@@ -76,10 +76,10 @@ namespace Interactions {
     }
 
     private void UpdateBlackboard() {
-      Blackboard.Set(InteractionContext.IsLTPresent, IsPresent(Players.LT));
-      Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
-      Blackboard.Set(InteractionContext.Initiator, Initiator);
-      Blackboard.Set(InteractionContext.Listener, Listener);
+      Context.Set(InteractionContext.IsLTPresent, IsPresent(Players.LT));
+      Context.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
+      Context.Set(InteractionContext.Initiator, Initiator);
+      Context.Set(InteractionContext.Listener, Listener);
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -180,6 +180,7 @@ namespace Interactions {
     public override void OnDialogueExit() {
       base.OnDialogueExit();
       _camera.gameObject.SetActive(false);
+      App.Game.Story.AutoSave();
     }
 
     public Vector3 GetPosition(PlayerController player) {

@@ -7,6 +7,7 @@ using Settings.Bundles;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
+
 namespace Player {
   [RequireComponent(typeof(DialogueState))]
   [RequireComponent(typeof(ExploreState))]
@@ -23,7 +24,6 @@ namespace Player {
     [NonSerialized] public SpringTween CameraWeightTween;
     [NonSerialized] public DialogueState DialogueState;
     [NonSerialized] public ExploreState ExploreState;
-    [NonSerialized] public Blackboard GlobalBlackboard = new();
     private CinemachineTargetGroup _cameraGroup;
     private ManagerState _currentState;
     private CinemachineVirtualCamera _camera;
@@ -44,22 +44,25 @@ namespace Player {
 
       _cameraGroup = GetComponent<CinemachineTargetGroup>();
       CameraWeightTween.ForceSet(0.5f);
+    }
+
+    private void Start() {
       _cameraGroup.DoUpdate();
       _camera = Instantiate(_cameraPrefab);
       _camera.Follow = transform;
       FindObjectOfType<CinemachineBrain>().ManualUpdate();
-    }
 
-    private void Start() {
       if (_initialConversation != null) {
         LT.InteractState.Enter(_initialConversation);
         RT.InteractState.Enter(_initialConversation);
-        _initialConversation.Event.Invoke(_initialConversation.Context);
-      } else {
-        SwitchState(ExploreState);
-        LT.SwitchState(LT.IdleState);
-        RT.SwitchState(RT.IdleState);
+        if (_initialConversation.Event.Invoke(_initialConversation.Context)) {
+          return;
+        }
       }
+
+      SwitchState(ExploreState);
+      LT.SwitchState(LT.IdleState);
+      RT.SwitchState(RT.IdleState);
     }
 
     private void Update() {

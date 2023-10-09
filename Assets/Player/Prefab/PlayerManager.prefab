@@ -54,6 +54,7 @@ MonoBehaviour:
   _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
   _cameraPrefab: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
+  _initialConversation: {fileID: 0}
   RT: {fileID: 0}
   LT: {fileID: 0}
 --- !u!114 &4796299548502591021
@@ -241,6 +242,9 @@ MonoBehaviour:
     Event: {fileID: 11400000, guid: 762e5b8737e77ec41900fa62e882f68d, type: 2}
   _chainAccelerationParam: {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0,
     type: 2}
+  _id:
+    ChunkId: 00000000000000000000000000000000
+    ObjectId: 4796299548502591021-0
 --- !u!114 &7942872571327056023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +291,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fd6b180b554c6d9f680608ecd3b5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skipSound:
+    Event: {fileID: 0}
+  _nextSound:
+    Event: {fileID: 0}
+  _exitSound:
+    Event: {fileID: 0}
+  _optionSound:
+    Event: {fileID: 0}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
 --- !u!114 &4796299548502590993
@@ -306,6 +318,9 @@ MonoBehaviour:
     type: 3}
   _targetAction: {fileID: 3091928205696429083, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
+  _interactionHoverSound:
+    Event: {fileID: 0}
+  _keyReleaseDelay: 0.1
 --- !u!114 &4796299548502590995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0e7ba60ef04a6b99cf5ce52943ff18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _story: {fileID: 11400000, guid: 0f0d16039f21f864db8384ab7bb703c1, type: 2}
   _table: {fileID: 0}
   _documentId: 
   _sheetName: 

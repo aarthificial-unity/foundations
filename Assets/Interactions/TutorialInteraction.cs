@@ -1,4 +1,7 @@
-﻿using Aarthificial.Typewriter.Attributes;
+﻿using Aarthificial.Safekeeper;
+using Aarthificial.Safekeeper.Attributes;
+using Aarthificial.Safekeeper.Stores;
+using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Player;
@@ -6,7 +9,8 @@ using UnityEngine;
 using Utils.Tweening;
 
 namespace Interactions {
-  public class TutorialInteraction : MonoBehaviour {
+  public class TutorialInteraction : MonoBehaviour, ISaveStore {
+    [ObjectLocation] [SerializeField] private SaveLocation _id;
     [EntryFilter(Variant = EntryVariant.Event)]
     [SerializeField]
     private EntryReference _event;
@@ -22,6 +26,11 @@ namespace Interactions {
       _conversation = GetComponent<Conversation>();
       SetupGizmo(PlayerType.LT);
       SetupGizmo(PlayerType.RT);
+      SaveStoreRegistry.Register(this);
+    }
+
+    private void OnDestroy() {
+      SaveStoreRegistry.Unregister(this);
     }
 
     private void SetupGizmo(PlayerType playerType) {
@@ -38,6 +47,17 @@ namespace Interactions {
       gizmo.Direction = new Vector2(1, 0);
       gizmo.PlayerType = playerType;
       gizmo.PositionSpring = SpringConfig.Bouncy;
+    }
+
+    public void OnLoad(SaveControllerBase save) {
+      _hintShown = save.Data.Read<PlayerLookup<bool>>(_id);
+      if (_hintShown.LT && _hintShown.RT) {
+        _conversation.SetEvent(_event);
+      }
+    }
+
+    public void OnSave(SaveControllerBase save) {
+      save.Data.Write(_id, _hintShown);
     }
 
     private void OnEnable() {

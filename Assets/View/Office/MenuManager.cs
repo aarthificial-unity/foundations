@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Framework;
+using System;
 using UnityEngine;
+using Utils;
 using View.Controls;
 using View.Office.States;
+using MenuState = View.Office.States.MenuState;
 
 namespace View.Office {
   public class MenuManager : MonoBehaviour {
@@ -29,12 +32,25 @@ namespace View.Office {
       ExitState = GetComponent<ExitState>();
       SettingsState = GetComponent<SettingsState>();
 
-      _newGameButton.Clicked += StartGameState.NewGame;
-      _continueButton.Clicked += StartGameState.ContinueGame;
+      _newGameButton.Clicked += HandleNewGame;
+      _continueButton.Clicked += HandleContinue;
       _ejectButton.Clicked += _saveTapeManager.Eject;
       _exitButton.Clicked += ExitState.Enter;
       _settingsButton.Clicked += SettingsState.Enter;
       _settingsExitButton.Clicked += MainMenuState.Enter;
+      _saveTapeManager.IndexChanged += HandleIndexChanged;
+    }
+
+    private void HandleIndexChanged(int index) {
+      if (index >= 0) {
+        var save = App.Save.GetSaveController(index);
+        _continueButton.interactable = save.Exists;
+        if (save.Exists) {
+          _continueButton.QuietSelect();
+        } else {
+          _newGameButton.QuietSelect();
+        }
+      }
     }
 
     private void Start() {
@@ -53,6 +69,14 @@ namespace View.Office {
       _currentState?.OnExit();
       _currentState = state;
       _currentState?.OnEnter();
+    }
+
+    private void HandleNewGame() {
+      StartGameState.NewGame(_saveTapeManager.CurrentIndex);
+    }
+
+    private void HandleContinue() {
+      StartGameState.ContinueGame(_saveTapeManager.CurrentIndex);
     }
   }
 }

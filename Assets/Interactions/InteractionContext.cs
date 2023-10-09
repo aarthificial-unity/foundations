@@ -23,8 +23,8 @@ namespace Interactions {
     public static int InteractionScope = -1936302086;
     public static int GlobalScope = 475414559;
     public Blackboard Context;
-    [NonSerialized] public Blackboard Interaction;
-    [NonSerialized] public Blackboard Global;
+    [NonSerialized] public IBlackboard Interaction;
+    [NonSerialized] public IBlackboard Global = EmptyBlackboard.Instance;
     public Interactable Interactable;
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {

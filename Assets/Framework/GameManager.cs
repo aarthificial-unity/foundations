@@ -1,5 +1,6 @@
 using Saves;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ namespace Framework {
     [NonSerialized] public StoryState Story;
 
     private GameState _currentState;
+    private GameState _requestedState;
 
     public void DrivenAwake() {
       Menu = GetComponent<MenuState>();
@@ -20,22 +22,40 @@ namespace Framework {
       if (currentIndex == 0) {
         SwitchState(Menu);
       } else {
-        App.Save.Current = new SaveController { SceneIndex = currentIndex };
-        SwitchState(Story);
+        var task = App.Save.GetEditorSave();
+        task.Wait(5000);
+        if (!task.IsCompletedSuccessfully) {
+          throw new ApplicationException();
+        }
+        Story.Enter(task.Result);
       }
 #else
       SwitchState(Menu);
 #endif
+      StartCoroutine(Run());
     }
 
     public void SwitchState(GameState state) {
-      if (_currentState == state) {
-        return;
-      }
+      _requestedState = state;
+    }
 
-      _currentState?.OnExit();
-      _currentState = state;
-      _currentState?.OnEnter();
+    private IEnumerator Run() {
+      while (true) {
+        if (_currentState != null) {
+          yield return _currentState.OnUpdate();
+        }
+
+        if (_currentState == _requestedState) {
+          yield return null;
+          continue;
+        }
+
+        if (_currentState != null) {
+          yield return _currentState.OnExit();
+        }
+        _currentState = _requestedState;
+        yield return _currentState.OnEnter();
+      }
     }
 
     public void Quit() {
