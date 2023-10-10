@@ -1445,7 +1445,7 @@ Transform:
   m_GameObject: {fileID: 664505498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99970436, z: -0, w: -0.024317339}
-  m_LocalPosition: {x: 1.0670402, y: -0.010065794, z: 1.5351511}
+  m_LocalPosition: {x: 1.069, y: -0.010065794, z: 1.75}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2176,12 +2176,12 @@ PrefabInstance:
     - target: {fileID: 909216138870190066, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.645452
+      value: -15.612554
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -2191,7 +2191,7 @@ PrefabInstance:
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.641323
+      value: -43.53906
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -5763,7 +5763,7 @@ PrefabInstance:
     - target: {fileID: 6943498956483276166, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.4722
+      value: -14.406404
       objectReference: {fileID: 0}
     - target: {fileID: 6943498956483276166, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -5773,7 +5773,7 @@ PrefabInstance:
     - target: {fileID: 6943498956483276166, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.045994
+      value: -43.841457
       objectReference: {fileID: 0}
     - target: {fileID: 6943498956483276166, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
