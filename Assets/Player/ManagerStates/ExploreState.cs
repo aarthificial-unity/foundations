@@ -87,14 +87,13 @@ namespace Player.ManagerStates {
         _targetPosition = hit.point.ToNavMesh();
       }
 
-      int interactionMask = _config.InteractionMask;
-      if (!Manager.LT.InteractState.IsActive
-        && !Manager.RT.InteractState.IsActive) {
-        interactionMask |= _config.PlayerMask;
-      }
       if (!IsNavigating(CurrentController)
-        && Physics.Raycast(ray, out hit, 100, interactionMask)
-        && hit.transform.TryGetComponent<Interactable>(out var interactable)) {
+        && (TryHitInteractable(
+            ray,
+            _config.InteractionMask,
+            out var interactable
+          )
+          || TryHitInteractable(ray, _config.PlayerMask, out interactable))) {
         _currentCommand = Command.Interact;
         _interactable = interactable;
       }
@@ -197,6 +196,16 @@ namespace Player.ManagerStates {
       return player != null
         && player.NavigateState.IsActive
         && _commandedPlayer == player.Type;
+    }
+
+    private bool TryHitInteractable(
+      Ray ray,
+      int mask,
+      out Interactable interactable
+    ) {
+      interactable = default;
+      return Physics.Raycast(ray, out var hit, 100, mask)
+        && hit.transform.TryGetComponent(out interactable);
     }
   }
 }
