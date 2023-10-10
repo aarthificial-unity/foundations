@@ -51,9 +51,6 @@ namespace Interactions {
 
     public void OnLoad(SaveControllerBase save) {
       _hintShown = save.Data.Read<PlayerLookup<bool>>(_id);
-      if (_hintShown.LT && _hintShown.RT) {
-        _conversation.SetEvent(_event);
-      }
     }
 
     public void OnSave(SaveControllerBase save) {
@@ -93,6 +90,11 @@ namespace Interactions {
     }
 
     private void Update() {
+      if (_hintShown.LT && _hintShown.RT) {
+        enabled = false;
+        _conversation.SetEvent(_event);
+      }
+
       if (!_isReady || Time.time - _readyTime < _hintDelay) {
         return;
       }
@@ -105,9 +107,6 @@ namespace Interactions {
         _readyTime = Time.time;
         _gizmos.RT.IsDisabled = false;
         _gizmos.RT.Shake();
-      } else {
-        enabled = false;
-        _conversation.SetEvent(_event);
       }
     }
   }

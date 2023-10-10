@@ -43,6 +43,7 @@ namespace View.Dialogue {
 
     public void SetAction(ActionType actionType) {
       _actionType = actionType;
+      interactable = _actionType != ActionType.None;
       UpdateGizmo();
     }
 
@@ -86,8 +87,8 @@ namespace View.Dialogue {
 
       _gizmo.IsExpanded = true;
       _gizmo.IsFocused = true;
+      _gizmo.IsDisabled = false;
       _gizmo.IsHovered = currentSelectionState == SelectionState.Selected;
-      _gizmo.IsDisabled = currentSelectionState == SelectionState.Disabled;
     }
 
     public void OnPointerClick(PointerEventData eventData) {

@@ -262,7 +262,7 @@ namespace Player.ManagerStates {
           _skipSound.Play();
           _dialogue.Track.Skip();
           break;
-        case SubState.Proceed:
+        case SubState.Proceed when _queuedEntry != null:
           _nextSound.Play();
           _subState = SubState.Finished;
           break;
