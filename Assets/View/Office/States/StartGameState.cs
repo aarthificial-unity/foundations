@@ -26,13 +26,7 @@ namespace View.Office.States {
       }
     }
 
-    public void NewGame(int saveIndex) {
-      _save = App.Save.GetSaveController(saveIndex);
-      _save.Delete();
-      Manager.SwitchState(this);
-    }
-
-    public void ContinueGame(int saveIndex) {
+    public void Enter(int saveIndex) {
       _save = App.Save.GetSaveController(saveIndex);
       Manager.SwitchState(this);
     }

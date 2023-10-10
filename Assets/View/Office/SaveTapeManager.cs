@@ -12,8 +12,6 @@ namespace View.Office {
     [SerializeField] private FMODEventInstance _deselectSound;
     [SerializeField] private SaveTape[] _tapes;
     [SerializeField] private Transform _tapePlayer;
-    [SerializeField] private GameObject _selectionScreen;
-    [SerializeField] private GameObject _saveMenu;
 
     private int _selectedTapeIndex = -1;
 
@@ -67,8 +65,6 @@ namespace View.Office {
 
     private void Render() {
       var isAnyTapeSelected = _selectedTapeIndex >= 0;
-      _selectionScreen.SetActive(!isAnyTapeSelected);
-      _saveMenu.SetActive(isAnyTapeSelected);
       if (isAnyTapeSelected) {
         _selectSound.Play();
       } else {
