@@ -19,4 +19,5 @@ MonoBehaviour:
       Data3: -2146028885
       Data4: 852153367
     Path: event:/UI/Focus
-  Parameters: []
+  Parameters:
+  - {fileID: 11400000, guid: e2e3fd3add94ce24bafbc76c3843fa18, type: 2}

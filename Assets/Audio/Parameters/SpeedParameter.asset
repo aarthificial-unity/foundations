@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b3f0165196043cebdf11dd65b156713, type: 3}
-  m_Name: AccelerationParameter
+  m_Name: SpeedParameter
   m_EditorClassIdentifier: 
-  ParameterName: acceleration
+  ParameterName: speed
   IsGlobal: 0

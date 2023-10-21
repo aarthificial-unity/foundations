@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3086fc6c1a7f444ba4ddd0f11678046d, type: 3}
-  m_Name: ChainEvent
+  m_Name: OfficeComputerTextClickEvent
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -54740170
-      Data2: 1145718411
-      Data3: 486904983
-      Data4: 596732982
-    Path: event:/Player/ChainLoop
-  Parameters:
-  - {fileID: 11400000, guid: 9ec51029366620a44bcec73d9d888ded, type: 2}
-  - {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0, type: 2}
-  - {fileID: 11400000, guid: 9614dbc22482f5d41b934e7831f99daa, type: 2}
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Parameters: []

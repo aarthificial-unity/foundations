@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Master Bus</value>
 		</property>
+		<relationship name="masters">
+			<destination>{c5f90c6e-4887-4ca8-81a7-548b5faf68c4}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{cec76314-3a28-450f-abf7-e82da19f2e90}</destination>
 		</relationship>
@@ -16,12 +19,21 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{cec76314-3a28-450f-abf7-e82da19f2e90}">
 		<relationship name="effects">
+			<destination>{b5d6b140-5ced-4ff6-a54c-922757f6871a}</destination>
 			<destination>{5ec67008-e0a2-44ef-a294-d6b9a637e296}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e3952ac0-f5d1-4ab2-bc76-d72c780ce603}">
 		<property name="overridingOutputFormat">
 			<value>2</value>
+		</property>
+	</object>
+	<object class="LimiterEffect" id="{b5d6b140-5ced-4ff6-a54c-922757f6871a}">
+		<property name="boost">
+			<value>12</value>
+		</property>
+		<property name="ceiling">
+			<value>-1.10000002</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{5ec67008-e0a2-44ef-a294-d6b9a637e296}" />

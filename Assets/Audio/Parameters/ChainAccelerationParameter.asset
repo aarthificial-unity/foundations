@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3086fc6c1a7f444ba4ddd0f11678046d, type: 3}
-  m_Name: OfficeTapeSelectEvent
+  m_Script: {fileID: 11500000, guid: 5b3f0165196043cebdf11dd65b156713, type: 3}
+  m_Name: ChainAccelerationParameter
   m_EditorClassIdentifier: 
-  Event:
-    Guid:
-      Data1: -796817230
-      Data2: 1277919218
-      Data3: 1562508701
-      Data4: -1017413181
-    Path: event:/UI/office/vhs/vhs-select
-  Parameters: []
+  ParameterName: acceleration
+  IsGlobal: 0

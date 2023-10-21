@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{60fbaf47-7869-43c5-b015-60b30dcab1b4}">
+	<object class="AudioFile" id="{5516b86d-22a0-4168-a1d6-840ac992b497}">
 		<property name="assetPath">
-			<value>chain/chain-acceleration-loop.wav</value>
+			<value>UI/office/door/door-open.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>4.4961666666666664</value>
+			<value>1.6061458333333334</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
