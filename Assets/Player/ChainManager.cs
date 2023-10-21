@@ -4,6 +4,7 @@ using Aarthificial.Safekeeper.Stores;
 using Audio;
 using Framework;
 using UnityEngine;
+using Utils.Tweening;
 
 namespace Player {
   [DefaultExecutionOrder(2)]
@@ -21,12 +22,21 @@ namespace Player {
     [SerializeField] private Quaternion[] _rotations;
 
     [SerializeField] private FMODEventInstance _chainEvent;
+    
+    [SerializeField] private FMODParameter _chainVelocityParam;
+    
     [SerializeField] private FMODParameter _chainAccelerationParam;
+
+    [SerializeField] private SpringConfig _velocitySpringConfig;
+
+    [SerializeField] private SpringConfig _accelartionSpringConfig;
+
     [ObjectLocation] [SerializeField] private SaveLocation _id;
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
-    private float _acceleration;
+    private float _velocity, _acceleration;
+    private SpringTween _velocityTween, _accelerationTween;
     private StoredData _storedData;
 
     private void Awake() {
@@ -118,8 +128,9 @@ namespace Player {
       }
       _prevFrameVelocity = Vector3.zero;
       _chainEvent.Setup();
-      _chainEvent.AttachToGameObject(gameObject);
+      _chainEvent.AttachToGameObject(_links[_length / 2].gameObject);
       _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
+      _chainEvent.SetParameter(_chainVelocityParam, 0.0f);
       _chainEvent.Play();
     }
 
@@ -128,12 +139,21 @@ namespace Player {
       for (var i = 0; i < _length; i++) {
         currentVelocity += _links[i].velocity;
       }
-      _acceleration = (currentVelocity - _prevFrameVelocity).magnitude;
+      _velocityTween.Set(currentVelocity.magnitude);
+      _velocityTween.FixedUpdate(_velocitySpringConfig);
+      _velocity = _velocityTween.X;
+      _accelerationTween.Set((currentVelocity - _prevFrameVelocity).magnitude);
+      _accelerationTween.FixedUpdate(_accelartionSpringConfig);
+      _acceleration = _accelerationTween.X;
       _prevFrameVelocity = currentVelocity;
     }
 
     private void Update() {
       _chainEvent.Update3DPosition();
+      _chainEvent.SetParameter(
+        _chainVelocityParam,
+        App.Game.Story.IsPaused ? 0 : _velocity
+      );
       _chainEvent.SetParameter(
         _chainAccelerationParam,
         App.Game.Story.IsPaused ? 0 : _acceleration

@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-<<<<<<<< HEAD:.fmod/Metadata/Asset/{3480c89c-61a2-4bc7-a774-9e1acd381b0c}.xml
 	<object class="EncodableAsset" id="{3480c89c-61a2-4bc7-a774-9e1acd381b0c}">
 		<property name="assetPath">
 			<value>UI/office/</value>
-========
-	<object class="EncodableAsset" id="{8839cce8-64f1-4e46-9b81-3300b2ba7780}">
-		<property name="assetPath">
-			<value>chain/</value>
->>>>>>>> origin/main:.fmod/Metadata/Asset/{8839cce8-64f1-4e46-9b81-3300b2ba7780}.xml
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
