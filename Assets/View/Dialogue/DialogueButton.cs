@@ -1,4 +1,5 @@
-﻿using Interactions;
+﻿using Audio;
+using Interactions;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,8 @@ using View.Overlay;
 
 namespace View.Dialogue {
   [DefaultExecutionOrder(300)]
-  public class DialogueButton : Selectable, IPointerClickHandler {
+  public class
+    DialogueButton : Selectable, IPointerClickHandler, ISubmitHandler {
     public enum ActionType {
       None,
       Play,
@@ -19,7 +21,7 @@ namespace View.Dialogue {
     public event Action Clicked;
 
     public Vector3 ButtonPosition =>
-      _mainCamera.ScreenToWorldPoint(transform.position + Vector3.forward);
+      _mainCamera.ScreenToWorldPoint(transform.position + Vector3.forward * 50);
 
     private InteractionGizmo _gizmo;
     private bool _hasGizmo;
@@ -41,6 +43,7 @@ namespace View.Dialogue {
 
     public void SetAction(ActionType actionType) {
       _actionType = actionType;
+      interactable = _actionType != ActionType.None;
       UpdateGizmo();
     }
 
@@ -84,12 +87,18 @@ namespace View.Dialogue {
 
       _gizmo.IsExpanded = true;
       _gizmo.IsFocused = true;
-      _gizmo.IsHovered = currentSelectionState == SelectionState.Highlighted;
-      _gizmo.IsDisabled = currentSelectionState == SelectionState.Disabled;
+      _gizmo.IsDisabled = false;
+      _gizmo.IsHovered = currentSelectionState == SelectionState.Selected;
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-      Clicked?.Invoke();
+      OnSubmit(eventData);
+    }
+
+    public void OnSubmit(BaseEventData eventData) {
+      if (IsInteractable()) {
+        Clicked?.Invoke();
+      }
     }
   }
 }

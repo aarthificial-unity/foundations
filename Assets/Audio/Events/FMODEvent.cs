@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Audio {
   [CreateAssetMenu(fileName = "New FMODEvent", menuName = "FMOD Event")]
@@ -83,8 +84,19 @@ namespace Audio {
       }
     }
 
+    public void Pause() {
+      if (IsInitialized) {
+        Instance.stop(STOP_MODE.ALLOWFADEOUT);
+      }
+    }
+
     public void Release() {
       if (IsInitialized) {
+        Instance.getPlaybackState(out var state);
+        if (state == PLAYBACK_STATE.PLAYING) {
+          Instance.stop(STOP_MODE.IMMEDIATE);
+        }
+
         Instance.release();
         IsInitialized = false;
       }

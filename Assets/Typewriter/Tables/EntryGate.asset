@@ -27,12 +27,64 @@ MonoBehaviour:
   - rid: 2933227056775036943
   - rid: 2933227056775036949
   - rid: 2933227056775036950
+  - rid: 2940630783594594306
+  - rid: 2940630783594594307
+  - rid: 2940630783594594308
+  - rid: 2940630783594594309
+  - rid: 2940630783594594310
+  - rid: 2940630783594594311
+  - rid: 2940630783594594312
+  - rid: 2940630783594594313
+  - rid: 2940630783594594314
+  - rid: 2940630783594594315
+  - rid: 2940630783594594316
+  - rid: 2940630783594594317
+  - rid: 2940630783594594318
+  - rid: 2940630783594594319
+  - rid: 2940630783594594320
+  - rid: 2940630783594594321
+  - rid: 2940630783594594322
+  - rid: 2940630783594594323
+  - rid: 2940630783594594324
+  - rid: 2940630783594594325
+  - rid: 2940630783594594326
+  - rid: 2940630783594594327
+  - rid: 2940630783594594328
+  - rid: 2940630783594594329
+  - rid: 2940630783594594330
+  - rid: 2940630783594594331
+  - rid: 2940630783594594332
+  - rid: 2940630783594594333
+  - rid: 2940630783594594334
+  - rid: 2940630783594594335
+  - rid: 2940630783594594336
+  - rid: 2940630783594594337
+  - rid: 2940630783594594338
+  - rid: 2940630783594594339
+  - rid: 2940630783594594340
+  - rid: 2940630783594594341
+  - rid: 2940630783594594342
+  - rid: 2940630783594594343
+  - rid: 2940630783594594344
+  - rid: 2940630783594594345
+  - rid: 2940630783594594346
+  - rid: 2940630783594594347
+  - rid: 2940630783594594348
+  - rid: 2940630783594594349
+  - rid: 2940630783594594350
+  - rid: 2940630783594594351
+  - rid: 2940630783594594352
+  - rid: 2940630783594594353
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
+  - rid: 2933227198024777731
   Events:
   - rid: 2933227056775036945
   - rid: 2933227056775036946
+  - rid: 2933227198024777732
+  - rid: 2933227198024777733
+  - rid: 2940630783594594354
   references:
     version: 2
     RefIds:
@@ -42,7 +94,7 @@ MonoBehaviour:
         ID: 1389384
         Key: C_rolling_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389383
@@ -59,7 +111,7 @@ MonoBehaviour:
         ID: 1389385
         Key: L_do_inspect_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -84,7 +136,7 @@ MonoBehaviour:
         ID: 1389386
         Key: L_do_place_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -116,7 +168,7 @@ MonoBehaviour:
         ID: 1389387
         Key: R_do_inspect_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -141,7 +193,7 @@ MonoBehaviour:
         ID: 1389389
         Key: C_security_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389388
@@ -158,7 +210,7 @@ MonoBehaviour:
         ID: 1389390
         Key: L_do_inspect_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -183,7 +235,7 @@ MonoBehaviour:
         ID: 1389391
         Key: L_do_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -217,7 +269,7 @@ MonoBehaviour:
         ID: 1389392
         Key: L_do_take_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -259,7 +311,7 @@ MonoBehaviour:
         ID: 1389393
         Key: R_do_inspect_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -284,7 +336,7 @@ MonoBehaviour:
         ID: 1389394
         Key: R_do_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389389
@@ -318,7 +370,7 @@ MonoBehaviour:
         ID: 1389395
         Key: LR_break_window
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389391
@@ -339,7 +391,7 @@ MonoBehaviour:
         ID: 1389382
         Key: window_broken
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -352,7 +404,7 @@ MonoBehaviour:
         ID: 1389383
         Key: E_rolling_gate
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -365,7 +417,7 @@ MonoBehaviour:
         ID: 1389388
         Key: E_security_kiosk
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -378,7 +430,7 @@ MonoBehaviour:
         ID: 1389396
         Key: I_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List: []
         Once: 0
@@ -394,7 +446,7 @@ MonoBehaviour:
         ID: 1389398
         Key: L_do_jump_over
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389384
@@ -426,7 +478,7 @@ MonoBehaviour:
         ID: 1389408
         Key: L_take_chair
         Scope:
-          InternalID: -1936302086
+          InternalID: 475414559
         Triggers:
           List:
           - InternalID: 1389392
@@ -445,3 +497,1249 @@ MonoBehaviour:
         Style: 2
         Speaker:
           InternalID: -417971899
+    - rid: 2933227198024777731
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389410
+        Key: I_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 0}
+        Prefab: {fileID: 5716112002554090600, guid: 70e2810510a37c54db89a6e54e0621c6,
+          type: 3}
+    - rid: 2933227198024777732
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389411
+        Key: E_barriers
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2933227198024777733
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389412
+        Key: E_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 2940630783594594306
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389413
+        Key: C_barriers
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389411
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        IsCancellable: 1
+    - rid: 2940630783594594307
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389414
+        Key: L_do_inspect_barriers
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389413
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything special?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594308
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389415
+        Key: L_inspect_barriers_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389414
+        Once: 1
+        Padding: 3
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Looks like the car-catchers they used back at this road repair job
+          I had once.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594309
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389416
+        Key: L_inspect_barriers_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389415
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Just, sorta... dirtier, and leafier, I guess.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594310
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389417
+        Key: L_inspect_barriers_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389416
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Kinda nice, though.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594311
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389418
+        Key: L_inspect_barriers_A_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389417
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: In, like, a... a "concrete jungle" kinda way.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594312
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389419
+        Key: L_inspect_barriers_A_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389418
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Though, uh.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594313
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389420
+        Key: L_inspect_barriers_A_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389419
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Maybe it's best to stay on this side.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594314
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389421
+        Key: L_inspect_barriers_A_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389420
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Looks like there's headlights going past somewhere over there.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594315
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389422
+        Key: L_inspect_barriers_A_8
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389421
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: And I don't think I can convince anyone to let us hitchhike when
+          we're lookin' like this.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594316
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389423
+        Key: L_inspect_barriers_A_9
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389422
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>...<i>God,</i> my legs are killin' me.</color>
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594317
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389424
+        Key: L_inspect_barriers_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389414
+        Once: 1
+        Padding: 2
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: It'd be <i>so</i> damn nice to catch a ride.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594318
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389425
+        Key: L_inspect_barriers_B_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389424
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: But there's no way in hell we get one runnin' around in orange and
+          chains.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594319
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389426
+        Key: L_inspect_barriers_B_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389425
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594320
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389427
+        Key: L_inspect_barriers_B_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389426
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <i>Unless...</i>
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594321
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389428
+        Key: L_inspect_barriers_B_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389427
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Unless it's <i>Halloween.</i>
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594322
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389429
+        Key: L_inspect_barriers_B_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389428
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: If it's Halloween, then, uh-
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594323
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389430
+        Key: L_inspect_barriers_B_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389429
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Wait, no, shit.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594324
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389431
+        Key: L_inspect_barriers_B_8
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389430
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: We got turkey, like...
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594325
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389432
+        Key: L_inspect_barriers_B_9
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389431
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...a week ago, -ish?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594326
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389433
+        Key: L_inspect_barriers_B_10
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389432
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: And Thanksgiving is...
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594327
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389434
+        Key: L_inspect_barriers_B_11
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389433
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Yeah, it's <i>after</i> Halloween. Shit.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594328
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389435
+        Key: L_inspect_barriers_B_12
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389434
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Not a chance in hell, then.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594329
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389436
+        Key: L_inspect_barriers_B_13
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389435
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: We'd just be catching heat 'til the cops show up.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594330
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389437
+        Key: L_inspect_barriers_C_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389414
+        Once: 1
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Nice as it'd be to hitch a ride, I don't wanna do it in a patrol
+          car.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594331
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389438
+        Key: L_inspect_barriers_C_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389437
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...Though, she'd pop me before we get that far, anyway, wouldn't
+          she?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594332
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389439
+        Key: L_inspect_barriers_C_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389438
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Well, I don't wanna hitch a ride in a hearse, either.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594333
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389440
+        Key: L_inspect_barriers_D_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389414
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Think I'd get better odds at living if I jumped off a cliff.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594334
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389441
+        Key: L_inspect_barriers_D_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389440
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Better off lookin' somewhere else.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594335
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389442
+        Key: R_do_inspect_barriers
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389413
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything of note?
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594336
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389443
+        Key: R_inspect_barriers_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389442
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: (Temp line)
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594337
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389445
+        Key: L_intro_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389444
+        Once: 1
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: (Temp line)
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594338
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389446
+        Key: R_intro_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389445
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: (Temp line)
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594339
+      type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389447
+        Key: C_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389412
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        IsCancellable: 0
+    - rid: 2940630783594594340
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389448
+        Key: L_do_inspect_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389447
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything special?
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594341
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389449
+        Key: L_inspect_rock_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389448
+        Once: 1
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: It's like a cliff, but tiny.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594342
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389450
+        Key: L_inspect_rock_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389449
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Lil' baby cliff.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594343
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389451
+        Key: L_inspect_rock_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389450
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: There's a couple loose rocks at the bottom.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594344
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389452
+        Key: L_inspect_rock_A_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389451
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: No grass or nothing, so I guess they're new.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594345
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389453
+        Key: L_inspect_rock_A_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389452
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Must've had a lil' baby landslide.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594346
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389454
+        Key: L_inspect_rock_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389448
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Keep on truckin', baby cliff.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594347
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389455
+        Key: L_inspect_rock_B_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389454
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Gonna figure out how to hold yourself together in no time.
+        Style: 1
+        Speaker:
+          InternalID: -417971899
+    - rid: 2940630783594594348
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389456
+        Key: R_do_inspect_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389447
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Anything of note?
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594349
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389457
+        Key: R_inspect_rock_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389456
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The bedrock is exposed, here.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594350
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389458
+        Key: R_inspect_rock_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389457
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Leftovers from a bump that was carved out to smooth the land, perhaps.
+          This <i>is</i> a road.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594351
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389459
+        Key: R_inspect_rock_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389458
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Not that it looks like one, anymore.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594352
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389460
+        Key: R_inspect_rock_A_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389459
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Thick grass, so the undergrowth must have been crawling in for a
+          while. A few months, maybe.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594353
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389461
+        Key: R_inspect_rock_A_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389460
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...Good. Very good.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 2940630783594594354
+      type: {class: EventEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389444
+        Key: E_intro
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []

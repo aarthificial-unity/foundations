@@ -1,6 +1,6 @@
-﻿using Interactions;
+﻿using Audio;
+using Interactions;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils;
 using View.Overlay;
@@ -16,6 +16,8 @@ namespace Player.ManagerStates {
     [Inject] [SerializeField] private PlayerConfig _config;
     [SerializeField] private TargetController _targetPrefab;
     [SerializeField] private InputActionReference _targetAction;
+    [SerializeField] private FMODEventInstance _interactionHoverSound;
+    [SerializeField] private float _keyReleaseDelay = 0.1f;
 
     private Command _currentCommand = Command.None;
     private Interactable _interactable;
@@ -25,6 +27,8 @@ namespace Player.ManagerStates {
     private TargetController _target;
     private Camera _mainCamera;
     private HUDView _hud;
+    private float _lastBothTime;
+    private bool _areBothPressed;
 
     private PlayerController CurrentController => Manager[_currentPlayer];
 
@@ -45,6 +49,12 @@ namespace Player.ManagerStates {
       _mainCamera = OverlayManager.Camera;
       _hud = FindObjectOfType<HUDView>();
       _target = Instantiate(_targetPrefab);
+      _interactionHoverSound.Setup();
+    }
+
+    protected override void OnDestroy() {
+      base.OnDestroy();
+      _interactionHoverSound.Release();
     }
 
     public override void OnEnter() {
@@ -77,15 +87,13 @@ namespace Player.ManagerStates {
         _targetPosition = hit.point.ToNavMesh();
       }
 
-      int interactionMask = _config.InteractionMask;
-      if (!Manager.LT.InteractState.IsActive
-        && !Manager.RT.InteractState.IsActive) {
-        interactionMask |= _config.PlayerMask;
-      }
-      if (!EventSystem.current.IsPointerOverGameObject()
-        && !IsNavigating(CurrentController)
-        && Physics.Raycast(ray, out hit, 100, interactionMask)
-        && hit.transform.TryGetComponent<Interactable>(out var interactable)) {
+      if (!IsNavigating(CurrentController)
+        && (TryHitInteractable(
+            ray,
+            _config.InteractionMask,
+            out var interactable
+          )
+          || TryHitInteractable(ray, _config.PlayerMask, out interactable))) {
         _currentCommand = Command.Interact;
         _interactable = interactable;
       }
@@ -96,8 +104,27 @@ namespace Player.ManagerStates {
         }
 
         if (_interactable != null) {
+          _interactionHoverSound.Play();
           _interactable.OnHoverEnter();
         }
+      }
+
+      if (Manager.LT.CommandAction.action.WasPerformedThisFrame()
+        || Manager.RT.CommandAction.action.WasPerformedThisFrame()) {
+        _areBothPressed = false;
+        _lastBothTime = -_keyReleaseDelay;
+      }
+
+      if (Manager.LT.CommandAction.action.IsPressed()
+        && Manager.RT.CommandAction.action.IsPressed()) {
+        _areBothPressed = true;
+        _lastBothTime = Time.unscaledTime;
+      }
+
+      if (Manager.LT.CommandAction.action.IsPressed()
+        != Manager.RT.CommandAction.action.IsPressed()
+        && Time.unscaledTime - _lastBothTime > _keyReleaseDelay) {
+        _areBothPressed = false;
       }
 
       UpdatePlayer(Manager.LT);
@@ -105,17 +132,18 @@ namespace Player.ManagerStates {
 
       var currentController = CurrentController;
       _hud.SetInteractive(!IsNavigating(currentController));
-      _target.DrivenUpdate(currentController);
+      _target.DrivenUpdate(Manager, currentController, _areBothPressed);
 
       if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.FocusedPlayer = currentController.Type;
+        Manager.FocusedPlayer =
+          _areBothPressed ? PlayerType.Both : currentController.Type;
       }
     }
 
     private void UpdatePlayer(PlayerController player) {
       if (player.CommandAction.action.WasPerformedThisFrame()
-        && IsMouseWithinBounds()
-        && !EventSystem.current.IsPointerOverGameObject()) {
+        && _commandedPlayer == PlayerType.None
+        && IsMouseWithinBounds()) {
         CurrentPlayer = player.Type;
 
         switch (_currentCommand) {
@@ -129,11 +157,27 @@ namespace Player.ManagerStates {
         }
       }
 
-      if (player.CommandAction.action.WasReleasedThisFrame()
-        && _commandedPlayer == player.Type) {
-        _commandedPlayer = PlayerType.None;
+      if (player.CommandAction.action.WasPerformedThisFrame()
+        && _commandedPlayer == player.Other.Type
+        && _currentCommand == Command.Move) {
+        player.FollowState.Enter();
       }
 
+      if (!player.CommandAction.action.IsPressed()
+        && _commandedPlayer == player.Type) {
+        if (_currentCommand == Command.Move
+          && player.Other.CommandAction.action.IsPressed()) {
+          if (Time.unscaledTime - _lastBothTime > _keyReleaseDelay) {
+            _commandedPlayer = player.Other.Type;
+            CurrentPlayer = player.Other.Type;
+            player.Other.NavigateState.Enter(_targetPosition);
+          }
+        } else {
+          _commandedPlayer = PlayerType.None;
+        }
+      }
+
+      player.FollowState.TightDistance = _areBothPressed;
       player.DrivenUpdate();
       if (IsNavigating(player)) {
         player.NavigateState.TargetPosition = _targetPosition;
@@ -152,6 +196,16 @@ namespace Player.ManagerStates {
       return player != null
         && player.NavigateState.IsActive
         && _commandedPlayer == player.Type;
+    }
+
+    private bool TryHitInteractable(
+      Ray ray,
+      int mask,
+      out Interactable interactable
+    ) {
+      interactable = default;
+      return Physics.Raycast(ray, out var hit, 100, mask)
+        && hit.transform.TryGetComponent(out interactable);
     }
   }
 }

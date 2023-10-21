@@ -6,15 +6,15 @@ namespace Player.States {
     protected PlayerController Player;
     protected PlayerController Other => Player.Other;
     private NavMeshPath _path;
-    protected Quaternion TargetRotation;
-
-    public Quaternion Rotation => TargetRotation;
+    public Quaternion TargetRotation;
 
     public override void OnUpdate() {
       var velocity = Player.Agent.desiredVelocity;
       var planeVelocity = new Vector3(velocity.x, 0, velocity.z);
-      if (planeVelocity.magnitude > 0.1f) {
+      if (!Player.Agent.pathPending && planeVelocity.magnitude > 0.1f) {
         TargetRotation = Quaternion.LookRotation(planeVelocity);
+      } else {
+        TargetRotation = Player.transform.rotation;
       }
     }
 
@@ -23,8 +23,11 @@ namespace Player.States {
       _path = new NavMeshPath();
     }
 
-    protected bool TryLimitWalkingDistance(out Vector3 position) {
-      Other.Agent.CalculatePath(Player.Agent.destination, _path);
+    protected bool TryLimitWalkingDistance(
+      Vector3 target,
+      out Vector3 position
+    ) {
+      Other.Agent.CalculatePath(target, _path);
       var corners = _path.corners;
       var fullLength = 0f;
       for (var i = 1; i < corners.Length; i++) {

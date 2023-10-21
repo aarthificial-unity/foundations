@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.aarthificial.safekeeper": "https://github.com/aarthificial-gamedev/safekeeper.git",
     "com.aarthificial.typewriter": "https://github.com/aarthificial-gamedev/typewriter.git",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.cinemachine": "2.9.5",

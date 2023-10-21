@@ -1,19 +1,21 @@
 ﻿using Audio;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
 namespace View.Office {
   public class SaveTapeManager : MonoBehaviour {
+    public event Action<int> IndexChanged;
+
     [SerializeField] private FMODEventInstance _selectSound;
     [SerializeField] private FMODEventInstance _deselectSound;
     [SerializeField] private SaveTape[] _tapes;
-    [SerializeField] private Selectable _selectOnChoice;
     [SerializeField] private Transform _tapePlayer;
-    [SerializeField] private GameObject _selectionScreen;
-    [SerializeField] private GameObject _saveMenu;
 
     private int _selectedTapeIndex = -1;
+
+    public int CurrentIndex => _selectedTapeIndex;
 
     public void Eject() {
       HandleClicked(-1);
@@ -63,14 +65,12 @@ namespace View.Office {
 
     private void Render() {
       var isAnyTapeSelected = _selectedTapeIndex >= 0;
-      _selectionScreen.SetActive(!isAnyTapeSelected);
-      _saveMenu.SetActive(isAnyTapeSelected);
       if (isAnyTapeSelected) {
-        _selectOnChoice.QuietSelect();
         _selectSound.Play();
       } else {
         _deselectSound.Play();
       }
+      IndexChanged?.Invoke(_selectedTapeIndex);
     }
   }
 }

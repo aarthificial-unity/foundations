@@ -1,4 +1,4 @@
-﻿using FMODUnity;
+﻿using Audio;
 using Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,10 +6,20 @@ using Utils.Tweening;
 
 namespace View.Overlay.States {
   public class GameplayState : OverlayState {
-    [SerializeField] private StudioEventEmitter _pauseSound;
+    [SerializeField] private FMODEventInstance _pauseSound;
     [SerializeField] private CanvasGroup _group;
 
     private SpringTween _alphaTween;
+
+    protected override void Awake() {
+      base.Awake();
+      _pauseSound.Setup();
+    }
+
+    protected override void OnDestroy() {
+      base.OnDestroy();
+      _pauseSound.Release();
+    }
 
     public override void OnEnter() {
       base.OnEnter();

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
+<<<<<<<< HEAD:.fmod/Metadata/AudioFile/{527c6666-6fca-4e06-8aa5-322f2cec4808}.xml
 	<object class="AudioFile" id="{527c6666-6fca-4e06-8aa5-322f2cec4808}">
 		<property name="assetPath">
 			<value>footsteps/lt/dirt/lt-dirt-run-004.wav</value>
+========
+	<object class="AudioFile" id="{399fa8ce-5e85-4b3d-ab54-11194ae37f31}">
+		<property name="assetPath">
+			<value>footsteps/rt/dirt/rt-dirt-walk-003.wav</value>
+>>>>>>>> origin/main:.fmod/Metadata/AudioFile/{399fa8ce-5e85-4b3d-ab54-11194ae37f31}.xml
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +17,11 @@
 			<value>2</value>
 		</property>
 		<property name="length">
+<<<<<<<< HEAD:.fmod/Metadata/AudioFile/{527c6666-6fca-4e06-8aa5-322f2cec4808}.xml
 			<value>1.32775</value>
+========
+			<value>1.4615</value>
+>>>>>>>> origin/main:.fmod/Metadata/AudioFile/{399fa8ce-5e85-4b3d-ab54-11194ae37f31}.xml
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>

@@ -15,6 +15,10 @@ namespace Items {
     [SerializeField] private BoxSDF _fill;
     [SerializeField] private BoxSDF _stroke;
 
+    private void Awake() {
+      gameObject.SetActive(false);
+    }
+
     private void Start() {
       var style = _styles[_style];
       var color = style.BackgroundColors[_player];
@@ -23,8 +27,6 @@ namespace Items {
       _stroke.Color = color;
       _fill.TextureStrength = style.TextureStrength;
       _stroke.TextureStrength = style.TextureStrength;
-
-      gameObject.SetActive(false);
     }
 
     public void SetItem(ItemEntry item) {

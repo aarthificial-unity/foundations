@@ -2,6 +2,7 @@
 using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
+using Audio;
 using Interactions;
 using System.Collections.Generic;
 using Typewriter;
@@ -23,6 +24,11 @@ namespace Player.ManagerStates {
     [NonSerialized] public BaseEntry CurrentEntry;
     [NonSerialized] public InteractionContext Context;
 
+    [SerializeField] private FMODEventInstance _skipSound;
+    [SerializeField] private FMODEventInstance _nextSound;
+    [SerializeField] private FMODEventInstance _exitSound;
+    [SerializeField] private FMODEventInstance _optionSound;
+
     [SerializeField] private Volume _volume;
     [SerializeField] private float _interactionCooldown = 0.5f;
     private List<DialogueEntry> _options = new();
@@ -38,6 +44,18 @@ namespace Player.ManagerStates {
     protected override void Awake() {
       base.Awake();
       _dialogue = FindObjectOfType<DialogueView>();
+      _skipSound.Setup();
+      _nextSound.Setup();
+      _exitSound.Setup();
+      _optionSound.Setup();
+    }
+
+    protected override void OnDestroy() {
+      base.OnDestroy();
+      _skipSound.Release();
+      _nextSound.Release();
+      _exitSound.Release();
+      _optionSound.Release();
     }
 
     private void OnEnable() {
@@ -99,8 +117,8 @@ namespace Player.ManagerStates {
     }
 
     public override void OnUpdate() {
-      Manager.LT.DrivenUpdate();
-      Manager.RT.DrivenUpdate();
+      UpdatePlayer(Manager.LT);
+      UpdatePlayer(Manager.RT);
 
       if (CurrentEntry != null) {
         return;
@@ -128,6 +146,11 @@ namespace Player.ManagerStates {
       var entry = _queuedEntry;
       _queuedEntry = null;
       ProcessEntry(entry);
+    }
+
+    private void UpdatePlayer(PlayerController player) {
+      player.FollowState.TightDistance = false;
+      player.DrivenUpdate();
     }
 
     private void ProcessEntry(BaseEntry entry) {
@@ -196,6 +219,7 @@ namespace Player.ManagerStates {
 
     private void HandleOptionSelected(int index) {
       Assert.AreEqual(_subState, SubState.Choice);
+      _optionSound.Play();
       _subState = SubState.Finished;
       CurrentEntry = null;
       Debug.Log($"Selected option: {_rules[index].Key}");
@@ -211,15 +235,16 @@ namespace Player.ManagerStates {
 
       switch (_subState) {
         case SubState.Finished:
-          Exit();
-          break;
         case SubState.Choice when _isCancellable:
+          _exitSound.Play();
           Exit();
           break;
         case SubState.Dialogue:
+          _skipSound.Play();
           _dialogue.Track.Skip();
           break;
         case SubState.Proceed:
+          _nextSound.Play();
           _subState = SubState.Finished;
           break;
       }
@@ -234,9 +259,11 @@ namespace Player.ManagerStates {
 
       switch (_subState) {
         case SubState.Dialogue:
+          _skipSound.Play();
           _dialogue.Track.Skip();
           break;
-        case SubState.Proceed:
+        case SubState.Proceed when _queuedEntry != null:
+          _nextSound.Play();
           _subState = SubState.Finished;
           break;
       }

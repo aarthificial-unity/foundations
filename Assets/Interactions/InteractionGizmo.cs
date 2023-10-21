@@ -14,9 +14,11 @@ namespace Interactions {
 
     private static readonly int _stateID = Shader.PropertyToID("_State");
     private static readonly int _iconID = Shader.PropertyToID("_Icon");
+    private static readonly int _mouseID = Shader.PropertyToID("_Mouse");
     private static readonly int
       _directionID = Shader.PropertyToID("_Direction");
 
+    [NonSerialized] public SpringConfig PositionSpring = SpringConfig.Medium;
     [NonSerialized] public Vector3 DefaultPosition;
     [NonSerialized] public Vector3 DesiredPosition;
     [NonSerialized] public bool IsExpanded;
@@ -25,6 +27,7 @@ namespace Interactions {
     [NonSerialized] public bool IsDisabled;
     [NonSerialized] public PlayerType PlayerType;
     [NonSerialized] public Vector4 Icon;
+    [NonSerialized] public Vector4 Mouse;
     [NonSerialized] public Vector2 Direction;
 
     private MeshRenderer _renderer;
@@ -41,6 +44,10 @@ namespace Interactions {
       _block = new MaterialPropertyBlock();
       DefaultPosition = transform.position;
       DesiredPosition = DefaultPosition;
+    }
+
+    public void Shake() {
+      _positionTween.AddImpulse(new Vector4(0, -10, 0, 0));
     }
 
     public void MoveTo(Vector3 desiredPosition) {
@@ -106,10 +113,11 @@ namespace Interactions {
         new Vector4(Direction.x, Direction.y, 0, 0)
       );
       _block.SetVector(_iconID, _iconTween.Value);
+      _block.SetVector(_mouseID, Mouse);
 
       _renderer.SetPropertyBlock(_block);
 
-      _positionTween.Update(SpringConfig.Medium);
+      _positionTween.Update(PositionSpring);
       transform.position = DesiredPosition + (Vector3)_positionTween.Value;
     }
   }

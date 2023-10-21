@@ -20,6 +20,4 @@ MonoBehaviour:
       Data4: 596732982
     Path: event:/Player/ChainLoop
   Parameters:
-  - {fileID: 11400000, guid: 9ec51029366620a44bcec73d9d888ded, type: 2}
   - {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0, type: 2}
-  - {fileID: 11400000, guid: 9614dbc22482f5d41b934e7831f99daa, type: 2}

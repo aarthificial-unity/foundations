@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
+<<<<<<<< HEAD:.fmod/Metadata/AudioFile/{5516b86d-22a0-4168-a1d6-840ac992b497}.xml
 	<object class="AudioFile" id="{5516b86d-22a0-4168-a1d6-840ac992b497}">
 		<property name="assetPath">
 			<value>UI/office/door/door-open.wav</value>
+========
+	<object class="AudioFile" id="{22d2e8c1-d401-4135-986b-50ce83a95db2}">
+		<property name="assetPath">
+			<value>footsteps/rt/dirt/rt-dirt-run-004.wav</value>
+>>>>>>>> origin/main:.fmod/Metadata/AudioFile/{22d2e8c1-d401-4135-986b-50ce83a95db2}.xml
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +17,11 @@
 			<value>2</value>
 		</property>
 		<property name="length">
+<<<<<<<< HEAD:.fmod/Metadata/AudioFile/{5516b86d-22a0-4168-a1d6-840ac992b497}.xml
 			<value>1.6061458333333334</value>
+========
+			<value>1.480375</value>
+>>>>>>>> origin/main:.fmod/Metadata/AudioFile/{22d2e8c1-d401-4135-986b-50ce83a95db2}.xml
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>

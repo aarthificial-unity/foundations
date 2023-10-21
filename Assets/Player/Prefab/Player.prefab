@@ -288,21 +288,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb18abed5ee4bb585cfad00e2dde09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Material: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  Other: {fileID: 0}
   Config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
-  _overlay: {fileID: 11400000, guid: 39df3a874d5c92f488ffa1beea48e3dc, type: 2}
   Type: 0
   ChainTarget: {fileID: 2839522992124909877}
   CommandAction: {fileID: 0}
   Fact:
     InternalID: -124344911
-  _stepEvent:
-    Guid:
-      Data1: 111458693
-      Data2: 1239753413
-      Data3: 726437284
-      Data4: -1383085500
-    Path: event:/Player/Step
+  ItemFact:
+    InternalID: -1848183240
+  PresenceFact:
+    InternalID: -1848183240
+  _id:
+    ChunkId: default
+    ObjectId: 
+  InteractSound:
+    Event: {fileID: 11400000, guid: a8a5b322d268f91479193a90fffc224f, type: 2}
+  EnterDialogueSound:
+    Event: {fileID: 11400000, guid: b7729e8999b074a449fa60ba6a91d86d, type: 2}
   FootstepAudio:
     Event: {fileID: 11400000, guid: 0fa7e7320843cd54fb6156720238ecdc, type: 2}
   StepSpeedParam: {fileID: 11400000, guid: 834e8cfbffcb49c4c9687e27f68353bd, type: 2}
@@ -321,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3495f6833c2444ebb16cf28555b378c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TightDistance: 0
 --- !u!114 &4695604894641087686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116f3676cc543c380b861ddd6f57b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Players: {fileID: 11400000, guid: bdd6991a9046c7847a098f1b913d4a20, type: 2}
+  _id:
+    ChunkId: 723be1f20975bbb4e80d78073f628de9
+    ObjectId: 9220605009596291365-0
+  Gizmo: {fileID: 0}
   Event:
     EventReference:
       InternalID: 0
@@ -378,6 +385,10 @@ MonoBehaviour:
   Context:
     Context:
       List: []
+    Interactable: {fileID: 0}
+  _playerId:
+    ChunkId: default
+    ObjectId: 
 --- !u!114 &3786397423081031399
 MonoBehaviour:
   m_ObjectHideFlags: 0

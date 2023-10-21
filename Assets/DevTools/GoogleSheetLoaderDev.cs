@@ -18,7 +18,6 @@ namespace DevTools {
     private static string _customDocumentId;
     private static string _customSheetName;
 
-    [SerializeField] [Inject] private StoryState _story;
     [SerializeField] private DatabaseTable _table;
     [SerializeField] private string _documentId;
     [SerializeField] private string _sheetName;
@@ -139,6 +138,11 @@ namespace DevTools {
       if (GUILayout.Button("Cancel")) {
         Close();
       }
+      GUI.enabled = !App.Game.Story.IsLoading;
+      if (GUILayout.Button(App.Game.Story.IsLoading ? "Saving" : "Save")) {
+        StartCoroutine(Save());
+      }
+      GUI.enabled = true;
       if (GUILayout.Button("Reload")) {
         StartCoroutine(Reload());
       }
@@ -206,6 +210,17 @@ namespace DevTools {
       }
     }
 
+    private IEnumerator Save() {
+      App.Game.Story.Save();
+      while (!App.Game.Story.IsLoading) {
+        yield return null;
+      }
+      while (App.Game.Story.IsLoading) {
+        yield return null;
+      }
+      Close();
+    }
+
     private IEnumerator Reload() {
       using UnityWebRequest www = UnityWebRequest.Get(
         $"https://docs.google.com/spreadsheets/d/{UnityWebRequest.EscapeURL(_customDocumentId)}/gviz/tq?tqx=out:csv&sheet={UnityWebRequest.EscapeURL(_customSheetName)}"
@@ -220,7 +235,7 @@ namespace DevTools {
       }
 
       Close();
-      _story.Reload();
+      App.Game.Story.Reload();
     }
   }
 }

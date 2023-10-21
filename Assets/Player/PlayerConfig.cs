@@ -1,12 +1,7 @@
-﻿using System;
-using Aarthificial.Typewriter.Attributes;
-using Aarthificial.Typewriter.Entries;
-using Aarthificial.Typewriter.References;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player {
   public class PlayerConfig : ScriptableObject {
-    public PlayerLookup<Color> Colors;
     public LayerMask InteractionMask;
     public LayerMask PlayerMask;
     public LayerMask GroundMask;
@@ -18,5 +13,7 @@ namespace Player {
     public float MinDistance = 4;
     public float MaxDistance = 5;
     public float LimitDistance = 6;
+    public float MinTightDistance = 0.5f;
+    public float MaxTightDistance = 1.5f;
   }
 }

@@ -3,6 +3,8 @@ using Utils;
 
 namespace Player.States {
   public class FollowState : PlayerState {
+    public bool TightDistance;
+
     private Vector3 _otherVelocity;
 
     public override void OnEnter() {
@@ -28,9 +30,16 @@ namespace Player.States {
         )
         > 0.5f;
 
+      var minDistance = Player.Config.MinDistance;
+      var maxDistance = Player.Config.MaxDistance;
+      if (TightDistance) {
+        minDistance = Player.Config.MinTightDistance;
+        maxDistance = Player.Config.MaxTightDistance;
+      }
+
       Player.Agent.autoBraking = false;
       Player.Agent.destination = otherPosition;
-      Player.Agent.stoppingDistance = Player.Config.MinDistance;
+      Player.Agent.stoppingDistance = minDistance;
 
       if (isWalkingTowards) {
         if (distance < Player.Config.CloseDistance) {
@@ -50,8 +59,8 @@ namespace Player.States {
       }
 
       var range = Player.Agent.remainingDistance.ToClampedRange(
-        Player.Config.MinDistance,
-        Player.Config.MaxDistance
+        minDistance,
+        maxDistance
       );
       Player.Agent.speed = range.Map(0f, Player.Config.WalkSpeed);
       Player.Agent.acceleration = range.Map(8f, Player.Config.Acceleration);

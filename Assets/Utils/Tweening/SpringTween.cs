@@ -9,6 +9,11 @@ namespace Utils.Tweening {
     private bool _settled;
     private bool _notDirty;
 
+    public bool Settled {
+      [MethodImpl(MethodImplOptions.AggressiveInlining)]
+      get => _settled;
+    }
+
     public Vector4 Value {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
       get => _position;
@@ -109,6 +114,7 @@ namespace Utils.Tweening {
     }
 
     public void AddImpulse(float impulse) {
+      _settled = false;
       _velocity.x += impulse;
     }
 

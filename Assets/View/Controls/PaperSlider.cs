@@ -32,9 +32,9 @@ namespace View.Controls {
 
       if (_step > 0) {
         wholeNumbers = true;
+        value = Mathf.Round(_default / _step);
         minValue = Mathf.Floor(_min / _step);
         maxValue = Mathf.Ceil(_max / _step);
-        value = Mathf.Round(_default / _step);
       } else {
         wholeNumbers = false;
         minValue = _min;

@@ -9,14 +9,14 @@ namespace Interactions {
           return;
         }
 
-        Blackboard.Set(InteractionContext.InitialEvent, Event.EventReference);
-        Blackboard.Set(InteractionContext.Initiator, player.Fact);
-        Blackboard.Set(InteractionContext.Listener, 0);
-        Blackboard.Set(
+        Context.Set(InteractionContext.InitialEvent, Event.EventReference);
+        Context.Set(InteractionContext.Initiator, player.Fact);
+        Context.Set(InteractionContext.Listener, 0);
+        Context.Set(
           InteractionContext.IsLTPresent,
           player.Type == PlayerType.LT ? 1 : 0
         );
-        Blackboard.Set(
+        Context.Set(
           InteractionContext.IsRTPresent,
           player.Type == PlayerType.RT ? 1 : 0
         );
@@ -32,10 +32,10 @@ namespace Interactions {
           return;
         }
 
-        Blackboard.Set(InteractionContext.Initiator, player.Fact);
-        Blackboard.Set(InteractionContext.Listener, player.Other.Fact);
-        Blackboard.Set(InteractionContext.IsLTPresent, 1);
-        Blackboard.Set(InteractionContext.IsRTPresent, 1);
+        Context.Set(InteractionContext.Initiator, player.Fact);
+        Context.Set(InteractionContext.Listener, player.Other.Fact);
+        Context.Set(InteractionContext.IsLTPresent, 1);
+        Context.Set(InteractionContext.IsRTPresent, 1);
 
         HasDialogue = Context.HasMatchingRule(Event.EventReference);
         if (!HasDialogue) {

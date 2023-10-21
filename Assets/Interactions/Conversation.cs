@@ -63,7 +63,7 @@ namespace Interactions {
       _camera.m_Lens.OrthographicSize = _orthoSize;
       _camera.gameObject.SetActive(false);
 
-      Blackboard.Set(InteractionContext.AvailableItem, Item);
+      Context.Set(InteractionContext.AvailableItem, Item);
       TryInstantiateItem();
     }
 
@@ -71,13 +71,15 @@ namespace Interactions {
       UpdateInteraction(PlayerType.LT);
       UpdateInteraction(PlayerType.RT);
       UpdateState();
-
-      Blackboard.Set(InteractionContext.IsLTPresent, IsPresent(Players.LT));
-      Blackboard.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
-      Blackboard.Set(InteractionContext.Initiator, Initiator);
-      Blackboard.Set(InteractionContext.Listener, Listener);
-
+      UpdateBlackboard();
       UpdateGizmo();
+    }
+
+    private void UpdateBlackboard() {
+      Context.Set(InteractionContext.IsLTPresent, IsPresent(Players.LT));
+      Context.Set(InteractionContext.IsRTPresent, IsPresent(Players.RT));
+      Context.Set(InteractionContext.Initiator, Initiator);
+      Context.Set(InteractionContext.Listener, Listener);
     }
 
     private void UpdateInteraction(PlayerType type) {
@@ -92,8 +94,10 @@ namespace Interactions {
 
     public override void Interact(PlayerController player) {
       if (_interactions[player.Type].IsReady) {
+        player.EnterDialogueSound.Play();
         Event.Invoke(Context);
       } else if (!_interactions[player.Type].IsActive) {
+        player.InteractSound.Play();
         player.InteractState.Enter(this);
       }
     }
@@ -156,6 +160,8 @@ namespace Interactions {
       } else {
         Listener = player.Fact;
       }
+
+      UpdateBlackboard();
     }
 
     public void OnFocusExit(PlayerController player) {
@@ -174,6 +180,7 @@ namespace Interactions {
     public override void OnDialogueExit() {
       base.OnDialogueExit();
       _camera.gameObject.SetActive(false);
+      App.Game.Story.AutoSave();
     }
 
     public Vector3 GetPosition(PlayerController player) {
