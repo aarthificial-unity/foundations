@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   UICancel: {fileID: -3679761885873992829, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
+  PointingContinue: {fileID: -4520963062596947796, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}

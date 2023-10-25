@@ -3,11 +3,13 @@ using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Audio;
+using Framework;
 using Interactions;
 using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using View.Dialogue;
 
@@ -96,6 +98,7 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.Button.Clicked += HandleButtonClicked;
       _dialogue.Wheel.Clicked += HandleBackdropClicked;
       _dialogue.Track.Clicked += HandleBackdropClicked;
+      App.Input.Actions.PointingContinue.action.performed += HandleContinue;
       _dialogue.Track.Finished += HandleFinished;
       _dialogue.SetActive(true);
       _dialogue.Track.Restart();
@@ -109,6 +112,7 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.Button.Clicked -= HandleButtonClicked;
       _dialogue.Wheel.Clicked -= HandleBackdropClicked;
       _dialogue.Track.Clicked -= HandleBackdropClicked;
+      App.Input.Actions.PointingContinue.action.performed -= HandleContinue;
       _dialogue.Track.Finished -= HandleFinished;
       _dialogue.SetActive(false);
       _volume.weight = 0;
@@ -248,6 +252,10 @@ namespace Player.ManagerStates {
           _subState = SubState.Finished;
           break;
       }
+    }
+
+    private void HandleContinue(InputAction.CallbackContext obj) {
+      HandleBackdropClicked();
     }
 
     private void HandleBackdropClicked() {
