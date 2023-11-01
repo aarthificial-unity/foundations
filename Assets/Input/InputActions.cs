@@ -7,5 +7,7 @@ namespace Input {
     public InputActionReference GameplayPause;
     [Header("UI")]
     public InputActionReference UICancel;
+    [Header("Pointing")]
+    public InputActionReference PointingContinue;
   }
 }
