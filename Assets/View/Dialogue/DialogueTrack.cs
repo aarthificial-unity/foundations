@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Audio;
 
 namespace View.Dialogue {
   public class DialogueTrack : MonoBehaviour, IPointerClickHandler {
@@ -16,6 +17,11 @@ namespace View.Dialogue {
     [SerializeField] private DialogueView _view;
     [SerializeField] private DialogueBubble _template;
     [SerializeField] private ScrollRect _container;
+    
+    [SerializeField] private FMODEventInstance _textScrollEvent;
+    [SerializeField] private FMODParameter _textCharacterParameter;
+    [SerializeField] private FMODParameter _textStyleParameter;
+
 
     private readonly Stack<DialogueBubble> _pool = new();
     private readonly Stack<DialogueBubble> _bubbles = new();
@@ -28,10 +34,12 @@ namespace View.Dialogue {
 
     private void Awake() {
       _rectTransform = GetComponent<RectTransform>();
+      _textScrollEvent.Setup();
     }
 
     public void Restart() {
       _currentBubble = null;
+      _textScrollEvent.Pause();
       while (_bubbles.Count > 0) {
         var bubble = _bubbles.Pop();
         bubble.gameObject.SetActive(false);
@@ -54,6 +62,9 @@ namespace View.Dialogue {
       _currentBubble.gameObject.SetActive(true);
       _currentBubble.Setup(_text, entry.Style, player);
       _container.verticalNormalizedPosition = 0;
+      _textScrollEvent.SetParameter(_textCharacterParameter, player.IsLT ? 0 : 1);
+      _textScrollEvent.SetParameter(_textStyleParameter, (int)entry.Style);
+      _textScrollEvent.Play();
     }
 
     public void Skip() {
@@ -91,6 +102,7 @@ namespace View.Dialogue {
     private void Finish(bool force) {
       Finished?.Invoke(_currentEntry, force);
       _currentEntry = null;
+      _textScrollEvent.Pause();
     }
 
     private DialogueBubble BorrowBubble() {

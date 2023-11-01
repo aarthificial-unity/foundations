@@ -2684,6 +2684,10 @@ MonoBehaviour:
   _template: {fileID: 6626459841483897536, guid: c2796a3582fb279488ed77a64b456af9,
     type: 3}
   _container: {fileID: 771369689453713597}
+  _textScrollEvent:
+    Event: {fileID: 11400000, guid: dc7cc8e71f4b6694b9159a9432bdb896, type: 2}
+  _textScrollCharacterParameter: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de,
+    type: 2}
 --- !u!114 &7060899949578569258
 MonoBehaviour:
   m_ObjectHideFlags: 0

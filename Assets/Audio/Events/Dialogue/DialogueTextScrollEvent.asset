@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3086fc6c1a7f444ba4ddd0f11678046d, type: 3}
+  m_Name: DialogueTextScrollEvent
+  m_EditorClassIdentifier: 
+  Event:
+    Guid:
+      Data1: 2025698582
+      Data2: 1288859494
+      Data3: 967048586
+      Data4: -1695766193
+    Path: event:/UI/Dialogue/TextScroll
+  Parameters:
+  - {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de, type: 2}
+  - {fileID: 11400000, guid: c8630f74ac18b0e468618031e6aa039c, type: 2}

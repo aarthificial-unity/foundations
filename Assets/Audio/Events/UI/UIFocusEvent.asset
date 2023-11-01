@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -321991487
-      Data2: 1085514565
-      Data3: -2146028885
-      Data4: 852153367
-    Path: event:/UI/Focus
+      Data1: -2000039930
+      Data2: 1122894011
+      Data3: -878678144
+      Data4: 1916825485
+    Path: event:/UI/interface/UIFocus
   Parameters: []

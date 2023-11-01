@@ -79,7 +79,6 @@ namespace Audio {
 
     public void Play() {
       if (IsInitialized) {
-        Update3DPosition();
         Instance.start();
       }
     }
