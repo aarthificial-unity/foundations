@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3086fc6c1a7f444ba4ddd0f11678046d, type: 3}
-  m_Name: OfficeBoardClickEvent
+  m_Name: OfficeDoorBlurEvent
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -321991487
-      Data2: 1085514565
-      Data3: -2146028885
-      Data4: 852153367
-    Path: event:/UI/Focus
+      Data1: -1798229339
+      Data2: 1112127117
+      Data3: -245873262
+      Data4: 1715544875
+    Path: event:/UI/DoorBlur
   Parameters: []

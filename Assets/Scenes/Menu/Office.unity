@@ -4333,6 +4333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusSound:
     Event: {fileID: 11400000, guid: e0f277d4ba558e94189964fde8188a6b, type: 2}
+  _blurSound:
+    Event: {fileID: 11400000, guid: 2a4418bedecf97a44b56cc200b33c005, type: 2}
 --- !u!1 &254826030
 GameObject:
   m_ObjectHideFlags: 0
@@ -9632,6 +9634,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusSound:
     Event: {fileID: 11400000, guid: ad55226f4cef1a349a78b013c3f94681, type: 2}
+  _blurSound:
+    Event: {fileID: 0}
 --- !u!1 &1484279440
 GameObject:
   m_ObjectHideFlags: 0
@@ -9785,6 +9789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusSound:
     Event: {fileID: 11400000, guid: ef3ac43172bed0241994233a290b174f, type: 2}
+  _blurSound:
+    Event: {fileID: 11400000, guid: bc4693bfcf80bb64fb5bbcfb9c8010bb, type: 2}
 --- !u!1 &1577238819
 GameObject:
   m_ObjectHideFlags: 0

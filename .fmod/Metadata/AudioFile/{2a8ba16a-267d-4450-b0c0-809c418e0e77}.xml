@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{cd7c9df6-1305-4bf7-8e3f-4924c9b28f75}">
+	<object class="AudioFile" id="{2a8ba16a-267d-4450-b0c0-809c418e0e77}">
 		<property name="assetPath">
-			<value>UI/rollover.ogg</value>
+			<value>UI/plugpull2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.057324263038548755</value>
+			<value>3.8447392290249431</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
