@@ -58,8 +58,6 @@ MonoBehaviour:
   - rid: 2940630783594594334
   - rid: 2940630783594594335
   - rid: 2940630783594594336
-  - rid: 2940630783594594337
-  - rid: 2940630783594594338
   - rid: 2940630783594594339
   - rid: 2940630783594594340
   - rid: 2940630783594594341
@@ -75,6 +73,44 @@ MonoBehaviour:
   - rid: 2940630783594594351
   - rid: 2940630783594594352
   - rid: 2940630783594594353
+  - rid: 448883364714774537
+  - rid: 448883364714774538
+  - rid: 448883364714774539
+  - rid: 448883364714774540
+  - rid: 448883364714774541
+  - rid: 448883364714774542
+  - rid: 448883364714774543
+  - rid: 448883364714774544
+  - rid: 448883364714774545
+  - rid: 448883364714774546
+  - rid: 448883364714774547
+  - rid: 448883364714774548
+  - rid: 448883364714774549
+  - rid: 448883364714774550
+  - rid: 448883364714774551
+  - rid: 448883364714774552
+  - rid: 448883364714774553
+  - rid: 448883364714774554
+  - rid: 448883364714774555
+  - rid: 448883364714774556
+  - rid: 448883364714774557
+  - rid: 448883364714774558
+  - rid: 448883364714774559
+  - rid: 448883364714774560
+  - rid: 448883364714774561
+  - rid: 448883364714774562
+  - rid: 448883364714774563
+  - rid: 448883364714774564
+  - rid: 448883364714774565
+  - rid: 448883364714774566
+  - rid: 448883364714774567
+  - rid: 448883364714774568
+  - rid: 448883364714774569
+  - rid: 448883364714774570
+  - rid: 448883364714774571
+  - rid: 448883364714774572
+  - rid: 448883364714774573
+  - rid: 448883364714774574
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
@@ -88,6 +124,970 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 448883364714774537
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389462
+        Key: LR_intro_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389444
+        Once: 1
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>Hey.</color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774538
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389463
+        Key: LR_intro_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389462
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Though the woman tries to whisper, dry lungs choke the word to a
+          raspy hiss.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774539
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389464
+        Key: LR_intro_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389463
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99><i>Hey.</i></color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774540
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389465
+        Key: LR_intro_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389464
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: A pause after her second attempt to speak. Labored breaths whistle
+          faintly through bared teeth.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774541
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389466
+        Key: LR_intro_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389465
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: She's about to take her third shot at it when she tenses up, covering
+          her mouth to hold in a coughing fit.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774542
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389467
+        Key: LR_intro_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389466
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: By the time it passes, weary lungs are enough to keep her fourth
+          try at a murmur without effort.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774543
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389468
+        Key: LR_intro_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389467
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>Would you-</color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774544
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389469
+        Key: LR_intro_8
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389468
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The man beside her jumps like he's been stung as her fist connects
+          with his shoulder.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774545
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389470
+        Key: LR_intro_9
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389469
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <b>Listen.</b>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774546
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389471
+        Key: LR_intro_10
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389470
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Whuh? What-
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774547
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389472
+        Key: LR_intro_11
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389471
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Even with the pressure of her knuckles still there, it takes him
+          a second to look around and find her.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774548
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389473
+        Key: LR_intro_12
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389472
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: As his eyes stumble onto target, the fist lifts away.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774549
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389474
+        Key: LR_intro_13
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389473
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>What'd I-</color>
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774550
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389475
+        Key: LR_intro_14
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389474
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: A finger to the earth.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774551
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389476
+        Key: LR_intro_15
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389475
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>Down.</color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774552
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389477
+        Key: LR_intro_16
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389476
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: He knits his brow, and then blinks at the dirt.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774553
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389478
+        Key: LR_intro_17
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389477
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>No, you-</color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774554
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389479
+        Key: LR_intro_18
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389478
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: She lunges for a fistful of hair, and leans as much weight on it
+          as she can muster.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774555
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389480
+        Key: LR_intro_19
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389479
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: It doesn't get much out of him, save for a small jolt of surprise.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774556
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389481
+        Key: LR_intro_20
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389480
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99><i>Head. Down.</i></color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774557
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389482
+        Key: LR_intro_21
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389481
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>But- what if the-</color>
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774558
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389483
+        Key: LR_intro_22
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389482
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>What, if they come back? Come back and see your <i>entire
+          head</i> sticking up out of-</color>
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774559
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389484
+        Key: LR_intro_23
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389483
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: She suddenly lets go of his hair, just a moment too late to stifle
+          another rising wave of coughs. Instead, the hand slams down to stop her
+          from tumbling forwards into the dirt.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774560
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389485
+        Key: LR_intro_24
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389484
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Until her lungs are satisfied, keeping herself from collapsing is
+          just about all she can manage.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774561
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389486
+        Key: LR_intro_25
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389485
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The man moves briefly, as if to speak.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774562
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389487
+        Key: LR_intro_26
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389486
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Then, he quietly hunches his head down.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774563
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389488
+        Key: LR_intro_27
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389487
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: A quick rub at her throat, and the woman waves him off.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774564
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389489
+        Key: LR_intro_28
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389488
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Fff- Fuck it. They would have-
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774565
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389490
+        Key: LR_intro_29
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389489
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: She struggles to swallow, shuddering briefly.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774566
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389491
+        Key: LR_intro_30
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389490
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: -Would have heard that, if they were still here.
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774567
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389492
+        Key: LR_intro_31
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389491
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Her whole body seems to rattle and heave when she starts to pick
+          herself up.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774568
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389493
+        Key: LR_intro_32
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389492
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: He lurches forward as she goes, braced to catch her at any moment.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774569
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389494
+        Key: LR_intro_33
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389493
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Are you- You sure you should be...?
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774570
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389495
+        Key: LR_intro_34
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389494
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: As her hands rest atop the road block to steady her, distant highbeams
+          come to dance across a pistol's slide.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774571
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389496
+        Key: LR_intro_35
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389495
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Get up and move.
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774572
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389497
+        Key: LR_intro_36
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389496
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Right, uh-
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774573
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389498
+        Key: LR_intro_37
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389497
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The man faintly clears his throat, hustling to stand. Up on his
+          feet, he towers monstrously over her.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774574
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389499
+        Key: LR_intro_38
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389498
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Yeah. <alpha=#99>Er-</color> yes. Yes, ma'am.
+        Style: 0
+        Speaker:
+          InternalID: -417971899
     - rid: 2933227056775036933
       type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -602,8 +1602,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Looks like the car-catchers they used back at this road repair job
-          I had once.
+        Content: They're car-catchers, like the ones they used back at this road
+          repair job I had once.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -678,7 +1678,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: In, like, a... a "concrete jungle" kinda way.
+        Content: In, like, a... a funny lil' "concrete jungle" kinda way.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -753,7 +1753,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Looks like there's headlights going past somewhere over there.
+        Content: Got a bit too close for comfort just now.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -778,8 +1778,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: And I don't think I can convince anyone to let us hitchhike when
-          we're lookin' like this.
+        Content: Don't think I can convince anyone to let us hitchhike when we're
+          lookin' like this, anyway.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -980,7 +1980,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Wait, no, shit.
+        Content: Well- yeah, no, shit.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -1130,7 +2130,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: We'd just be catching heat 'til the cops show up.
+        Content: We'd just be pulling heat 'til the cops show up again.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -1181,8 +2181,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: ...Though, she'd pop me before we get that far, anyway, wouldn't
-          she?
+        Content: ...Though, she'd pop me before we get that far, wouldn't she?
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -1232,7 +2231,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Think I'd get better odds at living if I jumped off a cliff.
+        Content: Think I'd get better odds if I jumped off a cliff.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -1311,56 +2310,6 @@ MonoBehaviour:
         Style: 1
         Speaker:
           InternalID: -2078916288
-    - rid: 2940630783594594337
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389445
-        Key: L_intro_1
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1389444
-        Once: 1
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: -95002655
-          Min: 1
-          Max: 1
-          Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: (Temp line)
-        Style: 0
-        Speaker:
-          InternalID: -417971899
-    - rid: 2940630783594594338
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389446
-        Key: R_intro_1
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1389445
-        Once: 0
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: -514433065
-          Min: 1
-          Max: 1
-          Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: (Temp line)
-        Style: 0
-        Speaker:
-          InternalID: -2078916288
     - rid: 2940630783594594339
       type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -1377,7 +2326,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        IsCancellable: 0
+        IsCancellable: 1
     - rid: 2940630783594594340
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:

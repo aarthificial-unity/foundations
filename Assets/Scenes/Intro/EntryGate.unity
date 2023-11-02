@@ -6855,53 +6855,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24f1739323b2de444bd4524772c4005b, type: 3}
---- !u!1 &1856779907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1856779909}
-  - component: {fileID: 1856779908}
-  m_Layer: 0
-  m_Name: HighwaySounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &1856779908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856779907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4af37a6a9941ff80ca677dd65e9de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sound:
-    Event: {fileID: 11400000, guid: 0d3fec473173fc344b207813d662c54b, type: 2}
-  _playOnEnable: 1
---- !u!4 &1856779909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856779907}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.4, y: 0.27, z: -58.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1884739820
 GameObject:
   m_ObjectHideFlags: 0
@@ -7219,6 +7172,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: World
       objectReference: {fileID: 0}
+    - target: {fileID: 6026756758104230204, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7969245306581486760, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7339,7 +7297,6 @@ SceneRoots:
   - {fileID: 231129926}
   - {fileID: 744681199}
   - {fileID: 1999637060}
-  - {fileID: 1856779909}
   - {fileID: 1712276837}
   - {fileID: 1433286802}
   - {fileID: 208036375}
