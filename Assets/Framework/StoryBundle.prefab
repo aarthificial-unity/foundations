@@ -491,6 +491,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusSound:
     Event: {fileID: 11400000, guid: 87a7bf489cb5afc49af55a4aa7836d66, type: 2}
+  _blurSound:
+    Event: {fileID: 0}
 --- !u!1 &1343655413921635414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,7 +1960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 994614610742809795}
 --- !u!1 &6933165549993960375
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,6 +5278,12 @@ PrefabInstance:
 --- !u!4 &994614610742809793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4796299548502591018, guid: 7caaa6edb9217ff47acbbd01b77fec15,
+    type: 3}
+  m_PrefabInstance: {fileID: 5711256740815704811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &994614610742809795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4796299548502591016, guid: 7caaa6edb9217ff47acbbd01b77fec15,
     type: 3}
   m_PrefabInstance: {fileID: 5711256740815704811}
   m_PrefabAsset: {fileID: 0}

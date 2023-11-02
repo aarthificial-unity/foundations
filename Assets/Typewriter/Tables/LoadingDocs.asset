@@ -243,7 +243,6 @@ MonoBehaviour:
   - rid: 296039651521069283
   - rid: 296039651521069284
   - rid: 296039651521069285
-  - rid: 296039775950340098
   - rid: 296039775950340099
   - rid: 296039775950340100
   - rid: 296039775950340101
@@ -570,6 +569,13 @@ MonoBehaviour:
   - rid: 2933226884081123556
   - rid: 2933226884081123557
   - rid: 2933226884081123558
+  - rid: 448883364714774530
+  - rid: 448883364714774531
+  - rid: 448883364714774532
+  - rid: 448883364714774533
+  - rid: 448883364714774534
+  - rid: 448883364714774535
+  - rid: 448883364714774536
   Facts:
   - rid: 296039651521069286
   - rid: 296039651521069287
@@ -3306,8 +3312,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Seems fine. The rails look a bit overgrown, but there's hardly any
-          rust.
+        Content: Not much rust, but the rails are overgrown.
         Style: 1
         Speaker:
           InternalID: -2078916288
@@ -3332,8 +3337,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: ...Though, if it were to open, all those weeds would be crushed
-          by the wheels.
+        Content: And it ever were to open, all those weeds would be crushed by the
+          wheels.
         Style: 1
         Speaker:
           InternalID: -2078916288
@@ -3358,7 +3363,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: This must not have been opened in quite some time, then.
+        Content: This gate hasn't moved in a long time.
         Style: 1
         Speaker:
           InternalID: -2078916288
@@ -3889,8 +3894,9 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Six years...
-        Style: 0
+        Content: Polymer plates groan faintly as her fists tighten, choking the pistol's
+          grip.
+        Style: 2
         Speaker:
           InternalID: -2078916288
     - rid: 296039651521069181
@@ -3903,6 +3909,31 @@ MonoBehaviour:
         Triggers:
           List:
           - InternalID: 1388930
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Six years...
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 296039651521069182
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1388932
+        Key: R_inspect_kiosk_open_fluff_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1388931
         Once: 0
         Padding: 0
         Criteria:
@@ -3923,31 +3954,6 @@ MonoBehaviour:
         Style: 0
         Speaker:
           InternalID: -417971899
-    - rid: 296039651521069182
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1388932
-        Key: R_inspect_kiosk_open_fluff_5
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1388931
-        Once: 0
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: -514433065
-          Min: 1
-          Max: 1
-          Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: Mm?
-        Style: 0
-        Speaker:
-          InternalID: -2078916288
     - rid: 296039651521069183
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -3969,8 +3975,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Oh. No, it's nothing.
-        Style: 0
+        Content: The tension in her fingers fades in the time it takes to blink.
+        Style: 2
         Speaker:
           InternalID: -2078916288
     - rid: 296039651521069184
@@ -3987,17 +3993,17 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
-            InternalID: -95002655
+            InternalID: -514433065
           Min: 1
           Max: 1
           Operation: 0
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Mm-hmm.
+        Content: Mm?
         Style: 0
         Speaker:
-          InternalID: -417971899
+          InternalID: -2078916288
     - rid: 296039651521069185
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -4007,7 +4013,6 @@ MonoBehaviour:
           InternalID: 475414559
         Triggers:
           List:
-          - InternalID: 1388930
           - InternalID: 1388934
         Once: 0
         Padding: 0
@@ -4020,8 +4025,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: ...Well. Someone must have filled the power vacuum, by now.
-        Style: 1
+        Content: Oh. No, it's nothing. Just, ah...
+        Style: 0
         Speaker:
           InternalID: -2078916288
     - rid: 296039651521069186
@@ -4045,8 +4050,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: One of the suits, hopefully.
-        Style: 1
+        Content: ...Just occurred to me how long I was in jail.
+        Style: 0
         Speaker:
           InternalID: -2078916288
     - rid: 296039651521069187
@@ -4063,17 +4068,17 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
-            InternalID: -514433065
+            InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: It would be nice to start things off with a clean and easy coup.
-        Style: 1
+        Content: Mm, yeah, I... It's rough. I getcha on that one, sis.
+        Style: 0
         Speaker:
-          InternalID: -2078916288
+          InternalID: -417971899
     - rid: 296039651521069188
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -6852,31 +6857,6 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
-    - rid: 296039775950340098
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389044
-        Key: R_inspect_gate_default_4
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1388905
-        Once: 0
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: -514433065
-          Min: 1
-          Max: 1
-          Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: Good - the security here should be weak from neglect.
-        Style: 1
-        Speaker:
-          InternalID: -2078916288
     - rid: 296039775950340099
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -6898,8 +6878,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: More urgent matters to attend to, now, though.
-        Style: 1
+        Content: Don't call me that.
+        Style: 0
         Speaker:
           InternalID: -2078916288
     - rid: 296039775950340100
@@ -9439,6 +9419,183 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
+    - rid: 448883364714774530
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389500
+        Key: R_inspect_kiosk_open_fluff_12
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389046
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Ss-uh. Sorry.
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883364714774531
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389501
+        Key: R_inspect_kiosk_open_fluff_13
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389500
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: She rolls her shoulders, and shakes it off.
+        Style: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774532
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389502
+        Key: R_inspect_kiosk_open_fluff_14
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389501
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Well.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774533
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389503
+        Key: R_inspect_kiosk_open_fluff_15
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1388931
+          - InternalID: 1389502
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Someone must have filled the power vacuum, by now.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774534
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389504
+        Key: R_inspect_kiosk_open_fluff_16
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389503
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: One of the suits, hopefully.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774535
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389505
+        Key: R_inspect_kiosk_open_fluff_17
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389504
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: It would be nice to start things off again with a clean and easy
+          coup.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883364714774536
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389506
+        Key: R_inspect_kiosk_open_fluff_18
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389505
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: No point in planning that now, however.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
     - rid: 2933226884081123330
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -10237,7 +10394,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Another bay entrance
+        Content: Another bay entrance.
         Style: 1
         Speaker:
           InternalID: -2078916288
@@ -11053,7 +11210,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Hey, can you see anything in there?
+        Content: You see anything in there?
         Style: 0
         Speaker:
           InternalID: -417971899
@@ -11078,7 +11235,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Hey, can you see anything in there?
+        Content: You see anything in there?
         Style: 0
         Speaker:
           InternalID: -417971899
@@ -11184,7 +11341,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Mm. RIght.
+        Content: Mm. Right.
         Style: 0
         Speaker:
           InternalID: -2078916288
@@ -14857,7 +15014,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: <alpha=#AA>Oh shit.</color>
+        Content: <alpha=#99>Oh shit.</color>
         Style: 1
         Speaker:
           InternalID: -417971899
