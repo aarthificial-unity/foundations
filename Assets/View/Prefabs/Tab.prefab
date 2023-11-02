@@ -170,7 +170,7 @@ MonoBehaviour:
   _text: {fileID: 8075870232677191891}
   _isToggled: 0
   _clickSound:
-    Event: {fileID: 11400000, guid: f0151552c6b31ae4398eb7c56886cec5, type: 2}
+    Event: {fileID: 11400000, guid: 0326fc45dc063c1439bbf3a975322b34, type: 2}
 --- !u!114 &7210311448815699264
 MonoBehaviour:
   m_ObjectHideFlags: 0

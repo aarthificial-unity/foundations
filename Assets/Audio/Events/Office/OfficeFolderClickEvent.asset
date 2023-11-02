@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 506805605
-      Data2: 1264616104
-      Data3: -1593420123
-      Data4: -1685643163
-    Path: event:/UI/Okay
+      Data1: -1112347277
+      Data2: 1165716183
+      Data3: -127801932
+      Data4: 869550202
+    Path: event:/UI/FolderClick
   Parameters: []

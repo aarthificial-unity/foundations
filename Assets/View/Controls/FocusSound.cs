@@ -8,18 +8,22 @@ namespace View.Controls {
     IPointerEnterHandler,
     IPointerMoveHandler,
     IPointerExitHandler,
+    IDeselectHandler,
     ISelectHandler {
     [SerializeField] private FMODEventInstance _focusSound;
+    [SerializeField] private FMODEventInstance _blurSound;
     private Selectable _selectable;
     private bool _ignoreEvents;
 
     private void Awake() {
       _focusSound.Setup();
+      _blurSound.Setup();
       _selectable = GetComponent<Selectable>();
     }
 
     private void OnDestroy() {
       _focusSound.Release();
+      _blurSound.Release();
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -53,6 +57,12 @@ namespace View.Controls {
         _ignoreEvents = true;
         _selectable.Select();
         _ignoreEvents = false;
+      }
+    }
+
+    public void OnDeselect(BaseEventData eventData) {
+      if (!_ignoreEvents && _selectable.IsInteractable()) {
+        _blurSound.Play();
       }
     }
   }

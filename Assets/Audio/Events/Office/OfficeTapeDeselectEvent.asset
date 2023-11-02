@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -926113952
-      Data2: 1247687453
-      Data3: -1451444289
-      Data4: -2000594991
-    Path: event:/UI/Pause
+      Data1: 1132690994
+      Data2: 1168479507
+      Data3: -635954281
+      Data4: 941379084
+    Path: event:/UI/TapeDeselect
   Parameters: []

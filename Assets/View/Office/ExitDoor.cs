@@ -26,6 +26,7 @@ namespace View.Office {
 
     private void HandleStateChanged() {
       if (_state.IsActive) {
+        _clickable.interactable = false;
         _springConfig = SpringConfig.Slow;
         _angleTween.Set(_openAngle);
       } else {
