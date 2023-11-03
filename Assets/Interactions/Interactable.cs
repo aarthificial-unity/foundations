@@ -49,14 +49,16 @@ namespace Interactions {
 
     public void OnLoad(SaveControllerBase save) {
       Context.Global = ((SaveController)save).GlobalData.Blackboard;
-      save.Data.Read(_id, Blackboard);
+      if (save.Data.Read(_id, Blackboard)) {
+        LoadBlackboard();
+      }
     }
 
     public void OnSave(SaveControllerBase save) {
       save.Data.Write(_id, Blackboard);
     }
 
-    private void Start() {
+    protected virtual void Start() {
       OnStateChanged();
     }
 
@@ -99,5 +101,7 @@ namespace Interactions {
       Blackboard.Set(InteractionContext.AvailableItem, 0);
       return 0;
     }
+
+    protected virtual void LoadBlackboard() { }
   }
 }

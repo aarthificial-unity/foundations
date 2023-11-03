@@ -64,7 +64,11 @@ namespace Interactions {
       _camera.gameObject.SetActive(false);
 
       Context.Set(InteractionContext.AvailableItem, Item);
+    }
+
+    protected override void Start() {
       TryInstantiateItem();
+      base.Start();
     }
 
     private void Update() {
@@ -265,6 +269,10 @@ namespace Interactions {
       }
 
       return Item;
+    }
+
+    protected override void LoadBlackboard() {
+      Item = Context.Get(InteractionContext.AvailableItem);
     }
 
     private void TryInstantiateItem() {
