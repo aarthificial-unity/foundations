@@ -11,7 +11,7 @@ namespace Player.States {
     public override void OnUpdate() {
       var velocity = Player.Agent.desiredVelocity;
       var planeVelocity = new Vector3(velocity.x, 0, velocity.z);
-      if (!Player.Agent.pathPending && planeVelocity.magnitude > 0.1f) {
+      if (planeVelocity.magnitude > 0.1f) {
         TargetRotation = Quaternion.LookRotation(planeVelocity);
       } else {
         TargetRotation = Player.transform.rotation;
