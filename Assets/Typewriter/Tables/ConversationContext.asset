@@ -26,12 +26,28 @@ MonoBehaviour:
   - rid: 2933227056775036930
   - rid: 2933227056775036931
   - rid: 2933227056775036932
+  - rid: 448883658175283200
   Events:
   - rid: 5862281776637673480
   - rid: 2933227056775036948
   references:
     version: 2
     RefIds:
+    - rid: 448883658175283200
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389507
+        Key: I_gun
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 21300000, guid: d24c6b7b003a92943bbe633fe2faad49, type: 3}
+        Prefab: {fileID: 0}
     - rid: 2933227056775036930
       type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:

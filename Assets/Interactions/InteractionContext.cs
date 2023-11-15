@@ -18,6 +18,7 @@ namespace Interactions {
     public static int AvailableItem = 1389379;
     public static int LTItem = 1389380;
     public static int RTItem = 1389381;
+    public static int ItemGun = 1389507;
 
     public static int ContextScope = -1768494618;
     public static int InteractionScope = -1936302086;

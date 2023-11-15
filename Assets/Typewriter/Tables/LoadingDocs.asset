@@ -596,6 +596,9 @@ MonoBehaviour:
   - rid: 2933226884081123562
   - rid: 2933226884081123563
   - rid: 2933226884081123564
+  - rid: 448883679135531008
+  - rid: 448883679135531009
+  - rid: 448883679135531010
   Events:
   - rid: 296039651521069298
   - rid: 296039651521069299
@@ -9596,6 +9599,54 @@ MonoBehaviour:
         Style: 1
         Speaker:
           InternalID: -2078916288
+    - rid: 448883679135531008
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389508
+        Key: I_wedge
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 21300000, guid: 6504ee88223324d47a6538dffd26c7c8, type: 3}
+        Prefab: {fileID: 7135933975832886040, guid: 5193c0d2204799e4cad2cb708cc0f599,
+          type: 3}
+    - rid: 448883679135531009
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389509
+        Key: I_pickaxe
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 21300000, guid: d95ffc6f1ff5f794990fe8cf6f9434e9, type: 3}
+        Prefab: {fileID: 2401020817310600245, guid: 20d6c90835beb13438a8585e56556e92,
+          type: 3}
+    - rid: 448883679135531010
+      type: {class: ItemEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389510
+        Key: I_doorknob
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+        Icon: {fileID: 21300000, guid: fb018622078366047a10aeb75e832f16, type: 3}
+        Prefab: {fileID: 722169113772874137, guid: 7be98b4e85617854187e7cf1e2cc0db7,
+          type: 3}
     - rid: 2933226884081123330
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
