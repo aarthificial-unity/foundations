@@ -578,7 +578,6 @@ MonoBehaviour:
   - rid: 448883364714774536
   Facts:
   - rid: 296039651521069286
-  - rid: 296039651521069287
   - rid: 296039651521069288
   - rid: 296039651521069289
   - rid: 296039651521069290
@@ -732,9 +731,9 @@ MonoBehaviour:
           Max: 0
           Operation: 0
         - FactReference:
-            InternalID: 1388795
-          Min: 0
-          Max: 0
+            InternalID: 1389509
+          Min: 1
+          Max: 1
           Operation: 0
         - FactReference:
             InternalID: -95002655
@@ -1007,9 +1006,9 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         - FactReference:
-            InternalID: 1388795
-          Min: 0
-          Max: 0
+            InternalID: 1389509
+          Min: 1
+          Max: 1
           Operation: 0
         - FactReference:
             InternalID: -95002655
@@ -1063,9 +1062,9 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
-            InternalID: 1388795
-          Min: 1
-          Max: 1
+            InternalID: 1389509
+          Min: 0
+          Max: 0
           Operation: 0
         - FactReference:
             InternalID: -95002655
@@ -1073,7 +1072,9 @@ MonoBehaviour:
           Max: 1
           Operation: 0
         Modifications: []
-        OnApply: []
+        OnApply:
+        - Reference:
+            InternalID: 1389509
         OnInvoke: []
         Content: Well, the pick isn't in the way of the wheels, anymore.
         Style: 1
@@ -6613,19 +6614,6 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
-    - rid: 296039651521069287
-      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
-      data:
-        ID: 1388795
-        Key: gate_removed_pickaxe
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List: []
-        Once: 0
-        Padding: 0
-        Criteria: []
-        Modifications: []
     - rid: 296039651521069288
       type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
@@ -9605,7 +9593,7 @@ MonoBehaviour:
         ID: 1389508
         Key: I_wedge
         Scope:
-          InternalID: 475414559
+          InternalID: -1936302086
         Triggers:
           List: []
         Once: 0
@@ -9621,7 +9609,7 @@ MonoBehaviour:
         ID: 1389509
         Key: I_pickaxe
         Scope:
-          InternalID: 475414559
+          InternalID: -1936302086
         Triggers:
           List: []
         Once: 0
@@ -9637,7 +9625,7 @@ MonoBehaviour:
         ID: 1389510
         Key: I_doorknob
         Scope:
-          InternalID: 475414559
+          InternalID: -1936302086
         Triggers:
           List: []
         Once: 0

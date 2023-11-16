@@ -1,15 +1,17 @@
 Key,Style,Type,Speaker,Once,Cancellable,Text,Happens After,Criteria,Modifications,Padding,Priority,Actions
 yard_threats,,fact,,FALSE,FALSE,,,,,,0,
 gate_noticed_pickaxe,,fact,,FALSE,FALSE,,,,,,0,
-gate_removed_pickaxe,,fact,,FALSE,FALSE,,,,,,0,
+#gate_removed_pickaxe,,fact,,FALSE,FALSE,"No longer used. Same as ""I_pickaxe = 0""",,,,,0,
 gate_noticed_motor,,fact,,FALSE,FALSE,,,,,,0,
 gate_noticed_contact,,fact,,FALSE,FALSE,,,,,,0,
 gate_wedged_pickaxe,,fact,,FALSE,FALSE,,,,,,0,
 gate_wedged_chock,,fact,,FALSE,FALSE,,,,,,0,
 ,,fact,,FALSE,FALSE,,,,,,0,
-,,fact,,FALSE,FALSE,,,,,,0,
-,,fact,,FALSE,FALSE,,,,,,0,
-,,fact,,FALSE,FALSE,,,,,,0,
+,,,,FALSE,FALSE,,,,,,0,
+I_wedge,,item,,FALSE,FALSE,A wooden wedge located under the trailer's tire.,,,,,,
+I_pickaxe,,item,,FALSE,FALSE,A pickaxe jammed into the gate.,,,,,,
+I_doorknob,,item,,FALSE,FALSE,The doorknob of the employee door.,,,,,0,
+,,,,FALSE,FALSE,,,,,,0,
 E_rolling_gate,,event,,FALSE,FALSE,Triggered when interacting with the rolling gate.,,,,,0,
 C_rolling_gate,,choice,,FALSE,TRUE,,,,,,0,
 L_do_inspect_gate,thought,option,LT,FALSE,FALSE,Anything special?,C_rolling_gate,,,,0,
@@ -17,7 +19,7 @@ L_inspect_gate_default_1,thought,dialogue,LT,FALSE,FALSE,Looks about the same as
 L_inspect_gate_default_2,thought,dialogue,LT,FALSE,FALSE,...Probably gonna jump it again on the way out.,,,,,0,
 L_inspect_gate_jam_A_1,thought,dialogue,LT,FALSE,FALSE,"Well, there's something jamming it up, right?",L_do_inspect_gate,"kiosk_tried_open_gate = 1
 gate_noticed_pickaxe = 0
-gate_removed_pickaxe = 0",,,3,
+I_pickaxe = 1",,,3,
 L_inspect_gate_jam_A_2,thought,dialogue,LT,FALSE,FALSE,"Can't be the weeds, can it?",,,,,0,
 L_inspect_gate_jam_A_3,thought,dialogue,LT,FALSE,FALSE,"Unless there's a big ol' tree root down here, or...",,,,,0,
 L_inspect_gate_jam_A_4,speech,dialogue,LT,FALSE,FALSE,"Ooh, lookit that.",,,gate_noticed_pickaxe = 1,,0,
@@ -29,9 +31,9 @@ L_inspect_gate_jam_A_5,thought,dialogue,LT,FALSE,FALSE,The metal bit's blocking 
 L_inspect_gate_jam_A_solo_1",,,,0,
 L_inspect_gate_jam_A_6,thought,dialogue,LT,FALSE,FALSE,"But, nothing a little elbow grease can't solve.",,,,,0,
 L_inspect_gate_jam_B_1,thought,dialogue,LT,FALSE,FALSE,There's a pickaxe down in the weeds.,L_do_inspect_gate,"kiosk_tried_open_gate = 1
-gate_removed_pickaxe = 0",,,2,
+I_pickaxe = 1",,,2,
 L_inspect_gate_jam_B_2,thought,dialogue,LT,FALSE,FALSE,"It's jammed in the wheels, but it shouldn't be too hard to get it out.",,,,,0,
-L_inspect_gate_no_jam_1,thought,dialogue,LT,FALSE,FALSE,"Well, the pick isn't in the way of the wheels, anymore.",L_do_inspect_gate,gate_removed_pickaxe = 1,,,1,
+L_inspect_gate_no_jam_1,thought,dialogue,LT,FALSE,FALSE,"Well, the pick isn't in the way of the wheels, anymore.",L_do_inspect_gate,I_pickaxe = 0,,,1,
 L_inspect_gate_no_jam_2,thought,dialogue,LT,FALSE,FALSE,"So, that's nice.",,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 L_inspect_gate_contact_A_1,thought,dialogue,LT,FALSE,FALSE,"Now, as for the contact trigger, uh...","L_inspect_gate_jam_A_6

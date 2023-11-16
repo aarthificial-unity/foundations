@@ -57,7 +57,6 @@ MonoBehaviour:
   - rid: 2940630783594594333
   - rid: 2940630783594594334
   - rid: 2940630783594594335
-  - rid: 2940630783594594336
   - rid: 2940630783594594339
   - rid: 2940630783594594340
   - rid: 2940630783594594341
@@ -111,6 +110,21 @@ MonoBehaviour:
   - rid: 448883364714774572
   - rid: 448883364714774573
   - rid: 448883364714774574
+  - rid: 448883679135531013
+  - rid: 448883679135531014
+  - rid: 448883679135531015
+  - rid: 448883679135531016
+  - rid: 448883679135531017
+  - rid: 448883679135531018
+  - rid: 448883679135531019
+  - rid: 448883679135531020
+  - rid: 448883679135531021
+  - rid: 448883679135531022
+  - rid: 448883679135531023
+  - rid: 448883679135531024
+  - rid: 448883679135531025
+  - rid: 448883679135531026
+  - rid: 448883679135531027
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
@@ -273,8 +287,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: By the time it passes, weary lungs are enough to keep her fourth
-          try at a murmur without effort.
+        Content: By the time it passes, the wear on her lungs is enough to keep the
+          fourth try at a murmur without effort.
         Style: 2
         Speaker:
           InternalID: -2078916288
@@ -806,7 +820,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: A quick rub at her throat, and the woman waves him off.
+        Content: A brief rub at her throat, and the woman waves him off.
         Style: 2
         Speaker:
           InternalID: -2078916288
@@ -932,7 +946,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: He lurches forward as she goes, braced to catch her at any moment.
+        Content: He lurches forward as she goes, braced to catch her weight.
         Style: 2
         Speaker:
           InternalID: -417971899
@@ -982,8 +996,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: As her hands rest atop the road block to steady her, distant highbeams
-          come to dance across a pistol's slide.
+        Content: Joints pop, and muscles seize. Still, she rises.
         Style: 2
         Speaker:
           InternalID: -2078916288
@@ -1008,8 +1021,9 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Get up and move.
-        Style: 0
+        Content: As she brings both hands to rest atop the road block, distant highbeams
+          come to dance across a pistol's slide.
+        Style: 2
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774572
@@ -1026,17 +1040,17 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
-            InternalID: -95002655
+            InternalID: -514433065
           Min: 1
           Max: 1
           Operation: 0
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Right, uh-
+        Content: Get up and move.
         Style: 0
         Speaker:
-          InternalID: -417971899
+          InternalID: -2078916288
     - rid: 448883364714774573
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -1058,9 +1072,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: The man faintly clears his throat, hustling to stand. Up on his
-          feet, he towers monstrously over her.
-        Style: 2
+        Content: Right, uh-
+        Style: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774574
@@ -1084,10 +1097,389 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Yeah. <alpha=#99>Er-</color> yes. Yes, ma'am.
+        Content: The man faintly clears his throat, hustling to stand. Up on his
+          feet, he towers monstrously over her.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883679135531013
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389511
+        Key: LR_intro_39
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389499
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Yeah.
         Style: 0
         Speaker:
           InternalID: -417971899
+    - rid: 448883679135531014
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389512
+        Key: LR_intro_40
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389511
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: <alpha=#99>Er-</color> yes.
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883679135531015
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389513
+        Key: LR_intro_41
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389512
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Yes, ma'am.
+        Style: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883679135531016
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389514
+        Key: R_inspect_barriers_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389442
+        Once: 1
+        Padding: 2
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: They're gone for now, but that's no reason to rest here.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531017
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389515
+        Key: R_inspect_barriers_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389514
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: If anyone else comes off the highway and up this road, we'd be in
+          their highbeams before they see the road block.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531018
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389516
+        Key: R_inspect_barriers_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389515
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: He wouldn't hide in time, and...
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531019
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389517
+        Key: R_inspect_barriers_A_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389516
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Her nose wrinkles briefly in distaste.
+        Style: 2
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531020
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389518
+        Key: R_inspect_barriers_A_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389517
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: If that happens, it's over.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531021
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389519
+        Key: R_inspect_barriers_A_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389518
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Regardless - sitting around here won't do any good.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531022
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389520
+        Key: R_inspect_barriers_A_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389519
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Running on fumes, and those won't last much longer.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531023
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389521
+        Key: R_inspect_barriers_A_8
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389520
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: That building's just a little further up the road.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531024
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389522
+        Key: R_inspect_barriers_A_9
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389521
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Better to walk there now than wait until I need to be carried.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531025
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389523
+        Key: R_inspect_barriers_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389442
+        Once: 1
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: There shall come a time where I am free to sit and watch the lights
+          on the highway without a six-and-a-half-foot-tall gorilla chained to my
+          ankle.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531026
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389524
+        Key: R_inspect_barriers_B_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389523
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: This is not that time.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
+    - rid: 448883679135531027
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389525
+        Key: R_inspect_barriers_C_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389442
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: There are better things to do right now.
+        Style: 1
+        Speaker:
+          InternalID: -2078916288
     - rid: 2933227056775036933
       type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -1287,10 +1679,10 @@ MonoBehaviour:
           Max: 0
           Operation: 0
         - FactReference:
-            InternalID: 1389379
-          Min: 1389396
-          Max: 1389396
-          Operation: 1
+            InternalID: 1389396
+          Min: 1
+          Max: 1
+          Operation: 0
         - FactReference:
             InternalID: -95002655
           Min: 1
@@ -1299,7 +1691,7 @@ MonoBehaviour:
         Modifications: []
         OnApply:
         - Reference:
-            InternalID: 1389379
+            InternalID: 1389396
         OnInvoke: []
         Content: Pick up the chair.
         Style: 2
@@ -1430,7 +1822,7 @@ MonoBehaviour:
         ID: 1389396
         Key: I_chair
         Scope:
-          InternalID: 475414559
+          InternalID: -1936302086
         Triggers:
           List: []
         Once: 0
@@ -1454,10 +1846,10 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
-            InternalID: 1389379
-          Min: 1389396
-          Max: 1389396
-          Operation: 1
+            InternalID: 1389396
+          Min: 1
+          Max: 1
+          Operation: 0
         - FactReference:
             InternalID: -95002655
           Min: 1
@@ -1503,7 +1895,7 @@ MonoBehaviour:
         ID: 1389410
         Key: I_rock
         Scope:
-          InternalID: 475414559
+          InternalID: -1936302086
         Triggers:
           List: []
         Once: 0
@@ -1602,8 +1994,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: They're car-catchers, like the ones they used back at this road
-          repair job I had once.
+        Content: They're car-catchers, like the ones we had back at that road repair
+          job.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -1678,7 +2070,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: In, like, a... a funny lil' "concrete jungle" kinda way.
+        Content: In, like, a... a "concrete jungle" kinda way.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -2285,31 +2677,6 @@ MonoBehaviour:
         Style: 1
         Speaker:
           InternalID: -2078916288
-    - rid: 2940630783594594336
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389443
-        Key: R_inspect_barriers_1
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1389442
-        Once: 0
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: -514433065
-          Min: 1
-          Max: 1
-          Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: (Temp line)
-        Style: 1
-        Speaker:
-          InternalID: -2078916288
     - rid: 2940630783594594339
       type: {class: ChoiceEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
@@ -2448,7 +2815,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: No grass or nothing, so I guess they're new.
+        Content: No grass or nothing, so I guess they're new here.
         Style: 1
         Speaker:
           InternalID: -417971899
@@ -2598,7 +2965,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Leftovers from a bump that was carved out to smooth the land, perhaps.
+        Content: Leftovers from a hill that was carved out to smooth the land, perhaps.
           This <i>is</i> a road.
         Style: 1
         Speaker:
@@ -2649,8 +3016,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Thick grass, so the undergrowth must have been crawling in for a
-          while. A few months, maybe.
+        Content: The grass is thick, and the undergrowth must have been crawling
+          in for a while. A few months, maybe.
         Style: 1
         Speaker:
           InternalID: -2078916288

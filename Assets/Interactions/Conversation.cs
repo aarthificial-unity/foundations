@@ -1,11 +1,7 @@
 ﻿using Aarthificial.Typewriter;
-using Aarthificial.Typewriter.Attributes;
-using Aarthificial.Typewriter.References;
 using Cinemachine;
 using Framework;
-using Items;
 using Player;
-using Typewriter;
 using UnityEngine;
 using Utils;
 using View.Overlay;
@@ -30,18 +26,14 @@ namespace Interactions {
     }
 
     public InteractionWaypoint[] Waypoints;
-    [EntryFilter(BaseType = typeof(ItemEntry), AllowEmpty = true)]
-    public EntryReference Item;
 
     private PlayerLookup<Interaction> _interactions;
 
     [SerializeField] private CinemachineVirtualCamera _cameraTemplate;
     [SerializeField] private float _orthoSize = 4;
     [SerializeField] private InteractionArea _area;
-    [SerializeField] private Transform _itemTransform;
 
     private CinemachineVirtualCamera _camera;
-    private Item _itemInstance;
     private Camera _mainCamera;
 
     protected override void Awake() {
@@ -62,13 +54,6 @@ namespace Interactions {
       _camera.Priority = 100;
       _camera.m_Lens.OrthographicSize = _orthoSize;
       _camera.gameObject.SetActive(false);
-
-      Context.Set(InteractionContext.AvailableItem, Item);
-    }
-
-    protected override void Start() {
-      TryInstantiateItem();
-      base.Start();
     }
 
     private void Update() {
@@ -253,32 +238,6 @@ namespace Interactions {
       }
 
       return -1;
-    }
-
-    public override void UseItem(EntryReference item) {
-      base.UseItem(item);
-      Item = item;
-      TryInstantiateItem();
-    }
-
-    public override EntryReference PickUpItem() {
-      base.PickUpItem();
-      if (_itemInstance != null) {
-        Destroy(_itemInstance.gameObject);
-        _itemInstance = null;
-      }
-
-      return Item;
-    }
-
-    protected override void LoadBlackboard() {
-      Item = Context.Get(InteractionContext.AvailableItem);
-    }
-
-    private void TryInstantiateItem() {
-      if (Item.TryGetEntry(out ItemEntry itemEntry)) {
-        _itemInstance = Instantiate(itemEntry.Prefab, _itemTransform);
-      }
     }
 
     private void UpdateGizmo() {

@@ -120,10 +120,7 @@ namespace Player {
       SaveStoreRegistry.Register(this);
       _animator.Stepped += HandleStepped;
       TypewriterDatabase.Instance.AddListener(ItemFact, HandleItemUsed);
-      TypewriterDatabase.Instance.AddListener(
-        InteractionContext.AvailableItem,
-        HandleItemPickedUp
-      );
+      TypewriterDatabase.Instance.AddListener(HandleItemPickedUp);
       TypewriterDatabase.Instance.AddListener(
         InteractionContext.CallOther,
         HandleCallOther
@@ -134,10 +131,7 @@ namespace Player {
       SaveStoreRegistry.Unregister(this);
       _animator.Stepped -= HandleStepped;
       TypewriterDatabase.Instance.RemoveListener(ItemFact, HandleItemUsed);
-      TypewriterDatabase.Instance.RemoveListener(
-        InteractionContext.AvailableItem,
-        HandleItemPickedUp
-      );
+      TypewriterDatabase.Instance.RemoveListener(HandleItemPickedUp);
       TypewriterDatabase.Instance.RemoveListener(
         InteractionContext.CallOther,
         HandleCallOther
@@ -220,16 +214,17 @@ namespace Player {
       ITypewriterContext context
     ) {
       if (CurrentItem.HasValue
-        || context is not InteractionContext interactionContext
-        || context.Get(InteractionContext.CurrentSpeaker) != Fact.ID) {
+        || context is not InteractionContext
+        || entry is not ItemEntry
+        || context.Get(InteractionContext.CurrentSpeaker) != Fact.ID
+        || context.Get(entry.ID) != 1) {
         return;
       }
 
-      CurrentItem = interactionContext.Interactable.PickUpItem();
-      if (CurrentItem.HasValue) {
-        context.Set(ItemFact, CurrentItem);
-        Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
-      }
+      context.Set(entry.ID, 0);
+      CurrentItem = entry.ID;
+      context.Set(ItemFact, CurrentItem);
+      Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
     }
 
     private void HandleCallOther(BaseEntry entry, ITypewriterContext context) {
