@@ -1,6 +1,7 @@
 ﻿using Aarthificial.Safekeeper;
 using Aarthificial.Safekeeper.Loaders;
 using Aarthificial.Typewriter.Blackboards;
+using Interactions;
 using System;
 
 namespace Saves {
@@ -26,7 +27,12 @@ namespace Saves {
     }
 
     protected override void OnLoad() {
-      Data.Read(_location, GlobalData);
+      if (!Data.Read(_location, GlobalData)) {
+        GlobalData.Blackboard.Set(
+          InteractionContext.RTItem,
+          InteractionContext.ItemGun
+        );
+      }
       GlobalData.SceneName ??= _defaultSceneName;
     }
 
