@@ -2,13 +2,16 @@
 using Aarthificial.Safekeeper.Attributes;
 using Aarthificial.Safekeeper.Stores;
 using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Attributes;
 using System;
 using Aarthificial.Typewriter.Blackboards;
 using Aarthificial.Typewriter.References;
 using Aarthificial.Typewriter.Tools;
 using Player;
 using Saves;
+using Typewriter;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactions {
   public class Interactable : MonoBehaviour, ISaveStore {
@@ -25,6 +28,10 @@ namespace Interactions {
     [NonSerialized] public EntryReference Listener;
     public InteractionGizmo Gizmo;
     public TypewriterEvent Event;
+    [SerializeField]
+    [FormerlySerializedAs("Item")]
+    [EntryFilter(BaseType = typeof(ItemEntry), AllowEmpty = true)]
+    private EntryReference _initialItem;
 
     public Blackboard Blackboard = new();
     public InteractionContext Context;
@@ -49,8 +56,8 @@ namespace Interactions {
 
     public void OnLoad(SaveControllerBase save) {
       Context.Global = ((SaveController)save).GlobalData.Blackboard;
-      if (save.Data.Read(_id, Blackboard)) {
-        LoadBlackboard();
+      if (!save.Data.Read(_id, Blackboard) && _initialItem.HasValue) {
+        Context.Set(_initialItem, 1);
       }
     }
 
@@ -89,19 +96,14 @@ namespace Interactions {
       OnStateChanged();
     }
 
-    protected virtual void OnStateChanged() {
+    protected void OnStateChanged() {
       StateChanged?.Invoke();
     }
 
-    public virtual void UseItem(EntryReference item) {
-      Blackboard.Set(InteractionContext.AvailableItem, item);
+    public void UseItem(EntryReference item) {
+      if (item.HasValue) {
+        Blackboard.Set(item, 1);
+      }
     }
-
-    public virtual EntryReference PickUpItem() {
-      Blackboard.Set(InteractionContext.AvailableItem, 0);
-      return 0;
-    }
-
-    protected virtual void LoadBlackboard() { }
   }
 }

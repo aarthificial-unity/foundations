@@ -636,6 +636,8 @@ MonoBehaviour:
   Event:
     EventReference:
       InternalID: 1389444
+  _initialItem:
+    InternalID: 0
   Blackboard:
     List: []
   Context:
@@ -645,13 +647,10 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 416423050}
   - {fileID: 664505499}
-  Item:
-    InternalID: 0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
   _area: {fileID: 119673033}
-  _itemTransform: {fileID: 0}
 --- !u!4 &208036375
 Transform:
   m_ObjectHideFlags: 0
@@ -1073,8 +1072,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 418265871}
+  - component: {fileID: 418265872}
   m_Layer: 0
-  m_Name: ItemLocation
+  m_Name: RockDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1095,6 +1095,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1433286802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &418265872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418265870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0f97f204cd4d82825cc99b306a5f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemFilter:
+    InternalID: 1389410
+  _interactable: {fileID: 1433286801}
 --- !u!1001 &476616681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1283,6 +1298,8 @@ MonoBehaviour:
   Event:
     EventReference:
       InternalID: 1389383
+  _initialItem:
+    InternalID: 0
   Blackboard:
     List: []
   Context:
@@ -1292,13 +1309,10 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 830425540}
   - {fileID: 571759172}
-  Item:
-    InternalID: 0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
   _area: {fileID: 2064129434}
-  _itemTransform: {fileID: 660450525}
 --- !u!4 &592781870
 Transform:
   m_ObjectHideFlags: 0
@@ -1476,6 +1490,8 @@ MonoBehaviour:
   Event:
     EventReference:
       InternalID: 1389388
+  _initialItem:
+    InternalID: 1389396
   Blackboard:
     List: []
   Context:
@@ -1485,13 +1501,10 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 942423351}
   - {fileID: 1748375160}
-  Item:
-    InternalID: 1389396
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
   _area: {fileID: 1304049362}
-  _itemTransform: {fileID: 1884739821}
 --- !u!4 &649345889
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,8 +1534,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 660450525}
+  - component: {fileID: 660450526}
   m_Layer: 0
-  m_Name: ItemLocation
+  m_Name: ChairDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,6 +1557,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 592781870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &660450526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660450524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0f97f204cd4d82825cc99b306a5f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemFilter:
+    InternalID: 1389396
+  _interactable: {fileID: 592781869}
 --- !u!1 &664505498
 GameObject:
   m_ObjectHideFlags: 0
@@ -6573,6 +6602,8 @@ MonoBehaviour:
   Event:
     EventReference:
       InternalID: 1389412
+  _initialItem:
+    InternalID: 1389410
   Blackboard:
     List: []
   Context:
@@ -6582,13 +6613,10 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 1727279577}
   - {fileID: 1115341643}
-  Item:
-    InternalID: 1389410
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
   _area: {fileID: 617763273}
-  _itemTransform: {fileID: 418265871}
 --- !u!4 &1433286802
 Transform:
   m_ObjectHideFlags: 0
@@ -7000,8 +7028,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884739821}
+  - component: {fileID: 1884739822}
   m_Layer: 0
-  m_Name: ItemLocation
+  m_Name: ChairDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7015,13 +7044,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884739820}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.95232517, z: -0, w: 0.30508494}
-  m_LocalPosition: {x: 0, y: -1.259, z: 0}
+  m_LocalRotation: {x: -0, y: 0.8926751, z: -0, w: -0.4507008}
+  m_LocalPosition: {x: 0.1630001, y: -1.259, z: -0.35899925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 649345889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1884739822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884739820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0f97f204cd4d82825cc99b306a5f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemFilter:
+    InternalID: 1389396
+  _interactable: {fileID: 649345888}
 --- !u!1 &1999637056
 GameObject:
   m_ObjectHideFlags: 0

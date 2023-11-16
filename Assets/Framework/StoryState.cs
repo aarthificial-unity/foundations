@@ -1,5 +1,8 @@
 ﻿using Aarthificial.Safekeeper;
 using Aarthificial.Safekeeper.Stores;
+using Aarthificial.Typewriter;
+using Aarthificial.Typewriter.Blackboards;
+using Interactions;
 using Saves;
 using System;
 using System.Collections;
@@ -9,7 +12,7 @@ using UnityEngine.SceneManagement;
 using Utils;
 
 namespace Framework {
-  public class StoryState : GameState {
+  public class StoryState : GameState, ITypewriterContext {
     [NonSerialized] public bool IsPaused;
     public event Action<bool> LoadingChanged;
     public event Action Paused;
@@ -135,6 +138,16 @@ namespace Framework {
 
     public void Save() {
       _saveScene = true;
+    }
+
+    public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
+      if (scope == InteractionContext.GlobalScope) {
+        blackboard = _saveController.GlobalData.Blackboard;
+        return true;
+      }
+
+      blackboard = default;
+      return false;
     }
   }
 }

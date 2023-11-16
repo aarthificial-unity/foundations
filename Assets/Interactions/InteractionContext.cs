@@ -15,7 +15,6 @@ namespace Interactions {
     public static int RT = -2078916288;
     public static int CallOther = 2014434846;
     public static int Enter = 1389397;
-    public static int AvailableItem = 1389379;
     public static int LTItem = 1389380;
     public static int RTItem = 1389381;
     public static int ItemGun = 1389507;
