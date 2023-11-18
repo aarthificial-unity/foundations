@@ -576,6 +576,13 @@ MonoBehaviour:
   - rid: 448883364714774534
   - rid: 448883364714774535
   - rid: 448883364714774536
+  - rid: 448883733840527497
+  - rid: 448883733840527498
+  - rid: 448883733840527499
+  - rid: 448883733840527500
+  - rid: 448883733840527501
+  - rid: 448883733840527502
+  - rid: 448883733840527506
   Facts:
   - rid: 296039651521069286
   - rid: 296039651521069288
@@ -4885,7 +4892,7 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: What? What are-
+        Content: What? Why-
         Style: 0
         Speaker:
           InternalID: -2078916288
@@ -9635,6 +9642,202 @@ MonoBehaviour:
         Icon: {fileID: 21300000, guid: fb018622078366047a10aeb75e832f16, type: 3}
         Prefab: {fileID: 722169113772874137, guid: 7be98b4e85617854187e7cf1e2cc0db7,
           type: 3}
+    - rid: 448883733840527497
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389661
+        Key: L_do_pickup_wedge
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389006
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389508
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389508
+        OnInvoke: []
+        Content: Pick up the wedge.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527498
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389662
+        Key: L_pickup_wedge
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389661
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: You picked up the wedge.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527499
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389663
+        Key: L_do_insert_wedge
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1388801
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389380
+          Min: 1389508
+          Max: 1389508
+          Operation: 1
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389380
+        OnInvoke: []
+        Content: Insert the wedge.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527500
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389664
+        Key: L_insert_wedge
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389663
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: You inserted the wedge into the gate.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527501
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389665
+        Key: L_do_open_bay_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389010
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389150
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Open the bay.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527502
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389666
+        Key: L_open_bay_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389665
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The bay opens.
+        Style: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 448883733840527506
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389670
+        Key: L_enter_bay_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389666
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389397
+        OnInvoke: []
+        Content: 
+        Style: 2
+        Speaker:
+          InternalID: -417971899
     - rid: 2933226884081123330
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:

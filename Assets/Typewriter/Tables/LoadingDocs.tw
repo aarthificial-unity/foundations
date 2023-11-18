@@ -152,8 +152,8 @@ R_inspect_gate_default_3,thought,dialogue,RT,FALSE,FALSE,This gate hasn't moved 
 ,,,,FALSE,FALSE,,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 # GATE NEEDS INTERACTIONS FOR: -Pulling out the pickaxe -LT trying to force it open -Wedging the pickaxe (broken/unbroken) into the contact -Wedging the chock into the contact -Removing the pickaxe (broken/unbroken) from the contact -Removing the chock from the contact,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
+L_do_insert_wedge,action,option,LT,FALSE,FALSE,Insert the wedge.,C_rolling_gate,LT_item = I_wedge,,,1,LT_item
+L_insert_wedge,action,dialogue,LT,FALSE,FALSE,You inserted the wedge into the gate.,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 kiosk_door_opened,,fact,,FALSE,FALSE,,,,,,0,
 kiosk_door_tried_slam,,fact,,FALSE,FALSE,,,,,,0,
@@ -244,7 +244,7 @@ L_kiosk_slam_1,thought,dialogue,LT,FALSE,FALSE,"It's like some SWAT stuff, right
 L_kiosk_slam_2,speech,dialogue,LT,FALSE,FALSE,"Hey, uh - miss.",L_kiosk_slam_1,is_RT_present = 1,,,1,
 L_kiosk_slam_3,speech,dialogue,RT,FALSE,FALSE,Hm?,,,,,0,
 L_kiosk_slam_4,speech,dialogue,LT,FALSE,FALSE,"Could I get you to stand back, a lil' bit?",,,,,0,
-L_kiosk_slam_5,speech,dialogue,RT,FALSE,FALSE,What? What are-,,,,,0,
+L_kiosk_slam_5,speech,dialogue,RT,FALSE,FALSE,What? Why-,,,,,0,
 L_kiosk_slam_6,action,dialogue,LT,FALSE,FALSE,"<b><i>WHAM!</i></b> Hinges squeal, and plywood crackles.","L_kiosk_slam_1
 L_kiosk_slam_5",,kiosk_door_tried_slam = 1,,0,
 L_kiosk_slam_succeed_1,thought,dialogue,LT,FALSE,FALSE,"Oh, they do it by the handle, don't they.",L_kiosk_slam_6,is_RT_present = -1,,,1,
@@ -374,8 +374,8 @@ E_bay_1,,event,,FALSE,FALSE,Triggered when interacting with the trailer in front
 C_bay_1,,choice,,FALSE,TRUE,,,,,,0,
 L_do_inspect_bay_1,thought,option,LT,FALSE,FALSE,Anything special?,C_bay_1,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
+L_do_pickup_wedge,action,option,LT,FALSE,FALSE,Pick up the wedge.,C_bay_1,I_wedge = 1,,,1,I_wedge
+L_pickup_wedge,action,dialogue,LT,FALSE,FALSE,You picked up the wedge.,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
@@ -744,9 +744,9 @@ L_do_feel_bay_2_box,action,option,LT,TRUE,FALSE,Feel around inside the box.,C_ba
 bay_2_looking_for_light < 1
 bay_2_lit < 1",,,3,
 ,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
-,,,,FALSE,FALSE,,,,,,0,
+L_do_open_bay_2,action,option,LT,FALSE,FALSE,Open the bay.,C_bay_2,bay_2_lit = 1,,,1,
+L_open_bay_2,action,dialogue,LT,FALSE,FALSE,The bay opens.,,,,,0,
+L_enter_bay_2,action,dialogue,LT,FALSE,FALSE,,,,,,0,enter
 ,,,,FALSE,FALSE,,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,
 ,,,,FALSE,FALSE,,,,,,0,

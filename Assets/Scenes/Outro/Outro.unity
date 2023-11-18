@@ -2181,10 +2181,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1669655122}
   - component: {fileID: 1669655121}
-  - component: {fileID: 1669655120}
   - component: {fileID: 1669655119}
   - component: {fileID: 1669655124}
   - component: {fileID: 1669655123}
+  - component: {fileID: 1669655125}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2236,14 +2236,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &1669655120
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669655118}
-  m_Enabled: 1
 --- !u!20 &1669655121
 Camera:
   m_ObjectHideFlags: 0
@@ -2343,13 +2335,26 @@ PlayableDirector:
   m_PlayableAsset: {fileID: 11400000, guid: adc43a20f35c94440abbf25b846e83e0, type: 2}
   m_InitialState: 1
   m_WrapMode: 1
-  m_DirectorUpdateMode: 1
+  m_DirectorUpdateMode: 2
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -4671015791842078853, guid: adc43a20f35c94440abbf25b846e83e0, type: 2}
     value: {fileID: 1669655123}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1669655125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669655118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1671449254
 GameObject:
   m_ObjectHideFlags: 0
