@@ -25,6 +25,7 @@ namespace View.Controls {
       for (var i = 0; i < _backgrounds.Length; i++) {
         _backgrounds[i].color = _palette.PaperSelected;
       }
+      DoStateTransition(SelectionState.Normal);
     }
 
     public void DoStateTransition(SelectionState state) {
