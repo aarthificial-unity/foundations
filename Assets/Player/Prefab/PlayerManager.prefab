@@ -245,6 +245,9 @@ MonoBehaviour:
   _id:
     ChunkId: 7caaa6edb9217ff47acbbd01b77fec15
     ObjectId: 4796299548502591021-0
+  _players:
+    LT: {fileID: 0}
+    RT: {fileID: 0}
 --- !u!114 &7942872571327056023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +304,7 @@ MonoBehaviour:
     Event: {fileID: 0}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
+  _fastForwardCooldown: 0.5
 --- !u!114 &4796299548502590993
 MonoBehaviour:
   m_ObjectHideFlags: 0

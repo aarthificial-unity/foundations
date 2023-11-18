@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   PointingContinue: {fileID: -4520963062596947796, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
+  PointingClick: {fileID: 3238672311405781525, guid: 314bc7151929a6a439a2af7e101ce57a,
+    type: 3}
