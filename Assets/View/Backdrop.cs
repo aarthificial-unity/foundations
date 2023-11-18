@@ -8,6 +8,10 @@ namespace View {
       [SerializeField] private Backdrop _backdrop;
       private bool _requested;
 
+      public bool IsRequested() {
+        return _requested;
+      }
+
       public void Request() {
         if (!_requested) {
           _requested = true;

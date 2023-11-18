@@ -262,8 +262,13 @@ PrefabInstance:
       objectReference: {fileID: 6264614687114243413}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
+      propertyPath: _id.ChunkId
+      value: 7695e04cceb218c45a115902e4ccb462
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
+        type: 3}
       propertyPath: _id.ObjectId
-      value: rt
+      value: 2897407815665303685-0
       objectReference: {fileID: 0}
     - target: {fileID: 7182595737060933988, guid: 723be1f20975bbb4e80d78073f628de9,
         type: 3}
