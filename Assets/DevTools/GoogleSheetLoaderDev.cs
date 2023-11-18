@@ -7,16 +7,18 @@ using Framework;
 using Interactions;
 using Player;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
-using Utils;
 
 namespace DevTools {
   [ExecuteAlways]
   public partial class GoogleSheetLoader {
-    private static string _customDocumentId;
-    private static string _customSheetName;
+    private static readonly Dictionary<string, string> _documentIdOverrides =
+      new();
+    private static readonly Dictionary<string, string> _sheetNameOverrides =
+      new();
 
     [SerializeField] private DatabaseTable _table;
     [SerializeField] private string _documentId;
@@ -35,12 +37,8 @@ namespace DevTools {
     }
 
     private void OnEnable() {
-      if (string.IsNullOrEmpty(_customDocumentId)) {
-        _customDocumentId = _documentId;
-      }
-      if (string.IsNullOrEmpty(_customSheetName)) {
-        _customSheetName = _sheetName;
-      }
+      _documentIdOverrides.TryAdd(_documentId, _documentId);
+      _sheetNameOverrides.TryAdd(_sheetName, _sheetName);
     }
 
     private void Update() {
@@ -131,8 +129,10 @@ namespace DevTools {
       GUILayout.EndVertical();
 
       GUILayout.BeginVertical();
-      _customDocumentId = GUILayout.TextField(_customDocumentId);
-      _customSheetName = GUILayout.TextField(_customSheetName);
+      _documentIdOverrides[_documentId] =
+        GUILayout.TextField(_documentIdOverrides[_documentId]);
+      _sheetNameOverrides[_sheetName] =
+        GUILayout.TextField(_sheetNameOverrides[_sheetName]);
       GUILayout.FlexibleSpace();
       GUILayout.BeginHorizontal();
       if (GUILayout.Button("Cancel")) {
@@ -223,7 +223,7 @@ namespace DevTools {
 
     private IEnumerator Reload() {
       using UnityWebRequest www = UnityWebRequest.Get(
-        $"https://docs.google.com/spreadsheets/d/{UnityWebRequest.EscapeURL(_customDocumentId)}/gviz/tq?tqx=out:csv&sheet={UnityWebRequest.EscapeURL(_customSheetName)}"
+        $"https://docs.google.com/spreadsheets/d/{UnityWebRequest.EscapeURL(_documentIdOverrides[_documentId])}/gviz/tq?tqx=out:csv&sheet={UnityWebRequest.EscapeURL(_sheetNameOverrides[_sheetName])}"
       );
 
       yield return www.SendWebRequest();
