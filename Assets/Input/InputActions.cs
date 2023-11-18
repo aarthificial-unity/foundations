@@ -9,5 +9,6 @@ namespace Input {
     public InputActionReference UICancel;
     [Header("Pointing")]
     public InputActionReference PointingContinue;
+    public InputActionReference PointingClick;
   }
 }

@@ -33,11 +33,14 @@ namespace Player.ManagerStates {
 
     [SerializeField] private Volume _volume;
     [SerializeField] private float _interactionCooldown = 0.5f;
+    [SerializeField] private float _fastForwardCooldown = 1f;
+
     private List<DialogueEntry> _options = new();
     private BaseEntry[] _rules = new BaseEntry[16];
 
     private SubState _subState = SubState.Choice;
     private float _lastUpdateTime;
+    private float _lastSkipTime;
 
     private BaseEntry _queuedEntry;
     private bool _isCancellable;
@@ -98,7 +101,6 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.Button.Clicked += HandleButtonClicked;
       _dialogue.Wheel.Clicked += HandleBackdropClicked;
       _dialogue.Track.Clicked += HandleBackdropClicked;
-      App.Input.Actions.PointingContinue.action.performed += HandleContinue;
       _dialogue.Track.Finished += HandleFinished;
       _dialogue.SetActive(true);
       _dialogue.Track.Restart();
@@ -112,7 +114,6 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.Button.Clicked -= HandleButtonClicked;
       _dialogue.Wheel.Clicked -= HandleBackdropClicked;
       _dialogue.Track.Clicked -= HandleBackdropClicked;
-      App.Input.Actions.PointingContinue.action.performed -= HandleContinue;
       _dialogue.Track.Finished -= HandleFinished;
       _dialogue.SetActive(false);
       _volume.weight = 0;
@@ -123,6 +124,8 @@ namespace Player.ManagerStates {
     public override void OnUpdate() {
       UpdatePlayer(Manager.LT);
       UpdatePlayer(Manager.RT);
+
+      UpdateFastForward();
 
       if (CurrentEntry != null) {
         return;
@@ -150,6 +153,23 @@ namespace Player.ManagerStates {
       var entry = _queuedEntry;
       _queuedEntry = null;
       ProcessEntry(entry);
+    }
+
+    private void UpdateFastForward() {
+      if (App.Actions.PointingClick.action.WasPressedThisFrame()) {
+        _lastSkipTime = Time.time;
+      }
+
+      if (App.Actions.PointingContinue.action.WasPressedThisFrame()) {
+        _lastSkipTime = Time.time;
+        HandleBackdropClicked();
+      }
+
+      if ((App.Actions.PointingContinue.action.IsPressed()
+          || App.Actions.PointingClick.action.IsPressed())
+        && Time.time - _lastSkipTime > _fastForwardCooldown) {
+        HandleBackdropClicked(false);
+      }
     }
 
     private void UpdatePlayer(PlayerController player) {
@@ -254,11 +274,11 @@ namespace Player.ManagerStates {
       }
     }
 
-    private void HandleContinue(InputAction.CallbackContext obj) {
-      HandleBackdropClicked();
+    private void HandleBackdropClicked() {
+      HandleBackdropClicked(true);
     }
 
-    private void HandleBackdropClicked() {
+    private void HandleBackdropClicked(bool withSound) {
       var duration = Time.time - _lastUpdateTime;
       _lastUpdateTime = 0;
       if (duration < _interactionCooldown) {
@@ -267,11 +287,15 @@ namespace Player.ManagerStates {
 
       switch (_subState) {
         case SubState.Dialogue:
-          _skipSound.Play();
+          if (withSound) {
+            _skipSound.Play();
+          }
           _dialogue.Track.Skip();
           break;
         case SubState.Proceed when _queuedEntry != null:
-          _nextSound.Play();
+          if (withSound) {
+            _nextSound.Play();
+          }
           _subState = SubState.Finished;
           break;
       }
