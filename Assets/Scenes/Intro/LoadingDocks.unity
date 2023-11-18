@@ -6728,6 +6728,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: World
       objectReference: {fileID: 0}
+    - target: {fileID: 4505107420569897209, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233898290751773051, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9060933902430340068, guid: 5f9dfe9ac8eb22e49bfd3bcc5a7dfda8,
         type: 3}
       propertyPath: m_LocalPosition.x

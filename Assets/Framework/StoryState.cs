@@ -141,7 +141,7 @@ namespace Framework {
     }
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
-      if (scope == InteractionContext.GlobalScope) {
+      if (_saveController != null && scope == InteractionContext.GlobalScope) {
         blackboard = _saveController.GlobalData.Blackboard;
         return true;
       }
