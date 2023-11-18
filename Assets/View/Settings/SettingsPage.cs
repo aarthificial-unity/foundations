@@ -31,7 +31,7 @@ namespace View.Settings {
       int order,
       int count
     ) {
-      _spacing = spacing;
+      _spacing = -spacing;
       _count = count;
       _canvas = GetComponent<Canvas>();
       _group = GetComponent<CanvasGroup>();
@@ -41,7 +41,7 @@ namespace View.Settings {
       _colorTween.ForceSet(order / (float)count);
       _angleTween.ForceSet(_angle);
       _positionTween.ForceSet(
-        new Vector3(_position.x, order * spacing, _position.y)
+        new Vector3(_position.x, _position.y, order * _spacing)
       );
     }
 
@@ -69,7 +69,7 @@ namespace View.Settings {
 
     public void SetOrder(int order) {
       _positionTween.Set(
-        new Vector3(_position.x, order * _spacing, _position.y)
+        new Vector3(_position.x, _position.y, order * _spacing)
       );
       _canvas.sortingOrder = order;
       if (order == _count) {
