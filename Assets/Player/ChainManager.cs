@@ -23,6 +23,7 @@ namespace Player {
     [SerializeField] private FMODEventInstance _chainEvent;
     [SerializeField] private FMODParameter _chainAccelerationParam;
     [ObjectLocation] [SerializeField] private SaveLocation _id;
+    [SerializeField] private PlayerLookup<Rigidbody> _players;
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
@@ -45,9 +46,8 @@ namespace Player {
         Rotations = _rotations,
       };
 
-      var players = GetComponent<PlayerManager>();
-      var from = players.LT.ChainTarget;
-      var to = players.RT.ChainTarget;
+      var from = _players.LT;
+      var to = _players.RT;
 
       _links = new Rigidbody[_length];
       var prev = Instantiate(_link);
