@@ -320,7 +320,7 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
   _targetPrefab: {fileID: 4803978102406822656, guid: 3ee265cd1d7910f458699d94b5fa0948,
     type: 3}
-  _targetAction: {fileID: 3091928205696429083, guid: 314bc7151929a6a439a2af7e101ce57a,
+  _targetAction: {fileID: 8969022858353728413, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
   _interactionHoverSound:
     Event: {fileID: 0}
