@@ -1,8 +1,8 @@
 ﻿using Aarthificial.Safekeeper;
 using Aarthificial.Safekeeper.Loaders;
 using Aarthificial.Typewriter.Blackboards;
-using Interactions;
 using System;
+using Typewriter;
 
 namespace Saves {
   [Serializable]
@@ -28,10 +28,7 @@ namespace Saves {
 
     protected override void OnLoad() {
       if (!Data.Read(_location, GlobalData)) {
-        GlobalData.Blackboard.Set(
-          InteractionContext.RTItem,
-          InteractionContext.ItemGun
-        );
+        GlobalData.Blackboard.Set(Facts.RTItem, Facts.ItemGun);
       }
       GlobalData.SceneName ??= _defaultSceneName;
     }

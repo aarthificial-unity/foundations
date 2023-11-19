@@ -4,10 +4,10 @@ using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using DevTools.CSV;
 using Framework;
-using Interactions;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
@@ -169,9 +169,9 @@ namespace DevTools {
       _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
 
       var context = _players.DialogueState.Context;
-      BlackboardEntriesGUI(context, InteractionContext.GlobalScope);
-      BlackboardEntriesGUI(context, InteractionContext.InteractionScope);
-      BlackboardEntriesGUI(context, InteractionContext.ContextScope);
+      BlackboardEntriesGUI(context, Facts.GlobalScope);
+      BlackboardEntriesGUI(context, Facts.InteractionScope);
+      BlackboardEntriesGUI(context, Facts.ContextScope);
 
       GUILayout.EndScrollView();
       GUILayout.EndArea();
@@ -222,7 +222,7 @@ namespace DevTools {
     }
 
     private IEnumerator Reload() {
-      using UnityWebRequest www = UnityWebRequest.Get(
+      using var www = UnityWebRequest.Get(
         $"https://docs.google.com/spreadsheets/d/{UnityWebRequest.EscapeURL(_documentIdOverrides[_documentId])}/gviz/tq?tqx=out:csv&sheet={UnityWebRequest.EscapeURL(_sheetNameOverrides[_sheetName])}"
       );
 

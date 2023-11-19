@@ -1,4 +1,4 @@
-﻿using Audio;
+﻿using Audio.Events;
 using Interactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -88,14 +88,10 @@ namespace Player.ManagerStates {
       }
 
       if (!IsNavigating(CurrentController)
-        && (TryHitInteractable(
-            ray,
-            _config.InteractionMask,
-            out var interactable
-          )
-          || TryHitInteractable(ray, _config.PlayerMask, out interactable))) {
+        && Physics.Raycast(ray, out hit, 100, _config.InteractionMask)
+        && hit.transform.TryGetComponent(out Interactable conversation)) {
         _currentCommand = Command.Interact;
-        _interactable = interactable;
+        _interactable = conversation;
       }
 
       if (_interactable != previousInteractable) {
@@ -196,16 +192,6 @@ namespace Player.ManagerStates {
       return player != null
         && player.NavigateState.IsActive
         && _commandedPlayer == player.Type;
-    }
-
-    private bool TryHitInteractable(
-      Ray ray,
-      int mask,
-      out Interactable interactable
-    ) {
-      interactable = default;
-      return Physics.Raycast(ray, out var hit, 100, mask)
-        && hit.transform.TryGetComponent(out interactable);
     }
   }
 }

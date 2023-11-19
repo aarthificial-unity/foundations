@@ -17,13 +17,13 @@ namespace Interactions {
     [SerializeField] private PlayerLookup<InteractionGizmo> _gizmos;
     [SerializeField] private float _hintDelay;
 
-    private Conversation _conversation;
+    private Interactable _interactable;
     private bool _isReady;
     private float _readyTime;
     private PlayerLookup<bool> _hintShown;
 
     private void Awake() {
-      _conversation = GetComponent<Conversation>();
+      _interactable = GetComponent<Interactable>();
       SetupGizmo(PlayerType.LT);
       SetupGizmo(PlayerType.RT);
       SaveStoreRegistry.Register(this);
@@ -58,17 +58,17 @@ namespace Interactions {
     }
 
     private void OnEnable() {
-      _conversation.StateChanged += HandleStateChanged;
+      _interactable.StateChanged += HandleStateChanged;
     }
 
     private void OnDisable() {
-      _conversation.StateChanged -= HandleStateChanged;
+      _interactable.StateChanged -= HandleStateChanged;
     }
 
     private void HandleStateChanged() {
-      if (!_conversation.IsDialogue && !_isReady) {
+      if (!_interactable.IsInDialogue && !_isReady) {
         _isReady = true;
-        _conversation.SetEvent(0);
+        _interactable.SetEvent(0);
         _readyTime = Time.time;
       }
 
@@ -76,13 +76,13 @@ namespace Interactions {
         return;
       }
 
-      if (!_conversation.PlayerType.HasFlag(PlayerType.LT)) {
+      if (!_interactable.PlayerType.HasFlag(PlayerType.LT)) {
         _hintShown.LT = true;
         _readyTime = Time.time;
         _gizmos.LT.IsDisabled = true;
       }
 
-      if (!_conversation.PlayerType.HasFlag(PlayerType.RT)) {
+      if (!_interactable.PlayerType.HasFlag(PlayerType.RT)) {
         _hintShown.RT = true;
         _readyTime = Time.time;
         _gizmos.RT.IsDisabled = true;
@@ -92,7 +92,7 @@ namespace Interactions {
     private void Update() {
       if (_hintShown.LT && _hintShown.RT) {
         enabled = false;
-        _conversation.SetEvent(_event);
+        _interactable.SetEvent(_event);
       }
 
       if (!_isReady || Time.time - _readyTime < _hintDelay) {

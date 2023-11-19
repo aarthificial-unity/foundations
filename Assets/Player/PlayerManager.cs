@@ -4,7 +4,9 @@ using Cinemachine;
 using Interactions;
 using Player.ManagerStates;
 using Settings.Bundles;
+using Typewriter;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 using Utils.Tweening;
 
@@ -17,7 +19,9 @@ namespace Player {
 
     [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
     [SerializeField] private CinemachineVirtualCamera _cameraPrefab;
-    [SerializeField] private Conversation _initialConversation;
+    [SerializeField]
+    [FormerlySerializedAs("_initialConversation")]
+    private Interactable _initialInteractable;
     public PlayerController RT;
     public PlayerController LT;
     [NonSerialized] public PlayerType FocusedPlayer;
@@ -52,10 +56,10 @@ namespace Player {
       _camera.Follow = transform;
       FindObjectOfType<CinemachineBrain>().ManualUpdate();
 
-      if (_initialConversation != null) {
-        LT.InteractState.Enter(_initialConversation);
-        RT.InteractState.Enter(_initialConversation);
-        if (_initialConversation.Event.Invoke(_initialConversation.Context)) {
+      if (_initialInteractable != null) {
+        LT.InteractState.Enter(_initialInteractable);
+        RT.InteractState.Enter(_initialInteractable);
+        if (_initialInteractable.Event.Invoke(_initialInteractable.Context)) {
           return;
         }
       }
@@ -89,18 +93,17 @@ namespace Player {
     }
 
     public bool TryGetPlayer(int id, out PlayerController player) {
-      if (id == InteractionContext.LT) {
-        player = LT;
-        return true;
+      switch (id) {
+        case Facts.LT:
+          player = LT;
+          return true;
+        case Facts.RT:
+          player = RT;
+          return true;
+        default:
+          player = null;
+          return false;
       }
-
-      if (id == InteractionContext.RT) {
-        player = RT;
-        return true;
-      }
-
-      player = null;
-      return false;
     }
 
     public PlayerController this[PlayerType type] =>

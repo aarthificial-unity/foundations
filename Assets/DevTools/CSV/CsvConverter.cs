@@ -2,7 +2,6 @@
 using Aarthificial.Typewriter.Blackboards;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
-using Interactions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -71,17 +70,17 @@ namespace DevTools.CSV {
       // _collection =
       // LocalizationEditorSettings.GetStringTableCollection("Dialogue");
 
-      _lookup.Add("LT", InteractionContext.LT);
-      _lookup.Add("RT", InteractionContext.RT);
-      _lookup.Add("initiator", InteractionContext.Initiator);
-      _lookup.Add("listener", InteractionContext.Listener);
-      _lookup.Add("current_speaker", InteractionContext.CurrentSpeaker);
-      _lookup.Add("is_LT_present", InteractionContext.IsLTPresent);
-      _lookup.Add("is_RT_present", InteractionContext.IsRTPresent);
-      _lookup.Add("call_other", InteractionContext.CallOther);
-      _lookup.Add("enter", InteractionContext.Enter);
-      _lookup.Add("LT_item", InteractionContext.LTItem);
-      _lookup.Add("RT_item", InteractionContext.RTItem);
+      _lookup.Add("LT", Facts.LT);
+      _lookup.Add("RT", Facts.RT);
+      _lookup.Add("initiator", Facts.Initiator);
+      _lookup.Add("listener", Facts.Listener);
+      _lookup.Add("current_speaker", Facts.CurrentSpeaker);
+      _lookup.Add("is_LT_present", Facts.IsLTPresent);
+      _lookup.Add("is_RT_present", Facts.IsRTPresent);
+      _lookup.Add("call_other", Facts.CallOther);
+      _lookup.Add("enter", Facts.Enter);
+      _lookup.Add("LT_item", Facts.LTItem);
+      _lookup.Add("RT_item", Facts.RTItem);
 
       BaseEntry previous = null;
       for (var i = 1; i < rows.Count; i++) {
@@ -216,7 +215,7 @@ namespace DevTools.CSV {
     ) {
       var entry = _lookup[cells.Key()].GetEntry();
       BeginConversion(entry, cells, previous);
-      entry.Scope = InteractionContext.InteractionScope;
+      entry.Scope = Facts.InteractionScope;
       EndConversion(entry);
 
       return entry;
@@ -254,14 +253,14 @@ namespace DevTools.CSV {
 
       if (_lookup.TryGetValue(cells.Speaker(), out var speaker)) {
         entry.Speaker = speaker;
-        if (speaker != InteractionContext.CurrentSpeaker) {
+        if (speaker != Facts.CurrentSpeaker) {
           _criteria.Add(
             new BlackboardCriterion {
               Min = 1,
               Max = 1,
-              FactReference = speaker == InteractionContext.LT
-                ? InteractionContext.IsLTPresent
-                : InteractionContext.IsRTPresent,
+              FactReference = speaker == Facts.LT
+                ? Facts.IsLTPresent
+                : Facts.IsRTPresent,
             }
           );
         }
@@ -321,7 +320,7 @@ namespace DevTools.CSV {
       _modifications.Clear();
 
       entry.Key = cells.Key();
-      entry.Scope = InteractionContext.GlobalScope;
+      entry.Scope = Facts.GlobalScope;
 
       if (cells.Triggers() != "") {
         _triggers.AddRange(ParseReferences(cells.Triggers()));
@@ -625,20 +624,56 @@ namespace DevTools.CSV {
       return builder.ToString();
     }
 
-    private static bool IsEmpty(this List<string> list) =>
-      string.IsNullOrEmpty(list[0]) || list[0].StartsWith('#');
+    private static bool IsEmpty(this List<string> list) {
+      return string.IsNullOrEmpty(list[0]) || list[0].StartsWith('#');
+    }
 
-    private static string Key(this List<string> list) => list[0];
-    private static string Style(this List<string> list) => list[1];
-    private static string Type(this List<string> list) => list[2];
-    private static string Speaker(this List<string> list) => list[3];
-    private static bool Once(this List<string> list) => list[4] == "TRUE";
-    private static bool Cancel(this List<string> list) => list[5] == "TRUE";
-    private static string Text(this List<string> list) => list[6];
-    private static string Triggers(this List<string> list) => list[7];
-    private static string Criteria(this List<string> list) => list[8];
-    private static string Modifications(this List<string> list) => list[9];
-    private static string Padding(this List<string> list) => list[10];
-    private static string Actions(this List<string> list) => list[12];
+    private static string Key(this List<string> list) {
+      return list[0];
+    }
+
+    private static string Style(this List<string> list) {
+      return list[1];
+    }
+
+    private static string Type(this List<string> list) {
+      return list[2];
+    }
+
+    private static string Speaker(this List<string> list) {
+      return list[3];
+    }
+
+    private static bool Once(this List<string> list) {
+      return list[4] == "TRUE";
+    }
+
+    private static bool Cancel(this List<string> list) {
+      return list[5] == "TRUE";
+    }
+
+    private static string Text(this List<string> list) {
+      return list[6];
+    }
+
+    private static string Triggers(this List<string> list) {
+      return list[7];
+    }
+
+    private static string Criteria(this List<string> list) {
+      return list[8];
+    }
+
+    private static string Modifications(this List<string> list) {
+      return list[9];
+    }
+
+    private static string Padding(this List<string> list) {
+      return list[10];
+    }
+
+    private static string Actions(this List<string> list) {
+      return list[12];
+    }
   }
 }

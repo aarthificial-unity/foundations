@@ -1,4 +1,4 @@
-﻿using Audio;
+﻿using Audio.Events;
 using Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;

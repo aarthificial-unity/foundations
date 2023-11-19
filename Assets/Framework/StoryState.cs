@@ -2,10 +2,10 @@
 using Aarthificial.Safekeeper.Stores;
 using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Blackboards;
-using Interactions;
 using Saves;
 using System;
 using System.Collections;
+using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
@@ -141,7 +141,7 @@ namespace Framework {
     }
 
     public bool TryGetBlackboard(int scope, out IBlackboard blackboard) {
-      if (_saveController != null && scope == InteractionContext.GlobalScope) {
+      if (_saveController != null && scope == Facts.GlobalScope) {
         blackboard = _saveController.GlobalData.Blackboard;
         return true;
       }
