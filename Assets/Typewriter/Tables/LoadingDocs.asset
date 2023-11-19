@@ -605,6 +605,7 @@ MonoBehaviour:
   - rid: 448883679135531008
   - rid: 448883679135531009
   - rid: 448883679135531010
+  - rid: 448883755475009538
   Events:
   - rid: 296039651521069298
   - rid: 296039651521069299
@@ -9838,6 +9839,19 @@ MonoBehaviour:
         Style: 2
         Speaker:
           InternalID: -417971899
+    - rid: 448883755475009538
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389671
+        Key: trailer_broken_side
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
     - rid: 2933226884081123330
       type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
       data:
