@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Audio.Events;
+using UnityEngine;
 
 namespace Audio {
   public class AudioEmitter : MonoBehaviour {

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Audio.Parameters;
 using FMOD.Studio;
 using FMODUnity;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
-namespace Audio {
+namespace Audio.Events {
   [CreateAssetMenu(fileName = "New FMODEvent", menuName = "FMOD Event")]
   public class FMODEvent : ScriptableObject {
     public EventReference Event;

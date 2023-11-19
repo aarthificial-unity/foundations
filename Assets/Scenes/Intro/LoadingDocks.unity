@@ -561,24 +561,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id:
-    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
-    ObjectId: 499792037-0
+  Waypoints:
+  - {fileID: 1325191543}
+  - {fileID: 2077034584}
   Gizmo: {fileID: 1306817677}
   Event:
     EventReference:
       InternalID: 1388910
-  _initialItem:
-    InternalID: 0
   Blackboard:
     List: []
   Context:
     Context:
       List: []
     Interactable: {fileID: 0}
-  Waypoints:
-  - {fileID: 1325191543}
-  - {fileID: 2077034584}
+  _initialItem:
+    InternalID: 0
+  _id:
+    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
+    ObjectId: 499792037-0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
@@ -1138,24 +1138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id:
-    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
-    ObjectId: 1022070888-0
+  Waypoints:
+  - {fileID: 1625339101}
+  - {fileID: 113777531}
   Gizmo: {fileID: 1053821263}
   Event:
     EventReference:
       InternalID: 1389040
-  _initialItem:
-    InternalID: 1389510
   Blackboard:
     List: []
   Context:
     Context:
       List: []
     Interactable: {fileID: 0}
-  Waypoints:
-  - {fileID: 1625339101}
-  - {fileID: 113777531}
+  _initialItem:
+    InternalID: 1389510
+  _id:
+    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
+    ObjectId: 1022070888-0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
@@ -1671,27 +1671,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id:
-    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
-    ObjectId: 1309030242-0
-  Gizmo: {fileID: 1784340534}
-  Event:
-    EventReference:
-      InternalID: 1388999
-  _initialItem:
-    InternalID: 0
-  Blackboard:
-    List: []
-  Context:
-    Context:
-      List: []
-    Interactable: {fileID: 0}
   Waypoints:
   - {fileID: 2044325052}
   - {fileID: 121284913}
   - {fileID: 2146358651}
   - {fileID: 1176210448}
   - {fileID: 1087836025}
+  Gizmo: {fileID: 1784340534}
+  Event:
+    EventReference:
+      InternalID: 1388999
+  Blackboard:
+    List: []
+  Context:
+    Context:
+      List: []
+    Interactable: {fileID: 0}
+  _initialItem:
+    InternalID: 0
+  _id:
+    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
+    ObjectId: 1309030242-0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4
@@ -5599,6 +5599,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3115512143260021013, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -19.999847
+      objectReference: {fileID: 0}
     - target: {fileID: 3560430506105349592, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6890,24 +6895,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5586ceac2654ed88573dd8f8fb2861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id:
-    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
-    ObjectId: 4398866771222208306-0
+  Waypoints:
+  - {fileID: 7571008412870067101}
+  - {fileID: 7161532799976271664}
   Gizmo: {fileID: 1202019229}
   Event:
     EventReference:
       InternalID: 1388800
-  _initialItem:
-    InternalID: 1389509
   Blackboard:
     List: []
   Context:
     Context:
       List: []
     Interactable: {fileID: 0}
-  Waypoints:
-  - {fileID: 7571008412870067101}
-  - {fileID: 7161532799976271664}
+  _initialItem:
+    InternalID: 1389509
+  _id:
+    ChunkId: 60d535fdc5996bf489a8d6f2fb7f5827
+    ObjectId: 4398866771222208306-0
   _cameraTemplate: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
   _orthoSize: 4

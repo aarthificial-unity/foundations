@@ -2,7 +2,7 @@
 using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
-using Audio;
+using Audio.Events;
 using Framework;
 using Interactions;
 using System.Collections.Generic;
@@ -132,7 +132,7 @@ namespace Player.ManagerStates {
       }
 
       if (_queuedEntry == null) {
-        var initial = Context.Get(InteractionContext.InitialEvent);
+        var initial = Context.Get(Facts.InitialEvent);
         if (Context.Process(initial)) {
           return;
         }

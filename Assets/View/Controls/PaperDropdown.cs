@@ -1,8 +1,7 @@
-﻿using Audio;
+﻿using Audio.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Utils;
 
 namespace View.Controls {
   public class PaperDropdown : TMP_Dropdown {

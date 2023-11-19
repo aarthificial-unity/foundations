@@ -1,13 +1,16 @@
-﻿using System;
-using FMOD.Studio;
+﻿using FMOD.Studio;
 using FMODUnity;
+using System;
 using UnityEngine;
 
-namespace Audio {
-  [CreateAssetMenu (fileName = "New FMOD Parameter", menuName = "FMOD Parameter")]
+namespace Audio.Parameters {
+  [CreateAssetMenu(
+    fileName = "New FMOD Parameter",
+    menuName = "FMOD Parameter"
+  )]
   public class FMODParameter : ScriptableObject {
     public string ParameterName;
-    public bool IsGlobal = false;
+    public bool IsGlobal;
   }
 
   [Serializable]
@@ -30,6 +33,5 @@ namespace Audio {
       );
       _id = description.id;
     }
-
   }
 }

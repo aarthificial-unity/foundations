@@ -89,8 +89,9 @@ namespace View {
 #endif
 
     public override void ModifyMesh(VertexHelper vh) {
-      if (!IsActive() || vh.currentVertCount == 0)
+      if (!IsActive() || vh.currentVertCount == 0) {
         return;
+      }
 
       var corner = _rectTransform.TransformPoint(_rectTransform.rect.position);
       var position = _hasCanvas

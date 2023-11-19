@@ -1,7 +1,8 @@
 ﻿using Aarthificial.Safekeeper;
 using Aarthificial.Safekeeper.Attributes;
 using Aarthificial.Safekeeper.Stores;
-using Audio;
+using Audio.Events;
+using Audio.Parameters;
 using Framework;
 using UnityEngine;
 

@@ -3,7 +3,6 @@
 namespace Player {
   public class PlayerConfig : ScriptableObject {
     public LayerMask InteractionMask;
-    public LayerMask PlayerMask;
     public LayerMask GroundMask;
     public float Acceleration = 30;
     public float WalkSpeed = 5;

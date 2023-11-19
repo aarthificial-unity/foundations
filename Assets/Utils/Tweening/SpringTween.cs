@@ -21,7 +21,7 @@ namespace Utils.Tweening {
 
     public Quaternion Quaternion {
       [MethodImpl(MethodImplOptions.AggressiveInlining)]
-      get => new Quaternion(_position.x, _position.y, _position.z, _position.w);
+      get => new(_position.x, _position.y, _position.z, _position.w);
     }
 
     public float X {
