@@ -20,17 +20,14 @@ namespace View.Office.States {
     }
 
     protected virtual void Update() {
-      if (_brain.ActiveBlend == null) {
-        return;
-      }
+      float progress = IsActive ? 1 : 0;
 
-      float progress;
-      if (_brain.ActiveBlend.CamA == Camera) {
-        progress = 1 - _brain.ActiveBlend.BlendWeight;
-      } else if (_brain.ActiveBlend.CamB == Camera) {
-        progress = _brain.ActiveBlend.BlendWeight;
-      } else {
-        progress = IsActive ? 1 : 0;
+      if (_brain.ActiveBlend != null) {
+        if (_brain.ActiveBlend.CamA == Camera) {
+          progress = 1 - _brain.ActiveBlend.BlendWeight;
+        } else if (_brain.ActiveBlend.CamB == Camera) {
+          progress = _brain.ActiveBlend.BlendWeight;
+        }
       }
 
       if (_progress.HasChanged(progress)) {
