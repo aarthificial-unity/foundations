@@ -297,6 +297,12 @@ namespace DevTools.CSV {
         "action" => DialogueEntry.BubbleStyle.Action,
         _ => throw new Exception($"Unknown style: {cells.Style()}."),
       };
+      entry.Icon = cells.Icon() switch {
+        "eye" => DialogueEntry.BubbleIcon.Eye,
+        "item" => DialogueEntry.BubbleIcon.Item,
+        "exit" => DialogueEntry.BubbleIcon.Exit,
+        _ => DialogueEntry.BubbleIcon.None,
+      };
 
       if (cells.Actions() != "") {
         _events.Clear();
@@ -644,36 +650,40 @@ namespace DevTools.CSV {
       return list[3];
     }
 
-    private static bool Once(this List<string> list) {
-      return list[4] == "TRUE";
+    private static string Icon(this List<string> list) {
+      return list[4];
     }
 
-    private static bool Cancel(this List<string> list) {
+    private static bool Once(this List<string> list) {
       return list[5] == "TRUE";
     }
 
-    private static string Text(this List<string> list) {
-      return list[6];
+    private static bool Cancel(this List<string> list) {
+      return list[6] == "TRUE";
     }
 
-    private static string Triggers(this List<string> list) {
+    private static string Text(this List<string> list) {
       return list[7];
     }
 
-    private static string Criteria(this List<string> list) {
+    private static string Triggers(this List<string> list) {
       return list[8];
     }
 
-    private static string Modifications(this List<string> list) {
+    private static string Criteria(this List<string> list) {
       return list[9];
     }
 
-    private static string Padding(this List<string> list) {
+    private static string Modifications(this List<string> list) {
       return list[10];
     }
 
+    private static string Padding(this List<string> list) {
+      return list[11];
+    }
+
     private static string Actions(this List<string> list) {
-      return list[12];
+      return list[13];
     }
   }
 }

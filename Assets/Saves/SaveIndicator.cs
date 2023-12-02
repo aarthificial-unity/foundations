@@ -1,5 +1,4 @@
 ﻿using Framework;
-using System;
 using UnityEngine;
 using Utils.Tweening;
 
@@ -7,13 +6,10 @@ namespace Saves {
   public class SaveIndicator : MonoBehaviour {
     [SerializeField] private float _angleRange;
     [SerializeField] private float _speed;
+    [SerializeField] private float _minDuration = 1;
     private SpringTween _scaleTween;
     private float _angle;
-
-    private void Awake() {
-      App.Game.Story.LoadingChanged += HandleLoadingChanged;
-      HandleLoadingChanged(App.Game.Story.IsLoading);
-    }
+    private float _lastLoadingTime = -1;
 
     private void Update() {
       transform.rotation = Quaternion.Euler(
@@ -24,24 +20,18 @@ namespace Saves {
     }
 
     private void FixedUpdate() {
+      if (App.Game.Story.IsLoading) {
+        _lastLoadingTime = Time.unscaledTime;
+      }
+      _scaleTween.Set(
+        Time.unscaledTime - _lastLoadingTime > _minDuration ? -1 : 1
+      );
+
       if (_scaleTween.FixedUpdate(SpringConfig.Medium)) {
         transform.localScale = _scaleTween.X > 0
           ? Vector3.one * _scaleTween.X
           : Vector3.zero;
-      } else if (!App.Game.Story.IsLoading) {
-        gameObject.SetActive(false);
       }
-    }
-
-    private void OnDestroy() {
-      App.Game.Story.LoadingChanged -= HandleLoadingChanged;
-    }
-
-    private void HandleLoadingChanged(bool isLoading) {
-      if (isLoading) {
-        gameObject.SetActive(true);
-      }
-      _scaleTween.Set(isLoading ? 1 : -1);
     }
   }
 }

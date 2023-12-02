@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3086fc6c1a7f444ba4ddd0f11678046d, type: 3}
-  m_Name: AmbienceEvent
+  m_Name: OfficeMusic
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 2103699825
-      Data2: 1341529502
-      Data3: -266952062
-      Data4: 1964358016
-    Path: event:/Music/Ambience
-  Parameters:
-  - {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}
+      Data1: 1472560894
+      Data2: 1239452534
+      Data3: -1933623892
+      Data4: 2081030372
+    Path: event:/Music/Office
+  Parameters: []

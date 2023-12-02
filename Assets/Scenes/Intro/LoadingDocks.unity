@@ -2301,7 +2301,7 @@ PrefabInstance:
     - target: {fileID: 909216138870190066, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -5308,12 +5308,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoryBundle
       objectReference: {fileID: 0}
-    - target: {fileID: 1386345358296973798, guid: c1dfdad7307460e4c8857ce3d5c50c95,
-        type: 3}
-      propertyPath: _ambianceType
-      value: 
-      objectReference: {fileID: 11400000, guid: 23c9d479b30919c4db79ff38bf402663,
-        type: 2}
     - target: {fileID: 1392038562825563043, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5602,7 +5596,7 @@ PrefabInstance:
     - target: {fileID: 3115512143260021013, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -19.999847
+      value: -19.999878
       objectReference: {fileID: 0}
     - target: {fileID: 3560430506105349592, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}

@@ -125,6 +125,30 @@ MonoBehaviour:
   - rid: 448883679135531025
   - rid: 448883679135531026
   - rid: 448883679135531027
+  - rid: 7534618981126111260
+  - rid: 7534618981126111261
+  - rid: 7534618981126111262
+  - rid: 7534618981126111263
+  - rid: 7534618981126111264
+  - rid: 7534618981126111265
+  - rid: 7534618981126111266
+  - rid: 7534618981126111267
+  - rid: 7534618981126111268
+  - rid: 7534618981126111269
+  - rid: 7534618981126111270
+  - rid: 7534618981126111271
+  - rid: 7534618981126111272
+  - rid: 7534618981126111273
+  - rid: 7534618981126111274
+  - rid: 7534618981126111275
+  - rid: 7534618981126111276
+  - rid: 7534618981126111277
+  - rid: 7534618981126111278
+  - rid: 7534618981126111279
+  - rid: 7534618981126111280
+  - rid: 7534618981126111281
+  - rid: 7534618981126111282
+  - rid: 7534618981126111283
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
@@ -161,6 +185,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>Hey.</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774538
@@ -187,6 +212,7 @@ MonoBehaviour:
         Content: Though the woman tries to whisper, dry lungs choke the word to a
           raspy hiss.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774539
@@ -212,6 +238,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99><i>Hey.</i></color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774540
@@ -238,6 +265,7 @@ MonoBehaviour:
         Content: A pause after her second attempt to speak. Labored breaths whistle
           faintly through bared teeth.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774541
@@ -264,6 +292,7 @@ MonoBehaviour:
         Content: She's about to take her third shot at it when she tenses up, covering
           her mouth to hold in a coughing fit.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774542
@@ -290,6 +319,7 @@ MonoBehaviour:
         Content: By the time it passes, the wear on her lungs is enough to keep the
           fourth try at a murmur without effort.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774543
@@ -315,6 +345,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>Would you-</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774544
@@ -341,6 +372,7 @@ MonoBehaviour:
         Content: The man beside her jumps like he's been stung as her fist connects
           with his shoulder.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774545
@@ -366,6 +398,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <b>Listen.</b>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774546
@@ -391,6 +424,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Whuh? What-
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774547
@@ -417,6 +451,7 @@ MonoBehaviour:
         Content: Even with the pressure of her knuckles still there, it takes him
           a second to look around and find her.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774548
@@ -442,6 +477,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: As his eyes stumble onto target, the fist lifts away.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774549
@@ -467,6 +503,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>What'd I-</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774550
@@ -492,6 +529,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: A finger to the earth.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774551
@@ -517,6 +555,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>Down.</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774552
@@ -542,6 +581,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: He knits his brow, and then blinks at the dirt.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774553
@@ -567,6 +607,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>No, you-</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774554
@@ -593,6 +634,7 @@ MonoBehaviour:
         Content: She lunges for a fistful of hair, and leans as much weight on it
           as she can muster.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774555
@@ -618,6 +660,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: It doesn't get much out of him, save for a small jolt of surprise.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774556
@@ -643,6 +686,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99><i>Head. Down.</i></color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774557
@@ -668,6 +712,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>But- what if the-</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774558
@@ -694,6 +739,7 @@ MonoBehaviour:
         Content: <alpha=#99>What, if they come back? Come back and see your <i>entire
           head</i> sticking up out of-</color>
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774559
@@ -721,6 +767,7 @@ MonoBehaviour:
           another rising wave of coughs. Instead, the hand slams down to stop her
           from tumbling forwards into the dirt.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774560
@@ -747,6 +794,7 @@ MonoBehaviour:
         Content: Until her lungs are satisfied, keeping herself from collapsing is
           just about all she can manage.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774561
@@ -772,6 +820,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: The man moves briefly, as if to speak.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774562
@@ -797,6 +846,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Then, he quietly hunches his head down.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774563
@@ -822,6 +872,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: A brief rub at her throat, and the woman waves him off.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774564
@@ -847,6 +898,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Fff- Fuck it. They would have-
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774565
@@ -872,6 +924,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: She struggles to swallow, shuddering briefly.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774566
@@ -897,6 +950,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: -Would have heard that, if they were still here.
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774567
@@ -923,6 +977,7 @@ MonoBehaviour:
         Content: Her whole body seems to rattle and heave when she starts to pick
           herself up.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774568
@@ -948,6 +1003,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: He lurches forward as she goes, braced to catch her weight.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774569
@@ -973,6 +1029,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Are you- You sure you should be...?
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774570
@@ -998,6 +1055,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Joints pop, and muscles seize. Still, she rises.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774571
@@ -1024,6 +1082,7 @@ MonoBehaviour:
         Content: As she brings both hands to rest atop the road block, distant highbeams
           come to dance across a pistol's slide.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774572
@@ -1049,6 +1108,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Get up and move.
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883364714774573
@@ -1074,6 +1134,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Right, uh-
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883364714774574
@@ -1100,6 +1161,7 @@ MonoBehaviour:
         Content: The man faintly clears his throat, hustling to stand. Up on his
           feet, he towers monstrously over her.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883679135531013
@@ -1125,6 +1187,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Yeah.
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883679135531014
@@ -1150,6 +1213,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>Er-</color> yes.
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883679135531015
@@ -1175,6 +1239,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Yes, ma'am.
         Style: 0
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 448883679135531016
@@ -1200,6 +1265,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: They're gone for now, but that's no reason to rest here.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531017
@@ -1226,6 +1292,7 @@ MonoBehaviour:
         Content: If anyone else comes off the highway and up this road, we'd be in
           their highbeams before they see the road block.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531018
@@ -1251,6 +1318,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: He wouldn't hide in time, and...
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531019
@@ -1276,6 +1344,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Her nose wrinkles briefly in distaste.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531020
@@ -1301,6 +1370,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: If that happens, it's over.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531021
@@ -1326,6 +1396,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Regardless - sitting around here won't do any good.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531022
@@ -1351,6 +1422,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Running on fumes, and those won't last much longer.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531023
@@ -1376,6 +1448,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: That building's just a little further up the road.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531024
@@ -1401,6 +1474,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Better to walk there now than wait until I need to be carried.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531025
@@ -1428,6 +1502,7 @@ MonoBehaviour:
           on the highway without a six-and-a-half-foot-tall gorilla chained to my
           ankle.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531026
@@ -1453,6 +1528,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: This is not that time.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 448883679135531027
@@ -1478,6 +1554,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: There are better things to do right now.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2933227056775036933
@@ -1520,6 +1597,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
+        Icon: 1
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036935
@@ -1552,6 +1630,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Place the chair.
         Style: 2
+        Icon: 2
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036936
@@ -1577,6 +1656,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
+        Icon: 1
         Speaker:
           InternalID: -2078916288
     - rid: 2933227056775036937
@@ -1619,6 +1699,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036939
@@ -1653,6 +1734,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Break the window.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036940
@@ -1695,6 +1777,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Pick up the chair.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036941
@@ -1720,6 +1803,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2933227056775036942
@@ -1754,6 +1838,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Break the window.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2933227056775036943
@@ -1775,6 +1860,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: The window shatters.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -1596563589
     - rid: 2933227056775036944
@@ -1862,6 +1948,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Jump over the gate.
         Style: 2
+        Icon: 3
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036950
@@ -1887,6 +1974,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: You picked up the chair.
         Style: 2
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2933227198024777731
@@ -1971,6 +2059,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594308
@@ -1997,6 +2086,7 @@ MonoBehaviour:
         Content: They're car-catchers, like the ones we had back at that road repair
           job.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594309
@@ -2022,6 +2112,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Just, sorta... dirtier, and leafier, I guess.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594310
@@ -2047,6 +2138,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Kinda nice, though.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594311
@@ -2072,6 +2164,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: In, like, a... a "concrete jungle" kinda way.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594312
@@ -2097,6 +2190,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Though, uh.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594313
@@ -2122,6 +2216,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Maybe it's best to stay on this side.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594314
@@ -2147,6 +2242,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Got a bit too close for comfort just now.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594315
@@ -2173,6 +2269,7 @@ MonoBehaviour:
         Content: Don't think I can convince anyone to let us hitchhike when we're
           lookin' like this, anyway.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594316
@@ -2198,6 +2295,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <alpha=#99>...<i>God,</i> my legs are killin' me.</color>
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594317
@@ -2223,6 +2321,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: It'd be <i>so</i> damn nice to catch a ride.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594318
@@ -2249,6 +2348,7 @@ MonoBehaviour:
         Content: But there's no way in hell we get one runnin' around in orange and
           chains.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594319
@@ -2274,6 +2374,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: ...
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594320
@@ -2299,6 +2400,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: <i>Unless...</i>
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594321
@@ -2324,6 +2426,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Unless it's <i>Halloween.</i>
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594322
@@ -2349,6 +2452,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: If it's Halloween, then, uh-
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594323
@@ -2374,6 +2478,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Well- yeah, no, shit.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594324
@@ -2399,6 +2504,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: We got turkey, like...
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594325
@@ -2424,6 +2530,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: ...a week ago, -ish?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594326
@@ -2449,6 +2556,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: And Thanksgiving is...
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594327
@@ -2474,6 +2582,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Yeah, it's <i>after</i> Halloween. Shit.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594328
@@ -2499,6 +2608,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Not a chance in hell, then.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594329
@@ -2524,6 +2634,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: We'd just be pulling heat 'til the cops show up again.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594330
@@ -2550,6 +2661,7 @@ MonoBehaviour:
         Content: Nice as it'd be to hitch a ride, I don't wanna do it in a patrol
           car.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594331
@@ -2575,6 +2687,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: ...Though, she'd pop me before we get that far, wouldn't she?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594332
@@ -2600,6 +2713,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Well, I don't wanna hitch a ride in a hearse, either.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594333
@@ -2625,6 +2739,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Think I'd get better odds if I jumped off a cliff.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594334
@@ -2650,6 +2765,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Better off lookin' somewhere else.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594335
@@ -2675,6 +2791,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594339
@@ -2717,6 +2834,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594341
@@ -2742,6 +2860,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: It's like a cliff, but tiny.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594342
@@ -2767,6 +2886,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Lil' baby cliff.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594343
@@ -2792,6 +2912,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: There's a couple loose rocks at the bottom.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594344
@@ -2817,6 +2938,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: No grass or nothing, so I guess they're new here.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594345
@@ -2842,6 +2964,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Must've had a lil' baby landslide.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594346
@@ -2867,6 +2990,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Keep on truckin', baby cliff.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594347
@@ -2892,6 +3016,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Gonna figure out how to hold yourself together in no time.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594348
@@ -2917,6 +3042,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594349
@@ -2942,6 +3068,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: The bedrock is exposed, here.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594350
@@ -2968,6 +3095,7 @@ MonoBehaviour:
         Content: Leftovers from a hill that was carved out to smooth the land, perhaps.
           This <i>is</i> a road.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594351
@@ -2993,6 +3121,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Not that it looks like one, anymore.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594352
@@ -3019,6 +3148,7 @@ MonoBehaviour:
         Content: The grass is thick, and the undergrowth must have been crawling
           in for a while. A few months, maybe.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594353
@@ -3044,6 +3174,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: ...Good. Very good.
         Style: 1
+        Icon: 0
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594354
@@ -3059,3 +3190,661 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
+    - rid: 7534618981126111260
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389696
+        Key: L_inspect_kiosk_window_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389390
+        Once: 1
+        Padding: 2
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Oh, I had a buddy who worked at one of these.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111261
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389697
+        Key: L_inspect_kiosk_window_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389696
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: It's a security thing. Has controls for opening and closing stuff.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111262
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389698
+        Key: L_inspect_kiosk_window_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389697
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Probably works the gate, here.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111263
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389699
+        Key: L_inspect_kiosk_window_A_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389698
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Looks like they don't have anyone working the night shift, though.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111264
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389700
+        Key: L_inspect_kiosk_window_A_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389699
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Well, it's dark in there, but I think I can see some buttons.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111265
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389701
+        Key: L_inspect_kiosk_window_A_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389700
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Ooh, swanky little chair, too.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111266
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389702
+        Key: L_inspect_kiosk_window_A_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389701
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Bet the guy bought that himself.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111267
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389703
+        Key: L_inspect_kiosk_window_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389390
+        Once: 1
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Come to think of it, the one my buddy worked at, it had windows
+          with, like... some kinda <i>grill thing</i> worked into 'em.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111268
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389704
+        Key: L_inspect_kiosk_window_B_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389703
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: I wonder why this one ain't got that stuff.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111269
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389705
+        Key: L_inspect_kiosk_window_B_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389704
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Just plain ol' glass.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111270
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389706
+        Key: L_inspect_kiosk_window_C_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389390
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Well, there's neat stuff in there, but there's still a window in
+          the way.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111271
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389707
+        Key: L_inspect_kiosk_window_C_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389706
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Don't see a handle or nothing, but there's gotta be some way to
+          get it open.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534618981126111272
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389708
+        Key: R_inspect_kiosk_window_A_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389393
+        Once: 1
+        Padding: 2
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: A security checkpoint kiosk. Unmanned, fortunately.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111273
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389709
+        Key: R_inspect_kiosk_window_A_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389708
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The lights are off, but the controls for this gate must be somewhere
+          inside.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111274
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389710
+        Key: R_inspect_kiosk_window_A_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389709
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Just a matter of reaching them, now.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111275
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389711
+        Key: R_inspect_kiosk_window_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389393
+        Once: 1
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: If there were any place to put a night-shift security guard, this
+          would be it.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111276
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389712
+        Key: R_inspect_kiosk_window_B_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389711
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: And if that's anything to go off of, there shouldn't be anyone inside
+          the building, either.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111277
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389713
+        Key: R_inspect_kiosk_window_B_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389712
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...Which does seem sensible enough.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111278
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389714
+        Key: R_inspect_kiosk_window_B_4
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389713
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: A back-woods meat packing plant doesn't seem like the sort of place
+          a typical burgular would be interested in.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111279
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389715
+        Key: R_inspect_kiosk_window_B_5
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389714
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Although that does mean that this break-in will stand out a little
+          more by comparison, unfortunately.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111280
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389716
+        Key: R_inspect_kiosk_window_B_6
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389715
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: But it's this, or starving.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111281
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389717
+        Key: R_inspect_kiosk_window_B_7
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389716
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Just have to make sure to only leave a trail behind if there's no
+          other choice.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111282
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389718
+        Key: R_inspect_kiosk_window_B_8
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389717
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: ...Not that it looks like there's much of a choice, here.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534618981126111283
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389719
+        Key: R_inspect_kiosk_window_B_9
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389718
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The window has to go.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
