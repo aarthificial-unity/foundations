@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2474315951711707562}
   _clickSound:
-    Event: {fileID: 11400000, guid: f0151552c6b31ae4398eb7c56886cec5, type: 2}
+    Event: {fileID: 11400000, guid: acb87a2eac8902f4c9b9e8cb41483e0b, type: 2}
 --- !u!114 &4504880786794192837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,4 +213,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _focusSound:
-    Event: {fileID: 11400000, guid: 87a7bf489cb5afc49af55a4aa7836d66, type: 2}
+    Event: {fileID: 11400000, guid: aac2319030705f44cbf478d8685ef8ca, type: 2}

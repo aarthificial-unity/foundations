@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Parameters:
-  - {fileID: 11400000, guid: e2e3fd3add94ce24bafbc76c3843fa18, type: 2}
+      Data1: 1699390206
+      Data2: 1121013257
+      Data3: -1045534819
+      Data4: -832069426
+    Path: event:/UI/office/computer/computer-text-hover
+  Parameters: []

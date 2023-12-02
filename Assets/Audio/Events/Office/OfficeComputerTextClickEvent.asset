@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 289443497
+      Data2: 1137079416
+      Data3: -1959592263
+      Data4: 634098595
+    Path: event:/UI/office/computer/computer-text-click
   Parameters: []

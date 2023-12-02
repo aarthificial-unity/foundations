@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -321991487
-      Data2: 1085514565
-      Data3: -2146028885
-      Data4: 852153367
-    Path: event:/UI/Focus
-  Parameters:
-  - {fileID: 11400000, guid: e2e3fd3add94ce24bafbc76c3843fa18, type: 2}
+      Data1: 321440595
+      Data2: 1325049247
+      Data3: 1637123460
+      Data4: -1801186670
+    Path: event:/UI/office/board/board-hover
+  Parameters: []

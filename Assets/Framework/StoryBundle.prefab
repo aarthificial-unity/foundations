@@ -2686,7 +2686,9 @@ MonoBehaviour:
   _container: {fileID: 771369689453713597}
   _textScrollEvent:
     Event: {fileID: 11400000, guid: dc7cc8e71f4b6694b9159a9432bdb896, type: 2}
-  _textScrollCharacterParameter: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de,
+  _textCharacterParameter: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de,
+    type: 2}
+  _textStyleParameter: {fileID: 11400000, guid: c8630f74ac18b0e468618031e6aa039c,
     type: 2}
 --- !u!114 &7060899949578569258
 MonoBehaviour:

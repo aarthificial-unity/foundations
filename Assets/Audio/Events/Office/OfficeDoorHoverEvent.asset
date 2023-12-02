@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 1634945611
-      Data2: 1230991459
-      Data3: 137887147
-      Data4: -1196800931
+      Data1: 1796431415
+      Data2: 1242112561
+      Data3: 1049262741
+      Data4: 1006196456
     Path: event:/UI/office/door/door-hover
-  Parameters:
-  - {fileID: 11400000, guid: e2e3fd3add94ce24bafbc76c3843fa18, type: 2}
+  Parameters: []

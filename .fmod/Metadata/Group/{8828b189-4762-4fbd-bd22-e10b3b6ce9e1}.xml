@@ -4,9 +4,6 @@
 		<property name="name">
 			<value>UI</value>
 		</property>
-		<relationship name="masters">
-			<destination>{9ad6a475-2738-42f8-93c4-cd6f1fbcafe5}</destination>
-		</relationship>
 		<relationship name="effectChain">
 			<destination>{6bbb95b7-5083-4877-b1d8-d4b9fe81fa93}</destination>
 		</relationship>
@@ -14,7 +11,7 @@
 			<destination>{c9f77aa6-60b6-4de9-8b19-944b917de873}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{cd259a3e-c186-4e90-ac3f-10e1a4a76d13}</destination>
+			<destination>{0f741b58-d0bc-4d4a-937e-1ed608f3c664}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{6bbb95b7-5083-4877-b1d8-d4b9fe81fa93}">
