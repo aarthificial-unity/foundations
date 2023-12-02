@@ -9,6 +9,7 @@ namespace View.Dialogue {
     public struct Settings {
       public PlayerLookup<Color> BackgroundColors;
       public PlayerLookup<Color> TextColors;
+      public PlayerLookup<Color> IconColors;
       public bool Stroke;
       public bool HideArrow;
       public float TextureStrength;

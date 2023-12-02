@@ -12,8 +12,16 @@ namespace Typewriter {
       Action,
     }
 
+    public enum BubbleIcon {
+      None,
+      Eye,
+      Item,
+      Exit,
+    }
+
     public string Content;
     public BubbleStyle Style;
+    public BubbleIcon Icon;
     [EntryFilter(Variant = EntryVariant.Fact)]
     public EntryReference Speaker;
 
