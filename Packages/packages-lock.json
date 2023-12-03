@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "com.aarthificial.safekeeper": {
-      "version": "https://github.com/aarthificial-gamedev/safekeeper.git",
+      "version": "https://github.com/aarthificial-unity/safekeeper.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f2ab5ac058f28e4c447a85684968497c9a50cb69"
+      "hash": "609c60d5a32d6ec5fc88a40bddce053e13327b57"
     },
     "com.aarthificial.typewriter": {
-      "version": "https://github.com/aarthificial-gamedev/typewriter.git",
+      "version": "https://github.com/aarthificial-unity/typewriter.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
