@@ -1,10 +1,11 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils;
 
 namespace View.Credits {
-  public class CreditsListView : MonoBehaviour {
+  public class CreditsListView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     [SerializeField] private CreditsListData _data;
     [SerializeField] private RectTransform _view;
     [SerializeField] private RectTransform _content;
@@ -17,6 +18,7 @@ namespace View.Credits {
     private TextMeshProUGUI[] _entries;
     private float _scrollOffset;
     private Cached<int> _indexOffset;
+    private bool _isMouseDown;
 
     private void Awake() {
       _entryCount = Mathf.Min(_data.Entries.Length, _maxEntries) + 1;
@@ -40,7 +42,7 @@ namespace View.Credits {
         return;
       }
 
-      _scrollOffset += Time.deltaTime * _scrollSpeed;
+      _scrollOffset += Time.deltaTime * (_isMouseDown ? 20 : _scrollSpeed);
       _content.anchoredPosition = new Vector2(0, _scrollOffset % _entryHeight);
       if (_indexOffset.HasChanged(
           Mathf.FloorToInt(_scrollOffset / _entryHeight)
@@ -50,6 +52,14 @@ namespace View.Credits {
             (_indexOffset + i) % _data.Entries.Length];
         }
       }
+    }
+
+    public void OnPointerDown(PointerEventData eventData) {
+      _isMouseDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+      _isMouseDown = false;
     }
   }
 }
