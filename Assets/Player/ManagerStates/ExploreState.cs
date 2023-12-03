@@ -130,9 +130,18 @@ namespace Player.ManagerStates {
       _hud.SetInteractive(!IsNavigating(currentController));
       _target.DrivenUpdate(Manager, currentController, _areBothPressed);
 
-      if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.FocusedPlayer =
-          _areBothPressed ? PlayerType.Both : currentController.Type;
+      if (currentController != null) {
+        if (currentController.InteractState.IsActive
+          && currentController.Other.InteractState.IsActive
+          && currentController.InteractState.Interactable
+          == currentController.Other.InteractState.IsActive) {
+          Manager.FocusedPlayer = PlayerType.Both;
+        } else if (currentController.NavigateState.IsActive
+          || currentController.InteractState.IsActive) {
+          Manager.FocusedPlayer = _areBothPressed
+            ? PlayerType.Both
+            : currentController.Type;
+        }
       }
     }
 
