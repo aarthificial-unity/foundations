@@ -4,6 +4,7 @@ using UnityEngine;
 using Utils;
 
 namespace View.Office.States {
+  [DefaultExecutionOrder(200)]
   public class MenuState : BaseState {
     [SerializeField] protected CinemachineVirtualCamera Camera;
     protected MenuManager Manager;
@@ -19,7 +20,7 @@ namespace View.Office.States {
       OnProgress(_progress);
     }
 
-    protected virtual void Update() {
+    protected virtual void LateUpdate() {
       float progress = IsActive ? 1 : 0;
 
       if (_brain.ActiveBlend != null) {
