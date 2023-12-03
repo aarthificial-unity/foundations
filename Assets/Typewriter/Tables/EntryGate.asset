@@ -23,8 +23,6 @@ MonoBehaviour:
   - rid: 2933227056775036939
   - rid: 2933227056775036940
   - rid: 2933227056775036941
-  - rid: 2933227056775036942
-  - rid: 2933227056775036943
   - rid: 2933227056775036949
   - rid: 2933227056775036950
   - rid: 2940630783594594306
@@ -149,10 +147,26 @@ MonoBehaviour:
   - rid: 7534618981126111281
   - rid: 7534618981126111282
   - rid: 7534618981126111283
+  - rid: 7534619012485349415
+  - rid: 7534619012485349416
+  - rid: 7534619012485349417
+  - rid: 7534619012485349418
+  - rid: 7534619012485349419
+  - rid: 7534619012485349420
+  - rid: 7534619012485349421
+  - rid: 7534619012485349422
+  - rid: 7534619012485349423
+  - rid: 7534619012485349424
+  - rid: 7534619012485349425
+  - rid: 7534619012485349426
+  - rid: 7534619012485349427
+  - rid: 7534619012485349428
   Facts:
   - rid: 2933227056775036944
   - rid: 2933227056775036947
   - rid: 2933227198024777731
+  - rid: 7534619012485349429
+  - rid: 7534619012485349430
   Events:
   - rid: 2933227056775036945
   - rid: 2933227056775036946
@@ -1588,16 +1602,25 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
+            InternalID: 1389396
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
             InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
+        Modifications:
+        - FactReference:
+            InternalID: 1389787
+          Value: 1
+          Operation: 0
         OnApply: []
         OnInvoke: []
-        Content: Anything special?
-        Style: 1
-        Icon: 1
+        Content: Climb over the gate.
+        Style: 2
+        Icon: 2
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036935
@@ -1618,6 +1641,11 @@ MonoBehaviour:
           Min: 1389396
           Max: 1389396
           Operation: 1
+        - FactReference:
+            InternalID: 1389787
+          Min: 1
+          Max: 1
+          Operation: 0
         - FactReference:
             InternalID: -95002655
           Min: 1
@@ -1647,6 +1675,16 @@ MonoBehaviour:
         Padding: 0
         Criteria:
         - FactReference:
+            InternalID: 1389396
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: -2147483648
+          Max: 0
+          Operation: 3
+        - FactReference:
             InternalID: -514433065
           Min: 1
           Max: 1
@@ -1654,9 +1692,9 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: Anything of note?
-        Style: 1
-        Icon: 1
+        Content: Climb over the gate.
+        Style: 2
+        Icon: 2
         Speaker:
           InternalID: -2078916288
     - rid: 2933227056775036937
@@ -1694,12 +1732,16 @@ MonoBehaviour:
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
+        Modifications:
+        - FactReference:
+            InternalID: 1389786
+          Value: 1
+          Operation: 0
         OnApply: []
         OnInvoke: []
         Content: Anything special?
         Style: 1
-        Icon: 0
+        Icon: 1
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036939
@@ -1712,7 +1754,7 @@ MonoBehaviour:
         Triggers:
           List:
           - InternalID: 1389389
-        Once: 0
+        Once: 1
         Padding: 0
         Criteria:
         - FactReference:
@@ -1721,20 +1763,28 @@ MonoBehaviour:
           Max: 0
           Operation: 0
         - FactReference:
+            InternalID: 1389786
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389380
+          Min: 1389410
+          Max: 1389410
+          Operation: 1
+        - FactReference:
             InternalID: -95002655
           Min: 1
           Max: 1
           Operation: 0
-        Modifications:
-        - FactReference:
-            InternalID: 1389382
-          Value: 1
-          Operation: 0
-        OnApply: []
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389380
         OnInvoke: []
         Content: Break the window.
         Style: 2
-        Icon: 0
+        Icon: 2
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036940
@@ -1777,7 +1827,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Pick up the chair.
         Style: 2
-        Icon: 0
+        Icon: 2
         Speaker:
           InternalID: -417971899
     - rid: 2933227056775036941
@@ -1798,71 +1848,18 @@ MonoBehaviour:
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: Anything of note?
-        Style: 1
-        Icon: 0
-        Speaker:
-          InternalID: -2078916288
-    - rid: 2933227056775036942
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389394
-        Key: R_do_break_window
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1389389
-        Once: 0
-        Padding: 0
-        Criteria:
-        - FactReference:
-            InternalID: 1389382
-          Min: 0
-          Max: 0
-          Operation: 0
-        - FactReference:
-            InternalID: -514433065
-          Min: 1
-          Max: 1
-          Operation: 0
         Modifications:
         - FactReference:
-            InternalID: 1389382
+            InternalID: 1389786
           Value: 1
           Operation: 0
         OnApply: []
         OnInvoke: []
-        Content: Break the window.
-        Style: 2
-        Icon: 0
+        Content: Anything of note?
+        Style: 1
+        Icon: 1
         Speaker:
           InternalID: -2078916288
-    - rid: 2933227056775036943
-      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
-      data:
-        ID: 1389395
-        Key: LR_break_window
-        Scope:
-          InternalID: 475414559
-        Triggers:
-          List:
-          - InternalID: 1389391
-          - InternalID: 1389394
-        Once: 0
-        Padding: 0
-        Criteria: []
-        Modifications: []
-        OnApply: []
-        OnInvoke: []
-        Content: The window shatters.
-        Style: 2
-        Icon: 0
-        Speaker:
-          InternalID: -1596563589
     - rid: 2933227056775036944
       type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
       data:
@@ -1946,7 +1943,7 @@ MonoBehaviour:
         - Reference:
             InternalID: 1389397
         OnInvoke: []
-        Content: Jump over the gate.
+        Content: Climb over the gate.
         Style: 2
         Icon: 3
         Speaker:
@@ -1972,8 +1969,8 @@ MonoBehaviour:
         Modifications: []
         OnApply: []
         OnInvoke: []
-        Content: You picked up the chair.
-        Style: 2
+        Content: Alright, I've got the chair, now what?
+        Style: 1
         Icon: 0
         Speaker:
           InternalID: -417971899
@@ -2059,7 +2056,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
-        Icon: 0
+        Icon: 1
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594308
@@ -2791,7 +2788,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
-        Icon: 0
+        Icon: 1
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594339
@@ -2834,7 +2831,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything special?
         Style: 1
-        Icon: 0
+        Icon: 1
         Speaker:
           InternalID: -417971899
     - rid: 2940630783594594341
@@ -3042,7 +3039,7 @@ MonoBehaviour:
         OnInvoke: []
         Content: Anything of note?
         Style: 1
-        Icon: 0
+        Icon: 1
         Speaker:
           InternalID: -2078916288
     - rid: 2940630783594594349
@@ -3055,7 +3052,7 @@ MonoBehaviour:
         Triggers:
           List:
           - InternalID: 1389456
-        Once: 0
+        Once: 1
         Padding: 0
         Criteria:
         - FactReference:
@@ -3848,3 +3845,466 @@ MonoBehaviour:
         Icon: 0
         Speaker:
           InternalID: -2078916288
+    - rid: 7534619012485349415
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389788
+        Key: L_inspect_gate_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389385
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Ugh. I can't quite reach the top.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349416
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389789
+        Key: L_inspect_gate_2
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389788
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389380
+          Min: 1389396
+          Max: 1389396
+          Operation: 1
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Hm...
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349417
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389790
+        Key: L_inspect_gate_3
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389788
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Maybe if I had something to step on...
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349418
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389791
+        Key: L_place_chair
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389386
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: That should be enough.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349419
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389792
+        Key: R_inspect_gate
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389387
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: There's no way I'm scaling this.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534619012485349420
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389793
+        Key: R_do_jump_over
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389384
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389396
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: -2147483648
+          Max: 0
+          Operation: 3
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389397
+        OnInvoke: []
+        Content: Climb over the gate.
+        Style: 2
+        Icon: 3
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534619012485349421
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389794
+        Key: L_inspect_kiosk_window_D
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389390
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389396
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: The window's gone now. I should be able to reach the stuff inside.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349422
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389795
+        Key: L_inspect_kiosk_window_E
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389390
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389396
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Nothing interesting's left here...
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349423
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389796
+        Key: R_inspect_kiosk_window_C_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389393
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: There has to be some way to break the glass.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534619012485349424
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389797
+        Key: R_inspect_kiosk_window_D
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389393
+        Once: 0
+        Padding: 1
+        Criteria:
+        - FactReference:
+            InternalID: 1389382
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Not the stealthiest way of dealing with a window...
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534619012485349425
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389798
+        Key: L_break_window
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389391
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications:
+        - FactReference:
+            InternalID: 1389382
+          Value: 1
+          Operation: 0
+        OnApply: []
+        OnInvoke: []
+        Content: That should do it.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349426
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389799
+        Key: R_inspect_rock_B_1
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389456
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389457
+          Min: 1
+          Max: 2147483647
+          Operation: 2
+        - FactReference:
+            InternalID: -514433065
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: Not much has changed...
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -2078916288
+    - rid: 7534619012485349427
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389800
+        Key: L_do_pick_up_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389447
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: 1389410
+          Min: 1
+          Max: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389380
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
+            InternalID: 1389449
+          Min: 1
+          Max: 2147483647
+          Operation: 2
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply:
+        - Reference:
+            InternalID: 1389410
+        OnInvoke: []
+        Content: Pick up the rock.
+        Style: 2
+        Icon: 2
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349428
+      type: {class: DialogueEntry, ns: Typewriter, asm: Assembly-CSharp}
+      data:
+        ID: 1389801
+        Key: L_pick_up_rock
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List:
+          - InternalID: 1389800
+        Once: 0
+        Padding: 0
+        Criteria:
+        - FactReference:
+            InternalID: -95002655
+          Min: 1
+          Max: 1
+          Operation: 0
+        Modifications: []
+        OnApply: []
+        OnInvoke: []
+        Content: You're coming with me.
+        Style: 1
+        Icon: 0
+        Speaker:
+          InternalID: -417971899
+    - rid: 7534619012485349429
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389786
+        Key: inspected_window
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []
+    - rid: 7534619012485349430
+      type: {class: FactEntry, ns: Aarthificial.Typewriter.Entries, asm: Aarthificial.Typewriter}
+      data:
+        ID: 1389787
+        Key: tried_climbing
+        Scope:
+          InternalID: 475414559
+        Triggers:
+          List: []
+        Once: 0
+        Padding: 0
+        Criteria: []
+        Modifications: []

@@ -2424,7 +2424,7 @@ PrefabInstance:
     - target: {fileID: 909216138870190066, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -5338,6 +5338,11 @@ PrefabInstance:
       objectReference: {fileID: 208036374}
     - target: {fileID: 994614610742809799, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
+      propertyPath: _initialInteractable
+      value: 
+      objectReference: {fileID: 208036374}
+    - target: {fileID: 994614610742809799, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
       propertyPath: _setups.LT._startPosition.x
       value: -12.473411
       objectReference: {fileID: 0}
@@ -5907,11 +5912,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _sheetName
       value: Entry Gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5164006571463039121, guid: c1dfdad7307460e4c8857ce3d5c50c95,
-        type: 3}
-      propertyPath: _documentId
-      value: 1_NMqzPlt2Vb5mtMN4VWxZhMSc6xiwM6Je3ope9KpNV4
       objectReference: {fileID: 0}
     - target: {fileID: 5396771644395933851, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
