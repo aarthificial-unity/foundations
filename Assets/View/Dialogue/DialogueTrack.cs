@@ -43,9 +43,7 @@ namespace View.Dialogue {
       Assert.IsNull(_currentEntry);
       _currentEntry = entry;
       _showTime = Time.time;
-
       _text = entry.Content;
-      _duration = _text.Length * _speed;
 
       if (_currentBubble != null) {
         _currentBubble.Store();
@@ -54,6 +52,9 @@ namespace View.Dialogue {
       _currentBubble.gameObject.SetActive(true);
       _currentBubble.Setup(_text, entry.Style, player);
       _container.verticalNormalizedPosition = 0;
+      _currentBubble.Text.ForceMeshUpdate();
+      _duration = Mathf.Max(1, _currentBubble.Text.textInfo.characterCount)
+        * _speed;
     }
 
     public void Skip() {

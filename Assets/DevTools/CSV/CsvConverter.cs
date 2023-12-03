@@ -104,6 +104,7 @@ namespace DevTools.CSV {
             type = typeof(DialogueEntry);
             break;
           case "fact":
+          case "local_fact":
             type = typeof(FactEntry);
             break;
           case "item":
@@ -155,6 +156,9 @@ namespace DevTools.CSV {
             case "fact":
               CreateFactEntry(cells, previous);
               break;
+            case "local_fact":
+              CreateFactEntry(cells, previous, true);
+              break;
             case "item":
               CreateItemEntry(cells, previous);
               break;
@@ -200,10 +204,12 @@ namespace DevTools.CSV {
 
     private static BaseEntry CreateFactEntry(
       List<string> cells,
-      BaseEntry previous
+      BaseEntry previous,
+      bool local = false
     ) {
       var entry = _lookup[cells.Key()].GetEntry();
       BeginConversion(entry, cells, previous);
+      entry.Scope = local ? Facts.InteractionScope : Facts.GlobalScope;
       EndConversion(entry);
 
       return entry;
@@ -310,6 +316,8 @@ namespace DevTools.CSV {
           _events.Add(new RuleEntry.Dispatcher { Reference = fact });
         }
         entry.OnApply = _events.ToArray();
+      } else {
+        entry.OnApply = Array.Empty<RuleEntry.Dispatcher>();
       }
 
       EndConversion(entry);
