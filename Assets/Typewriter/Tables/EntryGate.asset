@@ -1987,7 +1987,7 @@ MonoBehaviour:
         Padding: 0
         Criteria: []
         Modifications: []
-        Icon: {fileID: 0}
+        Icon: {fileID: 21300000, guid: 17c1af00e30fc794d8c257e8a70e0a79, type: 3}
         Prefab: {fileID: 5716112002554090600, guid: 70e2810510a37c54db89a6e54e0621c6,
           type: 3}
     - rid: 2933227198024777732
