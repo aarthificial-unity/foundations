@@ -134,7 +134,7 @@ namespace Player.ManagerStates {
         if (currentController.InteractState.IsActive
           && currentController.Other.InteractState.IsActive
           && currentController.InteractState.Interactable
-          == currentController.Other.InteractState.IsActive) {
+          == currentController.Other.InteractState.Interactable) {
           Manager.FocusedPlayer = PlayerType.Both;
         } else if (currentController.NavigateState.IsActive
           || currentController.InteractState.IsActive) {
