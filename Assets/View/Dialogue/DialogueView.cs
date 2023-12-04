@@ -8,6 +8,7 @@ using View.Overlay;
 namespace View.Dialogue {
   public class DialogueView : MonoBehaviour {
     [SerializeField] private RectTransform _frame;
+    [SerializeField] private float _aloneSideBias = 0.3f;
     public DialogueTrack Track;
     public DialogueWheel Wheel;
     public InteractionContext Context;
@@ -16,6 +17,7 @@ namespace View.Dialogue {
     [NonSerialized] public Rect PlayerFrame;
     [NonSerialized] public Vector2 CanvasSize;
     [NonSerialized] public Vector2 WorldToCanvas;
+    [NonSerialized] public bool IsLTLeft;
 
     private CanvasGroup _canvasGroup;
     private PlayerType _presentPlayers;
@@ -23,6 +25,7 @@ namespace View.Dialogue {
     private Camera _mainCamera;
     private PlayerType _lastIndividualPlayer;
     private SpringTween _frameTween;
+    private float _sideBias;
 
     private void Awake() {
       Context = null;
@@ -53,6 +56,13 @@ namespace View.Dialogue {
         * CanvasSize
         / 2;
       var capsuleSize = WorldToCanvas * new Vector2(0.5f, 1f);
+      var angle = (ScreenPosition.RT - ScreenPosition.LT).normalized.x;
+
+      if (IsLTLeft && angle < -_sideBias) {
+        IsLTLeft = false;
+      } else if (!IsLTLeft && angle > _sideBias) {
+        IsLTLeft = true;
+      }
 
       if (Context != null) {
         _presentPlayers = Context.Interactable.PlayerType;
@@ -62,6 +72,13 @@ namespace View.Dialogue {
           _ => _lastIndividualPlayer,
         };
         _frameTween.Set(_presentPlayers == PlayerType.Both ? 1 : 0);
+        _sideBias = _aloneSideBias;
+      } else {
+        _sideBias = 0;
+      }
+
+      if (_presentPlayers == PlayerType.Both) {
+        IsLTLeft = angle > 0;
       }
 
       var bothFrame = Rect.MinMaxRect(
