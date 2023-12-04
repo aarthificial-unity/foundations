@@ -60,6 +60,7 @@ namespace Player {
 
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public EntryReference CurrentItem;
+    [NonSerialized] public bool IsCurrent;
 
     public FMODEventInstance InteractSound;
     public FMODEventInstance EnterDialogueSound;
@@ -153,7 +154,8 @@ namespace Player {
       FootstepAudio.Play();
     }
 
-    public void DrivenUpdate() {
+    public void DrivenUpdate(bool isCurrent) {
+      IsCurrent = isCurrent;
       _currentState.OnUpdate();
       transform.rotation = Quaternion.RotateTowards(
         transform.rotation,

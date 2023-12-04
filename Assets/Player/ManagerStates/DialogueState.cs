@@ -174,7 +174,7 @@ namespace Player.ManagerStates {
 
     private void UpdatePlayer(PlayerController player) {
       player.FollowState.TightDistance = false;
-      player.DrivenUpdate();
+      player.DrivenUpdate(false);
     }
 
     private void ProcessEntry(BaseEntry entry) {

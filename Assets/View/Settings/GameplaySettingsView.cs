@@ -12,18 +12,22 @@ namespace View.Settings {
 
     [SerializeField] private Toggle _cameraShake;
     [SerializeField] private PaperSlider _cameraWeight;
+    [SerializeField] private PaperToggle _autoDialogue;
 
     private void OnEnable() {
       _cameraShake.isOn = _bundle.CameraShake.GetBool();
       _cameraWeight.Value = _bundle.CameraWeight.Get();
+      _autoDialogue.isOn = _bundle.AutoDialogue.GetBool();
 
       _cameraShake.onValueChanged.AddListener(HandleCameraShakeChanged);
       _cameraWeight.ValueChanged += HandleCameraWeightChanged;
+      _autoDialogue.onValueChanged.AddListener(HandleAutoDialogueChanged);
     }
 
     private void OnDisable() {
       _cameraShake.onValueChanged.RemoveListener(HandleCameraShakeChanged);
       _cameraWeight.ValueChanged -= HandleCameraWeightChanged;
+      _autoDialogue.onValueChanged.RemoveListener(HandleAutoDialogueChanged);
     }
 
     private void HandleCameraShakeChanged(bool value) {
@@ -32,6 +36,10 @@ namespace View.Settings {
 
     private void HandleCameraWeightChanged(int value) {
       _bundle.CameraWeight.Set(value);
+    }
+
+    private void HandleAutoDialogueChanged(bool value) {
+      _bundle.AutoDialogue.Set(value);
     }
   }
 }
