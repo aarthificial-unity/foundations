@@ -1777,7 +1777,11 @@ MonoBehaviour:
           Min: 1
           Max: 1
           Operation: 0
-        Modifications: []
+        Modifications:
+        - FactReference:
+            InternalID: 1389382
+          Value: 1
+          Operation: 0
         OnApply:
         - Reference:
             InternalID: 1389380
@@ -4170,11 +4174,7 @@ MonoBehaviour:
           Min: 1
           Max: 1
           Operation: 0
-        Modifications:
-        - FactReference:
-            InternalID: 1389382
-          Value: 1
-          Operation: 0
+        Modifications: []
         OnApply: []
         OnInvoke: []
         Content: That should do it.

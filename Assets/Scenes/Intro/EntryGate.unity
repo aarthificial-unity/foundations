@@ -1509,6 +1509,7 @@ GameObject:
   - component: {fileID: 649345888}
   - component: {fileID: 649345887}
   - component: {fileID: 649345886}
+  - component: {fileID: 649345890}
   m_Layer: 8
   m_Name: SecurityKisokInteraction
   m_TagString: Untagged
@@ -1608,6 +1609,27 @@ Transform:
   - {fileID: 1884739821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649345890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649345885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83048eadd50f4d778ba33df5bd126a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _criteria:
+    List:
+    - FactReference:
+        InternalID: 1389382
+      Min: 1
+      Max: 1
+      Operation: 0
+  _sound:
+    Event: {fileID: 11400000, guid: 0d73eec799fd3464da1686961901e922, type: 2}
 --- !u!1 &660450524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6326,6 +6348,31 @@ PrefabInstance:
     - target: {fileID: 8149339781246004785, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240899115058470209, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240899115058470209, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240899115058470209, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240899115058470209, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240899115058470209, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8296209821588600078, guid: c1dfdad7307460e4c8857ce3d5c50c95,
