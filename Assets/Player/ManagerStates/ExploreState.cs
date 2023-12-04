@@ -183,7 +183,7 @@ namespace Player.ManagerStates {
       }
 
       player.FollowState.TightDistance = _areBothPressed;
-      player.DrivenUpdate();
+      player.DrivenUpdate(player.Type == CurrentPlayer);
       if (IsNavigating(player)) {
         player.NavigateState.TargetPosition = _targetPosition;
       }

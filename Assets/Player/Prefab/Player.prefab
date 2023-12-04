@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
 --- !u!114 &2422429867999183394
 MonoBehaviour:
   m_ObjectHideFlags: 0
