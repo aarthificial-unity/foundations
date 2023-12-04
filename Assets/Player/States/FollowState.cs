@@ -62,7 +62,7 @@ namespace Player.States {
         minDistance,
         maxDistance
       );
-      Player.Agent.speed = range.Map(0f, Player.Config.WalkSpeed);
+      Player.Agent.speed = range.Map(1f, Player.Config.WalkSpeed);
       Player.Agent.acceleration = range.Map(8f, Player.Config.Acceleration);
     }
 
