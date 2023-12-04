@@ -41,7 +41,7 @@ namespace View.Dialogue {
     }
 
     public void DrivenUpdate(float t) {
-      _isLtLeft = _view.ScreenPosition.LT.x < _view.ScreenPosition.RT.x;
+      _isLtLeft = _view.IsLTLeft;
       var spacing = _spacing;
       var distance = _distance;
       var angle = (_total - 1) * spacing;
