@@ -1,4 +1,4 @@
-﻿using Audio;
+﻿using Audio.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

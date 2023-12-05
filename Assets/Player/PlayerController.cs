@@ -6,7 +6,8 @@ using System;
 using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
-using Audio;
+using Audio.Events;
+using Audio.Parameters;
 using Interactions;
 using Items;
 using Player.States;
@@ -59,6 +60,7 @@ namespace Player {
 
     [NonSerialized] public ItemSlot Slot;
     [NonSerialized] public EntryReference CurrentItem;
+    [NonSerialized] public bool IsCurrent;
 
     public FMODEventInstance InteractSound;
     public FMODEventInstance EnterDialogueSound;
@@ -120,26 +122,17 @@ namespace Player {
       SaveStoreRegistry.Register(this);
       _animator.Stepped += HandleStepped;
       TypewriterDatabase.Instance.AddListener(ItemFact, HandleItemUsed);
-      TypewriterDatabase.Instance.AddListener(
-        InteractionContext.AvailableItem,
-        HandleItemPickedUp
-      );
-      TypewriterDatabase.Instance.AddListener(
-        InteractionContext.CallOther,
-        HandleCallOther
-      );
+      TypewriterDatabase.Instance.AddListener(HandleItemPickedUp);
+      TypewriterDatabase.Instance.AddListener(Facts.CallOther, HandleCallOther);
     }
 
     private void OnDisable() {
       SaveStoreRegistry.Unregister(this);
       _animator.Stepped -= HandleStepped;
       TypewriterDatabase.Instance.RemoveListener(ItemFact, HandleItemUsed);
+      TypewriterDatabase.Instance.RemoveListener(HandleItemPickedUp);
       TypewriterDatabase.Instance.RemoveListener(
-        InteractionContext.AvailableItem,
-        HandleItemPickedUp
-      );
-      TypewriterDatabase.Instance.RemoveListener(
-        InteractionContext.CallOther,
+        Facts.CallOther,
         HandleCallOther
       );
     }
@@ -162,7 +155,8 @@ namespace Player {
       FootstepAudio.Play();
     }
 
-    public void DrivenUpdate() {
+    public void DrivenUpdate(bool isCurrent) {
+      IsCurrent = isCurrent;
       _currentState.OnUpdate();
       transform.rotation = Quaternion.RotateTowards(
         transform.rotation,
@@ -221,24 +215,23 @@ namespace Player {
       ITypewriterContext context
     ) {
       if (CurrentItem.HasValue
-        || context is not InteractionContext interactionContext
-        || context.Get(InteractionContext.CurrentSpeaker) != Fact.ID) {
+        || context is not InteractionContext
+        || entry is not ItemEntry
+        || context.Get(Facts.CurrentSpeaker) != Fact.ID
+        || context.Get(entry.ID) != 1) {
         return;
       }
 
-      CurrentItem = interactionContext.Interactable.PickUpItem();
-      if (CurrentItem.HasValue) {
-        context.Set(ItemFact, CurrentItem);
-        Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
-      }
+      context.Set(entry.ID, 0);
+      CurrentItem = entry.ID;
+      context.Set(ItemFact, CurrentItem);
+      Slot.SetItem(CurrentItem.GetEntry<ItemEntry>());
     }
 
     private void HandleCallOther(BaseEntry entry, ITypewriterContext context) {
       if (context.Get(PresenceFact) == 0
-        && context is InteractionContext {
-          Interactable: Conversation conversation,
-        }) {
-        InteractState.Enter(conversation);
+        && context is InteractionContext interactionContext) {
+        InteractState.Enter(interactionContext.Interactable);
       }
     }
 

@@ -1,7 +1,8 @@
 ﻿using Aarthificial.Safekeeper;
 using Aarthificial.Safekeeper.Attributes;
 using Aarthificial.Safekeeper.Stores;
-using Audio;
+using Audio.Events;
+using Audio.Parameters;
 using Framework;
 using UnityEngine;
 using Utils.Tweening;
@@ -32,6 +33,7 @@ namespace Player {
     [SerializeField] private SpringConfig _accelartionSpringConfig;
 
     [ObjectLocation] [SerializeField] private SaveLocation _id;
+    [SerializeField] private PlayerLookup<Rigidbody> _players;
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
@@ -55,9 +57,8 @@ namespace Player {
         Rotations = _rotations,
       };
 
-      var players = GetComponent<PlayerManager>();
-      var from = players.LT.ChainTarget;
-      var to = players.RT.ChainTarget;
+      var from = _players.LT;
+      var to = _players.RT;
 
       _links = new Rigidbody[_length];
       var prev = Instantiate(_link);

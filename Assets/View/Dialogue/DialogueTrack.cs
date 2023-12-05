@@ -4,24 +4,17 @@ using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Audio;
 
 namespace View.Dialogue {
-  public class DialogueTrack : MonoBehaviour, IPointerClickHandler {
+  public class DialogueTrack : MonoBehaviour {
     private const float _speed = 0.03f;
 
     public event Action<DialogueEntry, bool> Finished;
-    public event Action Clicked;
+    public DialogueScrollViewport Viewport;
     [SerializeField] private DialogueView _view;
     [SerializeField] private DialogueBubble _template;
     [SerializeField] private ScrollRect _container;
-    
-    [SerializeField] private FMODEventInstance _textScrollEvent;
-    [SerializeField] private FMODParameter _textCharacterParameter;
-    [SerializeField] private FMODParameter _textStyleParameter;
-
 
     private readonly Stack<DialogueBubble> _pool = new();
     private readonly Stack<DialogueBubble> _bubbles = new();
@@ -34,12 +27,10 @@ namespace View.Dialogue {
 
     private void Awake() {
       _rectTransform = GetComponent<RectTransform>();
-      _textScrollEvent.Setup();
     }
 
     public void Restart() {
       _currentBubble = null;
-      _textScrollEvent.Pause();
       while (_bubbles.Count > 0) {
         var bubble = _bubbles.Pop();
         bubble.gameObject.SetActive(false);
@@ -51,9 +42,7 @@ namespace View.Dialogue {
       Assert.IsNull(_currentEntry);
       _currentEntry = entry;
       _showTime = Time.time;
-
       _text = entry.Content;
-      _duration = _text.Length * _speed;
 
       if (_currentBubble != null) {
         _currentBubble.Store();
@@ -62,9 +51,9 @@ namespace View.Dialogue {
       _currentBubble.gameObject.SetActive(true);
       _currentBubble.Setup(_text, entry.Style, player);
       _container.verticalNormalizedPosition = 0;
-      _textScrollEvent.SetParameter(_textCharacterParameter, player.IsLT ? 0 : 1);
-      _textScrollEvent.SetParameter(_textStyleParameter, (int)entry.Style);
-      _textScrollEvent.Play();
+      _currentBubble.Text.ForceMeshUpdate();
+      _duration = Mathf.Max(1, _currentBubble.Text.textInfo.characterCount)
+        * _speed;
     }
 
     public void Skip() {
@@ -102,7 +91,6 @@ namespace View.Dialogue {
     private void Finish(bool force) {
       Finished?.Invoke(_currentEntry, force);
       _currentEntry = null;
-      _textScrollEvent.Pause();
     }
 
     private DialogueBubble BorrowBubble() {
@@ -117,10 +105,6 @@ namespace View.Dialogue {
       bubble.transform.SetSiblingIndex(0);
       _bubbles.Push(bubble);
       return bubble;
-    }
-
-    public void OnPointerClick(PointerEventData eventData) {
-      Clicked?.Invoke();
     }
   }
 }

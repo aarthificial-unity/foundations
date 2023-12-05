@@ -19,6 +19,9 @@ MonoBehaviour:
     TextColors:
       LT: {r: 1, g: 1, b: 1, a: 0.7294118}
       RT: {r: 1, g: 1, b: 1, a: 0.7294118}
+    IconColors:
+      LT: {r: 0.047058824, g: 0.20784314, b: 0.26666668, a: 1}
+      RT: {r: 0.32156864, g: 0.09019608, b: 0.054901965, a: 1}
     Stroke: 0
     HideArrow: 0
     TextureStrength: 0.2
@@ -29,6 +32,9 @@ MonoBehaviour:
     TextColors:
       LT: {r: 1, g: 1, b: 1, a: 1}
       RT: {r: 1, g: 1, b: 1, a: 1}
+    IconColors:
+      LT: {r: 0.047058824, g: 0.20784314, b: 0.26666668, a: 1}
+      RT: {r: 0.3207547, g: 0.09128396, b: 0.055980776, a: 1}
     Stroke: 1
     HideArrow: 0
     TextureStrength: 0.2
@@ -39,6 +45,9 @@ MonoBehaviour:
     TextColors:
       LT: {r: 0, g: 0, b: 0, a: 1}
       RT: {r: 0, g: 0, b: 0, a: 1}
+    IconColors:
+      LT: {r: 0, g: 0, b: 0, a: 0.5019608}
+      RT: {r: 0, g: 0, b: 0, a: 0.5019608}
     Stroke: 0
     HideArrow: 1
     TextureStrength: 1

@@ -1,4 +1,4 @@
-﻿using Audio;
+﻿using Audio.Events;
 using System;
 using TMPro;
 using UnityEngine;
@@ -33,10 +33,7 @@ namespace View.Controls {
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-      if (IsInteractable() && !_isToggled) {
-        _clickSound.Play();
-        Clicked?.Invoke(_index);
-      }
+      OnSubmit(eventData);
     }
 
     public void OnSubmit(BaseEventData eventData) {

@@ -54,7 +54,7 @@ MonoBehaviour:
   _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
   _cameraPrefab: {fileID: 6031051610096390852, guid: c9dd8bf4e995d864eb0071619b6309c9,
     type: 3}
-  _initialConversation: {fileID: 0}
+  _initialInteractable: {fileID: 0}
   RT: {fileID: 0}
   LT: {fileID: 0}
 --- !u!114 &4796299548502591021
@@ -253,6 +253,9 @@ MonoBehaviour:
   _id:
     ChunkId: 00000000000000000000000000000000
     ObjectId: 4796299548502591021-0
+  _players:
+    LT: {fileID: 0}
+    RT: {fileID: 0}
 --- !u!114 &7942872571327056023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +312,7 @@ MonoBehaviour:
     Event: {fileID: 0}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
+  _fastForwardCooldown: 0.5
 --- !u!114 &4796299548502590993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +328,7 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 74b20a78b90c2d847bdaa3ceb262eace, type: 2}
   _targetPrefab: {fileID: 4803978102406822656, guid: 3ee265cd1d7910f458699d94b5fa0948,
     type: 3}
-  _targetAction: {fileID: 3091928205696429083, guid: 314bc7151929a6a439a2af7e101ce57a,
+  _targetAction: {fileID: 8969022858353728413, guid: 314bc7151929a6a439a2af7e101ce57a,
     type: 3}
   _interactionHoverSound:
     Event: {fileID: 0}
@@ -359,5 +363,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _table: {fileID: 0}
-  _documentId: 
+  _documentId: 19LPYCjdn4JkR4B1pN3EYKgbfLMHpOu8uYFZwuZMw0SI
   _sheetName: 

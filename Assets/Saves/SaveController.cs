@@ -2,6 +2,7 @@
 using Aarthificial.Safekeeper.Loaders;
 using Aarthificial.Typewriter.Blackboards;
 using System;
+using Typewriter;
 
 namespace Saves {
   [Serializable]
@@ -26,7 +27,9 @@ namespace Saves {
     }
 
     protected override void OnLoad() {
-      Data.Read(_location, GlobalData);
+      if (!Data.Read(_location, GlobalData)) {
+        GlobalData.Blackboard.Set(Facts.RTItem, Facts.ItemGun);
+      }
       GlobalData.SceneName ??= _defaultSceneName;
     }
 

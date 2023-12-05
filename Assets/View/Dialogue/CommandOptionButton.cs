@@ -14,11 +14,15 @@ namespace View.Dialogue {
 
     [Inject] [SerializeField] private ButtonStyle _style;
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private Image _panel;
+    [SerializeField] private TextMeshProUGUI _icon;
     [SerializeField] private BoxSDF _fill;
     [SerializeField] private BoxSDF _stroke;
     [SerializeField] private Button _button;
     [SerializeField] private RectTransform _transform;
+
+    private const char _eyeIcon = '\ue8f4';
+    private const char _itemIcon = '\ue574';
+    private const char _exitIcon = '\ue879';
 
     private DialogueView _view;
     private ButtonStyle.Settings _settings;
@@ -37,7 +41,7 @@ namespace View.Dialogue {
     }
 
     public void DrivenUpdate(float t) {
-      _isLtLeft = _view.ScreenPosition.LT.x < _view.ScreenPosition.RT.x;
+      _isLtLeft = _view.IsLTLeft;
       var spacing = _spacing;
       var distance = _distance;
       var angle = (_total - 1) * spacing;
@@ -45,9 +49,8 @@ namespace View.Dialogue {
       var sign = _isLt == _isLtLeft ? -1 : 1;
 
       _transform.pivot = new Vector2(_isLt == _isLtLeft ? 1 : 0, 0.5f);
-      _text.rectTransform.pivot = new Vector2(_isLt == _isLtLeft ? 1 : 0, 0.5f);
-      _text.rectTransform.anchorMin = _text.rectTransform.anchorMax =
-        new Vector2(_isLt == _isLtLeft ? 1 : 0, 0.5f);
+      UpdateText(_text, _isLt == _isLtLeft);
+      UpdateText(_icon, _isLt != _isLtLeft);
       _text.alignment = _isLt == _isLtLeft
         ? TextAlignmentOptions.Right
         : TextAlignmentOptions.Left;
@@ -58,8 +61,20 @@ namespace View.Dialogue {
       _transform.sizeDelta = new Vector2(_size.x * t, _size.y);
     }
 
+    private void UpdateText(TextMeshProUGUI text, bool onLeft) {
+      text.rectTransform.pivot = new Vector2(onLeft ? 1 : 0, 0.5f);
+      text.rectTransform.anchorMin = text.rectTransform.anchorMax =
+        new Vector2(onLeft ? 1 : 0, 0.5f);
+    }
+
     public void SetOption(DialogueEntry option, int index, int total) {
       _text.text = option.Content;
+      _icon.text = option.Icon switch {
+        DialogueEntry.BubbleIcon.Eye => _eyeIcon.ToString(),
+        DialogueEntry.BubbleIcon.Item => _itemIcon.ToString(),
+        DialogueEntry.BubbleIcon.Exit => _exitIcon.ToString(),
+        _ => "",
+      };
       _index = index;
       _total = total;
       _isLt = option.IsLT;
@@ -73,6 +88,7 @@ namespace View.Dialogue {
       _stroke.TextureStrength = settings.TextureStrength;
       _stroke.Dash = settings.Stroke ? 4 : 0;
       _text.color = settings.TextColors[option.PlayerType];
+      _icon.color = settings.IconColors[option.PlayerType];
     }
   }
 }

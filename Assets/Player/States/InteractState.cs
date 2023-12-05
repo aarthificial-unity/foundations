@@ -1,16 +1,20 @@
-﻿using System;
-using Interactions;
+﻿using Interactions;
+using Settings.Bundles;
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Utils;
 
 namespace Player.States {
   public class InteractState : PlayerState {
-    [NonSerialized] public Conversation Conversation;
+    [Inject] [SerializeField] private GameplaySettingsBundle _bundle;
+    [NonSerialized] public Interactable Interactable;
+    private bool _autoEnter;
 
     public override void OnEnter() {
       base.OnEnter();
       Assert.IsNotNull(
-        Conversation,
+        Interactable,
         "Interact state was entered without an interactable"
       );
 
@@ -19,26 +23,26 @@ namespace Player.States {
       }
 
       Player.ResetAgent();
-      Conversation.OnFocusEnter(Player);
+      Interactable.OnFocusEnter(Player);
       Player.Agent.stoppingDistance = 0;
-      Player.Agent.destination = Conversation.GetPosition(Player);
+      Player.Agent.destination = Interactable.GetPosition(Player);
     }
 
     public override void OnExit() {
       base.OnExit();
-      Conversation.OnFocusExit(Player);
-      Conversation = null;
+      Interactable.OnFocusExit(Player);
+      Interactable = null;
     }
 
     public override void OnUpdate() {
-      var isReady = Conversation.IsReady(Player);
+      var isReady = Interactable.IsReady(Player);
       var scale = isReady ? 0.5f : 1f;
       Player.Agent.speed = Player.Config.WalkSpeed * scale;
       Player.Agent.acceleration = Player.Config.Acceleration * scale;
-      Player.Agent.destination = Conversation.GetPosition(Player);
+      Player.Agent.destination = Interactable.GetPosition(Player);
       if (!isReady
         && Other.InteractState.IsActive
-        && Other.InteractState.Conversation != Conversation
+        && Other.InteractState.Interactable != Interactable
         && TryLimitWalkingDistance(
           Player.Agent.destination,
           out var position
@@ -49,31 +53,31 @@ namespace Player.States {
       base.OnUpdate();
       if (isReady) {
         TargetRotation = Quaternion.Lerp(
-          Conversation.GetRotation(Player),
+          Interactable.GetRotation(Player),
           TargetRotation,
           Player.Agent.remainingDistance
         );
+
+        if (_autoEnter) {
+          _autoEnter = false;
+          if (Player.IsCurrent) {
+            Interactable.Interact(Player);
+          }
+        }
       }
     }
 
-    public void Enter(Conversation conversation) {
-      Assert.AreEqual(IsActive, Conversation != null);
+    public void Enter(Interactable interactable) {
+      Assert.AreEqual(IsActive, Interactable != null);
 
-      if (Conversation == conversation) {
+      if (Interactable == interactable) {
         return;
       }
 
+      _autoEnter = _bundle.AutoDialogue.GetBool();
       Player.SwitchState(null);
-      Conversation = conversation;
+      Interactable = interactable;
       Player.SwitchState(this);
-    }
-
-    public bool IsInteractingWith(Conversation conversation) {
-      return IsActive && Conversation == conversation;
-    }
-
-    public bool IsActivelyInteracting() {
-      return IsActive && Conversation.IsInteracting;
     }
   }
 }

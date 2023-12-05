@@ -20,6 +20,7 @@ namespace Player {
     }
 
     private void Awake() {
+      Visible = false;
       _block = new MaterialPropertyBlock();
     }
 

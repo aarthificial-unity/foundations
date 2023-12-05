@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -796817230
-      Data2: 1277919218
-      Data3: 1562508701
-      Data4: -1017413181
-    Path: event:/UI/office/vhs/vhs-select
+      Data1: -139087011
+      Data2: 1299958911
+      Data3: 858752147
+      Data4: -2085778970
+    Path: event:/UI/TapeSelect
   Parameters: []

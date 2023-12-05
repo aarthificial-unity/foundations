@@ -6,7 +6,7 @@ namespace Utils {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool HasChanged(T newValue) {
-      if (Value.Equals(newValue)) {
+      if (Value?.Equals(newValue) ?? newValue == null) {
         return false;
       }
 

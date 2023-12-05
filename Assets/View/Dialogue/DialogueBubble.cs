@@ -30,11 +30,7 @@ namespace View.Dialogue {
     }
 
     public void DrivenUpdate() {
-      if (_isOnLeft.HasChanged(
-          _view.ScreenPosition.LT.x < _view.ScreenPosition.RT.x
-            ? _player.IsLT
-            : !_player.IsLT
-        )) {
+      if (_isOnLeft.HasChanged(_view.IsLTLeft ? _player.IsLT : !_player.IsLT)) {
         _bubbleTransform.pivot = new Vector2(_isOnLeft ? 1 : 0, 1);
         _rootLayout.childAlignment = _isOnLeft
           ? TextAnchor.UpperRight

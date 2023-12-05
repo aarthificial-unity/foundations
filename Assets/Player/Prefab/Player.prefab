@@ -179,8 +179,6 @@ GameObject:
   - component: {fileID: 4695604894641087686}
   - component: {fileID: 5350247751762554484}
   - component: {fileID: 2422429867999183394}
-  - component: {fileID: 9220605009596291365}
-  - component: {fileID: 3786397423081031399}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -300,8 +298,8 @@ MonoBehaviour:
   PresenceFact:
     InternalID: -1848183240
   _id:
-    ChunkId: default
-    ObjectId: 
+    ChunkId: 00000000000000000000000000000000
+    ObjectId: 7182595737060933988-0
   InteractSound:
     Event: {fileID: 11400000, guid: a8a5b322d268f91479193a90fffc224f, type: 2}
   EnterDialogueSound:
@@ -324,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3495f6833c2444ebb16cf28555b378c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetRotation: {x: 0, y: 0, z: 0, w: 0}
   TightDistance: 0
 --- !u!114 &4695604894641087686
 MonoBehaviour:
@@ -337,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9755b316b0408fb73410038b2d6dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5350247751762554484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7baf4c831e44de49cd5465739185619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetRotation: {x: 0, y: 0, z: 0, w: 0}
+  _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
 --- !u!114 &2422429867999183394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,46 +363,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a041780c2604e57ae3b77649a4a0354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9220605009596291365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3307801604843387854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7116f3676cc543c380b861ddd6f57b62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id:
-    ChunkId: 723be1f20975bbb4e80d78073f628de9
-    ObjectId: 9220605009596291365-0
-  Gizmo: {fileID: 0}
-  Event:
-    EventReference:
-      InternalID: 0
-  Blackboard:
-    List: []
-  Context:
-    Context:
-      List: []
-    Interactable: {fileID: 0}
-  _playerId:
-    ChunkId: default
-    ObjectId: 
---- !u!114 &3786397423081031399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3307801604843387854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8084cf3afdd848d38f2d36d54e7dd26c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _material: {fileID: 2100000, guid: 8f38c9a1de57a664ba68a864013554e1, type: 2}
-  _interactable: {fileID: 9220605009596291365}
-  _renderers: []
+  TargetRotation: {x: 0, y: 0, z: 0, w: 0}

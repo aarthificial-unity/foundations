@@ -2,15 +2,16 @@
 using Aarthificial.Typewriter;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
-using Audio;
+using Audio.Events;
 using Framework;
 using Interactions;
+using Settings.Bundles;
 using System.Collections.Generic;
 using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using Utils;
 using View.Dialogue;
 
 namespace Player.ManagerStates {
@@ -30,14 +31,18 @@ namespace Player.ManagerStates {
     [SerializeField] private FMODEventInstance _nextSound;
     [SerializeField] private FMODEventInstance _exitSound;
     [SerializeField] private FMODEventInstance _optionSound;
+    [SerializeField] [Inject] private GameplaySettingsBundle _bundle;
 
     [SerializeField] private Volume _volume;
-    [SerializeField] private float _interactionCooldown = 0.5f;
+    [SerializeField] private float _interactionCooldown = 0.2f;
+    [SerializeField] private float _fastForwardCooldown = 0.5f;
+
     private List<DialogueEntry> _options = new();
     private BaseEntry[] _rules = new BaseEntry[16];
 
     private SubState _subState = SubState.Choice;
     private float _lastUpdateTime;
+    private float _lastSkipTime;
 
     private BaseEntry _queuedEntry;
     private bool _isCancellable;
@@ -97,8 +102,7 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.OptionSelected += HandleOptionSelected;
       _dialogue.Wheel.Button.Clicked += HandleButtonClicked;
       _dialogue.Wheel.Clicked += HandleBackdropClicked;
-      _dialogue.Track.Clicked += HandleBackdropClicked;
-      App.Input.Actions.PointingContinue.action.performed += HandleContinue;
+      _dialogue.Track.Viewport.Clicked += HandleBackdropClicked;
       _dialogue.Track.Finished += HandleFinished;
       _dialogue.SetActive(true);
       _dialogue.Track.Restart();
@@ -111,8 +115,7 @@ namespace Player.ManagerStates {
       _dialogue.Wheel.OptionSelected -= HandleOptionSelected;
       _dialogue.Wheel.Button.Clicked -= HandleButtonClicked;
       _dialogue.Wheel.Clicked -= HandleBackdropClicked;
-      _dialogue.Track.Clicked -= HandleBackdropClicked;
-      App.Input.Actions.PointingContinue.action.performed -= HandleContinue;
+      _dialogue.Track.Viewport.Clicked -= HandleBackdropClicked;
       _dialogue.Track.Finished -= HandleFinished;
       _dialogue.SetActive(false);
       _volume.weight = 0;
@@ -124,12 +127,14 @@ namespace Player.ManagerStates {
       UpdatePlayer(Manager.LT);
       UpdatePlayer(Manager.RT);
 
+      UpdateFastForward();
+
       if (CurrentEntry != null) {
         return;
       }
 
       if (_queuedEntry == null) {
-        var initial = Context.Get(InteractionContext.InitialEvent);
+        var initial = Context.Get(Facts.InitialEvent);
         if (Context.Process(initial)) {
           return;
         }
@@ -152,9 +157,28 @@ namespace Player.ManagerStates {
       ProcessEntry(entry);
     }
 
+    private void UpdateFastForward() {
+      if (App.Actions.PointingClick.action.WasPressedThisFrame()) {
+        _lastSkipTime = Time.time;
+      }
+
+      if (App.Actions.PointingContinue.action.WasPressedThisFrame()) {
+        _lastSkipTime = Time.time;
+        HandleBackdropClicked();
+      }
+
+      var skipPress = _dialogue.Track.Viewport.IsPressed
+        && _bundle.SkipDialogue.GetBool();
+
+      if ((App.Actions.PointingContinue.action.IsPressed() || skipPress)
+        && Time.time - _lastSkipTime > _fastForwardCooldown) {
+        HandleBackdropClicked(false);
+      }
+    }
+
     private void UpdatePlayer(PlayerController player) {
       player.FollowState.TightDistance = false;
-      player.DrivenUpdate();
+      player.DrivenUpdate(false);
     }
 
     private void ProcessEntry(BaseEntry entry) {
@@ -254,11 +278,11 @@ namespace Player.ManagerStates {
       }
     }
 
-    private void HandleContinue(InputAction.CallbackContext obj) {
-      HandleBackdropClicked();
+    private void HandleBackdropClicked() {
+      HandleBackdropClicked(true);
     }
 
-    private void HandleBackdropClicked() {
+    private void HandleBackdropClicked(bool withSound) {
       var duration = Time.time - _lastUpdateTime;
       _lastUpdateTime = 0;
       if (duration < _interactionCooldown) {
@@ -267,11 +291,15 @@ namespace Player.ManagerStates {
 
       switch (_subState) {
         case SubState.Dialogue:
-          _skipSound.Play();
+          if (withSound) {
+            _skipSound.Play();
+          }
           _dialogue.Track.Skip();
           break;
         case SubState.Proceed when _queuedEntry != null:
-          _nextSound.Play();
+          if (withSound) {
+            _nextSound.Play();
+          }
           _subState = SubState.Finished;
           break;
       }

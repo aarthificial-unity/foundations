@@ -1,4 +1,4 @@
-﻿using Audio;
+﻿using Audio.Events;
 using Interactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -88,14 +88,10 @@ namespace Player.ManagerStates {
       }
 
       if (!IsNavigating(CurrentController)
-        && (TryHitInteractable(
-            ray,
-            _config.InteractionMask,
-            out var interactable
-          )
-          || TryHitInteractable(ray, _config.PlayerMask, out interactable))) {
+        && Physics.Raycast(ray, out hit, 100, _config.InteractionMask)
+        && hit.transform.TryGetComponent(out Interactable conversation)) {
         _currentCommand = Command.Interact;
-        _interactable = interactable;
+        _interactable = conversation;
       }
 
       if (_interactable != previousInteractable) {
@@ -134,9 +130,18 @@ namespace Player.ManagerStates {
       _hud.SetInteractive(!IsNavigating(currentController));
       _target.DrivenUpdate(Manager, currentController, _areBothPressed);
 
-      if (currentController?.NavigateState.IsActive ?? false) {
-        Manager.FocusedPlayer =
-          _areBothPressed ? PlayerType.Both : currentController.Type;
+      if (currentController != null) {
+        if (currentController.InteractState.IsActive
+          && currentController.Other.InteractState.IsActive
+          && currentController.InteractState.Interactable
+          == currentController.Other.InteractState.Interactable) {
+          Manager.FocusedPlayer = PlayerType.Both;
+        } else if (currentController.NavigateState.IsActive
+          || currentController.InteractState.IsActive) {
+          Manager.FocusedPlayer = _areBothPressed
+            ? PlayerType.Both
+            : currentController.Type;
+        }
       }
     }
 
@@ -178,7 +183,7 @@ namespace Player.ManagerStates {
       }
 
       player.FollowState.TightDistance = _areBothPressed;
-      player.DrivenUpdate();
+      player.DrivenUpdate(player.Type == CurrentPlayer);
       if (IsNavigating(player)) {
         player.NavigateState.TargetPosition = _targetPosition;
       }
@@ -196,16 +201,6 @@ namespace Player.ManagerStates {
       return player != null
         && player.NavigateState.IsActive
         && _commandedPlayer == player.Type;
-    }
-
-    private bool TryHitInteractable(
-      Ray ray,
-      int mask,
-      out Interactable interactable
-    ) {
-      interactable = default;
-      return Physics.Raycast(ray, out var hit, 100, mask)
-        && hit.transform.TryGetComponent(out interactable);
     }
   }
 }

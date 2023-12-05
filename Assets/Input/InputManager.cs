@@ -109,7 +109,7 @@ namespace Input {
           _actions.controlSchemes,
           out var controlScheme,
           out var matchResult,
-          mustIncludeDevice: device
+          device
         )) {
         try {
           if (_user.valid) {

@@ -7,18 +7,18 @@ using Utils;
 using View.Overlay;
 
 namespace Interactions {
-  [RequireComponent(typeof(Conversation))]
+  [RequireComponent(typeof(Interactable))]
   public class LoadScene : MonoBehaviour {
     [SerializeField] [ScenePath] private string _scenePath;
     [SerializeField]
     [EntryFilter(Variant = EntryVariant.Event)]
     private EntryReference _event;
-    private Conversation _conversation;
+    private Interactable _interactable;
     private OverlayManager _overlay;
 
     private void Awake() {
       _overlay = FindObjectOfType<OverlayManager>();
-      _conversation = GetComponent<Conversation>();
+      _interactable = GetComponent<Interactable>();
       TypewriterDatabase.Instance.AddListener(_event, HandleTypewriterEvent);
     }
 
@@ -30,7 +30,7 @@ namespace Interactions {
       BaseEntry entry,
       ITypewriterContext context
     ) {
-      if (_conversation.Context == context) {
+      if (_interactable.Context == context) {
         _overlay.SwapState.Enter(_scenePath);
       }
     }
