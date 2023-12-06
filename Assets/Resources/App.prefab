@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bundle: {fileID: 11400000, guid: 4ca15592e6d0dd645af1e47645da2bb2, type: 2}
-  _ambienceAudio:
-    Event: {fileID: 11400000, guid: dcac8db30e459054e92fb6f7fa51eab6, type: 2}
-  _ambienceSceneParam:
+  _ambientSound:
+    Event: {fileID: 11400000, guid: 2668f83afc689754ba6349f9f42aecce, type: 2}
+  _sceneParam:
     _parameter: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}
 --- !u!114 &7521336783906260404
 MonoBehaviour:
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2925719610db44fc8be47a9db204787b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultSceneName: EntryGate
 --- !u!114 &2103684135129212471
 MonoBehaviour:
   m_ObjectHideFlags: 0

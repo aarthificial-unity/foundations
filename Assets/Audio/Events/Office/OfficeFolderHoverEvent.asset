@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 2098901726
-      Data2: 1195273639
-      Data3: 1790639269
-      Data4: 988600514
-    Path: event:/UI/FolderHover
+      Data1: 1634945611
+      Data2: 1230991459
+      Data3: 137887147
+      Data4: -1196800931
+    Path: event:/UI/office/folder/folder-hover
   Parameters: []

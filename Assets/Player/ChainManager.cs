@@ -5,6 +5,7 @@ using Audio.Events;
 using Audio.Parameters;
 using Framework;
 using UnityEngine;
+using Utils.Tweening;
 
 namespace Player {
   [DefaultExecutionOrder(2)]
@@ -22,13 +23,22 @@ namespace Player {
     [SerializeField] private Quaternion[] _rotations;
 
     [SerializeField] private FMODEventInstance _chainEvent;
+    
+    [SerializeField] private FMODParameter _chainVelocityParam;
+    
     [SerializeField] private FMODParameter _chainAccelerationParam;
+
+    [SerializeField] private SpringConfig _velocitySpringConfig = new(70, 8);
+
+    [SerializeField] private SpringConfig _accelartionSpringConfig = new(106, 3);
+
     [ObjectLocation] [SerializeField] private SaveLocation _id;
     [SerializeField] private PlayerLookup<Rigidbody> _players;
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
-    private float _acceleration;
+    private float _currentVelocity, _currentAcceleration;
+    private SpringTween _velocityTween, _accelerationTween;
     private StoredData _storedData;
 
     private void Awake() {
@@ -119,8 +129,9 @@ namespace Player {
       }
       _prevFrameVelocity = Vector3.zero;
       _chainEvent.Setup();
-      _chainEvent.AttachToGameObject(gameObject);
+      _chainEvent.AttachToGameObject(_links[_length / 2].gameObject);
       _chainEvent.SetParameter(_chainAccelerationParam, 0.0f);
+      _chainEvent.SetParameter(_chainVelocityParam, 0.0f);
       _chainEvent.Play();
     }
 
@@ -129,15 +140,24 @@ namespace Player {
       for (var i = 0; i < _length; i++) {
         currentVelocity += _links[i].velocity;
       }
-      _acceleration = (currentVelocity - _prevFrameVelocity).magnitude;
+      _velocityTween.Set(currentVelocity.magnitude);
+      _velocityTween.FixedUpdate(_velocitySpringConfig);
+      _currentVelocity = _velocityTween.X;
+      _accelerationTween.Set((currentVelocity - _prevFrameVelocity).magnitude);
+      _accelerationTween.FixedUpdate(_accelartionSpringConfig);
+      _currentAcceleration = _accelerationTween.X;
       _prevFrameVelocity = currentVelocity;
     }
 
     private void Update() {
       _chainEvent.Update3DPosition();
       _chainEvent.SetParameter(
+        _chainVelocityParam,
+        App.Game.Story.IsPaused ? 0 : _currentVelocity
+      );
+      _chainEvent.SetParameter(
         _chainAccelerationParam,
-        App.Game.Story.IsPaused ? 0 : _acceleration
+        App.Game.Story.IsPaused ? 0 : _currentAcceleration
       );
     }
 

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 506805605
-      Data2: 1264616104
-      Data3: -1593420123
-      Data4: -1685643163
-    Path: event:/UI/Okay
+      Data1: -1999543368
+      Data2: 1157173984
+      Data3: 1984880771
+      Data4: -1262101783
+    Path: event:/UI/dialogue/InteractionEnter
   Parameters: []

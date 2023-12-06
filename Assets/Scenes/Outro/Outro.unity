@@ -1919,8 +1919,16 @@ MonoBehaviour:
   - {x: -0.049830966, y: 0.99800193, z: -0.038815577, w: -0.0015408742}
   _chainEvent:
     Event: {fileID: 11400000, guid: 762e5b8737e77ec41900fa62e882f68d, type: 2}
+  _chainVelocityParam: {fileID: 11400000, guid: 9ec51029366620a44bcec73d9d888ded,
+    type: 2}
   _chainAccelerationParam: {fileID: 11400000, guid: 37cc654e17df3d241ad6bb7bb62bd5c0,
     type: 2}
+  _velocitySpringConfig:
+    _frequency: 70
+    _damping: 8
+  _accelartionSpringConfig:
+    _frequency: 106
+    _damping: 3
   _id:
     ChunkId: 84a81053da5082a4686805070b0fba6a
     ObjectId: 1078649102-0

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{60fbaf47-7869-43c5-b015-60b30dcab1b4}">
 		<property name="assetPath">
-			<value>chain/chain-loop1.wav</value>
+			<value>chain/chain-acceleration-loop.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

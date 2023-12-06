@@ -151,6 +151,7 @@ namespace Player {
         && hit.collider.TryGetComponent<ISurfaceProvider>(out var surface)) {
         FootstepAudio.SetParameter(StepSurfaceParam, surface.GetSurface(hit));
       }
+      FootstepAudio.Update3DPosition();
       FootstepAudio.Play();
     }
 

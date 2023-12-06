@@ -19,16 +19,16 @@
 			<value>4</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>App</value>
-			<value>Menu</value>
-			<value>Pause</value>
+			<value>Office</value>
+			<value>EntryGate</value>
 			<value>LoadingDocs</value>
+			<value>Outro</value>
 		</property>
 		<property name="isGlobal">
 			<value>true</value>
 		</property>
 		<property name="initialValue">
-			<value>3</value>
+			<value>0</value>
 		</property>
 		<property name="isExposedRecursively">
 			<value>false</value>

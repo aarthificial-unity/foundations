@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b24016ed-b975-498f-80d4-483d9ea90520}">
+		<property name="assetPath">
+			<value>typewriter/misc/misc_13.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.19318750000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
+		</relationship>
+	</object>
+</objects>

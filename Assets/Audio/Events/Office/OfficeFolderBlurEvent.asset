@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -1044050973
-      Data2: 1149474643
-      Data3: 1424581774
-      Data4: 1895554303
-    Path: event:/UI/FolderBlur
+      Data1: -1014283561
+      Data2: 1275620245
+      Data3: 841474478
+      Data4: 1261854680
+    Path: event:/UI/office/folder/folder-blur
   Parameters: []

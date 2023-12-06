@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b48cdba8-b14c-40ed-a61b-0153349d6fbf}">
+		<property name="assetPath">
+			<value>UI/office/board/board-open.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.55835416666666671</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{9dd9c17d-0e06-4f30-a27c-682c05532506}">
+		<property name="name">
+			<value>tape-location</value>
+		</property>
+		<relationship name="folder">
+			<destination>{007d5526-84de-483c-8aa5-66a43d869085}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{67c13c62-3fa8-4f46-8cdf-31667869d8ec}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{67c13c62-3fa8-4f46-8cdf-31667869d8ec}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>cardboard</value>
+			<value>player</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

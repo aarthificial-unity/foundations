@@ -80,7 +80,6 @@ namespace Audio.Events {
 
     public void Play() {
       if (IsInitialized) {
-        Update3DPosition();
         Instance.start();
       }
     }

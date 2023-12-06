@@ -3,6 +3,8 @@ using Aarthificial.Typewriter.Attributes;
 using Aarthificial.Typewriter.Entries;
 using Aarthificial.Typewriter.References;
 using Aarthificial.Typewriter.Tools;
+using Audio.Events;
+using Audio.Parameters;
 using Interactions;
 using Typewriter;
 using UnityEngine;
@@ -19,11 +21,17 @@ namespace Environment {
     private EntryReference _turnedOnFact;
     [SerializeField] private Interactable _interactable;
     [SerializeField] private Light[] _lights;
+    [SerializeField] private FMODEventInstance _lightOnSound;
 
     private TypewriterWatcher _watcher;
     private SpringTween _lightTween;
     private Cached<bool> _turnedOn;
     private float[] _intensities;
+
+    private void Awake() {
+      _lightOnSound.Setup();
+      _lightOnSound.AttachToGameObject(gameObject);
+    }
 
     private void Start() {
       Update();
@@ -43,6 +51,11 @@ namespace Environment {
         && _turnedOn.HasChanged(_interactable.Context.Get(_itemFilter) == 1)) {
         _interactable.Context.Set(_turnedOnFact, _turnedOn.Value ? 1 : 0);
         _lightTween.Set(_turnedOn ? 1 : 0);
+        if (_turnedOn) {
+          _lightOnSound.Play();
+        } else {
+          _lightOnSound.Pause();
+        }
       }
     }
 

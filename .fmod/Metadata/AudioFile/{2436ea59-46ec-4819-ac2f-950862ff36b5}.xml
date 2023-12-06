@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2436ea59-46ec-4819-ac2f-950862ff36b5}">
+		<property name="assetPath">
+			<value>typewriter/key-press/key-press_02.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.15718750000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
+		</relationship>
+	</object>
+</objects>

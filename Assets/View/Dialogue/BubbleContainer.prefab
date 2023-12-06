@@ -371,6 +371,10 @@ MonoBehaviour:
   _arrow: {fileID: 5254489932415387712}
   _arrowGroup: {fileID: 1680432106259124905}
   spacing: 20
+  _textScrollEvent:
+    Event: {fileID: 11400000, guid: dc7cc8e71f4b6694b9159a9432bdb896, type: 2}
+  _textScrollCharacterParameter: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de,
+    type: 2}
 --- !u!114 &150069939482241697
 MonoBehaviour:
   m_ObjectHideFlags: 0

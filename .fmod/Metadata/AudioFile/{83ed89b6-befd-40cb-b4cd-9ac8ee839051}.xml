@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{83ed89b6-befd-40cb-b4cd-9ac8ee839051}">
+		<property name="assetPath">
+			<value>UI/office/vhs/office-vhs-deselect.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.49756250000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6ab7ca78-a7cc-4484-8759-72c2162791e9}</destination>
+		</relationship>
+	</object>
+</objects>
