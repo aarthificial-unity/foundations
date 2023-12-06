@@ -1,16 +1,17 @@
-﻿using Framework;
-using Saves;
+﻿using Audio.Parameters;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils.Tweening;
+using View.Controls;
 
 namespace View.Office {
   public class SaveTape : Selectable, IPointerClickHandler, ISubmitHandler {
     public event Action<int> Clicked;
 
+    [SerializeField] private FMODParameter _locationParameter;
     [SerializeField] private float _extenstion = 0.1f;
     [SerializeField] private TextMeshProUGUI _label;
     [SerializeField] private Transform _tape;
@@ -19,6 +20,12 @@ namespace View.Office {
     private bool _isSelected;
     private SpringTween _positionTween;
     private SpringConfig _springConfig = SpringConfig.Snappy;
+    private FocusSound _focusSound;
+
+    protected override void Awake() {
+      base.Awake();
+      _focusSound = GetComponent<FocusSound>();
+    }
 
     private void FixedUpdate() {
       if (_positionTween.FixedUpdate(_springConfig)) {
@@ -37,6 +44,7 @@ namespace View.Office {
       }
 
       _isSelected = true;
+      _focusSound.Focus.SetParameter(_locationParameter, 1);
       _tapeContainer.position = tapePlayer.position;
       _tapeContainer.rotation = tapePlayer.rotation;
       Physics.SyncTransforms();
@@ -48,6 +56,7 @@ namespace View.Office {
       }
 
       _isSelected = false;
+      _focusSound.Focus.SetParameter(_locationParameter, 0);
       _tapeContainer.localPosition = Vector3.zero;
       _tapeContainer.localRotation = Quaternion.identity;
       Physics.SyncTransforms();
