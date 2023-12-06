@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{54377aa2-e1ba-4bf6-8be2-1fd3d4c2c910}">
+		<property name="name">
+			<value>Environment</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{34744c2f-74b1-43aa-9a02-84b939280994}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{7ca9cf20-51d6-4f8f-bca4-1b0595686233}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{71ad6cf6-5472-4cab-9a12-ae24e41c7e5d}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{34744c2f-74b1-43aa-9a02-84b939280994}">
+		<relationship name="effects">
+			<destination>{97b87919-4b36-45c8-a612-ee6ad8cb2205}</destination>
+			<destination>{d8d3af8f-5b08-425b-9282-6ed72d98c873}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{7ca9cf20-51d6-4f8f-bca4-1b0595686233}" />
+	<object class="MixerBusFader" id="{97b87919-4b36-45c8-a612-ee6ad8cb2205}" />
+	<object class="MultibandEqEffect" id="{d8d3af8f-5b08-425b-9282-6ed72d98c873}">
+		<property name="filterTypeA">
+			<value>9</value>
+		</property>
+		<property name="frequencyA">
+			<value>301.852356</value>
+		</property>
+		<property name="qualityA">
+			<value>0.239999995</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{a299f5ab-1b4a-460e-9b88-bf5ecab73efb}</destination>
+		</relationship>
+	</object>
+	<object class="SidechainModulator" id="{a299f5ab-1b4a-460e-9b88-bf5ecab73efb}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>gainA</value>
+		</property>
+		<property name="amount">
+			<value>-8</value>
+		</property>
+		<property name="attackTime">
+			<value>10</value>
+		</property>
+		<property name="releaseTime">
+			<value>740</value>
+		</property>
+		<property name="minimumThreshold">
+			<value>-80</value>
+		</property>
+		<property name="maximumThreshold">
+			<value>-70</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{3ca03bfd-5563-4de5-be5a-3927541b2fce}</destination>
+		</relationship>
+	</object>
+</objects>

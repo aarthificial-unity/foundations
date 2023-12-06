@@ -126,11 +126,8 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{68b22cb4-b951-4596-a911-7252d22542d9}">
-		<property name="volume">
-			<value>-3</value>
-		</property>
 		<property name="name">
-			<value>Audio 1</value>
+			<value>H click</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{8a4cacbc-dc43-4741-9609-138a1b172e83}</destination>
@@ -161,7 +158,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{3c75889e-db27-4cc7-b331-899c8a4ab389}">
 		<property name="name">
-			<value>Audio 2</value>
+			<value>M noise</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ad9ee52f-89d0-4838-bda2-86ef1ec035e3}</destination>
@@ -236,11 +233,14 @@
 	</object>
 	<object class="MixerBusFader" id="{a58c4ac8-554b-4e11-8e00-af72fa861bd3}" />
 	<object class="ThreeEQEffect" id="{6b46701b-d206-4848-90d3-3c798b49e5b7}">
+		<property name="lowGain">
+			<value>-3</value>
+		</property>
 		<property name="midGain">
-			<value>-12.5</value>
+			<value>-7.5</value>
 		</property>
 		<property name="highGain">
-			<value>-8</value>
+			<value>-5.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{0d280d9b-4b3a-4eeb-9787-17d1ea2ea9f3}">

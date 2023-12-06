@@ -119,11 +119,8 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{95edeb29-6148-4b74-a7a6-3f69857f96cf}">
-		<property name="volume">
-			<value>-8</value>
-		</property>
 		<property name="name">
-			<value>Audio 1</value>
+			<value>M noise</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{668490b0-de9d-414e-b0c2-0facb64a6dc2}</destination>
@@ -137,10 +134,10 @@
 	</object>
 	<object class="SingleSound" id="{26f19738-1c3f-43e0-82a0-a5532943a6cb}">
 		<property name="length">
-			<value>0.070000000000000007</value>
+			<value>0.098802752293577989</value>
 		</property>
 		<property name="pitch">
-			<value>6</value>
+			<value>5</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{aeb33191-e1cc-42e9-be57-2276a9ba9ba5}</destination>
@@ -153,8 +150,11 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{b5e4aa2f-380e-44c1-b163-395068a4699f}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="name">
-			<value>Audio 2</value>
+			<value>H click</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ebcaf98e-a4aa-4ea9-8ab6-d50b01145d3c}</destination>
@@ -309,7 +309,7 @@
 	</object>
 	<object class="AutomationPoint" id="{982c8bf2-de0d-44e7-9416-ff6690c37b9f}">
 		<property name="position">
-			<value>0.025274193730266119</value>
+			<value>0.054076946023844101</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -320,7 +320,7 @@
 	</object>
 	<object class="AutomationPoint" id="{99f32bd7-8696-41eb-a01d-ffa2f789b64b}">
 		<property name="position">
-			<value>0.070000000000000007</value>
+			<value>0.098802752293577989</value>
 		</property>
 		<property name="value">
 			<value>0</value>

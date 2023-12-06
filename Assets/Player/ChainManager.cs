@@ -37,7 +37,7 @@ namespace Player {
 
     private Rigidbody[] _links;
     private Vector3 _prevFrameVelocity;
-    private float _velocity, _acceleration;
+    private float _currentVelocity, _currentAcceleration;
     private SpringTween _velocityTween, _accelerationTween;
     private StoredData _storedData;
 
@@ -142,10 +142,10 @@ namespace Player {
       }
       _velocityTween.Set(currentVelocity.magnitude);
       _velocityTween.FixedUpdate(_velocitySpringConfig);
-      _velocity = _velocityTween.X;
+      _currentVelocity = _velocityTween.X;
       _accelerationTween.Set((currentVelocity - _prevFrameVelocity).magnitude);
       _accelerationTween.FixedUpdate(_accelartionSpringConfig);
-      _acceleration = _accelerationTween.X;
+      _currentAcceleration = _accelerationTween.X;
       _prevFrameVelocity = currentVelocity;
     }
 
@@ -153,11 +153,11 @@ namespace Player {
       _chainEvent.Update3DPosition();
       _chainEvent.SetParameter(
         _chainVelocityParam,
-        App.Game.Story.IsPaused ? 0 : _velocity
+        App.Game.Story.IsPaused ? 0 : _currentVelocity
       );
       _chainEvent.SetParameter(
         _chainAccelerationParam,
-        App.Game.Story.IsPaused ? 0 : _acceleration
+        App.Game.Story.IsPaused ? 0 : _currentAcceleration
       );
     }
 

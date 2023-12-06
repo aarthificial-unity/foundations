@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1157173984
       Data3: 1984880771
       Data4: -1262101783
-    Path: event:/UI/Dialogue/InteractionEnter
+    Path: event:/UI/dialogue/InteractionEnter
   Parameters: []

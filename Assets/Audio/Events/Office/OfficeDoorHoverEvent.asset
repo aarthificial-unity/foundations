@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -1361877813
-      Data2: 1199601831
-      Data3: 1449622716
-      Data4: -559434475
-    Path: event:/UI/DoorHover
+      Data1: 1796431415
+      Data2: 1242112561
+      Data3: 1049262741
+      Data4: 1006196456
+    Path: event:/UI/office/door/door-hover
   Parameters: []

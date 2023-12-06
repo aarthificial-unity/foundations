@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1324189114
       Data3: 352432573
       Data4: 866722012
-    Path: event:/UI/Dialogue/DialogueSelectionOption
+    Path: event:/UI/dialogue/DialogueSelectionOption
   Parameters: []

@@ -549,14 +549,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343655413921635414}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c4af37a6a9941ff80ca677dd65e9de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _sound:
     Event: {fileID: 11400000, guid: 2668f83afc689754ba6349f9f42aecce, type: 2}
-  _playOnEnable: 1
+  _playOnEnable: 0
 --- !u!1 &2365801536616246098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1773,7 @@ Transform:
   m_GameObject: {fileID: 6832154222371004785}
   serializedVersion: 2
   m_LocalRotation: {x: 0.05557546, y: 0.20214051, z: 0.0133938175, w: 0.9776867}
-  m_LocalPosition: {x: -48.152584, y: 29.064102, z: -43.311653}
+  m_LocalPosition: {x: -0.5341387, y: 0.46310353, z: -2.6289215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1815,7 +1815,7 @@ Camera:
   far clip plane: 100
   field of view: 32
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.0034285767
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   _template: {fileID: 6626459841483897536, guid: c2796a3582fb279488ed77a64b456af9,
     type: 3}
   _container: {fileID: 771369689453713597}
-  _textScrollEvent:
+  _textScrollSound:
     Event: {fileID: 11400000, guid: dc7cc8e71f4b6694b9159a9432bdb896, type: 2}
   _textCharacterParameter: {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de,
     type: 2}

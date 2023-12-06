@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1164401669
       Data3: 1944549802
       Data4: -550065717
-    Path: event:/UI/Dialogue/DialogueExit
+    Path: event:/UI/dialogue/DialogueExit
   Parameters: []

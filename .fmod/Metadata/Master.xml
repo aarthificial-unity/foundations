@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerMaster" id="{cd259a3e-c186-4e90-ac3f-10e1a4a76d13}">
+		<property name="volume">
+			<value>6</value>
+		</property>
 		<property name="name">
 			<value>Master Bus</value>
 		</property>
@@ -19,8 +22,8 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{cec76314-3a28-450f-abf7-e82da19f2e90}">
 		<relationship name="effects">
-			<destination>{b5d6b140-5ced-4ff6-a54c-922757f6871a}</destination>
 			<destination>{5ec67008-e0a2-44ef-a294-d6b9a637e296}</destination>
+			<destination>{b5d6b140-5ced-4ff6-a54c-922757f6871a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e3952ac0-f5d1-4ab2-bc76-d72c780ce603}">
@@ -28,6 +31,7 @@
 			<value>2</value>
 		</property>
 	</object>
+	<object class="MixerBusFader" id="{5ec67008-e0a2-44ef-a294-d6b9a637e296}" />
 	<object class="LimiterEffect" id="{b5d6b140-5ced-4ff6-a54c-922757f6871a}">
 		<property name="boost">
 			<value>12</value>
@@ -35,6 +39,8 @@
 		<property name="ceiling">
 			<value>-1.10000002</value>
 		</property>
+		<property name="release">
+			<value>46</value>
+		</property>
 	</object>
-	<object class="MixerBusFader" id="{5ec67008-e0a2-44ef-a294-d6b9a637e296}" />
 </objects>

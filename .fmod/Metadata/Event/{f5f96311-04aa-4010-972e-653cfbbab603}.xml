@@ -93,10 +93,10 @@
 	<object class="MixerBusPanner" id="{2474ab2f-eb8b-4eef-ba34-48f4d6f35c7d}" />
 	<object class="SingleSound" id="{ddd3a747-3706-49c1-8355-ff6f74d30d2b}">
 		<property name="length">
-			<value>0.11865625</value>
+			<value>0.13318713741970906</value>
 		</property>
 		<property name="pitch">
-			<value>24</value>
+			<value>22</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{faeddff1-c291-4f57-a738-968af36e0781}</destination>
@@ -107,7 +107,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{de5dd8c2-3df7-484b-bea8-7fb025565133}">
 		<property name="name">
-			<value>Audio 1</value>
+			<value>M mech-ratchet</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{00879e40-2ed8-4da0-8e0a-b61292bcef02}</destination>
@@ -166,7 +166,7 @@
 	</object>
 	<object class="AutomationPoint" id="{023b335f-1df8-47b9-b837-bfcd25785f93}">
 		<property name="position">
-			<value>0.016</value>
+			<value>0.005859375</value>
 		</property>
 		<property name="value">
 			<value>1</value>

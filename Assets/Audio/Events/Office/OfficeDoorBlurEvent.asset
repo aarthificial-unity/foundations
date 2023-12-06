@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -1798229339
-      Data2: 1112127117
-      Data3: -245873262
-      Data4: 1715544875
-    Path: event:/UI/DoorBlur
+      Data1: 263968865
+      Data2: 1332595977
+      Data3: -865594181
+      Data4: 622376509
+    Path: event:/UI/office/door/door-blur
   Parameters: []

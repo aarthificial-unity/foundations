@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 1436810953
-      Data2: 1332651113
-      Data3: 538128806
-      Data4: -1296890727
-    Path: event:/UI/BoardHover
+      Data1: 321440595
+      Data2: 1325049247
+      Data3: 1637123460
+      Data4: -1801186670
+    Path: event:/UI/office/board/board-hover
   Parameters: []

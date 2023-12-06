@@ -134,10 +134,13 @@
 			<value>-14.5</value>
 		</property>
 		<property name="midGain">
-			<value>-21.5</value>
+			<value>-21</value>
 		</property>
 		<property name="highGain">
 			<value>-12</value>
+		</property>
+		<property name="highCrossover">
+			<value>3600</value>
 		</property>
 	</object>
 </objects>

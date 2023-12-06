@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: -1789381098
-      Data2: 1295034246
-      Data3: 1639125654
-      Data4: 746583584
-    Path: event:/UI/TapeHover
+      Data1: 431050436
+      Data2: 1107685632
+      Data3: -1055686509
+      Data4: 1535218091
+    Path: event:/UI/office/vhs/vhs-hover
   Parameters: []

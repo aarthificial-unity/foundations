@@ -650,3 +650,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _focusSound:
     Event: {fileID: 11400000, guid: be88a8ca19986e8439a970000ed1a27d, type: 2}
+  _blurSound:
+    Event: {fileID: 11400000, guid: a61acd49dbcc84b41b9507b8a2785931, type: 2}

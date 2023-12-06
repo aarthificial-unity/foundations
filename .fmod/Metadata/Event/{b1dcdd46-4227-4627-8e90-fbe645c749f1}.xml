@@ -93,10 +93,10 @@
 	<object class="MixerBusPanner" id="{c0f09ef2-25e0-401f-904c-5340b1a2144a}" />
 	<object class="SingleSound" id="{1c9c0bed-36a5-4a46-801c-d8e77cf840b1}">
 		<property name="length">
-			<value>0.062140625000000005</value>
+			<value>0.078292281491123591</value>
 		</property>
 		<property name="pitch">
-			<value>23</value>
+			<value>20</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{de9e4d8c-1161-422d-8287-2f4a0f8b7c98}</destination>
@@ -104,7 +104,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{96daf77e-55c9-40b8-8f5b-3edcb69b9051}">
 		<property name="name">
-			<value>Audio 1</value>
+			<value>M swoosh</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{5e89f843-e6ac-4973-8e2b-79e9ee7e276b}</destination>

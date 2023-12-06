@@ -5,6 +5,8 @@ using Typewriter;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using Audio.Events;
+using Audio.Parameters;
 
 namespace View.Dialogue {
   public class DialogueTrack : MonoBehaviour {
@@ -15,6 +17,9 @@ namespace View.Dialogue {
     [SerializeField] private DialogueView _view;
     [SerializeField] private DialogueBubble _template;
     [SerializeField] private ScrollRect _container;
+    [SerializeField] private FMODEventInstance _textScrollSound;
+    [SerializeField] private FMODParameter _textCharacterParameter;
+    [SerializeField] private FMODParameter _textStyleParameter;
 
     private readonly Stack<DialogueBubble> _pool = new();
     private readonly Stack<DialogueBubble> _bubbles = new();
@@ -27,9 +32,11 @@ namespace View.Dialogue {
 
     private void Awake() {
       _rectTransform = GetComponent<RectTransform>();
+      _textScrollSound.Setup();
     }
 
     public void Restart() {
+      _textScrollSound.Pause();
       _currentBubble = null;
       while (_bubbles.Count > 0) {
         var bubble = _bubbles.Pop();
@@ -54,6 +61,9 @@ namespace View.Dialogue {
       _currentBubble.Text.ForceMeshUpdate();
       _duration = Mathf.Max(1, _currentBubble.Text.textInfo.characterCount)
         * _speed;
+      _textScrollSound.SetParameter(_textCharacterParameter, player.IsLT ? 0 : 1);
+      _textScrollSound.SetParameter(_textStyleParameter, (int)entry.Style);
+      _textScrollSound.Play();
     }
 
     public void Skip() {
@@ -91,6 +101,7 @@ namespace View.Dialogue {
     private void Finish(bool force) {
       Finished?.Invoke(_currentEntry, force);
       _currentEntry = null;
+      _textScrollSound.Pause();
     }
 
     private DialogueBubble BorrowBubble() {

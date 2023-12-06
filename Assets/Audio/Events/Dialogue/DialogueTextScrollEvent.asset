@@ -18,7 +18,7 @@ MonoBehaviour:
       Data2: 1288859494
       Data3: 967048586
       Data4: -1695766193
-    Path: event:/UI/Dialogue/TextScroll
+    Path: event:/UI/dialogue/TextScroll
   Parameters:
   - {fileID: 11400000, guid: 2548bcfab98c734469e5da6fc6ab87de, type: 2}
   - {fileID: 11400000, guid: c8630f74ac18b0e468618031e6aa039c, type: 2}

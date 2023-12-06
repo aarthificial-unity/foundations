@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1106612518
       Data3: 891324806
       Data4: 306573379
-    Path: event:/UI/Dialogue/DialogueSkip
+    Path: event:/UI/dialogue/DialogueSkip
   Parameters: []

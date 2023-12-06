@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1269581996
       Data3: -1496955718
       Data4: -1126268295
-    Path: event:/UI/Dialogue/InteractionHover
+    Path: event:/UI/dialogue/InteractionHover
   Parameters: []

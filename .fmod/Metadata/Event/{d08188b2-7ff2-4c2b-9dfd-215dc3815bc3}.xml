@@ -136,7 +136,7 @@
 			<value>-16</value>
 		</property>
 		<property name="highGain">
-			<value>-6.5</value>
+			<value>-3.5</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{9cf58f6c-df33-4e39-8205-f719e08c93e4}">

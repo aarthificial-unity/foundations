@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 1132690994
-      Data2: 1168479507
-      Data3: -635954281
-      Data4: 941379084
-    Path: event:/UI/TapeDeselect
+      Data1: -1855222059
+      Data2: 1277559850
+      Data3: -334998087
+      Data4: -1989337446
+    Path: event:/UI/office/vhs/vhs-blur
   Parameters: []

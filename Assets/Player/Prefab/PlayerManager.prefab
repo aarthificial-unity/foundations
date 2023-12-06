@@ -251,7 +251,7 @@ MonoBehaviour:
     _frequency: 106
     _damping: 3.02
   _id:
-    ChunkId: 00000000000000000000000000000000
+    ChunkId: 7caaa6edb9217ff47acbbd01b77fec15
     ObjectId: 4796299548502591021-0
   _players:
     LT: {fileID: 0}
@@ -310,6 +310,7 @@ MonoBehaviour:
     Event: {fileID: 0}
   _optionSound:
     Event: {fileID: 0}
+  _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2
   _fastForwardCooldown: 0.5

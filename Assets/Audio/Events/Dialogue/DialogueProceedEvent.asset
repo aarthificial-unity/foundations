@@ -18,5 +18,5 @@ MonoBehaviour:
       Data2: 1230757777
       Data3: -1705719632
       Data4: -822500213
-    Path: event:/UI/Dialogue/DialogueProceed
+    Path: event:/UI/dialogue/DialogueProceed
   Parameters: []

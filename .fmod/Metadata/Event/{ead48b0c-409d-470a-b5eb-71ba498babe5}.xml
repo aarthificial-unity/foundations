@@ -127,7 +127,7 @@
 			<value>-13</value>
 		</property>
 		<property name="name">
-			<value>Audio 1</value>
+			<value>HM click</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{48fd7692-c7ba-422a-b6dc-676849d923e2}</destination>
@@ -164,7 +164,7 @@
 			<value>-2.5</value>
 		</property>
 		<property name="name">
-			<value>Audio 2</value>
+			<value>M tone</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{fb9d7c09-14a2-43b8-8e8a-1363b5a9e54a}</destination>
