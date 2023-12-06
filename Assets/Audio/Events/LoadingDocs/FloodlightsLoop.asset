@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     Guid:
-      Data1: 2035895693
-      Data2: 1315151128
-      Data3: 1979822995
-      Data4: 61540120
-    Path: event:/Environment/Floodlights
+      Data1: -2001169877
+      Data2: 1198834968
+      Data3: 77452431
+      Data4: 1061589952
+    Path: event:/Environment/Floodlights-Loop
   Parameters: []

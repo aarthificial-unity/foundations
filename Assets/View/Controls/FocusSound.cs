@@ -10,6 +10,9 @@ namespace View.Controls {
     IPointerExitHandler,
     IDeselectHandler,
     ISelectHandler {
+    public FMODEventInstance Focus => _focusSound;
+    public FMODEventInstance Blur => _blurSound;
+
     [SerializeField] private FMODEventInstance _focusSound;
     [SerializeField] private FMODEventInstance _blurSound;
     private Selectable _selectable;
