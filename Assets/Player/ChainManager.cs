@@ -28,9 +28,9 @@ namespace Player {
     
     [SerializeField] private FMODParameter _chainAccelerationParam;
 
-    [SerializeField] private SpringConfig _velocitySpringConfig;
+    [SerializeField] private SpringConfig _velocitySpringConfig = new(70, 8);
 
-    [SerializeField] private SpringConfig _accelartionSpringConfig;
+    [SerializeField] private SpringConfig _accelartionSpringConfig = new(106, 3);
 
     [ObjectLocation] [SerializeField] private SaveLocation _id;
     [SerializeField] private PlayerLookup<Rigidbody> _players;

@@ -267,6 +267,8 @@ MonoBehaviour:
   _lights:
   - {fileID: 457051092}
   - {fileID: 226594461}
+  _lightOnSound:
+    Event: {fileID: 11400000, guid: 60e941e2972e4f94baca0ebb3cb9008b, type: 2}
 --- !u!4 &147056720
 Transform:
   m_ObjectHideFlags: 0
@@ -2345,7 +2347,7 @@ PrefabInstance:
     - target: {fileID: 909216138870190066, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 994614610742809793, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
@@ -6111,6 +6113,31 @@ PrefabInstance:
     - target: {fileID: 7158745903329348926, guid: c1dfdad7307460e4c8857ce3d5c50c95,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436953515535815523, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436953515535815523, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436953515535815523, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436953515535815523, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436953515535815523, guid: c1dfdad7307460e4c8857ce3d5c50c95,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7876220338502842219, guid: c1dfdad7307460e4c8857ce3d5c50c95,

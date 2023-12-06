@@ -19,4 +19,5 @@ MonoBehaviour:
       Data3: -1055686509
       Data4: 1535218091
     Path: event:/UI/office/vhs/vhs-hover
-  Parameters: []
+  Parameters:
+  - {fileID: 11400000, guid: 365b3f9145525584ab36e3cae5f04d52, type: 2}

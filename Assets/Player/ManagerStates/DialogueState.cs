@@ -232,8 +232,8 @@ namespace Player.ManagerStates {
     }
 
     private void HandleFinished(DialogueEntry entry, bool force) {
-      //Assert.AreEqual(CurrentEntry, entry);
-      //Assert.AreEqual(_subState, SubState.Dialogue);
+      Assert.AreEqual(CurrentEntry, entry);
+      Assert.AreEqual(_subState, SubState.Dialogue);
 
       if (!force) {
         _lastUpdateTime = Time.time;
