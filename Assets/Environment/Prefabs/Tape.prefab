@@ -632,6 +632,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+  _locationParameter: {fileID: 11400000, guid: 365b3f9145525584ab36e3cae5f04d52, type: 2}
   _extenstion: 0.02
   _label: {fileID: 4051309708273999761}
   _tape: {fileID: 5515110299189776631}
