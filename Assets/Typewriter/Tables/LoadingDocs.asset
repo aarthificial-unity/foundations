@@ -11470,6 +11470,8 @@ MonoBehaviour:
         Triggers:
           List:
           - InternalID: 1389234
+          - InternalID: 1389350
+          - InternalID: 1389348
         Once: 0
         Padding: 0
         Criteria:

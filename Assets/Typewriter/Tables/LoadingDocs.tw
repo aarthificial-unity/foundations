@@ -529,7 +529,9 @@ L_ask_bay_2_box_dark_knows_20,speech,dialogue,LT,,FALSE,FALSE,"You, just- You be
 L_ask_bay_2_box_dark_knows_21,speech,dialogue,LT,,FALSE,FALSE,"Might'a been doing that for batteries, too, man. I dunno.",,,,,0,
 L_ask_bay_2_box_dark_knows_22,speech,dialogue,RT,,FALSE,FALSE,Mm. Sure.,,,,,0,
 L_ask_bay_2_box_dark_knows_23,speech,dialogue,RT,,FALSE,FALSE,Regardless.,,,,,0,
-L_ask_bay_2_box_dark_knows_24,speech,dialogue,RT,,FALSE,FALSE,"There should be a way to get this gate open, somewhere in here.",,,,,0,
+L_ask_bay_2_box_dark_knows_24,speech,dialogue,RT,,FALSE,FALSE,"There should be a way to get this gate open, somewhere in here.","L_ask_bay_2_box_dark_knows_23
+R_ask_bay_2_box_dark_admit_1
+R_ask_bay_2_box_dark_guess_1",,,,0,
 L_ask_bay_2_box_dark_knows_25,speech,dialogue,RT,,FALSE,FALSE,There should <i>also</i> be a few dozen ways to fry your nervous system.,,,,,0,
 L_ask_bay_2_box_dark_knows_26,speech,dialogue,RT,,FALSE,FALSE,"So, we need a way to see what's going on.",,,bay_2_looking_for_light = 1,,0,
 L_ask_bay_2_box_dark_knows_27,speech,dialogue,RT,,FALSE,FALSE,"And until we <i>get</i> one, <i>you</i> are going to keep your hands <i>off</i> of this thing.",,,,,0,
