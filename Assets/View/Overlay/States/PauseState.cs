@@ -1,4 +1,5 @@
-﻿using Framework;
+﻿using Audio.Parameters;
+using Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -12,10 +13,12 @@ namespace View.Overlay.States {
     [SerializeField] private PaperButton _settingsButton;
     [SerializeField] private PaperButton _menuButton;
     [SerializeField] private PaperButton _exitButton;
+    [SerializeField] private FMODParameterInstance _isPausedParam;
 
     protected override void Awake() {
       base.Awake();
       _menu.DrivenAwake(_worldCamera);
+      _isPausedParam.Setup();
     }
 
     public override void OnEnter() {
@@ -27,6 +30,7 @@ namespace View.Overlay.States {
       _exitButton.Clicked += App.Game.Quit;
       _resumeButton.QuietSelect();
       App.Actions.UICancel.action.performed += HandleCancel;
+      _isPausedParam.CurrentValue = 1;
     }
 
     public override void OnExit() {
@@ -37,6 +41,7 @@ namespace View.Overlay.States {
       _menuButton.Clicked -= App.Game.Menu.Enter;
       _exitButton.Clicked -= App.Game.Quit;
       App.Actions.UICancel.action.performed -= HandleCancel;
+      _isPausedParam.CurrentValue = 0;
     }
 
     private void HandleCancel(InputAction.CallbackContext _) {

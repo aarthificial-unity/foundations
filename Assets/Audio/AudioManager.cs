@@ -11,6 +11,7 @@ namespace Audio {
   public class AudioManager : MonoBehaviour {
     [Inject] [SerializeField] private AudioSettingsBundle _bundle;
     [SerializeField] private FMODEventInstance _ambientSound;
+    [SerializeField] private FMODEventInstance _music;
     [SerializeField] private FMODParameterInstance _sceneParam;
 
     private VCA _masterVca;
@@ -32,6 +33,8 @@ namespace Audio {
       _sceneParam.CurrentValue = SceneManager.GetActiveScene().buildIndex;
       _ambientSound.Setup();
       _ambientSound.Play();
+      _music.Setup();
+      _music.Play();
     }
 
     private void OnDisable() {
@@ -40,6 +43,7 @@ namespace Audio {
       _bundle.MusicVolume.Changed -= HandleMusicVolumeChanged;
       SceneManager.sceneLoaded -= HandleSceneLoaded;
       _ambientSound.Pause();
+      _music.Pause();
     }
 
     private void HandleMasterVolumeChanged(int value) {
