@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerMaster" id="{cd259a3e-c186-4e90-ac3f-10e1a4a76d13}">
-		<property name="volume">
-			<value>6</value>
-		</property>
 		<property name="name">
 			<value>Master Bus</value>
 		</property>
@@ -23,6 +20,7 @@
 	<object class="MixerBusEffectChain" id="{cec76314-3a28-450f-abf7-e82da19f2e90}">
 		<relationship name="effects">
 			<destination>{5ec67008-e0a2-44ef-a294-d6b9a637e296}</destination>
+			<destination>{9a06cd48-d4fd-4b4f-a14b-fce875d6383a}</destination>
 			<destination>{b5d6b140-5ced-4ff6-a54c-922757f6871a}</destination>
 		</relationship>
 	</object>
@@ -32,6 +30,23 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{5ec67008-e0a2-44ef-a294-d6b9a637e296}" />
+	<object class="CompressorEffect" id="{9a06cd48-d4fd-4b4f-a14b-fce875d6383a}">
+		<property name="threshold">
+			<value>-18</value>
+		</property>
+		<property name="ratio">
+			<value>2</value>
+		</property>
+		<property name="attackTime">
+			<value>9</value>
+		</property>
+		<property name="releaseTime">
+			<value>92</value>
+		</property>
+		<property name="gain">
+			<value>7</value>
+		</property>
+	</object>
 	<object class="LimiterEffect" id="{b5d6b140-5ced-4ff6-a54c-922757f6871a}">
 		<property name="boost">
 			<value>12</value>

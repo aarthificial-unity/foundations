@@ -269,6 +269,8 @@ MonoBehaviour:
   - {fileID: 226594461}
   _lightOnSound:
     Event: {fileID: 11400000, guid: 60e941e2972e4f94baca0ebb3cb9008b, type: 2}
+  _lightOnParam:
+    _parameter: {fileID: 11400000, guid: bde4a6c4c83a3d643bafecfc912c5354, type: 2}
 --- !u!4 &147056720
 Transform:
   m_ObjectHideFlags: 0

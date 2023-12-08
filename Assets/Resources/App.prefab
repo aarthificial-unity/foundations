@@ -115,6 +115,8 @@ MonoBehaviour:
   _bundle: {fileID: 11400000, guid: 4ca15592e6d0dd645af1e47645da2bb2, type: 2}
   _ambientSound:
     Event: {fileID: 11400000, guid: 2668f83afc689754ba6349f9f42aecce, type: 2}
+  _music:
+    Event: {fileID: 11400000, guid: 6777e29723910004da1a0456c60a12d3, type: 2}
   _sceneParam:
     _parameter: {fileID: 11400000, guid: 0450059727b268f4daba7c42735d0b23, type: 2}
 --- !u!114 &7521336783906260404

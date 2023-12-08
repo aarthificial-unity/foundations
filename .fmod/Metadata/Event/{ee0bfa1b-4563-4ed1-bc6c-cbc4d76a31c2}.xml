@@ -98,8 +98,14 @@
 	</object>
 	<object class="SingleSound" id="{ebbff626-e9fb-425e-95bf-7aa2a2eac5b6}">
 		<property name="length">
-			<value>0.28999999999999998</value>
+			<value>0.25874999999999998</value>
 		</property>
+		<property name="timelockedOffset">
+			<value>0.03125</value>
+		</property>
+		<relationship name="fadeInCurve">
+			<destination>{ea1ebac7-de8b-4437-ae66-ed581ff0f58e}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{fbb44ba2-d1a3-459b-98ab-4dd17250d814}</destination>
 		</relationship>
@@ -125,6 +131,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{198bc77d-676f-436a-a0ef-bce07e63316a}" />
 	<object class="MixerBusFader" id="{4d3986f8-263a-4cfa-a718-6af3a29ea297}" />
+	<object class="FadeCurve" id="{ea1ebac7-de8b-4437-ae66-ed581ff0f58e}">
+		<relationship name="startPoint">
+			<destination>{2d841751-d2ed-47c3-a6aa-ff02783af9e7}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{7b421610-50c6-400a-b3ca-94d470a8a1f2}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{4eabdd3b-f4d7-47f4-b42c-fe8e79daf89f}">
 		<relationship name="effects">
 			<destination>{3471af0f-98c8-42fc-8607-f2fdf5c0a41e}</destination>
@@ -133,6 +147,25 @@
 	</object>
 	<object class="MixerBusPanner" id="{4bcca75c-3868-49e2-accb-0c602d6c2ecd}" />
 	<object class="MixerBusFader" id="{98ba3d2b-0b9f-4442-bc2b-f92689dc4675}" />
+	<object class="AutomationPoint" id="{2d841751-d2ed-47c3-a6aa-ff02783af9e7}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.2547189</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{7b421610-50c6-400a-b3ca-94d470a8a1f2}">
+		<property name="position">
+			<value>0.0078125</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{3471af0f-98c8-42fc-8607-f2fdf5c0a41e}" />
 	<object class="MultibandEqEffect" id="{a84cecd8-d54a-424e-95d3-ee5e332b9f7c}">
 		<property name="filterTypeA">
@@ -142,7 +175,7 @@
 			<value>162.124435</value>
 		</property>
 		<property name="qualityA">
-			<value>2.9310348</value>
+			<value>6.5999999</value>
 		</property>
 		<relationship name="automators">
 			<destination>{6e1e7e2a-59a3-4c35-bbe2-3cf9451a7a63}</destination>
@@ -170,7 +203,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>120</value>
+			<value>130</value>
 		</property>
 		<property name="curveShape">
 			<value>0.0970247015</value>
@@ -181,7 +214,7 @@
 			<value>0.21875</value>
 		</property>
 		<property name="value">
-			<value>30</value>
+			<value>32.5</value>
 		</property>
 	</object>
 </objects>

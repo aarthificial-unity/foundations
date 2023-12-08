@@ -1181,6 +1181,8 @@ MonoBehaviour:
   _settingsButton: {fileID: 276920975503391875}
   _menuButton: {fileID: 5209357313781281366}
   _exitButton: {fileID: 35383601679840490}
+  _isPausedParam:
+    _parameter: {fileID: 11400000, guid: 7dba0683d69536d448ae2d9cdd355b65, type: 2}
 --- !u!114 &4330695506814336664
 MonoBehaviour:
   m_ObjectHideFlags: 0
