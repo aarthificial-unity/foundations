@@ -3,16 +3,19 @@
   <img width="180" alt="Foundations logo" src="./.docs/assets/logo.svg">
 </p>
 <p align="center">
-  <a href="https://unity3d.com">
-    <img src="https://img.shields.io/badge/Made%20with-Unity-2196f3.svg?style=flat&logo=unity" alt="Unity badge">
-  </a>
+    <a href="https://store.steampowered.com/app/2570450"><img src="https://img.shields.io/badge/Play%20on-Steam-1A9FFF.svg?style=flat&logo=steam" alt="Play on Steam"></a>
+    <a href="https://aarthificial.itch.io/solomons-link"><img src="https://img.shields.io/badge/Play%20on-itch.io-FF2449.svg?style=flat&logo=itch.io" alt="Play on itch.io"></a>
+    <a href="https://unity3d.com"><img src="https://img.shields.io/badge/Made%20with-Unity-2196F3.svg?style=flat&logo=unity" alt="Unity badge"></a>
 </p>
 <br/>
 
-# Foundations
+# Source Code for *Solomon's Link*
 
-### 🔧 [Latest Game Build](https://github.com/aarthificial/foundations/releases/latest)
+This repository contains the source code for the game [Solomon's Link](https://store.steampowered.com/app/2570450).
 
-### 📋 [Project Board](https://github.com/users/aarthificial/projects/1)
+The game will most likely not be developed any further.
+Pull requests are not open.
 
-### 📂 [Shared Drive](https://drive.google.com/drive/folders/11N_1J57xJ6rhhh6fQ48iF8rI4759ZoRR)
+---
+
+All assets are licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
