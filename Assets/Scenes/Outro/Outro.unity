@@ -1926,7 +1926,7 @@ MonoBehaviour:
   _velocitySpringConfig:
     _frequency: 70
     _damping: 8
-  _accelartionSpringConfig:
+  _accelerationSpringConfig:
     _frequency: 106
     _damping: 3
   _id:
@@ -2811,7 +2811,7 @@ MonoBehaviour:
     - Key: devlog
       Value:
         Color: {r: 0.9529412, g: 0.42352942, b: 0.37254903, a: 1}
-        Url: https://www.youtube.com/@aarthificial
+        Url: https://youtu.be/zQf-E1bNow4
 --- !u!54 &2024649236 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 865434628289337081, guid: 92e7c9ff0c925d449ba5ab7811653d5e,
