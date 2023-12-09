@@ -543,7 +543,9 @@ L_ask_bay_2_box_dark_here_2",bay_2_R_saw_box < 1,,,1,
 L_ask_bay_2_box_dark_learns_2,speech,dialogue,RT,,FALSE,FALSE,"Back up a bit, let me look at this.",,,,,0,
 L_ask_bay_2_box_dark_learns_3,speech,dialogue,LT,,FALSE,FALSE,"Oh, sorry.",,,,,0,
 L_ask_bay_2_box_dark_learns_4,speech,dialogue,RT,,FALSE,FALSE,"Mm. Right, let's see...",,,,,0,
-L_ask_bay_2_box_dark_learns_A_1,thought,dialogue,RT,,FALSE,FALSE,It looks like this could be a way to get into the building.,L_ask_bay_2_box_dark_learns_4,bay_R_identified_bays = 0,bay_R_identified_bays = 1,,1,
+L_ask_bay_2_box_dark_learns_A_1,thought,dialogue,RT,,FALSE,FALSE,It looks like this could be a way to get into the building.,L_ask_bay_2_box_dark_learns_4,"bay_R_identified_bays = 0
+bay_R_identified = 0","bay_R_identified_bays = 1
+bay_R_identified = 1",,2,
 L_ask_bay_2_box_dark_learns_A_2,thought,dialogue,RT,,FALSE,FALSE,"The wall here is replaced by a garage door, which is covered by a scissor gate.",,,,,0,
 L_ask_bay_2_box_dark_learns_A_3,thought,dialogue,RT,,FALSE,FALSE,"Judging by the lights, it's powered, but... faulty, in some way.",,,,,0,
 L_ask_bay_2_box_dark_learns_A_4,thought,dialogue,RT,,FALSE,FALSE,Which <i>would</i> explain why this service box is open.,,,bay_2_R_saw_box = 1,,0,
@@ -633,7 +635,9 @@ R_ask_bay_2_box_dark_knows_2,speech,dialogue,LT,,FALSE,FALSE,Oh. In the box?,,,,
 R_ask_bay_2_box_dark_learns_1,speech,dialogue,LT,,FALSE,FALSE,Uhh... Gimme a sec.,"R_ask_bay_2_box_dark_away_4
 R_ask_bay_2_box_dark_here_4",bay_2_L_saw_box < 1,,,1,
 R_ask_bay_2_box_dark_learns_2,thought,dialogue,LT,,FALSE,FALSE,"What's going on, here?",,,,,0,
-R_ask_bay_2_box_dark_learns_A_1,thought,dialogue,LT,,FALSE,FALSE,Looks like one of those gates they use for shipping-and-receiving stuff.,R_ask_bay_2_box_dark_learns_2,bay_L_identified_bays = 0,bay_L_identified_bays = 1,,1,
+R_ask_bay_2_box_dark_learns_A_1,thought,dialogue,LT,,FALSE,FALSE,Looks like one of those gates they use for shipping-and-receiving stuff.,R_ask_bay_2_box_dark_learns_2,"bay_L_identified_bays = 0
+bay_L_identified = 0","bay_L_identified_bays = 1
+bay_L_identified = 1",,2,
 R_ask_bay_2_box_dark_learns_A_2,thought,dialogue,LT,,FALSE,FALSE,"You back a big-rig into it, and the trailer slots right in.",,,,,0,
 R_ask_bay_2_box_dark_learns_A_3,thought,dialogue,LT,,FALSE,FALSE,Lets 'em load and unload straight into the building.,,,,,0,
 R_ask_bay_2_box_dark_learns_A_4,thought,dialogue,LT,,FALSE,FALSE,The gate's closed...,,,,,0,

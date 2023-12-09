@@ -164,10 +164,11 @@ namespace Player {
         Config.RotationSpeed * Time.deltaTime
       );
 
-      var speed = Agent.velocity.magnitude;
+      var velocity = Agent.velocity;
+      velocity.y = 0;
+      var speed = velocity.magnitude;
       if (Agent.remainingDistance > Agent.stoppingDistance + 1) {
-        speed = (Agent.velocity.magnitude + Agent.desiredVelocity.magnitude)
-          / 2f;
+        speed = (speed + Agent.desiredVelocity.magnitude) / 2f;
       }
 
       _speedFactor = Mathf.Lerp(
