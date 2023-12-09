@@ -11779,6 +11779,11 @@ MonoBehaviour:
           Max: 0
           Operation: 0
         - FactReference:
+            InternalID: 1389734
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
             InternalID: -514433065
           Min: 1
           Max: 1
@@ -11786,6 +11791,10 @@ MonoBehaviour:
         Modifications:
         - FactReference:
             InternalID: 1389004
+          Value: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389734
           Value: 1
           Operation: 0
         OnApply: []
@@ -13941,6 +13950,11 @@ MonoBehaviour:
           Max: 0
           Operation: 0
         - FactReference:
+            InternalID: 1389735
+          Min: 0
+          Max: 0
+          Operation: 0
+        - FactReference:
             InternalID: -95002655
           Min: 1
           Max: 1
@@ -13948,6 +13962,10 @@ MonoBehaviour:
         Modifications:
         - FactReference:
             InternalID: 1389003
+          Value: 1
+          Operation: 0
+        - FactReference:
+            InternalID: 1389735
           Value: 1
           Operation: 0
         OnApply: []
