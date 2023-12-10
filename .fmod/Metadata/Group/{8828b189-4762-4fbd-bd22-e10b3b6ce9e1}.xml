@@ -21,6 +21,7 @@
 		<relationship name="effects">
 			<destination>{01d5ba7e-9698-42c5-b095-296963c99557}</destination>
 			<destination>{3ca03bfd-5563-4de5-be5a-3927541b2fce}</destination>
+			<destination>{953b5b43-d347-4dac-81fb-21c8d102d1a7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c9f77aa6-60b6-4de9-8b19-944b917de873}" />
@@ -30,4 +31,5 @@
 			<value>10</value>
 		</property>
 	</object>
+	<object class="Sidechain" id="{953b5b43-d347-4dac-81fb-21c8d102d1a7}" />
 </objects>

@@ -441,23 +441,26 @@
 		<property name="filterTypeB">
 			<value>9</value>
 		</property>
+		<property name="filterTypeC">
+			<value>3</value>
+		</property>
 		<property name="frequencyA">
-			<value>438.290649</value>
+			<value>179.820633</value>
 		</property>
 		<property name="frequencyB">
-			<value>1869.11658</value>
+			<value>3338.7666</value>
 		</property>
 		<property name="qualityA">
-			<value>0.680000007</value>
+			<value>0.439999998</value>
 		</property>
 		<property name="qualityB">
 			<value>3.29999995</value>
 		</property>
 		<property name="gainA">
-			<value>-16.5517235</value>
+			<value>-15</value>
 		</property>
 		<property name="gainB">
-			<value>-9.5</value>
+			<value>-16.034481</value>
 		</property>
 		<relationship name="automators">
 			<destination>{c3182651-e5ab-4b1a-a157-f4b2d1f66b13}</destination>
@@ -598,7 +601,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>3.30000019</value>
+			<value>0.179999948</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{b03b1473-d683-45fe-8611-d7ebfd919f8d}">
@@ -606,7 +609,7 @@
 			<value>3</value>
 		</property>
 		<property name="value">
-			<value>3.30000019</value>
+			<value>0.179999948</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{e81e76af-51dd-43b7-ad25-bf900518ed35}">
@@ -614,7 +617,7 @@
 			<value>2</value>
 		</property>
 		<property name="value">
-			<value>0.650000036</value>
+			<value>0.100000001</value>
 		</property>
 	</object>
 </objects>
