@@ -247,7 +247,7 @@ MonoBehaviour:
   _velocitySpringConfig:
     _frequency: 70.6
     _damping: 7.82
-  _accelartionSpringConfig:
+  _accelerationSpringConfig:
     _frequency: 106
     _damping: 3.02
   _id:
@@ -310,6 +310,8 @@ MonoBehaviour:
     Event: {fileID: 0}
   _optionSound:
     Event: {fileID: 0}
+  _inDialogueParam:
+    _parameter: {fileID: 11400000, guid: c65474eedb6ba1349b5bf6c16db99684, type: 2}
   _bundle: {fileID: 11400000, guid: 5fbd4547a65c8bb408e316186c88a582, type: 2}
   _volume: {fileID: 4796299548502590995}
   _interactionCooldown: 0.2

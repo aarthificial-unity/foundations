@@ -44,13 +44,13 @@
 			<value>gainA</value>
 		</property>
 		<property name="amount">
-			<value>-24</value>
+			<value>-4</value>
 		</property>
 		<property name="attackTime">
-			<value>64</value>
+			<value>79</value>
 		</property>
 		<property name="releaseTime">
-			<value>86</value>
+			<value>160</value>
 		</property>
 		<property name="minimumThreshold">
 			<value>-80</value>
@@ -59,7 +59,7 @@
 			<value>-39</value>
 		</property>
 		<relationship name="sidechains">
-			<destination>{4b9e3ca1-186c-443e-acf7-81cff8c421ac}</destination>
+			<destination>{953b5b43-d347-4dac-81fb-21c8d102d1a7}</destination>
 		</relationship>
 	</object>
 </objects>

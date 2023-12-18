@@ -13,6 +13,7 @@ using UnityEngine.Assertions;
 using UnityEngine.Rendering;
 using Utils;
 using View.Dialogue;
+using Audio.Parameters;
 
 namespace Player.ManagerStates {
   [Serializable]
@@ -31,6 +32,7 @@ namespace Player.ManagerStates {
     [SerializeField] private FMODEventInstance _nextSound;
     [SerializeField] private FMODEventInstance _exitSound;
     [SerializeField] private FMODEventInstance _optionSound;
+    [SerializeField] private FMODParameterInstance _inDialogueParam;
     [SerializeField] [Inject] private GameplaySettingsBundle _bundle;
 
     [SerializeField] private Volume _volume;
@@ -55,6 +57,7 @@ namespace Player.ManagerStates {
       _nextSound.Setup();
       _exitSound.Setup();
       _optionSound.Setup();
+      _inDialogueParam.Setup();
     }
 
     protected override void OnDestroy() {
@@ -108,6 +111,7 @@ namespace Player.ManagerStates {
       _dialogue.Track.Restart();
       _dialogue.Wheel.Restart();
       _lastUpdateTime = Time.time;
+      _inDialogueParam.CurrentValue = 1;
     }
 
     public override void OnExit() {
@@ -121,6 +125,7 @@ namespace Player.ManagerStates {
       _volume.weight = 0;
       CurrentEntry = null;
       _queuedEntry = null;
+      _inDialogueParam.CurrentValue = 0;
     }
 
     public override void OnUpdate() {
